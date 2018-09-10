@@ -18,12 +18,17 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	 public function index()
-	 {
-		 $this->data['isi'] = 'isi';
-		 $this->data['isi'] = $this->load->view('home', $this->data, TRUE);
-		 $this->load->view('layout', $this->data);
-	 }
+	public function __construct(){
+		parent::__construct();
+		$this->load->model('LoginM');
+		in_access(); //helper buat batasi akses login/session
+	}
+
+	public function index(){
+		$this->data['isi'] = 'isi';
+		$this->data['isi'] = $this->load->view('home', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
 }
 
 
