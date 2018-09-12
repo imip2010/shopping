@@ -448,7 +448,7 @@
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="mdi mdi-star-circle m-r-5 m-l-5"></i> Favorite</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                <a class="dropdown-item" href="<?php echo site_url('login/log_out');?>">
                                     <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                 <div class="dropdown-divider"></div>
                                 <div class="p-l-30 p-10">
@@ -478,7 +478,13 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Pencarian Populer</span><i class="ti-angle-left"></i></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu"></span><i class="ti-angle-right"></i></a></li>
+                        <?php
+                            foreach ($produk_terpopuler as $produk_populer) {
+                                ?>
+                                   <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu"><?php echo $produk_populer->productName?> </span><i class="ti-angle-right"></i></a></li>
+                                <?php
+                            }
+                        ?>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
