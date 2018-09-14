@@ -7,32 +7,86 @@
 <!-- Column bagian kiri : mulai -->
 
 
-<div class="col-lg-3 col-md-12">
+<div class="col-lg-2 col-md-12">
     <div class="card">
         <div class="card-body">
             <div class="myadmin-dd dd" id="nestable">
+                <div class="text-center">
+                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Jual Barang </button>
+                </div><br>
                 <ol class="dd-list">
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle"> Ringkasan Akun  </div>
-                    </li>
-                    <li class="dd-item" data-id="2">
-                        <div class="dd-handle"> Daftar Barang </div>
-                        <ol class="dd-list">
-                            <li class="dd-item" data-id="3">
-                                <div class="dd-handle"> Barang Dijual </div>
-                            </li>
-                            <li class="dd-item" data-id="4">
-                                <div class="dd-handle"> Barang Tidak Dijual </div>
-                            </li>
-                            <li class="dd-item" data-id="4">
-                                <div class="dd-handle"> Barang Draf </div>
-                            </li>
+                    <li class="dd-item" >
+                        <a href="#"> Ringkasan Akun </a>
+                    </li><br>
+                    <li class="dd-item">
+                        <a href="<?php echo base_url()?>labelbarang"  style="color: #4798e8;" > Label Barang </a>   
+                    </li><br>
+                    <li class="dd-item" >
+                        <a href="#"> Daftar Barang </a>
+                        <ol class="dd-list"><br>
+                            <li class="dd-item" >
+                                <a href="#"> Barang Dijual </a>
+                            </li><br>
+                            <li class="dd-item" >
+                                <a href="#"> Barang Tidak Dijual </a> 
+                            </li><br>
+                            <li class="dd-item" >
+                                <a href="#"> Barang Draf  </a>    
+                            </li><br>
                         </ol>
                     </li>
+                    
+                    <div class="dropdown-divider"></div>
+
                     <li class="dd-item" data-id="1">
-                        <div class="dd-handle"> Label Barang  </div>
+                        <a href="<?php echo base_url()?>labelbarang"> Teman </a> 
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Barang Favorit </a> 
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Langganan </a>    
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Pembelian Rutin </a>   
                     </li>
-                </ol>
+                    
+                    <div class="dropdown-divider"></div>
+
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Saldo </a>   
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Transaksi </a>   
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Feedback </a>   
+                    </li>
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Pesan </a>  
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Diskusi Barang </a>  
+                    </li>
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Kode Promo </a> 
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Koperasi Widget </a> 
+                    </li><br>
+                    <li class="dd-item" data-id="1">
+                        <a href="<?php echo base_url()?>labelbarang"> Pengaturan </a>
+                    </li>
+                </ol><br>
+                <div class="text-center">
+                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Preview Lapak </button>
+                </div>
             </div>
         </div>
     </div>
@@ -44,7 +98,7 @@
     <div class="card">
         <div class="card-body">
             <h3 class="card-title">Pengaturan Label Barang</h3><br>
-            <p >Label digunakan untuk mengelompokkan barang agar barang lebih mudah ditemukan oleh pembeli. Atur label di halaman ini dan <a href="" style="color: #4798e8;"> Pasang/Lepas label pada barang </a> di my lapak.</p>
+            <p >Label digunakan untuk mengelompokkan barang agar barang lebih mudah ditemukan oleh pembeli. Atur label di halaman ini dan <a href="" style="color: #4798e8;"> Pasang/Lepas label pada barang </a> di toko saya.</p>
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-6">
                     <h4 class="box-title m-t-40">Buat Label Baru</h4><br>
