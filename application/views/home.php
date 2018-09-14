@@ -1,4 +1,4 @@
-
+    
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
@@ -364,6 +364,7 @@
 <h4 class="page-title">Produk Terbaru</h4>
 <div class="row el-element-overlay">
     <?php  
+    // print_r($get_produk_terbaru);
     foreach ($get_produk_terbaru as $produk_terbaru) {
         // diskon  
         $harga      = number_format($produk_terbaru->salePrice,0,',','.');
@@ -374,9 +375,10 @@
 
         $hargatetap  = "<span> </span>
         <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
-        $hargadiskon = "<span data-product-rrp-without-tax class='price price--rrp'> $d% </span>
-        <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
-        if ($d!=0){
+        $hargadiskon = "<span data-product-rrp-without-tax class='price price--rrp' style='color: red;''> $d% </span><br>
+        <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span><br>
+        <span data-product-price-without-tax class='price price--withoutTax'><strike><small> Rp. $harga</small></strike></span>";
+        if ($d!='0'){
           $divharga=$hargadiskon;
       }else{
           $divharga=$hargatetap;
@@ -386,10 +388,10 @@
       <div class="col-lg-2 col-md-6">
         <div class="card">
             <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/gallery/chair.jpg" alt="user" />
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/thumb/small_<?php echo $produk_terbaru->photo1?>" alt="user" />
                     <div class="el-overlay">
                         <ul class="list-style-none el-info">
-                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-magnifier"></i></a></li>
                             <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
                             <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
                         </ul>
@@ -398,7 +400,7 @@
                 <div class="d-flex no-block align-items-center">
                     <div class="m-l-15">
                         <h5><?php echo $produk_terbaru->productName;?></h5>
-                        <span class="text-muted">Jakarta Selatan</span>
+                        <span class="text-muted"><?php echo $produk_terbaru->address;?></span>
                         <h5><?php  echo $divharga;?></h5>
                     </div>
                     <div class="ml-auto m-r-15"><br>
