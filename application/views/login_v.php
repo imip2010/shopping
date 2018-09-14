@@ -96,7 +96,7 @@
                             </div>
                             <div class="form-group m-b-0 m-t-10">
                                 <div class="col-sm-12 text-center">
-                                    Belum Punya Akun ?<a href="authentication-register1.html" class="text-info m-l-5"><b>Daftar Sekarang</b></a>
+                                    Belum Punya Akun ?<a href="<?php echo base_url()?>register" class="text-info m-l-5"><b>Daftar Sekarang</b></a>
                                 </div>
                             </div>
                         </form>

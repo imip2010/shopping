@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/images/favicon.png">
-    <title>Market Place -- Koperasi</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/images/Arnawa_Apps icon.png">
+    <title>Marketlace -- Koperasi</title>
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>assets/libs/raty-js/lib/jquery.raty.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -47,12 +47,12 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="<?php echo base_url()?>home">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Light Logo icon -->
-                            <img src="<?php echo base_url()?>assets/images/kata.png" alt="homepage" style="width: 100%" />
+                            <img src="<?php echo base_url()?>assets/images/Arnawa_Apps Logo_1.png" alt="homepage" style="width: 100%" />
                         </b>
                         <!--End Logo icon -->
                     </a>
@@ -377,7 +377,7 @@
 
                         
                         <!-- ============================================================== -->
-                        <!-- Menu Lapak : mulai -->
+                        <!-- Menu Toko : mulai -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
 
@@ -394,7 +394,7 @@
                                         <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="img-circle" width="60">
                                     </div>
                                     <div class="m-l-10">
-                                        <h4 class="m-b-0">Lapak Arnawa</h4>
+                                        <h4 class="m-b-0">Toko Arnawa</h4>
                                         <p class=" m-b-0">Kebayoran Baru</p>
                                     </div>
                                 </div>
@@ -462,7 +462,7 @@
                         ?>
                       
                         <!-- ============================================================== -->
-                        <!-- Menu Lapak : selesai -->
+                        <!-- Menu Toko : selesai -->
                         <!-- ============================================================== -->
                         
 
