@@ -408,6 +408,59 @@
                                     <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Label Barang</a>
                             </div>
                         </li>
+                        <?php 
+                            if($logged_in == 1){
+                                ?>
+                                 <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                    <span class="with-arrow">
+                                        <span class="bg-primary"></span>
+                                    </span>
+                                    <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
+                                        <div class="">
+                                            <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="img-circle" width="60">
+                                        </div>
+                                        <div class="m-l-10">
+                                            <h4 class="m-b-0">Steave Jobs</h4>
+                                            <p class=" m-b-0">varun@gmail.com</p>
+                                        </div>
+                                    </div>
+                                            <a class="dropdown-item" href="javascript:void(0)">
+                                                <i class="ti-home m-r-5 m-l-5"></i>Toko Saya</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">
+                                        <i class="ti-wallet m-r-5 m-l-5"></i> Saldo Saya Rp. 20.000</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript:void(0)">
+                                        <i class="ti-settings m-r-5 m-l-5"></i> Pengaturan Profil</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript:void(0)">
+                                        <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Ulasan</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript:void(0)">
+                                        <i class="mdi mdi-star-circle m-r-5 m-l-5"></i> Favorite</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="<?php echo site_url('login/log_out');?>">
+                                        <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="p-l-30 p-10">
+                                        <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php
+                            }else{
+                                ?>
+                                    <li class="nav-item dropdown">
+                                            <i class="glyphicon glyphicon-log-in"></i><a href="<?php echo site_url('login')?>" class="navbar-btn btn btn-md btn-warning" style="margin-top: 23%;">Login</a>
+                                    </li>
+                        <?php
+                            }
+                        ?>
+                      
                         <!-- ============================================================== -->
                         <!-- Menu Lapak : selesai -->
                         <!-- ============================================================== -->
@@ -416,46 +469,7 @@
                         <!-- ============================================================== -->
                         <!-- User profile : mulai -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <span class="with-arrow">
-                                    <span class="bg-primary"></span>
-                                </span>
-                                <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
-                                    <div class="">
-                                        <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="img-circle" width="60">
-                                    </div>
-                                    <div class="m-l-10">
-                                        <h4 class="m-b-0">Steave Jobs</h4>
-                                        <p class=" m-b-0">varun@gmail.com</p>
-                                    </div>
-                                </div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-home m-r-5 m-l-5"></i>Toko Saya</a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-wallet m-r-5 m-l-5"></i> Saldo Saya Rp. 20.000</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-settings m-r-5 m-l-5"></i> Pengaturan Profil</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Ulasan</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="mdi mdi-star-circle m-r-5 m-l-5"></i> Favorite</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="<?php echo site_url('login/log_out');?>">
-                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
-                                </div>
-                            </div>
-                        </li>
+                       
                         <!-- ============================================================== -->
                         <!-- User profile : selesai -->
                         <!-- ============================================================== -->
