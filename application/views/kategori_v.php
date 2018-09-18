@@ -459,6 +459,706 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="el-card-item">
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/img3.jpg" alt="user" />
+                    <div class="el-overlay">
+                        <ul class="list-style-none el-info">
+                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex no-block align-items-center">
+                    <div class="m-l-15">
+                        <h5>Rounded Chair</h5>
+                        <span class="text-muted">Jakarta Selatan</span>
+                        <h5>Rp. 150.000</h5>
+                    </div>
+                    <div class="ml-auto m-r-15"><br>
+                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div><br>
 <!-- ============================================================== -->
 <!-- KATEGORI : SELESAI -->
