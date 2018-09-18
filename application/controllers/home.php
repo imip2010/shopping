@@ -33,6 +33,15 @@ class Home extends CI_Controller {
 		$this->data['isi'] = $this->load->view('home', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
 	}
+
+	public function register(){
+		$this->form_validation->set_rules('username', 'Username','required|is_unique[members.username]');
+		$this->form_validation->set_rules('email','Email');
+		$this->form_validation->set_rules('password','Password','trim|required|min_length[6]|max_length[50]|matches[confirm_password]');
+		$this->form_validation->set_rules('confirm_password','Confirm password','trim|required|min_length[6]|max_length[50]');
+		$this->form_validation->set_message('is_unique', 'Data %s sudah dipakai'); 
+
+	}
 }
 
 

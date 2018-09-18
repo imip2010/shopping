@@ -201,7 +201,7 @@
                                     <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body  " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/handphone.png" />&nbsp Handphone</h5>
                                                 </div>
@@ -474,6 +474,18 @@
                         <!-- User profile : selesai -->
                         <!-- ============================================================== -->
 
+                        <!-- ============================================================== -->
+                        <!-- Label Login : MULAI -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark font-20" href="" id="3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- Label Login : SELESAI -->
+                        <!-- ============================================================== -->
+                        
+
                     </ul>
                 </div>
             </nav>
@@ -539,60 +551,53 @@
                         <div class="card  bg-light no-card-border">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <div class="m-r-10" style="margin-left: 40px;">
-                                        <h4 class="m-b-0">Koperasi 1</h4><br>
-                                        <p>Lorem Ipsum</p>
-                                        <p>Lorem Ipsum Dolor</p>
-                                        <p>Vivamus vitae </p>
-                                        <p>Lorem Ipsum Sit Amet</p>
-                                        <p>Suspendisse aliquet</p>
-                                        <p>Loripsum at fringillaem</p>
-                                        <p>In feugiat commodo </p>
-                                        <p>Proin ac magna</p>
-                                    </div>
-                                    <div class="m-r-10" style="margin-left: 40px;">
-                                        <h4 class="m-b-0">Koperasi 1</h4><br>
-                                        <p>Lorem Ipsum</p>
-                                        <p>Lorem Ipsum Dolor</p>
-                                        <p>Vivamus vitae </p>
-                                        <p>Lorem Ipsum Sit Amet</p>
-                                        <p>Suspendisse aliquet</p>
-                                        <p>Loripsum at fringillaem</p>
-                                        <p>In feugiat commodo </p>
-                                        <p>Proin ac magna</p>
-                                    </div>
-                                    <div class="m-r-10" style="margin-left: 40px;">
-                                        <h4 class="m-b-0">Koperasi 1</h4><br>
-                                        <p>Lorem Ipsum</p>
-                                        <p>Lorem Ipsum Dolor</p>
-                                        <p>Vivamus vitae </p>
-                                        <p>Lorem Ipsum Sit Amet</p>
-                                        <p>Suspendisse aliquet</p>
-                                        <p>Loripsum at fringillaem</p>
-                                        <p>In feugiat commodo </p>
-                                        <p>Proin ac magna</p>
-                                    </div>
-                                    <div class="m-r-10" style="margin-left: 40px;">
-                                        <h4 class="m-b-0">Koperasi 1</h4><br>
-                                        <p>Lorem Ipsum</p>
-                                        <p>Lorem Ipsum Dolor</p>
-                                        <p>Vivamus vitae </p>
-                                        <p>Lorem Ipsum Sit Amet</p>
-                                        <p>Suspendisse aliquet</p>
-                                        <p>Loripsum at fringillaem</p>
-                                        <p>In feugiat commodo </p>
-                                        <p>Proin ac magna</p>
-                                    </div>
-                                    <div class="m-r-10" style="margin-left: 40px;">
-                                        <h4 class="m-b-0">Koperasi 1</h4><br>
-                                        <p>Lorem Ipsum</p>
-                                        <p>Lorem Ipsum Dolor</p>
-                                        <p>Vivamus vitae </p>
-                                        <p>Lorem Ipsum Sit Amet</p>
-                                        <p>Suspendisse aliquet</p>
-                                        <p>Loripsum at fringillaem</p>
-                                        <p>In feugiat commodo </p>
-                                        <p>Proin ac magna</p>
+                                    <div class="row">
+                                        <div clas="col-lg-2 col-md-12 m-r-10" style="margin-left: 70px;">
+                                            <h4 class="m-b-0">Informasi</h4><br>
+                                            <p>About Us</p>
+                                            <p>Shipp & Returns</p>
+                                            <p>Contact Us </p>
+                                            <p>Testimonials</p>
+                                        </div>
+
+                                        <div clas="col-lg-2 col-md-12 m-r-10" style="margin-left: 70px;">
+                                            <h4 class="m-b-0">Customer Service</h4><br>
+                                            <p>Helps & FAQS</p>
+                                            <p>Terms of Condition</p>
+                                            <p>Privacy Policy </p>
+                                            <p>Partners</p>
+                                        </div>
+
+                                        <div clas="col-lg-2 col-md-12 m-r-10" style="margin-left: 70px;">
+                                            <h4 class="m-b-0">Penjual</h4><br>
+                                            <p>Cara Berjualan</p>
+                                            <p>Keuntungan Berjualan</p>
+                                            <p>Tips Berjualan </p>
+                                        </div>
+
+                                        <div clas="col-lg-2 col-md-12 m-r-10" style="margin-left: 70px;">
+                                            <h4 class="m-b-0">Pembeli</h4><br>
+                                            <p>Cara Belanja</p>
+                                            <p>Pembayaran</p>
+                                            <p>Jaminan Aman </p>
+                                        </div>
+
+                                        <div clas="col-lg-4 col-md-12 m-r-10" style="margin-left: 70px;">
+                                            <h4 class="m-b-0">Berlangganan</h4><br>
+                                            <p>Informasi & berita terupdate akan dikirim ke email kamu</p>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="email" maxlength="30" placeholder="email@gmail.com">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="form-group">
+                                                    <button type="submit" class="btn btn-info ">Simpan</button> 
+                                                    </div>
+                                                </div>
+                                            </div>                      
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -700,17 +705,18 @@
         $('#nestable-menu').on('click', function(e) {
             var target = $(e.target),
                 action = target.data('action');
-            if (action === 'expand-all') {
-                $('.dd').nestable('expandAll');
-            }
             if (action === 'collapse-all') {
                 $('.dd').nestable('collapseAll');
+            }
+            if (action === 'expand-all') {
+                $('.dd').nestable('expandAll');
             }
         });
 
         $('#nestable-menu').nestable();
     });
     </script>
+    
     
 </body>
 
