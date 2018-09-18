@@ -208,63 +208,63 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="dmessage-body bg-white" style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/fashion_wanita.png"/>&nbsp Fashion Wanita</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/olahraga.png"/>&nbsp Olahraga</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/kamera.png"/>&nbsp Kamera</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/fashion_anak.png"/>&nbsp Fashion Anak</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/hobi_koleksi.png"/>&nbsp Hobi &amp; Koleksi</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/komputer.png"/>&nbsp Komputer</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/elektronik.png"/>&nbsp Elektronik</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/sepeda.png"/>&nbsp Sepeda</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " style=" margin-left: 20px;">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/alat_kantor.png"/>&nbsp Alat Kantor</h5>
                                                 </div>
@@ -273,70 +273,70 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white ">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/fashion_pria.png" />&nbsp Fashion Pria</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white ">
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/motor.png" />&nbsp Motor</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/mobil.png"/>&nbsp Mobil</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/food.png"/>&nbsp Food</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/indusrtial.png"/>&nbsp Industrial</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/rumah_tangga.png"/>&nbsp Rumah Tangga</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/produk_wanita.png"/>&nbsp Produk Wanita</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/kesehatan.png"/>&nbsp Kesehatan</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/perlengkapan_bayi.png"/>&nbsp Perlengkapan Bayi</h5>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" >
+                                            <a href="<?php echo base_url()?>kategori" >
                                                 <div class="message-body bg-white " >
                                                 <h5><img src="<?php echo base_url()?>assets/images/kategori/tiekt_voucher.png"/>&nbsp Tiket &amp; Voucher</h5>
                                                 </div>
@@ -469,7 +469,6 @@
                         <!-- ============================================================== -->
                         <!-- User profile : mulai -->
                         <!-- ============================================================== -->
-                       
                         <!-- ============================================================== -->
                         <!-- User profile : selesai -->
                         <!-- ============================================================== -->

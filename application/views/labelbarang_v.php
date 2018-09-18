@@ -80,7 +80,7 @@
                         <a href="<?php echo base_url()?>labelbarang"> Koperasi Widget </a> 
                     </li><br>
                     <li class="dd-item" data-id="1">
-                        <a href="<?php echo base_url()?>labelbarang"> Pengaturan </a>
+                        <a href="<?php echo base_url()?>pengaturan_profile"> Pengaturan </a>
                     </li>
                 </ol><br>
                 <div class="text-center">
