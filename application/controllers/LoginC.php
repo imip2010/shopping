@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
-class Login extends CI_Controller {
+class LoginC extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -46,16 +46,16 @@ class Login extends CI_Controller {
 				'logged_in' 		=> TRUE
 			);
 			$this->session->set_userdata($userData);			
-			redirect('home');
+			redirect('HomeC');
 		}else{
 			$this->session->set_flashdata('error','Email atau kata sandi salah');
-			redirect('login');
+			redirect('LoginC');
 		}
 	}
 
 	public function log_out(){
 		$this->session->sess_destroy();	
-		redirect(base_url().'login/');	
+		redirect(base_url().'HomeC/');	
 	}
 }
 

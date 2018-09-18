@@ -58,7 +58,7 @@
                             if($data2!=""){ ?>
                               <div class="alert alert-danger"><strong> Error! </strong> <?=$data2;?></div>
                           <?php } ?>
-                          <form class="form-horizontal m-t-20" id="loginform" action="<?php echo site_url('login/log_in'); ?>" method="post">
+                          <form class="form-horizontal m-t-20" id="loginform" action="<?php echo site_url('LoginC/log_in'); ?>" method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="form-group m-b-0 m-t-10">
                                 <div class="col-sm-12 text-center">
-                                    Belum Punya Akun ?<a href="<?php echo base_url()?>register" class="text-info m-l-5"><b>Daftar Sekarang</b></a>
+                                    Belum Punya Akun ?<a href="<?php echo site_url('LoginC/register')?>" class="text-info m-l-5"><b>Daftar Sekarang</b></a>
                                 </div>
                             </div>
                         </form>

@@ -43,7 +43,7 @@
                 <div>
                     <div class="logo">
                         <span class="db"><img src="<?php echo base_url()?>assets/images/logo-icon.png" alt="logo" /></span>
-                        <h5 class="font-medium m-b-20">Sign Up to Admin</h5>
+                        <h5 class="font-medium m-b-20">Sign Up</h5>
                     </div>
                     <!-- Form -->
                     <div class="row">
@@ -51,7 +51,7 @@
                             <form class="form-horizontal m-t-20" action="index.html">
                                 <div class="form-group row ">
                                     <div class="col-12 ">
-                                        <input class="form-control form-control-lg" type="text" required=" " placeholder="Name">
+                                        <input class="form-control form-control-lg" type="text" required=" " placeholder="Username">
                                     </div>
                                 </div>
                                 <div class="form-group row">

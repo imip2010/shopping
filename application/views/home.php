@@ -376,8 +376,8 @@
         $hargatetap  = "<span> </span>
         <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
         $hargadiskon = "<span data-product-rrp-without-tax class='price price--rrp' style='color: red;''> $d% </span><br>
-        <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span><br>
-        <span data-product-price-without-tax class='price price--withoutTax'><strike><small> Rp. $harga</small></strike></span>";
+        <span data-product-price-without-tax class='price price--withoutTax'><strike><small> Rp. $harga</small></strike></span>
+        <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
         if ($d!='0'){
           $divharga=$hargadiskon;
       }else{
