@@ -87,7 +87,7 @@ class HomeM extends CI_model
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID');
 		$this->db->limit('6');
-		$this->db->order_by('A.productID');
+		$this->db->order_by('A.productID','DESC');
 		$query = $this->db->get();
 		if($query){
 			return $query;

@@ -47,7 +47,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?php echo base_url()?>home">
+                    <a class="navbar-brand" href="<?php echo base_url()?>HomeC">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -83,7 +83,7 @@
                         <!-- ============================================================== -->
                         <!-- mega menu -->
                         <!-- ============================================================== --> 
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-shopping-cart font-20"></i>
 
@@ -111,7 +111,7 @@
                                     </div>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                         <!-- ============================================================== -->
                         <!-- End mega menu -->
                         <!-- ============================================================== -->
@@ -443,7 +443,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="mdi mdi-star-circle m-r-5 m-l-5"></i> Favorite</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="<?php echo site_url('login/log_out');?>">
+                                    <a class="dropdown-item" href="<?php echo site_url('LoginC/log_out');?>">
                                         <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                     <div class="dropdown-divider"></div>
                                     <div class="p-l-30 p-10">
@@ -454,8 +454,8 @@
                             <?php
                             }else{
                                 ?>
-                                    <li class="nav-item dropdown">
-                                            <i class="glyphicon glyphicon-log-in"></i><a href="<?php echo site_url('login')?>" class="navbar-btn btn btn-md btn-warning" style="margin-top: 23%;">Login</a>
+                                     <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle waves-effect waves-dark font-20" href="<?php echo site_url('LoginC')?>">Login</a>
                                     </li>
                         <?php
                             }
@@ -477,10 +477,7 @@
                         <!-- ============================================================== -->
                         <!-- Label Login : MULAI -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark font-20" href="" id="3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-                        </li>
+                       
                         <!-- ============================================================== -->
                         <!-- Label Login : SELESAI -->
                         <!-- ============================================================== -->
