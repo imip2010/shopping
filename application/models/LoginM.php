@@ -9,4 +9,17 @@ class LoginM extends CI_Model{
 		$this->db->where('password', md5($password));
 		return $this->db->get('members');
 	}
+
+	public function insert_data_member($data){ //post pengguna
+		$this->db->insert('members', $data);
+		return TRUE;
+	}
+
+	public function lastLogin($time, $memberID){
+		$data = array('lasLogin' => $time);
+
+		$this->db->where('memberID', $memberID);
+		$this->db->update('members', $data);
+		return TRUE;
+	}
 }
