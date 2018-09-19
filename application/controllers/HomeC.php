@@ -28,6 +28,7 @@ class HomeC extends CI_Controller {
 
 		$this->data['detail_produk'] = $this->HomeM->get_detail_product($id_produk)->result()[0];
 		
+		//dilihat
 		$hit = $this->HomeM->get_detail_product($id_produk)->result()[0]->hits;
 		$hits_new = $hit + 1;
 		$this->HomeM->dilihat($id_produk, $hits_new);
