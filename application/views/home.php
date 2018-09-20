@@ -388,7 +388,7 @@
       <div class="col-lg-2 col-md-6">
         <div class="card">
             <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/thumb/small_<?php echo $produk_terbaru->photo1?>" alt="user" />
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk_terbaru->photo1?>" alt="user" />
                     <div class="el-overlay">
                         <ul class="list-style-none el-info">
                             <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-magnifier"></i></a></li>

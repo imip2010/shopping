@@ -44,6 +44,8 @@ class LoginC extends CI_Controller {
 				'email' 			=> $query->email,
 				'nama'				=> $query->memberName,
 				'password' 			=> $query->password,
+				'memberID' 			=> $query->memberID,
+				'address' 			=> $query->address,
 				'logged_in' 		=> TRUE
 			);
 			$lastLogin = date('Y-m-d H:i:s');
