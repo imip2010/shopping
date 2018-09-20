@@ -95,5 +95,44 @@ class HomeM extends CI_model
 			echo "tidak ditemukan";
 		}
 	}
+
+	public function get_detail_product($productID){
+		$this->db->select('*');
+		$this->db->from('products A');
+		$this->db->join('sub_categories B','A.subCategoryID = B.subCategoryID', 'left');
+		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
+		$this->db->join('members D', 'A.memberID = D.memberID','left');
+		$this->db->join('cities Z', 'Z.cityID = D.cityID', 'left');
+		$this->db->where('A.productID', $productID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function favorit($productID){
+		$this->db->select('*');
+		$this->db->from('favorite F');
+		$this->db->join('products P','P.productID = F.productID','left');
+		$this->db->join('members M', 'M.memberID = F.memberID','left');
+		$this->db->where('P.productID', $productID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	//fungsi dilihat
+	public function dilihat($productID, $hit){
+		$data = array('hits' => $hit);
+
+		$this->db->where('productID', $productID);
+		$this->db->update('products', $data);
+		return TRUE;
+	}
 }
 ?>

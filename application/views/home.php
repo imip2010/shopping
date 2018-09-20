@@ -388,7 +388,7 @@
       <div class="col-lg-2 col-md-6">
         <div class="card">
             <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/thumb/small_<?php echo $produk_terbaru->photo1?>" alt="user" />
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk_terbaru->photo1?>" alt="user" />
                     <div class="el-overlay">
                         <ul class="list-style-none el-info">
                             <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-magnifier"></i></a></li>
@@ -404,7 +404,7 @@
                         <h5><?php  echo $divharga;?></h5>
                     </div>
                     <div class="ml-auto m-r-15"><br>
-                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                        <a href="<?php echo site_url('HomeC/detail_produk/').$produk_terbaru->productID?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
                     </div>
                 </div>
             </div>

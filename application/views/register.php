@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/images/favicon.png">
-    <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
+    <title>Market Place -- Koperasi</title>
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>assets/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,35 +48,55 @@
                     <!-- Form -->
                     <div class="row">
                         <div class="col-12">
-                            <form class="form-horizontal m-t-20" action="index.html">
-                                <div class="form-group row ">
-                                    <div class="col-12 ">
-                                        <input class="form-control form-control-lg" type="text" required=" " placeholder="Username">
-                                    </div>
+                            <?php 
+                            $data=$this->session->flashdata('sukses');
+                            if($data!=""){ ?>
+                                <div class="alert alert-success"><strong>Sukses! </strong> <?=$data;?></div>
+                            <?php } ?>
+                            <?php 
+                            $data2=$this->session->flashdata('error');
+                            if($data2!=""){ ?>
+                              <div class="alert alert-danger"><strong> Error! </strong> <?=$data2;?></div>
+                          <?php } ?>
+                          <form class="form-horizontal m-t-20" action="<?php echo site_url('LoginC/post_register')?>" method="post">
+                            <div class="form-group row ">
+                                <div class="col-12 ">
+                                    <input class="form-control form-control-lg" name="username" type="text" required=" " placeholder="Username">
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-12 ">
-                                        <input class="form-control form-control-lg" type="text" required=" " placeholder="Email">
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 ">
+                                    <input class="form-control form-control-lg" name="email" type="email" required=" " placeholder="Email">
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-12 ">
-                                        <input class="form-control form-control-lg" type="password" required=" " placeholder="Password">
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 ">
+                                    <input class="form-control form-control-lg" name="fullName" type="text" required=" " placeholder="Full Name">
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-12 ">
-                                        <input class="form-control form-control-lg" type="password" required=" " placeholder="Confirm Password">
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 ">
+                                    <input class="form-control form-control-lg" name="phone" type="text" required=" " placeholder="Phone">
                                 </div>
-                                <div class="form-group row">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 ">
+                                    <input class="form-control form-control-lg" name="password" type="password" required=" " placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 ">
+                                    <input class="form-control form-control-lg" name="confirm_password" type="password" required=" " placeholder="Confirm Password">
+                                </div>
+                            </div>
+                               <!--  <div class="form-group row">
                                     <div class="col-md-12 ">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                                             <label class="custom-control-label" for="customCheck1">I agree to all <a href="javascript:void(0)">Terms</a></label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group text-center ">
                                     <div class="col-xs-12 p-b-20 ">
                                         <button class="btn btn-block btn-lg btn-info " type="submit ">SIGN UP</button>
@@ -84,7 +104,7 @@
                                 </div>
                                 <div class="form-group m-b-0 m-t-10 ">
                                     <div class="col-sm-12 text-center ">
-                                        Already have an account? <a href="<?php echo base_url()?>login " class="text-info m-l-5 "><b>Sign In</b></a>
+                                        Already have an account? <a href="<?php echo site_url('LoginC')?> " class="text-info m-l-5 "><b>Sign In</b></a>
                                     </div>
                                 </div>
                             </form>
@@ -120,8 +140,8 @@
     <!-- This page plugin js -->
     <!-- ============================================================== -->
     <script>
-    $('[data-toggle="tooltip "]').tooltip();
-    $(".preloader ").fadeOut();
+        $('[data-toggle="tooltip "]').tooltip();
+        $(".preloader ").fadeOut();
     </script>
 </body>
 
