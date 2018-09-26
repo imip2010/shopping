@@ -1,8 +1,8 @@
- <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/ckeditor/samples/css/samples.css"><br>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/ckeditor/samples/css/samples.css"><br>
 <div class="row">
     <div class="col-lg-12">
-        <div class="col-lg-4">
+        <div class="col-lg-4" style="margin-left: 30%;">
             <?php 
             $data=$this->session->flashdata('sukses');
             if($data!=""){ ?>
@@ -82,10 +82,10 @@
               <input type="file" name="userfile[]" multiple="multiple">
               <br><small><p>Hanya berkas bertipe <b>.gif-.jpg-.png-.jpeg-.bmp</b></p></small>
           </div>  
-          <button type="submit" class="btn btn-default">Jual</button>
-      </form>
-  </div>
-</div>
+          <button type="submit" class="btn btn-lg btn-success">Jual</button>
+            </form>
+        </div>  
+    </div>
 </div>
 <br>
 

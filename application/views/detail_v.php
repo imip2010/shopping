@@ -42,8 +42,27 @@
                           <?php
                       } 
                       ?>
-                      <button class="btn btn-dark btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> Tambah Ke keranjang </button>
-                      <button class="btn btn-info btn-rounded"> Beli Sekarang </button>
+                      <?php
+                      // print_r($dataDiri);
+                      if($logged_in == 1){
+                        // echo $detail_produk->memberID;
+                        // echo $dataDiri['memberID'];
+                        if($detail_produk->memberID == $dataDiri['memberID']){
+                            echo "";
+                        }else{
+                            ?>
+                            <button class="btn btn-dark btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> Tambah Ke keranjang </button>
+                            <a class="btn btn-info btn-rounded" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
+                            <?php
+                        }
+                    }else{
+                        ?>
+                        <button class="btn btn-dark btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> Tambah Ke keranjang </button>
+                        <a class="btn btn-info btn-rounded" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
+                        <?php
+                    }
+                    ?>
+
                      <!--  <h3 class="box-title m-t-40">Key Highlights</h3>
                       <ul class="list-unstyled">
                         <li><i class="fa fa-check text-success"></i> Sturdy structure</li>
@@ -72,7 +91,7 @@
                                             <tr>
                                                 <td><i class="ti-bookmark-alt font-16"></i>&nbsp Kondisi</td>
                                                 <td>
-                                                 <?php if($detail_produk->conditions == '1'){
+                                                   <?php if($detail_produk->conditions == '1'){
                                                     echo "Baru";
                                                 }else{
                                                     echo "Bekas";
@@ -167,7 +186,8 @@
                                             <tr>
                                                 <td></td>
                                                 <td class="text-right"> Anda Berminat ? &nbsp
-                                                    <button type="button" class="btn waves-effect waves-light btn-success">Beli Sekarang</button>
+                                                    <!-- <button type="button" class="btn waves-effect waves-light btn-success">Beli Sekarang</button> -->
+                                                    <a class="btn waves-effect waves-light btn-success" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -350,57 +370,57 @@
                                     $new_tgl_gabung = date('d/m/Y', strtotime($tgl_gabung));
                                     echo $new_tgl_gabung;  
                                     ?>      
-                                    </p>
-                                </td>
+                                </p>
+                            </td>
 
-                                </tr>
-                                <tr>
-                                    <td>PENGIRIMAN</td>
-                                    <td>SAME DAY</td>
-                                    <td>INSTANT</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p> PENGIRIMAN </p>
-                                        <p><img src="<?php echo base_url()?>assets/images/jasa/grab.png" style="width: 50%"/></p><br>
-                                        <p><img src="<?php echo base_url()?>assets/images/jasa/gosend.png" style="width: 50%"/></p>
-                                    </td>
-                                    <td>
-                                        <p> REGULER</p>
-                                        <p><i class="ti-check font-20"></i></p><br>
-                                        <p><i class="ti-check font-20"></i></p>
-                                    </td>
-                                    <td>
-                                        <p> KILAT </p>
-                                        <p><i class="ti-check font-20"></i></p><br>
-                                        <p><i class="ti-check font-20"></i></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p> PENGIRIMAN </p>
-                                        <p><img src="<?php echo base_url()?>assets/images/jasa/jt.png" style="width: 50%"/></p><br>
-                                        <p><img src="<?php echo base_url()?>assets/images/jasa/jne.png" style="width: 50%"/></p><br>
-                                        <p><img src="<?php echo base_url()?>assets/images/jasa/pos.png" style="width: 50%"/></p>
-                                    </td>
-                                    <td>
-                                        <p> REGULER</p>
-                                        <p><i class="ti-check font-20"></i></p><br>
-                                        <p><i class="ti-check font-20"></i></p><br>
-                                        <p><i class="ti-check font-20"></i></p>
-                                    </td>
-                                    <td>
-                                        <p> KILAT </p>
-                                        <p><i class="ti-check font-20"></i></p><br>
-                                        <p><i class="ti-check font-20"></i></p><br>
-                                        <p><i class="ti-check font-20"></i></p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
+                        </tr>
+                        <tr>
+                            <td>PENGIRIMAN</td>
+                            <td>SAME DAY</td>
+                            <td>INSTANT</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p> PENGIRIMAN </p>
+                                <p><img src="<?php echo base_url()?>assets/images/jasa/grab.png" style="width: 50%"/></p><br>
+                                <p><img src="<?php echo base_url()?>assets/images/jasa/gosend.png" style="width: 50%"/></p>
+                            </td>
+                            <td>
+                                <p> REGULER</p>
+                                <p><i class="ti-check font-20"></i></p><br>
+                                <p><i class="ti-check font-20"></i></p>
+                            </td>
+                            <td>
+                                <p> KILAT </p>
+                                <p><i class="ti-check font-20"></i></p><br>
+                                <p><i class="ti-check font-20"></i></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p> PENGIRIMAN </p>
+                                <p><img src="<?php echo base_url()?>assets/images/jasa/jt.png" style="width: 50%"/></p><br>
+                                <p><img src="<?php echo base_url()?>assets/images/jasa/jne.png" style="width: 50%"/></p><br>
+                                <p><img src="<?php echo base_url()?>assets/images/jasa/pos.png" style="width: 50%"/></p>
+                            </td>
+                            <td>
+                                <p> REGULER</p>
+                                <p><i class="ti-check font-20"></i></p><br>
+                                <p><i class="ti-check font-20"></i></p><br>
+                                <p><i class="ti-check font-20"></i></p>
+                            </td>
+                            <td>
+                                <p> KILAT </p>
+                                <p><i class="ti-check font-20"></i></p><br>
+                                <p><i class="ti-check font-20"></i></p><br>
+                                <p><i class="ti-check font-20"></i></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
            <!--  <div class="text-center">
                 <button type="button" class="btn btn-lg waves-effect waves-light btn-outline-info"><i class="ti-home font-20"></i> &nbsp Berlangganan</button>
             </div>
@@ -439,164 +459,75 @@
                 <!-- Barang Terkait : MULAI -->
                 <!-- ============================================================== -->
 
-                <h4 class="page-title">Barang Terkait</h4>
+                <?php
+                if(!isset($produk_terkait)){
+                    echo '<h4 class="page-title">Produk Terkait</h4>';
+                }else{
+                    echo '<h4 class="page-title">Tidak Ada Produk Terkait</h4>';
+                }
+                ?>
                 <div class="row el-element-overlay">
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/gallery/chair.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair.jpg"><i class="sl-icon-magnifier"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
-                                        </ul>
+                    <?php
+                    foreach ($produk_terkait as $terkait){
+                        ?>    
+                        <div class="col-lg-2 col-md-6">
+                            <div class="card">
+                                <div class="el-card-item">
+                                    <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $terkait->photo1?>" alt="user" />
+                                        <div class="el-overlay">
+                                            <ul class="list-style-none el-info">
+                                                <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                                                <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                                                <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex no-block align-items-center">
-                                    <div class="m-l-15">
-                                        <h5>Rounded Chair</h5>
-                                        <span class="text-muted">Jakarta Selatan</span>
-                                        <h5>Rp. 150.000</h5>
-                                    </div>
-                                    <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/gallery/chair2.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair2.jpg"><i class="sl-icon-magnifier"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="d-flex no-block align-items-center">
-                                    <div class="m-l-15">
-                                        <h5>Rounded Chair</h5>
-                                        <span class="text-muted">Jakarta Selatan</span>
-                                        <h5>Rp. 150.000</h5>
-                                    </div>
-                                    <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/gallery/chair3.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="d-flex no-block align-items-center">
-                                    <div class="m-l-15">
-                                        <h5>Rounded Chair</h5>
-                                        <span class="text-muted">Jakarta Selatan</span>
-                                        <h5>Rp. 150.000</h5>
-                                    </div>
-                                    <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/gallery/chair4.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="d-flex no-block align-items-center">
-                                    <div class="m-l-15">
-                                        <h5>Rounded Chair</h5>
-                                        <span class="text-muted">Jakarta Selatan</span>
-                                        <h5>Rp. 150.000</h5>
-                                    </div>
-                                    <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/gallery/chair4.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair4.jpg"><i class="sl-icon-magnifier"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="d-flex no-block align-items-center">
-                                    <div class="m-l-15">
-                                        <h5>Rounded Chair</h5>
-                                        <span class="text-muted">Jakarta Selatan</span>
-                                        <h5>Rp. 150.000</h5>
-                                    </div>
-                                    <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/gallery/chair3.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                            <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair3.jpg"><i class="sl-icon-magnifier"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
-                                            <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="d-flex no-block align-items-center">
-                                    <div class="m-l-15">
-                                        <h5>Rounded Chair</h5>
-                                        <span class="text-muted">Jakarta Selatan</span>
-                                        <h5>Rp. 150.000</h5>
-                                    </div>
-                                    <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo base_url()?>detail"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><br>
-                <!-- ============================================================== -->
-                <!--Barang Terkait : SELESAI -->
-                <!-- ============================================================== -->
+                                    <div class="d-flex no-block align-items-center">
+                                        <div class="m-l-15">
+                                            <h5><?php echo $terkait->productName?></h5>
+                                            <span class="text-muted"><?php echo $terkait->cityName;?></span>
+                                            <?php
+                                            $harga = number_format($detail_produk->salePrice,0,',','.');
 
-            </div>
+                                            $disc       = ($detail_produk->discount/100)*$detail_produk->salePrice;
+                                            $hargadisc  = number_format(($detail_produk->salePrice-$disc),0,",",".");
+
+                                            $d=$detail_produk->discount;
+
+                                            $hargatetap  = "<span> </span>
+                                            <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
+                                            $hargadiskon = "<span data-product-rrp-without-tax class='price price--rrp' style='color: red;''> $d% </span><br>
+                                            <span data-product-price-without-tax class='price price--withoutTax'><strike><small> Rp. $harga</small></strike></span>
+                                            <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
+                                            if ($d!='0'){
+                                                $divharga=$hargadiskon;
+                                                ?>
+                                                <h5><?php echo $divharga;?></h5>
+                                                <?php
+                                            }else{
+                                              $divharga=$hargatetap;
+                                              ?>
+                                              <h5><?php echo $divharga;?></h5>
+                                              <?php
+                                          } 
+                                          ?>
+                                      </div>
+                                      <div class="ml-auto m-r-15"><br>
+                                        <a href="<?php echo site_url('HomeC/detail_produk/')?><?php echo $terkait->productID;?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div><br>
+            <!-- ============================================================== -->
+            <!--Barang Terkait : SELESAI -->
+            <!-- ============================================================== -->
+
         </div>
     </div>
+</div>
 </div>

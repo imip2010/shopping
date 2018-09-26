@@ -9,196 +9,355 @@ class MemberC extends CI_Controller {
 		in_access(); //helper buat batasi akses login/session
 	}
 
-	// pindah ke jual barang
-	public function jual_barang(){
-		$this->data['dataDiri'] = $this->session->userdata();
-		$this->data['logged_in'] = $this->session->userdata('logged_in');
-		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
-		$this->data['kategori'] = $this->MemberM->get_all_kategori();
+    // pindah ke jual barang
+    public function jual_barang(){
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
+        $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+        $this->data['kategori'] = $this->MemberM->get_all_kategori();
+        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
 
-		$this->data['isi'] = 'isi';
-		$this->data['isi'] = $this->load->view('member/jual_barang', $this->data, TRUE);
-		$this->load->view('layout', $this->data);
-	}
+        $this->data['isi'] = 'isi';
+        $this->data['isi'] = $this->load->view('member/jual_barang', $this->data, TRUE);
+        $this->load->view('layout', $this->data);
+    }
 
-	// pindah ke daftar_barang
-	public function daftar_barang(){
-		$this->data['dataDiri'] = $this->session->userdata();
-		$this->data['logged_in'] = $this->session->userdata('logged_in');
-		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
-		$this->data['daftar_barang'] = $this->MemberM->get_produk_by_id()->result();
-		$this->data['kategori'] = $this->MemberM->get_all_kategori();
+    // beli barang
+    public function beli_barang($memberID){
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
+        $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+        $this->data['daftar_barang'] = $this->MemberM->get_produk_by_id()->result();
+        $this->data['kategori'] = $this->MemberM->get_all_kategori();
+        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
+        $this->data['MemberM'] = $this->MemberM;
 
-		$this->data['isi'] = 'isi';
-		$this->data['isi'] = $this->load->view('member/daftar_barang', $this->data, TRUE);
-		$this->load->view('layout', $this->data);
-	}
+        //ambil barang di keranjang
+        $this->data['keranjang'] = $lele = $this->MemberM->get_keranjang_by_id($memberID)->result();
+        if(count($lele) == 0){
+            $this->session->set_flashdata('error_keranjang','Keranjang anda masih kosong !');
+            redirect('HomeC');
+        }else{
+            $this->data['isi'] = 'isi';
+            $this->data['isi'] = $this->load->view('member/beli_barang', $this->data, TRUE);
+            $this->load->view('layout', $this->data);
+        }
 
-	// get pilihan kategori
-	public function get_sub_kategori(){
-		$postData = $this->input->post();
-		$data = $this->MemberM->get_sub_kategori($postData);
-		echo json_encode($data);
-	}
+    }
 
-	public function seo_title($s){
-		$c = array (' ');
-		$d = array ('-','/','\\',',','.','#',':',';','\'','"','[',']','{','}',')','(','|','`','~','!','@','%','$','^','&','*','=','?','+');
+    // pindah ke daftar_barang
+    public function daftar_barang(){
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
+        $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+        $this->data['daftar_barang'] = $this->MemberM->get_produk_by_id()->result();
+        $this->data['kategori'] = $this->MemberM->get_all_kategori();
+        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
 
-    	$s = str_replace($d, '', $s); // Hilangkan karakter yang telah disebutkan di array $d
+        $this->data['isi'] = 'isi';
+        $this->data['isi'] = $this->load->view('member/daftar_barang', $this->data, TRUE);
+        $this->load->view('layout', $this->data);
+    }
 
-    	$s = strtolower(str_replace($c, '-', $s)); // Ganti spasi dengan tanda - dan ubah hurufnya menjadi kecil semua
-    	return $s;
+    public function insertToCart($memberID, $productID){
+        $harga  = $this->HomeM->get_detail_product($productID)->result()[0]->salePrice;
+        $diskon = $this->HomeM->get_detail_product($productID)->result()[0]->discount;
+
+        $disc = ($diskon/100)*$harga;
+
+        $harga_final = $harga-$disc;
+
+
+        $data_cart = array(
+            'memberID'      => $memberID, 
+            'productID'     => $productID, 
+            'createDate'    => date('Y-m-d H:i:s'), 
+            'price'         => $harga_final, 
+            'quantity'      => "1", 
+            'stockCart'     => "0", 
+        );
+
+
+        // cari product berdasarkan member
+        $dikeranjang = $this->MemberM->get_keranjang_by_2id($memberID, $productID)->num_rows();
+
+        // jika ga ada -> insert
+        if($dikeranjang == 0){
+            if($this->MemberM->insertToCart($data_cart)){
+                $this->session->set_flashdata('sukses','Produk berhasil dimasukkan ke keranjang');
+                redirect('MemberC/beli_barang/'.$memberID);
+            }else{
+                $this->session->set_flashdata('error','Produk tidak berhasil dimasukkan ke keranjang');
+            }
+        }else{ //kalo ada update quantitynya
+
+            $qty_lama = $this->MemberM->get_keranjang_by_2id($memberID, $productID)->result()[0]->quantity;
+            $qty_baru = $qty_lama + 1;
+            $data_cart_update = array(
+                'quantity' => $qty_baru,
+            );
+
+            $cart_id = $this->MemberM->get_keranjang_by_2id($memberID, $productID)->result()[0]->cartID;
+
+            if($this->MemberM->updateToCart($cart_id, $data_cart_update)){
+                $this->session->set_flashdata('sukses','Produk berhasil dimasukkan ke keranjang');
+                redirect('MemberC/beli_barang/'.$memberID);
+            }else{
+                $this->session->set_flashdata('error','Produk tidak berhasil dimasukkan ke keranjang');
+            }
+        }
+    }
+
+    // get pilihan kategori
+    public function get_sub_kategori(){
+      $postData = $this->input->post();
+      $data = $this->MemberM->get_sub_kategori($postData);
+      echo json_encode($data);
+  }
+
+  public function seo_title($s){
+      $c = array (' ');
+      $d = array ('-','/','\\',',','.','#',':',';','\'','"','[',']','{','}',')','(','|','`','~','!','@','%','$','^','&','*','=','?','+');
+
+        $s = str_replace($d, '', $s); // Hilangkan karakter yang telah disebutkan di array $d
+
+        $s = strtolower(str_replace($c, '-', $s)); // Ganti spasi dengan tanda - dan ubah hurufnya menjadi kecil semua
+        return $s;
     }
 
     //post produk
     public function post_jual_barang(){
-    	$this->form_validation->set_rules('nama_barang','Nama Barang','required');
-    	$this->form_validation->set_rules('kondisi','Kondisi','required');
-    	$this->form_validation->set_rules('kategori','Kategori Barang','required');
-    	$this->form_validation->set_rules('sub_kategori','Sub Kategori Barang','required');
-    	$this->form_validation->set_rules('harga','Harga','required');
-    	$this->form_validation->set_rules('stok','Stok','required');
-    	$this->form_validation->set_rules('berat','berat','required');
-    	$this->form_validation->set_rules('diskon','diskon','required');
-    	$this->form_validation->set_rules('deskripsi','Deskripsi','required');
+        $this->form_validation->set_rules('nama_barang','Nama Barang','required');
+        $this->form_validation->set_rules('kondisi','Kondisi','required');
+        $this->form_validation->set_rules('kategori','Kategori Barang','required');
+        $this->form_validation->set_rules('sub_kategori','Sub Kategori Barang','required');
+        $this->form_validation->set_rules('harga','Harga','required');
+        $this->form_validation->set_rules('stok','Stok','required');
+        $this->form_validation->set_rules('berat','berat','required');
+        $this->form_validation->set_rules('diskon','diskon','required');
+        $this->form_validation->set_rules('deskripsi','Deskripsi','required');
 
-    	if($this->form_validation->run() == FALSE){
-    		$this->session->set_flashdata('error','Data anda tidak berhasil disimpan, cek data yang Anda masukkan');
-    		redirect_back();
-    	}else{
-    		$nama_barang   			= $_POST['nama_barang'];  
-    		$kondisi      			= $_POST['kondisi'];  
-    		$kategori_barang        = $_POST['kategori'];  
-    		$sub_kategori_barang    = $_POST['sub_kategori'];  
-    		$harga    				= $_POST['harga'];  
-    		$berat    				= $_POST['berat'];  
-    		$stok    				= $_POST['stok'];  
-    		$diskon    				= $_POST['diskon'];  
-    		$deskripsi    			= $_POST['deskripsi']; 
-    		$memberID 				= $this->session->userdata('memberID');
-    		$productCode 			= date('ymdhis');
-    		$productSeo      		= $this->seo_title($nama_barang); 
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, cek data yang Anda masukkan');
+            redirect_back();
+        }else{
+            $nama_barang            = $_POST['nama_barang'];  
+            $kondisi                = $_POST['kondisi'];  
+            $kategori_barang        = $_POST['kategori'];  
+            $sub_kategori_barang    = $_POST['sub_kategori'];  
+            $harga                  = $_POST['harga'];  
+            $berat                  = $_POST['berat'];  
+            $stok                   = $_POST['stok'];  
+            $diskon                 = $_POST['diskon'];  
+            $deskripsi              = $_POST['deskripsi']; 
+            $memberID               = $this->session->userdata('memberID');
+            $productCode            = date('ymdhis');
+            $productSeo             = $this->seo_title($nama_barang); 
 
-    		$this->load->library('upload');
-    		$dataInfo = array();
-    		$files = $_FILES;
-    		$cpt = count($_FILES['userfile']['name']);
-    		for($i=0; $i<$cpt; $i++)
-    		{           
-    			$_FILES['userfile']['name']= $files['userfile']['name'][$i];
-    			$_FILES['userfile']['type']= $files['userfile']['type'][$i];
-    			$_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
-    			$_FILES['userfile']['error']= $files['userfile']['error'][$i];
-    			$_FILES['userfile']['size']= $files['userfile']['size'][$i];    
+            $this->load->library('upload');
+            $dataInfo = array();
+            $files = $_FILES;
+            $cpt = count($_FILES['userfile']['name']);
+            for($i=0; $i<$cpt; $i++)
+            {           
+                $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+                $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+                $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+                $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+                $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
 
-    			$this->upload->initialize($this->set_upload_options());
-    			$this->upload->do_upload();
-    			$dataInfo[] = $this->upload->data();
-    		}
+                $this->upload->initialize($this->set_upload_options());
+                $this->upload->do_upload();
+                $dataInfo[] = $this->upload->data();
+            }
 
-    		$data  = array(
-    			'productName'   	=> $nama_barang,
-    			'photo1' 			=> $dataInfo[0]['file_name'],
-    			'photo2' 			=> $dataInfo[1]['file_name'],
-    			'photo3' 			=> $dataInfo[2]['file_name'],
-    			'photo4' 			=> $dataInfo[3]['file_name'],
-    			'photo5' 			=> $dataInfo[4]['file_name'],
-    			'conditions'        => $kondisi,  
-    			'categoryID'        => $kategori_barang,  
-    			'subCategoryID'     => $sub_kategori_barang,  
-    			'salePrice'         => $harga,
-    			'weight'        	=> $berat,
-    			'qty'        		=> $stok,
-    			'discount'        	=> $diskon,
-    			'memberID'        	=> $memberID,
-    			'productCode'		=> $productCode,
-    			'productSeo'		=> $productSeo,
-    			'description'       => $deskripsi);
+            $data  = array(
+                'productName'       => $nama_barang,
+                'photo1'            => $dataInfo[0]['file_name'],
+                'photo2'            => $dataInfo[1]['file_name'],
+                'photo3'            => $dataInfo[2]['file_name'],
+                'photo4'            => $dataInfo[3]['file_name'],
+                'photo5'            => $dataInfo[4]['file_name'],
+                'conditions'        => $kondisi,  
+                'categoryID'        => $kategori_barang,  
+                'subCategoryID'     => $sub_kategori_barang,  
+                'salePrice'         => $harga,
+                'weight'            => $berat,
+                'qty'               => $stok,
+                'discount'          => $diskon,
+                'memberID'          => $memberID,
+                'productCode'       => $productCode,
+                'productSeo'        => $productSeo,
+                'description'       => $deskripsi);
 
-    		if($this->MemberM->insert_jual_barang($data)){
-    			$this->session->set_flashdata('sukses','Data anda berhasil disimpan');
-    			redirect('MemberC/daftar_barang');
-    		}else{
-    			$this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
-    			redirect_back();
-    		}
-    	}
+            if($this->MemberM->insert_jual_barang($data)){
+                $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
+                redirect('MemberC/daftar_barang');
+            }else{
+                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                redirect_back();
+            }
+        }
     }
 
     private function set_upload_options(){   
     //upload an image options
-    	$config = array();
-    	$config['upload_path'] 		= './assets/images/product/';
-    	$config['allowed_types'] 	= 'gif|jpg|png';
-    	$config['create_thumb']		= TRUE;
-    	$config['max_size']      	= '0';
-    	$config['overwrite']     	= FALSE;
-    	$config['encrypt_name'] 	= TRUE;
-    	// $new_name = time().$_FILES["userfile"]['name'];
-    	// $config['file_name'] = 'small_'.$new_name;
-    	return $config;
+        $config = array();
+        $config['upload_path']      = './assets/images/product/';
+        $config['allowed_types']    = 'gif|jpg|png';
+        $config['create_thumb']     = TRUE;
+        $config['max_size']         = '0';
+        $config['overwrite']        = FALSE;
+        $config['encrypt_name']     = TRUE;
+        // $new_name = time().$_FILES["userfile"]['name'];
+        // $config['file_name'] = 'small_'.$new_name;
+        return $config;
     }
 
     //upload produk(image)
     public function upload(){       
-    	$this->load->library('upload');
-    	$dataInfo = array();
-    	$files = $_FILES;
-    	$cpt = count($_FILES['userfile']['name']);
-    	for($i=0; $i<$cpt; $i++)
-    	{           
-    		$_FILES['userfile']['name']= $files['userfile']['name'][$i];
-    		$_FILES['userfile']['type']= $files['userfile']['type'][$i];
-    		$_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
-    		$_FILES['userfile']['error']= $files['userfile']['error'][$i];
-    		$_FILES['userfile']['size']= $files['userfile']['size'][$i];    
+        $this->load->library('upload');
+        $dataInfo = array();
+        $files = $_FILES;
+        $cpt = count($_FILES['userfile']['name']);
+        for($i=0; $i<$cpt; $i++)
+        {           
+            $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+            $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+            $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+            $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+            $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
 
-    		$this->upload->initialize($this->set_upload_options());
-    		$this->upload->do_upload();
-    		$dataInfo[] = $this->upload->data();
-    	}
+            $this->upload->initialize($this->set_upload_options());
+            $this->upload->do_upload();
+            $dataInfo[] = $this->upload->data();
+        }
 
-    	$data = array(
-    		'name' => $this->input->post('pd_name'),
-    		'prod_image' => $dataInfo[0]['file_name'],
-    		'prod_image1' => $dataInfo[1]['file_name'],
-    		'prod_image2' => $dataInfo[2]['file_name'],
-    		'created_time' => date('Y-m-d H:i:s')
-    	);
-    	$result_set = $this->tbl_products_model->insertUser($data);
+        $data = array(
+            'name' => $this->input->post('pd_name'),
+            'prod_image' => $dataInfo[0]['file_name'],
+            'prod_image1' => $dataInfo[1]['file_name'],
+            'prod_image2' => $dataInfo[2]['file_name'],
+            'created_time' => date('Y-m-d H:i:s')
+        );
+        $result_set = $this->tbl_products_model->insertUser($data);
     }
 
     public function hapus_barang($productID){
-    	if($this->MemberM->hapus_barang($productID)){
-    		// define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
-		// define('FCPATH', __FILE__);
-		// define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
-    		// define('PUBPATH',str_replace(SELF,'',FCPATH));
+        if($this->MemberM->hapus_barang($productID)){
+            // define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
+        // define('FCPATH', __FILE__);
+        // define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+            // define('PUBPATH',str_replace(SELF,'',FCPATH));
 
-    		// $this->db->where('productID',$productID);
-    		// $photo1 = $this->db->get('products')->row()->photo1;
-    		// $photo2 = $this->db->get('products')->row()->photo2;
-    		// $photo3 = $this->db->get('products')->row()->photo3;
-    		// $photo4 = $this->db->get('products')->row()->photo4;
-    		// $photo5 = $this->db->get('products')->row()->photo5;
-    		// $photo6 = $this->db->get('products')->row()->photo6;
+            // $this->db->where('productID',$productID);
+            // $photo1 = $this->db->get('products')->row()->photo1;
+            // $photo2 = $this->db->get('products')->row()->photo2;
+            // $photo3 = $this->db->get('products')->row()->photo3;
+            // $photo4 = $this->db->get('products')->row()->photo4;
+            // $photo5 = $this->db->get('products')->row()->photo5;
+            // $photo6 = $this->db->get('products')->row()->photo6;
 
 
-    		// unlink(PUBPATH."assets\images\product".$photo1);
-    		// unlink(PUBPATH."assets\images\product".$photo2);
-    		// unlink(PUBPATH."assets\images\product".$photo3);
-    		// unlink(PUBPATH."assets\images\product".$photo4);
-    		// unlink(PUBPATH."assets\images\product".$photo5);
-    		// unlink(PUBPATH."assets\images\product".$photo6);
-    		$this->session->set_flashdata('sukses','Data anda berhasil dihapus');
-    		redirect_back();
-    	}else{
-    		$this->session->set_flashdata('error','Data anda tidak berhasil dihapus');
-    		redirect_back();
-    	}
+            // unlink(PUBPATH."assets\images\product".$photo1);
+            // unlink(PUBPATH."assets\images\product".$photo2);
+            // unlink(PUBPATH."assets\images\product".$photo3);
+            // unlink(PUBPATH."assets\images\product".$photo4);
+            // unlink(PUBPATH."assets\images\product".$photo5);
+            // unlink(PUBPATH."assets\images\product".$photo6);
+            $this->session->set_flashdata('sukses','Data anda berhasil dihapus');
+            redirect_back();
+        }else{
+            $this->session->set_flashdata('error','Data anda tidak berhasil dihapus');
+            redirect_back();
+        }
     }
 
+    public function hapus_cart($cartID){
+        if($this->MemberM->hapus_cart($cartID)){
+            $this->session->set_flashdata('sukses', 'Item berhasil dihapus dari Keranjang');
+            redirect_back();
+        }else{
+            $this->session->set_flashdata('error','Item tidak berhasil dihapus dari Keranjang');
+            redirect_back();
+        }
+    }
+
+    public function checkout(){
+        // $memberID               = $_POST['memberID'];  
+        // $memberTo               = $_POST['memberTo'];  
+        // $customerName           = $_POST['customerName'];  
+        // $qty                    = $_POST['qty'];  
+        // $total_harga            = $_POST['total_order'];  
+
+        // $this->data['post'] = array(
+        //     'memberID'      => $memberID,
+        //     'memberTo'      => $memberTo,
+        //     'customerName'  => $customerName,
+        //     'qty'           => $qty,
+        //     'total_harga'   => $total_harga,
+        // );
+
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
+        $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+        $this->data['daftar_barang'] = $this->MemberM->get_produk_by_id()->result();
+        $this->data['kategori'] = $this->MemberM->get_all_kategori();
+        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
+        $memberID = $this->session->userdata('memberID');
+        $this->data['detail_member'] = $this->MemberM->get_detail_members($memberID)->result()[0];
+        $this->data['all_province'] = $this->MemberM->get_provinces();
+
+        $this->data['isi'] = 'isi';
+        $this->data['isi'] = $this->load->view('member/checkout', $this->data, TRUE);
+        $this->load->view('layout', $this->data);
+    }
+
+    public function get_city(){
+        $postData   = $this->input->post();
+        $data       = $this->MemberM->get_cities($postData);
+        echo json_encode($data);
+    }
+
+    public function update_members(){
+        $this->form_validation->set_rules('memberID','memberID','required');
+        $this->form_validation->set_rules('nama','Nama Member','required');
+        $this->form_validation->set_rules('email','email','required');
+        $this->form_validation->set_rules('phone','phone','required');
+        $this->form_validation->set_rules('provinsi','provinsi','required');
+        $this->form_validation->set_rules('kota','kota','required');
+        $this->form_validation->set_rules('address','address','required');
+
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Data tidak berhasil diubah');  
+            redirect_back();
+        }else{
+            $memberName     = $this->input->post('nama');
+            $email          = $this->input->post('email');
+            $phone          = $this->input->post('phone');
+            $provinceID     = $this->input->post('provinsi');
+            $cityID         = $this->input->post('kota');
+            $address        = $this->input->post('address');
+            $memberID       = $this->input->post('memberID');
+            
+            $data_update_member = array(
+                'memberName'    => $memberName, 
+                'email'         => $email, 
+                'phone'         => $phone, 
+                'provinceID'    => $provinceID, 
+                'cityID'        => $cityID, 
+                'address'       => $address, 
+            );
+
+            if($this->MemberM->update_data_member($memberID, $data_update_member)){
+                $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+                redirect_back();
+            }
+        }
+    }
 }
 
 
