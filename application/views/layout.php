@@ -95,9 +95,10 @@
                         ?>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <!--   <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-shopping-cart font-20"></i>
-
+                            </a> -->
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>"><i class="ti-shopping-cart font-20"></i>
                             </a>
                             <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
                                 <span class="with-arrow">
@@ -195,149 +196,21 @@
                                     </li>
 
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6">
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body  " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/handphone.png" />&nbsp Handphone</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="dmessage-body bg-white" style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/fashion_wanita.png"/>&nbsp Fashion Wanita</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/olahraga.png"/>&nbsp Olahraga</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/kamera.png"/>&nbsp Kamera</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/fashion_anak.png"/>&nbsp Fashion Anak</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/hobi_koleksi.png"/>&nbsp Hobi &amp; Koleksi</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/komputer.png"/>&nbsp Komputer</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/elektronik.png"/>&nbsp Elektronik</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/sepeda.png"/>&nbsp Sepeda</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " style=" margin-left: 20px;">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/alat_kantor.png"/>&nbsp Alat Kantor</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6">
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white ">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/fashion_pria.png" />&nbsp Fashion Pria</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white ">
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/motor.png" />&nbsp Motor</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/mobil.png"/>&nbsp Mobil</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/food.png"/>&nbsp Food</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/indusrtial.png"/>&nbsp Industrial</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/rumah_tangga.png"/>&nbsp Rumah Tangga</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/produk_wanita.png"/>&nbsp Produk Wanita</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/kesehatan.png"/>&nbsp Kesehatan</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/perlengkapan_bayi.png"/>&nbsp Perlengkapan Bayi</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url()?>kategori" >
-                                                    <div class="message-body bg-white " >
-                                                        <h5><img src="<?php echo base_url()?>assets/images/kategori/tiekt_voucher.png"/>&nbsp Tiket &amp; Voucher</h5>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                        <div class="col-sm-6 col-md-6">
+                                            <?php 
+                                            // print_r($menu_kategori);
+                                            foreach ($menu_kategori as $kategori) {
+                                                ?>
+                                                <li>
+                                                    <a href="<?php echo base_url()?>kategori" >
+                                                        <div class="message-body  " style=" margin-left: 20px;">
+                                                            <h5><img src="<?php echo base_url()?>assets/images/kategori/<?php echo $kategori->icons;?>" /><?php echo " ".$kategori->categoryName;?></h5>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                 </ul>
@@ -375,39 +248,47 @@
                         <!-- ============================================================== -->
                         <!-- Menu Toko : mulai -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
+                        <?php 
+                        if($logged_in == 1){
+                            ?>
+                            <li class="nav-item dropdown">
 
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-home font-20"></i>
+                                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ti-home font-20"></i>
 
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <span class="with-arrow">
-                                    <span class="bg-info"></span>
-                                </span>
-                                <div class="d-flex no-block align-items-center p-15 bg-info text-white m-b-10">
-                                    <div class="">
-                                        <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="img-circle" width="60">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                    <span class="with-arrow">
+                                        <span class="bg-info"></span>
+                                    </span>
+                                    <div class="d-flex no-block align-items-center p-15 bg-info text-white m-b-10">
+                                        <div class="">
+                                            <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="img-circle" width="60">
+                                        </div>
+                                        <div class="m-l-10">
+                                            <h4 class="m-b-0"><?php echo $dataDiri['nama']?></h4>
+                                            <p class=" m-b-0"><?php echo $dataDiri['address']?></p>
+                                        </div>
                                     </div>
-                                    <div class="m-l-10">
-                                        <h4 class="m-b-0"><?php echo $dataDiri['nama']?></h4>
-                                        <p class=" m-b-0"><?php echo $dataDiri['address']?></p>
-                                    </div>
+                                    <a class="dropdown-item" href="javascript:void(0)">
+                                        <i class="ti-home m-r-5 m-l-5"></i>Toko Saya
+                                    </a>
+                                    <a class="dropdown-item" href="<?php echo site_url('MemberC/jual_barang')?>">
+                                        <i class="ti-wallet m-r-5 m-l-5"></i> Jual Barang
+                                    </a>
+                                    <a class="dropdown-item" href="<?php echo site_url('MemberC/daftar_barang')?>">
+                                        <i class="ti-settings m-r-5 m-l-5"></i> Daftar Barang
+                                    </a>
+                                    <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
+                                        <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Label Barang
+                                    </a>
                                 </div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-home m-r-5 m-l-5"></i>Toko Saya
-                                </a>
-                                <a class="dropdown-item" href="<?php echo site_url('MemberC/jual_barang')?>">
-                                    <i class="ti-wallet m-r-5 m-l-5"></i> Jual Barang
-                                </a>
-                                <a class="dropdown-item" href="<?php echo site_url('MemberC/daftar_barang')?>">
-                                    <i class="ti-settings m-r-5 m-l-5"></i> Daftar Barang
-                                </a>
-                                <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
-                                    <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Label Barang
-                                </a>
-                            </div>
-                        </li>
+                            </li>
+                            <?php
+                        }
+                        ?>
+
+
                         <?php 
                         if($logged_in == 1){
                             ?>
@@ -760,6 +641,6 @@
                         </script>
 
 
-</body>
+                    </body>
 
-</html>
+                    </html>

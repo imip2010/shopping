@@ -13,6 +13,9 @@ class HomeC extends CI_Controller {
 		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');
 		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['get_produk_diskon'] = $this->HomeM->get_produk_diskon()->result();
+		$this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
+
 
 		$this->data['get_produk_terbaru'] = $this->HomeM->get_produk_terbaru()->result();
 		$this->data['get_header2'] = $this->HomeM->get_header2()->result();
@@ -25,8 +28,12 @@ class HomeC extends CI_Controller {
 		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');
 		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
 
 		$this->data['detail_produk'] = $this->HomeM->get_detail_product($id_produk)->result()[0];
+		$productID = $this->HomeM->get_detail_product($id_produk)->result()[0]->productID;
+		$kategori = $this->HomeM->get_detail_product($id_produk)->result()[0]->categoryID;
+		$this->data['produk_terkait'] = $this->HomeM->get_produk_terkait($kategori, $productID)->result();
 		
 		//dilihat
 		$hit = $this->HomeM->get_detail_product($id_produk)->result()[0]->hits;

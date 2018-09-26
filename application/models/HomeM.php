@@ -96,6 +96,32 @@ class HomeM extends CI_model
 		}
 	}
 
+	// get produk dengan diskon
+	public function get_produk_diskon(){
+		$this->db->select('*');
+		$this->db->from('products A');
+		$this->db->join('sub_categories B','A.subCategoryID = B.subCategoryID', 'left');
+		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
+		$this->db->join('members D', 'A.memberID = D.memberID','left');
+		$this->db->join('cities Z','D.cityID = Z.cityID');
+		$this->db->where('A.discount != 0');
+		$this->db->limit('6');
+		$this->db->order_by('A.productID','DESC');
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_all_kategori(){
+		$this->db->select('*');
+		$this->db->from('categories');
+		$query = $this->db->get();
+		return $query;
+	}
+
 	public function get_detail_product($productID){
 		$this->db->select('*');
 		$this->db->from('products A');
@@ -104,6 +130,23 @@ class HomeM extends CI_model
 		$this->db->join('members D', 'A.memberID = D.memberID','left');
 		$this->db->join('cities Z', 'Z.cityID = D.cityID', 'left');
 		$this->db->where('A.productID', $productID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_produk_terkait($kategoriID,$productID){
+		$this->db->select('*');
+		$this->db->from('products A');
+		$this->db->join('sub_categories B','A.subCategoryID = B.subCategoryID', 'left');
+		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
+		$this->db->join('members D', 'A.memberID = D.memberID','left');
+		$this->db->join('cities Z', 'Z.cityID = D.cityID', 'left');
+		$this->db->where('A.productID !=', $productID);
+		$this->db->where('C.categoryID', $kategoriID);
 		$query = $this->db->get();
 		if($query){
 			return $query;
