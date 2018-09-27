@@ -86,6 +86,8 @@ class HomeM extends CI_model
 		$this->db->join('sub_categories B','A.subCategoryID = B.subCategoryID', 'left');
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID');
+		$this->db->join('location L', 'D.locationID = L.locationID','left');
+		$this->db->join('cities Z','L.cityID = Z.cityID');
 		$this->db->limit('6');
 		$this->db->order_by('A.productID','DESC');
 		$query = $this->db->get();
@@ -103,7 +105,8 @@ class HomeM extends CI_model
 		$this->db->join('sub_categories B','A.subCategoryID = B.subCategoryID', 'left');
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID','left');
-		$this->db->join('cities Z','D.cityID = Z.cityID');
+		$this->db->join('location L', 'D.locationID = L.locationID','left');
+		$this->db->join('cities Z','L.cityID = Z.cityID');
 		$this->db->where('A.discount != 0');
 		$this->db->limit('6');
 		$this->db->order_by('A.productID','DESC');
@@ -128,7 +131,8 @@ class HomeM extends CI_model
 		$this->db->join('sub_categories B','A.subCategoryID = B.subCategoryID', 'left');
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID','left');
-		$this->db->join('cities Z', 'Z.cityID = D.cityID', 'left');
+		$this->db->join('location L', 'D.locationID = L.locationID','left');
+		$this->db->join('cities Z','L.cityID = Z.cityID');
 		$this->db->where('A.productID', $productID);
 		$query = $this->db->get();
 		if($query){
@@ -144,7 +148,8 @@ class HomeM extends CI_model
 		$this->db->join('sub_categories B','A.subCategoryID = B.subCategoryID', 'left');
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID','left');
-		$this->db->join('cities Z', 'Z.cityID = D.cityID', 'left');
+		$this->db->join('location L', 'D.locationID = L.locationID','left');
+		$this->db->join('cities Z','L.cityID = Z.cityID');
 		$this->db->where('A.productID !=', $productID);
 		$this->db->where('C.categoryID', $kategoriID);
 		$query = $this->db->get();

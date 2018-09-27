@@ -2,62 +2,75 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-               <?php $data=$this->session->flashdata('sukses');
-               if($data!=""){ ?>
-                <div class="alert alert-success"><strong>Sukses! </strong> <?=$data;?></div>
-            <?php } ?>
+             <?php
+             $data=$this->session->flashdata('sukses');
+             if($data!=""){ 
+                ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                    <h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3> <?=$data;?>
+                </div>
+                <?php 
+            } 
+            ?>
             <?php 
             $data2=$this->session->flashdata('error');
-            if($data2!=""){ ?>
-              <div class="alert alert-danger"><strong> Error! </strong> <?=$data2;?></div>
-          <?php } ?>
-          <div class="table-responsive">
-            <table id="mytable" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                       <th>No</th>
-                       <th>Kategori</th>
-                       <th>Nama Barang</th>
-                       <th>Harga</th>
-                       <th>Stok</th>
-                       <th>Tanggal Upload</th>
-                       <th>Status</th>
-                       <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
+            if($data2!=""){ 
+                ?>
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                    <h3 class="text-danger"><i class="fa fa-check-circle"></i> Gagal!</h3> <?=$data2;?>
+                </div>
+                <?php 
+            } 
+            ?>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                         <th>No</th>
+                         <th>Kategori</th>
+                         <th>Nama Barang</th>
+                         <th>Harga</th>
+                         <th>Stok</th>
+                         <th>Tanggal Upload</th>
+                         <th>Status</th>
+                         <th>Aksi</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                    <?php
                 // print_r($daftar_barang);
-                $i=0;
-                foreach ($daftar_barang as $barang) {
-                    $i++;
-                    ?>
-                    <tr>
-                        <td><?php echo $i;?></td>
-                        <td><?php echo $barang->categoryName;?></td>
-                        <td><?php echo $barang->productName;?></td>
-                        <td>Rp<?php echo number_format($barang->salePrice, 0,',','.');?>,00</td>
-                        <td><?php echo $barang->qty;?></td>
-                        <?php
-                        $tgl = $barang->createDate;;
-                        $new_tgl = date('d-m-Y', strtotime($tgl));
+                    $i=0;
+                    foreach ($daftar_barang as $barang) {
+                        $i++;
                         ?>
-                        <td><?php echo $new_tgl;?></td>
-                        <td><?php 
-                        if($barang->status == "Y"){
-                            echo "Tampil";
-                        }else{
-                            echo "Tidak tampil";
-                        }
-                        ?>
+                        <tr>
+                            <td><?php echo $i;?></td>
+                            <td><?php echo $barang->categoryName;?></td>
+                            <td><?php echo $barang->productName;?></td>
+                            <td>Rp<?php echo number_format($barang->salePrice, 0,',','.');?>,00</td>
+                            <td><?php echo $barang->qty;?></td>
+                            <?php
+                            $tgl = $barang->createDate;;
+                            $new_tgl = date('d-m-Y', strtotime($tgl));
+                            ?>
+                            <td><?php echo $new_tgl;?></td>
+                            <td><?php 
+                            if($barang->status == "Y"){
+                                echo "Tampil";
+                            }else{
+                                echo "Tidak tampil";
+                            }
+                            ?>
 
-                    </td>
-                    <td>
-                        <a id="custId" data-toggle="modal" data-target="#myModal1-<?php echo $barang->productID?>" title="edit" class="btn btn-success btn-sm"><span class="ti-pencil"></span></a>
-                        <a id="custId" data-toggle="modal" data-target="#myModal2-<?php echo $barang->productID?>" title="detail" class="btn btn-info btn-sm"><span class="ti-eye"></span></a>
-                        <a href="<?php echo base_url('MemberC/hapus_barang/').$barang->productID ?>" data-id="<?php echo $barang->productID;?>" title="delete" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus Produk <?php echo $barang->productName?>?')"><span class="ti-trash"></span></a>
+                        </td>
+                        <td>
+                            <a id="custId" data-toggle="modal" data-target="#myModal1-<?php echo $barang->productID?>" title="edit" class="btn btn-success btn-sm"><span class="ti-pencil"></span></a>
+                            <a id="custId" data-toggle="modal" data-target="#myModal2-<?php echo $barang->productID?>" title="detail" class="btn btn-info btn-sm"><span class="ti-eye"></span></a>
+                            <a href="<?php echo base_url('MemberC/hapus_barang/').$barang->productID ?>" data-id="<?php echo $barang->productID;?>" title="delete" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus Produk <?php echo $barang->productName?>?')"><span class="ti-trash"></span></a>
 
-                    </td>
+                        </td>
                     </tr>
 
 
@@ -163,59 +176,59 @@
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-                        </div>
                     </div>
+                </div>
 
 
 
 
-                    <!-- The Modal detail barang-->
-                    <div class="modal" id="myModal2-<?php echo $barang->productID?>">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
+                <!-- The Modal detail barang-->
+                <div class="modal" id="myModal2-<?php echo $barang->productID?>">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
 
-                              <!-- Modal Header -->
-                              <div class="modal-header">
-                                <h4 class="modal-title">Detail Produk</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                            <h4 class="modal-title">Detail Produk</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
 
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <h3 class="card-title"><?php echo $barang->productName;?></h3>
-                                <h6 class="card-subtitle"><?php echo $barang->memberName;?></h6>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-4">
-                                        <div class="white-box text-center"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $barang->photo1?>" class="img-responsive" style="max-width: 100%;"> </div>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-6">
-                                        <h4 class="box-title">Deskripsi Produk</h4>
-                                        <?php echo $barang->description;?>
-                                        <h4 class="box-title">Stok : <?php echo $barang->qty;?></h4>
-                                        <h4 class="box-title">Berat : <?php echo $barang->weight;?></h4>
-                                        <h2 class="m-t-40">
-                                            <span data-product-price-without-tax="" class="price price--withoutTax"> Rp<?php echo number_format($barang->salePrice, 0,',','.');?>,00
-                                            </span>
-                                        </h2>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-6">
-                                    </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h3 class="card-title"><?php echo $barang->productName;?></h3>
+                            <h6 class="card-subtitle"><?php echo $barang->memberName;?></h6>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-4">
+                                    <div class="white-box text-center"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $barang->photo1?>" class="img-responsive" style="max-width: 100%;"> </div>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-6">
+                                    <h4 class="box-title">Deskripsi Produk</h4>
+                                    <?php echo $barang->description;?>
+                                    <h4 class="box-title">Stok : <?php echo $barang->qty;?></h4>
+                                    <h4 class="box-title">Berat : <?php echo $barang->weight;?></h4>
+                                    <h2 class="m-t-40">
+                                        <span data-product-price-without-tax="" class="price price--withoutTax"> Rp<?php echo number_format($barang->salePrice, 0,',','.');?>,00
+                                        </span>
+                                    </h2>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-6">
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
-                </tbody>
-                </table>
                 </div>
-            </div>
-        </div>
-    </div>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 <script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>

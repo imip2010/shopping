@@ -9,14 +9,26 @@
 						<div data-cart-content class='hl-cart-content'>
 							<?php
 							$data=$this->session->flashdata('sukses');
-							if($data!=""){ ?>
-								<div class="alert alert-success"><strong>Sukses! </strong> <?=$data;?></div>
-							<?php } ?>
+							if($data!=""){ 
+								?>
+								<div class="alert alert-success">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+									<h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3> <?=$data;?>
+								</div>
+								<?php 
+							} 
+							?>
 							<?php 
 							$data2=$this->session->flashdata('error');
-							if($data2!=""){ ?>
-								<div class="alert alert-danger"><strong> Error! </strong> <?=$data2;?></div>
-							<?php } ?>
+							if($data2!=""){ 
+								?>
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+									<h3 class="text-danger"><i class="fa fa-check-circle"></i> Gagal!</h3> <?=$data2;?>
+								</div>
+								<?php 
+							} 
+							?>
 							<form method='post' action='<?php echo site_url('MemberC/checkout')?>'>
 								<table class='table table-striped table-bordered' data-cart-quantity=''>
 									<thead class='cart-header'>

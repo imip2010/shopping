@@ -22,6 +22,7 @@ class MemberC extends CI_Controller {
         $this->load->view('layout', $this->data);
     }
 
+
     // beli barang
     public function beli_barang($memberID){
         $this->data['dataDiri'] = $this->session->userdata();
@@ -56,6 +57,22 @@ class MemberC extends CI_Controller {
 
         $this->data['isi'] = 'isi';
         $this->data['isi'] = $this->load->view('member/daftar_barang', $this->data, TRUE);
+        $this->load->view('layout', $this->data);
+    }
+    
+    // pengaturan profil
+    public function pengaturan_profile(){
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
+        $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+        $this->data['daftar_barang'] = $this->MemberM->get_produk_by_id()->result();
+        $this->data['kategori'] = $this->MemberM->get_all_kategori();
+        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
+        $memberID = $this->session->userdata('memberID');
+        $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
+
+        $this->data['isi'] = 'isi';
+        $this->data['isi'] = $this->load->view('member/pengaturan_profile_v', $this->data, TRUE);
         $this->load->view('layout', $this->data);
     }
 
