@@ -122,13 +122,26 @@ class MemberM extends CI_Model{
 
 	public function get_detail_members($memberID){
 		$this->db->select('*');
-		$this->db->from('members M');
-		$this->db->join('provinces P','M.provinceID = P.provinceID');
-		$this->db->join('cities C','M.cityID = C.cityID');
-		$this->db->join('courier D','M.courierID = D.courierID');
+		$this->db->from('members D');
+		$this->db->join('location L', 'D.locationID = L.locationID','left');
+		$this->db->join('cities Z','L.cityID = Z.cityID');
+		$this->db->join('provinces P','Z.provinceID = P.provinceID');
+		// $this->db->join('courier D','M.courierID = D.courierID');
 		// $this->db->join('shipping S','M.shippingID = S.shippingID','left');
 		// $this->db->join('bank B', 'M.bankID = B.bankID');
-		$this->db->where('memberID',$memberID);
+		$this->db->where('D.memberID',$memberID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_members($memberID){
+		$this->db->select('*');
+		$this->db->from('members D');
+		$this->db->where('D.memberID',$memberID);
 		$query = $this->db->get();
 		if($query){
 			return $query;

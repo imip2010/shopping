@@ -99,6 +99,7 @@
                                 <i class="ti-shopping-cart font-20"></i>
                             </a> -->
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>"><i class="ti-shopping-cart font-20"></i>
+                                <div class="basket-item-count"><span class="count">2</span></div>
                             </a>
                             <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
                                 <span class="with-arrow">
@@ -282,6 +283,9 @@
                                     <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
                                         <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Label Barang
                                     </a>
+                                    <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
+                                        <i class="ti-home m-r-5 m-l-5"></i> Courier
+                                    </a>
                                 </div>
                             </li>
                             <?php
@@ -315,7 +319,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-wallet m-r-5 m-l-5"></i> Saldo Saya Rp. 20.000</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void(0)">
+                                        <a class="dropdown-item" href="<?php echo site_url('MemberC/pengaturan_profile');?>">
                                             <i class="ti-settings m-r-5 m-l-5"></i> Pengaturan Profil</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="javascript:void(0)">

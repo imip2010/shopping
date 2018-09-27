@@ -3,18 +3,30 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="col-lg-4" style="margin-left: 30%;">
+         <?php
+         $data=$this->session->flashdata('sukses');
+         if($data!=""){ 
+            ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                <h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3> <?=$data;?>
+            </div>
             <?php 
-            $data=$this->session->flashdata('sukses');
-            if($data!=""){ ?>
-                <div class="alert alert-success"><strong>Sukses! </strong> <?=$data;?></div>
-            <?php } ?>
+        } 
+        ?>
+        <?php 
+        $data2=$this->session->flashdata('error');
+        if($data2!=""){ 
+            ?>
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                <h3 class="text-danger"><i class="fa fa-check-circle"></i> Gagal!</h3> <?=$data2;?>
+            </div>
             <?php 
-            $data2=$this->session->flashdata('error');
-            if($data2!=""){ ?>
-              <div class="alert alert-danger"><strong> Error! </strong> <?=$data2;?></div>
-          <?php } ?>
-          <?php echo form_open_multipart('MemberC/post_jual_barang');?>
-          <form action="<?php echo site_url('MemberC/post_jual_barang')?>" method="post">
+        } 
+        ?>
+        <?php echo form_open_multipart('MemberC/post_jual_barang');?>
+        <form action="<?php echo site_url('MemberC/post_jual_barang')?>" method="post">
             <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
                 <input type="text" class="form-control" id="nama_barang" name="nama_barang" required>
@@ -83,9 +95,9 @@
               <br><small><p>Hanya berkas bertipe <b>.gif-.jpg-.png-.jpeg-.bmp</b></p></small>
           </div>  
           <button type="submit" class="btn btn-lg btn-success">Jual</button>
-            </form>
-        </div>  
-    </div>
+      </form>
+  </div>  
+</div>
 </div>
 <br>
 
