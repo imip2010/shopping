@@ -87,7 +87,10 @@ class HomeM extends CI_model
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID');
 		$this->db->join('location L', 'D.locationID = L.locationID','left');
-		$this->db->join('cities Z','L.cityID = Z.cityID');
+		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
+		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
 		$this->db->limit('6');
 		$this->db->order_by('A.productID','DESC');
 		$query = $this->db->get();
@@ -106,7 +109,10 @@ class HomeM extends CI_model
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID','left');
 		$this->db->join('location L', 'D.locationID = L.locationID','left');
-		$this->db->join('cities Z','L.cityID = Z.cityID');
+		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
+		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
 		$this->db->where('A.discount != 0');
 		$this->db->limit('6');
 		$this->db->order_by('A.productID','DESC');
@@ -132,7 +138,10 @@ class HomeM extends CI_model
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID','left');
 		$this->db->join('location L', 'D.locationID = L.locationID','left');
-		$this->db->join('cities Z','L.cityID = Z.cityID');
+		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
+		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
 		$this->db->where('A.productID', $productID);
 		$query = $this->db->get();
 		if($query){
@@ -149,7 +158,10 @@ class HomeM extends CI_model
 		$this->db->join('categories C', 'A.categoryID = C.categoryID', 'left');
 		$this->db->join('members D', 'A.memberID = D.memberID','left');
 		$this->db->join('location L', 'D.locationID = L.locationID','left');
-		$this->db->join('cities Z','L.cityID = Z.cityID');
+		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
+		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
 		$this->db->where('A.productID !=', $productID);
 		$this->db->where('C.categoryID', $kategoriID);
 		$query = $this->db->get();
