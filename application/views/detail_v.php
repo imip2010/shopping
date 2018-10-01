@@ -317,7 +317,7 @@
                 <div class="m-l-10">
                     <h4 class="m-b-0"><?php echo $detail_produk->memberName;?></h4>
                     <!-- <p class=" m-b-0"><i class="mdi mdi-thumb-up font-20"></i>&nbsp 90% (10 feedback)</p> -->
-                    <a href="#"><p><i class="ti-location-pin font-20"></i><?php echo $detail_produk->cityName;?></p></a>
+                    <a href="#"><p><i class="ti-location-pin font-20"></i><?php echo $detail_produk->nama_kabupaten_kota;?></p></a>
                 </div>
             </div>
 
@@ -485,7 +485,7 @@
                                     <div class="d-flex no-block align-items-center">
                                         <div class="m-l-15">
                                             <h5><?php echo $terkait->productName?></h5>
-                                            <span class="text-muted"><?php echo $terkait->cityName;?></span>
+                                            <span class="text-muted"><?php echo $terkait->nama_kabupaten_kota;?></span>
                                             <?php
                                             $harga = number_format($detail_produk->salePrice,0,',','.');
 

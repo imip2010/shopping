@@ -232,7 +232,7 @@
                     <div class="d-flex no-block align-items-center">
                         <div class="m-l-15">
                             <h5><?php echo $produk_diskon->productName;?></h5>
-                            <span class="text-muted"><?php echo $produk_diskon->cityName?></span>
+                            <span class="text-muted"><?php echo $produk_diskon->nama_kabupaten_kota?></span>
                             <?php $harga = number_format($produk_diskon->salePrice,0,',','.');
                             echo "<h5>".$harga."</h5>"
                             ?>
@@ -294,7 +294,7 @@
                 <div class="d-flex no-block align-items-center">
                     <div class="m-l-15">
                         <h5><?php echo $produk_terbaru->productName;?></h5>
-                        <span class="text-muted"><?php echo $produk_terbaru->address;?></span>
+                        <span class="text-muted"><?php echo $produk_terbaru->nama_kabupaten_kota;?></span>
                         <h5><?php  echo $divharga;?></h5>
                     </div>
                     <div class="ml-auto m-r-15"><br>

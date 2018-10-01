@@ -70,10 +70,31 @@ class MemberC extends CI_Controller {
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
         $memberID = $this->session->userdata('memberID');
         $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
+        $this->data['provinsi'] = $this->MemberM->get_all_provinsi();
+        $this->data['shipping_address'] = $this->MemberM->get_shipping_address($memberID)->result();
 
         $this->data['isi'] = 'isi';
         $this->data['isi'] = $this->load->view('member/pengaturan_profile_v', $this->data, TRUE);
         $this->load->view('layout', $this->data);
+    }
+
+    // alamat
+    public function get_kabupaten_kota(){
+        $postData = $this->input->post();
+        $data = $this->MemberM->get_kabupaten_kota($postData);
+        echo json_encode($data);
+    }
+
+    public function get_kecamatan(){
+        $postData = $this->input->post();
+        $data = $this->MemberM->get_kecamatan($postData);
+        echo json_encode($data);
+    }
+
+    public function get_kelurahan(){
+        $postData = $this->input->post();
+        $data = $this->MemberM->get_kelurahan($postData);
+        echo json_encode($data);
     }
 
     public function insertToCart($memberID, $productID){
@@ -127,14 +148,14 @@ class MemberC extends CI_Controller {
 
     // get pilihan kategori
     public function get_sub_kategori(){
-      $postData = $this->input->post();
-      $data = $this->MemberM->get_sub_kategori($postData);
-      echo json_encode($data);
-  }
+        $postData = $this->input->post();
+        $data = $this->MemberM->get_sub_kategori($postData);
+        echo json_encode($data);
+    }
 
-  public function seo_title($s){
-      $c = array (' ');
-      $d = array ('-','/','\\',',','.','#',':',';','\'','"','[',']','{','}',')','(','|','`','~','!','@','%','$','^','&','*','=','?','+');
+    public function seo_title($s){
+        $c = array (' ');
+        $d = array ('-','/','\\',',','.','#',':',';','\'','"','[',']','{','}',')','(','|','`','~','!','@','%','$','^','&','*','=','?','+');
 
         $s = str_replace($d, '', $s); // Hilangkan karakter yang telah disebutkan di array $d
 
@@ -336,6 +357,7 @@ class MemberC extends CI_Controller {
         echo json_encode($data);
     }
 
+    //update member checkout
     public function update_members(){
         $this->form_validation->set_rules('memberID','memberID','required');
         $this->form_validation->set_rules('nama','Nama Member','required');
@@ -375,6 +397,127 @@ class MemberC extends CI_Controller {
             }
         }
     }
+
+     //update member checkout
+    public function update_member(){
+        $this->form_validation->set_rules('memberID','memberID','required',  array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('username','username');
+        $this->form_validation->set_rules('memberName','Nama Member');
+        $this->form_validation->set_rules('tmp_lahir','tmp_lahir');
+        $this->form_validation->set_rules('tgl_lahir','tgl_lahir');
+        $this->form_validation->set_rules('gender','gender');
+        $this->form_validation->set_rules('email','email');
+        $this->form_validation->set_rules('phone','phone');
+        $this->form_validation->set_rules('password','password');
+
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Data tidak berhasil diubah');  
+            redirect_back();
+        }else{
+
+            $username       = $this->input->post('username');
+            $tmp_lahir      = $this->input->post('tmp_lahir');
+            $tgl_lahir      = $this->input->post('tgl_lahir');
+            $gender         = $this->input->post('gender');
+            $memberName     = $this->input->post('memberName');
+            $email          = $this->input->post('email');
+            $phone          = $this->input->post('phone');
+            $password       = $this->input->post('password');
+            $memberID       = $this->input->post('memberID');
+            
+            $data_update_member = array(
+                'memberName'    => $memberName, 
+                'email'         => $email, 
+                'phone'         => $phone, 
+                'username'      => $username, 
+                'gender'        => $gender, 
+                'tmp_lahir'     => $tmp_lahir, 
+                'password'      => md5($password), 
+                'tgl_lahir'     => $tgl_lahir, 
+            );
+
+            if($this->MemberM->update_data_member($memberID, $data_update_member)){
+                $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+                redirect_back();
+            }
+        }
+    }
+
+
+    // tambah alamat
+    public function post_tambah_alamat(){
+        $this->form_validation->set_rules('shipping_address_name','Nama alamat','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('nama_penerima','Nama penerima','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('locationName','Nama lokasi','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('kode_pos','kode pos','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('id_kelurahan','kelurahan','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('memberID','member ID','required',array('required' => 'You must provide a %s.'));
+
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+            redirect_back();
+        }else{
+            $memberID               = $this->input->post('memberID');
+            $shipping_address_name  = $this->input->post('shipping_address_name');
+            $nama_penerima          = $this->input->post('nama_penerima');
+            $locationName           = $this->input->post('locationName');
+            $kode_pos               = $this->input->post('kode_pos');
+            $id_kelurahan           = $this->input->post('id_kelurahan');
+
+            $data_insertToLocation = array(
+                'id_kelurahan'  => $id_kelurahan, 
+                'locationName'  => $locationName, 
+                'kode_pos'      => $kode_pos, 
+            );
+
+            if($locationID = $this->MemberM->insertToLocation($data_insertToLocation)){
+                $data_tambah_alamat = array(
+                    'memberID'              => $memberID, 
+                    'locationID'            => $locationID, 
+                    'shipping_address_name' => $shipping_address_name, 
+                    'nama_penerima'         => $nama_penerima, 
+                    'status'                => "no_default", 
+                );
+                if($this->MemberM->insertToShippingAddress($data_tambah_alamat)){
+                    $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+                    redirect_back();
+                }else{
+                    $this->MemberM->delete($locationID);
+                    $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+                    redirect_back();
+                }
+            }else{                
+                $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+                redirect_back();
+            }
+
+        }
+    }
+
+    // set utama alamat
+    public function set_utama($memberID, $shipping_addressID){
+        $default = array('status_alamat' => "default");
+        $no_default = array('status_alamat' => "no_default");
+        if ($this->MemberM->update_alamat($memberID, $no_default)) {
+            if ($this->MemberM->set_utama($memberID, $shipping_addressID, $default)) {
+                $locationID = $this->MemberM->get_shipping_address_utama($memberID)->result()[0]->locationID;
+                $data = array('locationID' => $locationID);
+                $this->MemberM->update_data_member($memberID, $data);
+                $this->session->set_flashdata('sukses', 'Alamat berhasil diubah menjadi alamat utama');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Alamat tidak berhasil diubah');
+                redirect_back();
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Alamat tidak berhasil diubah');
+            redirect_back();
+        }
+    }
+
 }
 
 

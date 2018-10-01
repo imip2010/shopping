@@ -124,8 +124,10 @@ class MemberM extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('members D');
 		$this->db->join('location L', 'D.locationID = L.locationID','left');
-		$this->db->join('cities Z','L.cityID = Z.cityID');
-		$this->db->join('provinces P','Z.provinceID = P.provinceID');
+		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
+		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
 		// $this->db->join('courier D','M.courierID = D.courierID');
 		// $this->db->join('shipping S','M.shippingID = S.shippingID','left');
 		// $this->db->join('bank B', 'M.bankID = B.bankID');
@@ -154,7 +156,7 @@ class MemberM extends CI_Model{
 	public function get_provinces(){
 		$response = array();
 		$this->db->select('*');
-		$this->db->from('provinces');
+		$this->db->from('propinsi');
 		$query = $this->db->get();
 		$response = $query->result_array();
 		return $response;
@@ -178,4 +180,122 @@ class MemberM extends CI_Model{
 		$this->db->update('members', $data);
 		return TRUE;
 	}
+
+	// alamat
+	public function get_all_provinsi(){
+		$response = array();
+		$this->db->select('*');
+		$this->db->from('propinsi');
+		$this->db->order_by('nama_propinsi');
+		$query = $this->db->get();
+		$response = $query->result_array();
+		return $response;
+	}
+
+	public function get_kabupaten_kota($postData){
+		$response = array();
+		$this->db->select('*');
+		$this->db->from('kabupaten_kota');
+		$this->db->where('id_propinsi', $postData['id_propinsi']);
+		$this->db->order_by('nama_kabupaten_kota');
+		$query = $this->db->get();
+		$response = $query->result_array();
+		return $response;
+	}
+
+	public function get_kecamatan($postData){
+		$response = array();
+		$this->db->select('*');
+		$this->db->from('kecamatan');
+		$this->db->where('id_kabupaten_kota', $postData['id_kabupaten_kota']);
+		$this->db->order_by('nama_kecamatan');
+		$query = $this->db->get();
+		$response = $query->result_array();
+		return $response;
+	}
+
+	public function get_kelurahan($postData){
+		$response = array();
+		$this->db->select('*');
+		$this->db->from('kelurahan');
+		$this->db->where('id_kecamatan', $postData['id_kecamatan']);
+		$this->db->order_by('nama_kelurahan');
+		$query = $this->db->get();
+		$response = $query->result_array();
+		return $response;
+	}
+// ===============
+	// TAMBAH ALAMAT
+	public function insertToLocation($data){
+		$this->db->insert('location', $data);
+		return $this->db->insert_id();
+	}
+
+	public function insertToShippingAddress($data){
+		$this->db->insert('shipping_address', $data);
+		return TRUE;
+	}
+
+	public function delete($locationID){
+		$this->db->where('locationID', $locationID);
+		$this->db->delete('location');
+		return TRUE;
+	}
+
+	// =========
+
+	// GET ALAMAT
+	public function get_shipping_address($memberID){
+		$this->db->select('*');
+		$this->db->from('shipping_address A');
+		$this->db->join('location L', 'A.locationID = L.locationID');
+		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
+		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
+		$this->db->where('A.memberID', $memberID);
+		$this->db->order_by('A.status_alamat','ASC');
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+
+	//update almaat no default semua
+	public function update_alamat($memberID, $data){
+		$this->db->where('memberID', $memberID);
+		$this->db->update('shipping_address', $data);
+		return TRUE;
+	}
+
+	// jadiin utama  alamat
+	public function set_utama($memberID, $shipping_addressID, $data){
+		$this->db->where('memberID', $memberID);
+		$this->db->where('shipping_addressID', $shipping_addressID);
+		$this->db->update('shipping_address', $data);
+		return TRUE;
+	}
+
+	public function get_shipping_address_utama($memberID){
+		$this->db->select('*');
+		$this->db->from('shipping_address A');
+		$this->db->join('location L', 'A.locationID = L.locationID');
+		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
+		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
+		$this->db->where('A.memberID', $memberID);
+		$this->db->where('A.status_alamat', "default");
+		$this->db->order_by('A.status_alamat','ASC');
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
 }
