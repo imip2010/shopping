@@ -196,7 +196,7 @@ class MemberC extends CI_Controller {
             $dataInfo = array();
             $files = $_FILES;
             $cpt = count($_FILES['userfile']['name']);
-            for($i=0; $i<$cpt; $i++)
+            for($i=0; $i<=$cpt; $i++)
             {           
                 $_FILES['userfile']['name']= $files['userfile']['name'][$i];
                 $_FILES['userfile']['type']= $files['userfile']['type'][$i];
@@ -216,6 +216,7 @@ class MemberC extends CI_Controller {
                 'photo3'            => $dataInfo[2]['file_name'],
                 'photo4'            => $dataInfo[3]['file_name'],
                 'photo5'            => $dataInfo[4]['file_name'],
+                'photo6'            => $dataInfo[5]['file_name'],
                 'conditions'        => $kondisi,  
                 'categoryID'        => $kategori_barang,  
                 'subCategoryID'     => $sub_kategori_barang,  
