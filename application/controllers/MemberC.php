@@ -72,6 +72,7 @@ class MemberC extends CI_Controller {
         $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
         $this->data['provinsi'] = $this->MemberM->get_all_provinsi();
         $this->data['shipping_address'] = $this->MemberM->get_shipping_address($memberID)->result();
+        // $this->data['locationID'] = $this->MemberM->get_shipping_address_by_id(4)->result()[0]->locationID;
 
         $this->data['isi'] = 'isi';
         $this->data['isi'] = $this->load->view('member/pengaturan_profile_v', $this->data, TRUE);
@@ -452,6 +453,7 @@ class MemberC extends CI_Controller {
     public function post_tambah_alamat(){
         $this->form_validation->set_rules('shipping_address_name','Nama alamat','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('nama_penerima','Nama penerima','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('no_hp','No HP','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('locationName','Nama lokasi','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('kode_pos','kode pos','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('id_kelurahan','kelurahan','required',array('required' => 'You must provide a %s.'));
@@ -467,6 +469,7 @@ class MemberC extends CI_Controller {
             $locationName           = $this->input->post('locationName');
             $kode_pos               = $this->input->post('kode_pos');
             $id_kelurahan           = $this->input->post('id_kelurahan');
+            $no_hp                  = $this->input->post('no_hp');
 
             $data_insertToLocation = array(
                 'id_kelurahan'  => $id_kelurahan, 
@@ -480,18 +483,19 @@ class MemberC extends CI_Controller {
                     'locationID'            => $locationID, 
                     'shipping_address_name' => $shipping_address_name, 
                     'nama_penerima'         => $nama_penerima, 
-                    'status'                => "no_default", 
+                    'no_hp'                 => $no_hp, 
+                    'status_alamat'         => "no_default", 
                 );
                 if($this->MemberM->insertToShippingAddress($data_tambah_alamat)){
-                    $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+                    $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
                     redirect_back();
                 }else{
                     $this->MemberM->delete($locationID);
-                    $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+                    $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
                     redirect_back();
                 }
             }else{                
-                $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
                 redirect_back();
             }
 
@@ -519,6 +523,78 @@ class MemberC extends CI_Controller {
         }
     }
 
+    // hapus alamat
+    public function hapus_alamat($shipping_addressID){
+        $locationID = $this->MemberM->get_shipping_address_by_id($shipping_addressID)->result()[0]->locationID;
+        if($this->MemberM->hapus_location($locationID)){
+            if($this->MemberM->hapus_alamat($shipping_addressID)){
+                $this->session->set_flashdata('sukses', 'Alamat berhasil dihapus');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
+                redirect_back();                
+            }
+        }else{
+            $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
+            redirect_back();
+        }
+    }
+
+    public function post_ubah_alamat(){
+        $this->form_validation->set_rules('shipping_address_name','Nama alamat');
+        $this->form_validation->set_rules('nama_penerima','Nama penerima');
+        $this->form_validation->set_rules('no_hp','No HP');
+        $this->form_validation->set_rules('locationName','Nama lokasi');
+        $this->form_validation->set_rules('kode_pos','kode pos');
+        $this->form_validation->set_rules('id_kelurahan','kelurahan');
+        $this->form_validation->set_rules('memberID','member ID','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('shipping_addressID','Shipping Address ID','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('locationID','Location ID','required',array('required' => 'You must provide a %s.'));
+
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+            redirect_back();
+        }else{
+            $shipping_addressID     = $this->input->post('shipping_addressID');
+            $memberID               = $this->input->post('memberID');
+            $locationID             = $this->input->post('locationID');
+            $shipping_address_name  = $this->input->post('shipping_address_name');
+            $nama_penerima          = $this->input->post('nama_penerima');
+            $locationName           = $this->input->post('locationName');
+            $kode_pos               = $this->input->post('kode_pos');
+            $id_kelurahan           = $this->input->post('id_kelurahan');
+            $no_hp                  = $this->input->post('no_hp');
+
+            $data_updateToLocation = array(
+                'id_kelurahan'  => $id_kelurahan, 
+                'locationName'  => $locationName, 
+                'kode_pos'      => $kode_pos, 
+            );
+
+            if($locationID = $this->MemberM->updateToLocation($locationID, $data_updateToLocation)){
+                $data_update_alamat         = array(
+                    'memberID'              => $memberID, 
+                    'locationID'            => $locationID, 
+                    'shipping_address_name' => $shipping_address_name, 
+                    'nama_penerima'         => $nama_penerima, 
+                    'no_hp'                 => $no_hp, 
+                    'status_alamat'         => "no_default", 
+                );
+                if($this->MemberM->updateToShippingAddress($shipping_addressID, $data_update_alamat)){
+                    $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
+                    redirect_back();
+                }else{
+                    $this->MemberM->delete($locationID);
+                    $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+                    redirect_back();
+                }
+            }else{                
+                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+                redirect_back();
+            }
+
+        }
+    }
 }
 
 

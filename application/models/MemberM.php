@@ -278,7 +278,7 @@ class MemberM extends CI_Model{
 		$this->db->update('shipping_address', $data);
 		return TRUE;
 	}
-
+	//ambil shpping addres utama
 	public function get_shipping_address_utama($memberID){
 		$this->db->select('*');
 		$this->db->from('shipping_address A');
@@ -298,4 +298,30 @@ class MemberM extends CI_Model{
 		}
 	}
 
+	// ambil shipping_address by id
+	public function get_shipping_address_by_id($shipping_addressID){
+		$this->db->select('*');
+		$this->db->from('shipping_address A');
+		$this->db->where('A.shipping_addressID', $shipping_addressID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	// hapus alamat
+	public function hapus_alamat($shipping_addressID){
+		$this->db->where('shipping_addressID', $shipping_addressID);
+		$this->db->delete('shipping_address');
+		return "berhasil";
+	}
+
+	// hapus location
+	public function hapus_location($locationID){
+		$this->db->where('locationID', $locationID);
+		$this->db->delete('location');
+		return "berhasil";
+	}
 }
