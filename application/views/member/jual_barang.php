@@ -4,8 +4,10 @@
 <br>
 <!-- Row -->
 <div class="row">
+    <div class="card-body" style="margin-bottom: 0;margin-top: -90px;">
+        <h2 class="card-title">Jual Barang</h2>
+    </div>
     <div class="col-lg-12">
-        <div class="card">
             
             <?php
                 $data=$this->session->flashdata('sukses');
@@ -32,9 +34,6 @@
             <?php echo form_open_multipart('MemberC/post_jual_barang');?>
 
             <form action="<?php echo site_url('MemberC/post_jual_barang')?>" method="post" enctype="multipart/form-data">
-                <div class="card-body" style="margin-bottom: -30px;">
-                    <h2 class="card-title">Jual Barang</h2>
-                </div>
                 <div class="form-body" style="margin-top: -40px;">
                     <div class="card-body">
                         <div class="row p-t-20">
@@ -138,7 +137,7 @@
                                 <div class="form-group">
                                     <label>Unggah Foto</label>
                                     <br>
-                                    <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
+                                    <input type="file" class="form-control" id="images" name="userfile[]" onchange="preview_images();" multiple/>
                                     <p style="margin-top: 0px;">Hanya berkas bertipe <b>.gif-.jpg-.png-.jpeg-.bmp</b></p>
                                     <div id="image_preview"></div>
 
@@ -164,7 +163,6 @@
                     </div>
                 </div>
             </form>
-        </div>
     </div>
 </div>
 <!-- Row -->
