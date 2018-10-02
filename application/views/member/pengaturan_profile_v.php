@@ -97,6 +97,7 @@
     <div class="col-lg-10 col-md-12">
         <h3 class="card-title">Pengaturan </h3><br>
         <?php
+        // print_r($locationID);
         $data=$this->session->flashdata('sukses');
         if($data!=""){ 
             ?>
@@ -208,20 +209,20 @@
                                             <td>Jenis Kelamin </td>
                                             <td>
                                                 <select name="gender" id="gender" class="form-control is-valid" style="display: none;">
-                                                   <?php
-                                                   if($detail_member->gender == 1){
+                                                 <?php
+                                                 if($detail_member->gender == 1){
                                                     echo "<option selected value='1'>Laki-laki</option>
                                                     <option value='2'>Perempuan</option>
                                                     <option value='3'>Lainnya</option>";
                                                 }elseif ($detail_member->gender == 2) {
-                                                 echo "<option value='1'>Laki-laki</option>
-                                                 <option selected value='2'>Perempuan</option>
-                                                 <option value='3'>Lainnya</option>";
-                                             }elseif ($detail_member->gender == 3){
-                                                 echo "<option value='1'>Laki-laki</option>
-                                                 <option value='2'>Perempuan</option>
-                                                 <option selected value='3'>Lainnya</option>";
-                                             }else{
+                                                   echo "<option value='1'>Laki-laki</option>
+                                                   <option selected value='2'>Perempuan</option>
+                                                   <option value='3'>Lainnya</option>";
+                                               }elseif ($detail_member->gender == 3){
+                                                   echo "<option value='1'>Laki-laki</option>
+                                                   <option value='2'>Perempuan</option>
+                                                   <option selected value='3'>Lainnya</option>";
+                                               }else{
                                                 echo "<option>----Pilih Jenis Kelamin----</option>
                                                 <option value='1'>Laki-laki</option>
                                                 <option value='2'>Perempuan</option>
@@ -395,7 +396,9 @@
                                                 echo $alamat->nama_kelurahan."<br>";
                                                 echo $alamat->nama_kecamatan."<br>";
                                                 echo $alamat->nama_kabupaten_kota."<br>";
-                                                echo $alamat->nama_propinsi."<br>";
+                                                echo $alamat->nama_propinsi.", ";
+                                                echo $alamat->kode_pos."<br>";
+                                                echo "Telepon/HP: ".$alamat->no_hp."<br></p>";
 
                                                 ?>
                                             </td>
@@ -409,17 +412,171 @@
                                                 }else{
 
                                                     ?>
+                                                    <a href="<?php echo site_url('MemberC/hapus_alamat/').$alamat->shipping_addressID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus alamat ini?')"><span class="ti-trash"></span>
+                                                    </a>
                                                     <a href="<?php echo site_url('MemberC/set_utama/').$dataDiri['memberID']."/".$alamat->shipping_addressID;?>" title="set utama" class="btn btn-secondary btn-sm" onClick="return confirm('Anda yakin akan menggunakan alamat ini sebagai alamat utama ?')"><span class="ti-save"></span> Set Utama
                                                     </a>
                                                     <?php
                                                 }
                                                 ?>
-                                                <a href="<?php echo site_url('MemberC/edit_alamat/').$dataDiri['memberID']."/".$alamat->shipping_addressID;?>" title="edit" class="btn btn-success btn-sm"><span class="ti-pencil-alt"></span>
-                                                </a>
-                                                <a href="<?php echo site_url('MemberC/hapus_alamat/').$dataDiri['memberID']."/".$alamat->shipping_addressID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus item ini dari keranjang?')"><span class="ti-trash"></span>
-                                                </a>
+                                                <button title="edit" data-toggle="modal" data-target="#responsive-modal-<?php echo $alamat->shipping_addressID?>" class="btn btn-success btn-sm"><span class="ti-pencil-alt"></span>
+                                                </button>
                                             </td>
                                         </tr>
+
+                                        <div id="responsive-modal-<?php echo $alamat->shipping_addressID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <?php echo validation_errors(); ?>
+                                                <form action="<?php echo site_url('MemberC/post_ubah_alamat')?>" method="post">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Ubah Alamat</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
+                                                            <input type="hidden" name="shipping_addressID" value="<?php echo $alamat->shipping_addressID;?>">
+                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
+                                                            <div class="form-group">
+                                                                <label for="recipient-name" class="control-label">Nama Alamat:</label>
+                                                                <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : aalmat rumah, alamat kantor" required value="<?php echo $alamat->shipping_address_name;?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Nama Penerima</label>
+                                                                <input type="text" class="form-control" id="nama_penerima-<?php echo $alamat->shipping_addressID?>" name="nama_penerima" required value="<?php echo $alamat->nama_penerima;?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">No Handphone</label>
+                                                                <input type="text" class="form-control" id="no_hp-<?php echo $alamat->shipping_addressID?>" name="no_hp" required value="<?php echo $alamat->no_hp;?>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Alamat</label>
+                                                                <textarea type="text" class="form-control" id="locationName-<?php echo $alamat->shipping_addressID?>" name="locationName" required><?php echo $alamat->locationName;?></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Propinsi</label>
+                                                                <select class="form-control" id="propinsi-<?php echo $alamat->shipping_addressID?>" name="propinsi" required>
+                                                                    <option>-----pilih provinsi-----</option>
+                                                                    <?php 
+                                                                    foreach ($provinsi as $prov) {
+                                                                        if($alamat->id_propinsi == $prov['id_propinsi']){
+                                                                            ?>
+                                                                            <option selected value="<?php echo $prov['id_propinsi']?>"><?php echo $prov['nama_propinsi'];?></option>
+                                                                            <?php
+                                                                        }else{
+                                                                            ?>
+                                                                            <option value="<?php echo $prov['id_propinsi']?>"><?php echo $prov['nama_propinsi'];?></option>
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Kota</label>
+                                                                <select class="form-control" id="kota-<?php echo $alamat->shipping_addressID?>" name="kota" required>
+                                                                    <option>-----pilih kota-----</option>
+                                                                    <option selected value="<?php echo $alamat->nama_kabupaten_kota?>"><?php echo $alamat->nama_kabupaten_kota?></option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Kecamatan</label>
+                                                                <select class="form-control" id="kecamatan-<?php echo $alamat->shipping_addressID?>" name="kecamatan" required>
+                                                                    <option>-----pilih kecamatan-----</option>
+                                                                     <option selected value="<?php echo $alamat->nama_kecamatan?>"><?php echo $alamat->nama_kecamatan?></option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Kelurahan</label>
+                                                                <select class="form-control" id="kelurahan-<?php echo $alamat->shipping_addressID?>" name="id_kelurahan" required>
+                                                                    <option>-----pilih kelurahan-----</option>
+                                                                     <option selected value="<?php echo $alamat->nama_kelurahan?>"><?php echo $alamat->nama_kelurahan?></option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Kode Pos</label>
+                                                                <input type="number" name="kode_pos" class="form-control" value="<?php echo $alamat->kode_pos?>" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">Batal</button>
+                                                            <input type="submit" name="submit" class="btn btn-info" value="Simpan">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
+                                        <script type="text/javascript">
+                                            $(document).ready(function(){
+                                                // City change
+                                                $('#propinsi-<?php echo $alamat->shipping_addressID?>').change(function(){
+                                                    var propinsi = $(this).val(); //ambil value dr kode_unit
+                                                    // window.alert(unit);
+
+                                                    // AJAX request
+                                                    $.ajax({
+                                                        url:'<?=base_url()?>MemberC/get_kabupaten_kota',
+                                                        method: 'post',
+                                                        data: {id_propinsi: propinsi}, // data post ke controller 
+                                                        dataType: 'json',
+                                                        success: function(response){
+                                                            // Remove options
+                                                            $('#kota-<?php echo $alamat->shipping_addressID?>').find('option').not(':first').remove();
+
+                                                            // Add options
+                                                            $.each(response,function(daftar,data){
+                                                                $('#kota-<?php echo $alamat->shipping_addressID?>').append('<option value="'+data['id_kabupaten_kota']+'">'+data['nama_kabupaten_kota']+'</option>');
+                                                            });
+                                                        }
+                                                    });
+                                                });
+
+                                                $('#kota-<?php echo $alamat->shipping_addressID?>').change(function(){
+                                                    var kota = $(this).val(); //ambil value dr kode_unit
+                                                    // window.alert(unit);
+
+                                                    // AJAX request
+                                                    $.ajax({
+                                                        url:'<?=base_url()?>MemberC/get_kecamatan',
+                                                        method: 'post',
+                                                        data: {id_kabupaten_kota: kota}, // data post ke controller 
+                                                        dataType: 'json',
+                                                        success: function(response){
+                                                            // Remove options
+                                                            $('#kecamatan-<?php echo $alamat->shipping_addressID?>').find('option').not(':first').remove();
+
+                                                            // Add options
+                                                            $.each(response,function(daftar,data){
+                                                                $('#kecamatan-<?php echo $alamat->shipping_addressID?>').append('<option value="'+data['id_kecamatan']+'">'+data['nama_kecamatan']+'</option>');
+                                                            });
+                                                        }
+                                                    });
+                                                });
+
+                                                $('#kecamatan-<?php echo $alamat->shipping_addressID?>').change(function(){
+                                                    var kecamatan = $(this).val(); //ambil value dr kode_unit
+                                                    // window.alert(unit);
+
+                                                    // AJAX request
+                                                    $.ajax({
+                                                        url:'<?=base_url()?>MemberC/get_kelurahan',
+                                                        method: 'post',
+                                                        data: {id_kecamatan : kecamatan}, // data post ke controller 
+                                                        dataType: 'json',
+                                                        success: function(response){
+                                                            // Remove options
+                                                            $('#kelurahan-<?php echo $alamat->shipping_addressID?>').find('option').not(':first').remove();
+
+                                                            // Add options
+                                                            $.each(response,function(daftar,data){
+                                                                $('#kelurahan-<?php echo $alamat->shipping_addressID?>').append('<option value="'+data['id_kelurahan']+'">'+data['nama_kelurahan']+'</option>');
+                                                            });
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                        </script>
                                         <?php
                                     }
                                     ?>
@@ -482,6 +639,10 @@
                     <div class="form-group">
                         <label for="message-text" class="control-label">Nama Penerima</label>
                         <input type="text" class="form-control" id="nama_penerima" name="nama_penerima" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">No Handphone</label>
+                        <input type="text" class="form-control" id="no_hp" name="no_hp" required>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">Alamat</label>
