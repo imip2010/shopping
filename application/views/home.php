@@ -220,7 +220,7 @@
         <div class="col-lg-2 col-md-6">
             <div class="card">
                 <div class="el-card-item">
-                    <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk_diskon->photo1?>" alt="user" />
+                    <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk_diskon->photo1?>" alt="user"  style="width: 200px; height: 200px;" />
                         <div class="el-overlay">
                             <ul class="list-style-none el-info">
                                 <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair.jpg"><i class="sl-icon-magnifier"></i></a></li>
@@ -258,7 +258,7 @@
 <h4 class="page-title">Produk Terbaru</h4>
 <div class="row el-element-overlay">
     <?php  
-    // print_r($get_produk_terbaru);
+    // print_r($get_produk_terbaru);    
     foreach ($get_produk_terbaru as $produk_terbaru) {
         // diskon  
         $harga      = number_format($produk_terbaru->salePrice,0,',','.');
@@ -282,7 +282,7 @@
       <div class="col-lg-2 col-md-6">
         <div class="card">
             <div class="el-card-item">
-                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk_terbaru->photo1?>" alt="user" />
+                <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk_terbaru->photo1?>" style="width: 200px; height: 200px;" alt="user"/>
                     <div class="el-overlay">
                         <ul class="list-style-none el-info">
                             <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-magnifier"></i></a></li>

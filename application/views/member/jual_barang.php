@@ -138,7 +138,7 @@
                                 <div class="form-group">
                                     <label>Unggah Foto</label>
                                     <br>
-                                    <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
+                                    <input type="file" class="form-control" id="images" name="userfile[]" onchange="preview_images();" multiple/>
                                     <p style="margin-top: 0px;">Hanya berkas bertipe <b>.gif-.jpg-.png-.jpeg-.bmp</b></p>
                                     <div id="image_preview"></div>
 

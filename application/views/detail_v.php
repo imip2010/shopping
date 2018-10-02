@@ -45,7 +45,7 @@
                       <?php
                       // print_r($dataDiri);
                       if($logged_in == 1){
-                        // echo $detail_produk->memberID;
+                        // echo $detail_produks->memberID;
                         // echo $dataDiri['memberID'];
                         if($detail_produk->memberID == $dataDiri['memberID']){
                             echo "";
@@ -58,7 +58,7 @@
                     }else{
                         ?>
                         <button class="btn btn-dark btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> Tambah Ke keranjang </button>
-                        <a class="btn btn-info btn-rounded" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
+                        <a class="btn btn-info btn-rounded" href="<?php echo base_url('MemberC/insertToCart/');?>">Beli Sekarang</a>
                         <?php
                     }
                     ?>
@@ -160,10 +160,10 @@
                                                     <td>Size</td>
                                                     <td> XS, S, M, L, XL, XXL, Other Size </td>
                                                 </tr> -->
-                                                <tr>
-                                                    <td>Deskripsi</td>
-                                                    <td> <p><?php echo $detail_produk->description;?> </p> </td>
-                                                </tr>
+                                        <tr>
+                                            <td>Deskripsi</td>
+                                            <td> <p><?php echo $detail_produk->description;?> </p> </td>
+                                        </tr>
                                             <!-- <tr>
                                                 <td>Catatan</td>
                                                 <td> <p>Catatan Pelapak tetap tunduk terhadap Aturan penggunaan Koperasi.
@@ -187,7 +187,21 @@
                                                 <td></td>
                                                 <td class="text-right"> Anda Berminat ? &nbsp
                                                     <!-- <button type="button" class="btn waves-effect waves-light btn-success">Beli Sekarang</button> -->
-                                                    <a class="btn waves-effect waves-light btn-success" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
+                                                    <?php
+                                                    if($logged_in == 1){
+                                                        if($detail_produk->memberID == $dataDiri['memberID']){
+                                                            echo "";
+                                                        }else{
+                                                            ?>
+                                                            <a class="btn waves-effect waves-light btn-success" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
+                                                            <?php
+                                                        }
+                                                    }else{
+                                                        ?>
+                                                        <a class="btn waves-effect waves-light btn-success" href="<?php echo base_url('MemberC/insertToCart/');?>">Beli Sekarang</a>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </td>
                                             </tr>
                                         </tbody>
