@@ -6,6 +6,7 @@ class MemberC extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model(['HomeM','LoginM','MemberM']);
+        $this->load->library('upload');
 		in_access(); //helper buat batasi akses login/session
 	}
 
@@ -164,6 +165,53 @@ class MemberC extends CI_Controller {
         return $s;
     }
 
+    function upload_image(){
+
+        $gbr = array();
+        $files = $_FILES;
+        $cpt = count($_FILES['userfile']['name']);
+        for($i=0; $i<=$cpt; $i++){
+
+            $config['upload_path'] = './assets/images/product/'; //path folder
+            $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+            $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+            $this->upload->initialize($config);
+            if(!empty($_FILES['userfile']['name'][$i])){
+
+                $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+                $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+                $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+                $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+                $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
+
+                if ($this->upload->do_upload('userfile')){
+                    $gbr[] = $this->upload->data();
+                    //Compress Image
+                    $config['image_library']='gd2';
+                    $config['source_image']='./assets/images/product/'.$gbr[$i]['file_name'];
+                    $config['create_thumb']= FALSE;
+                    $config['maintain_ratio']= FALSE;
+                    $config['quality']= '50%';
+                    $config['width']= 200;
+                    $config['height']= 200;
+                    $config['new_image']= './assets/images/product/thumbnail/'.$gbr[$i]['file_name'];
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+
+                    $gambar=$gbr[$i]['file_name'];
+                    // $judul=$this->input->post('xjudul');
+                    // $this->m_upload->simpan_upload($judul,$gambar);
+                    echo "Image berhasil diupload";
+                }
+
+            }else{
+                echo "Image yang diupload kosong";
+            }   
+        }
+
+    }
+
     //post produk
     public function post_jual_barang(){
         $this->form_validation->set_rules('nama_barang','Nama Barang','required');
@@ -193,21 +241,43 @@ class MemberC extends CI_Controller {
             $productCode            = date('ymdhis');
             $productSeo             = $this->seo_title($nama_barang); 
 
-            $this->load->library('upload');
             $dataInfo = array();
             $files = $_FILES;
             $cpt = count($_FILES['userfile']['name']);
-            for($i=0; $i<=$cpt; $i++)
-            {           
+            for($i=0; $i<=$cpt; $i++){           
                 $_FILES['userfile']['name']= $files['userfile']['name'][$i];
                 $_FILES['userfile']['type']= $files['userfile']['type'][$i];
                 $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
                 $_FILES['userfile']['error']= $files['userfile']['error'][$i];
                 $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
 
-                $this->upload->initialize($this->set_upload_options());
+                $config['upload_path'] = './assets/images/product/'; //path folder
+                $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+                $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+                $this->load->library('upload', $config);
+
+                // $this->upload->initialize($this->set_upload_options());
+
                 $this->upload->do_upload();
-                $dataInfo[] = $this->upload->data();
+                
+                $dataInfo[$i] = $this->upload->data();
+                
+                $config['image_library']='gd2';
+                $config['source_image']='./assets/images/product/'.$dataInfo[$i]['file_name'];
+                $config['create_thumb']= FALSE;
+                $config['maintain_ratio']= FALSE;
+                $config['quality']= '50%';
+                $config['width']= 200;
+                $config['height']= 200;
+                $config['new_image']= './assets/images/product/thumbnail/'.$dataInfo[$i]['file_name'];
+
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($config);
+                $this->image_lib->resize();
+
+                $this->load->library('image_lib');
+                $this->image_lib->clear();
             }
 
             $data  = array(
@@ -240,47 +310,65 @@ class MemberC extends CI_Controller {
         }
     }
 
+    public function do_upload(){    
+        $files = $_FILES;    
+        $cpt = count($_FILES['userfile']['name']);
+
+        for($i=0; $i<$cpt; $i++){
+
+            $_FILES['userfile']['name']= $files['userfile']['name'][$i];
+            $_FILES['userfile']['type']= $files['userfile']['type'][$i];
+            $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+            $_FILES['userfile']['error']= $files['userfile']['error'][$i];
+            $_FILES['userfile']['size']= $files['userfile']['size'][$i];
+
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']    = '2000';
+            $config['max_width']   = '1024';
+            $config['max_height']  = '768';
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload())
+            {
+                $error = array('error' => $this->upload->display_errors());    
+                $this->load->view('upload_form', $error);
+            }else{
+                $data = array('upload_data' => $this->upload->data());    
+                $path=$data['upload_data']['full_path'];
+                $q['name']=$data['upload_data']['file_name'];
+
+                $configi['image_library'] = 'gd2';
+                $configi['source_image']   = $path;
+                $configi['maintain_ratio'] = TRUE;
+                $configi['width']  = 75;
+                $configi['height'] = 50;
+
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($config);
+                $this->image_lib->resize();
+
+                $this ->load-> view('upload_success', $q);
+                unset($configi);
+                $this->load->library('image_lib');
+                $this->image_lib->clear(); 
+            }
+        }
+    }
+
     private function set_upload_options(){   
     //upload an image options
         $config = array();
         $config['upload_path']      = './assets/images/product/';
         $config['allowed_types']    = 'gif|jpg|png';
-        $config['create_thumb']     = TRUE;
-        $config['max_size']         = '0';
+        // $config['create_thumb']     = TRUE;
+        $config['max_size']         = '';
         $config['overwrite']        = FALSE;
         $config['encrypt_name']     = TRUE;
         // $new_name = time().$_FILES["userfile"]['name'];
         // $config['file_name'] = 'small_'.$new_name;
         return $config;
-    }
-
-    //upload produk(image)
-    public function upload(){       
-        $this->load->library('upload');
-        $dataInfo = array();
-        $files = $_FILES;
-        $cpt = count($_FILES['userfile']['name']);
-        for($i=0; $i<$cpt; $i++)
-        {           
-            $_FILES['userfile']['name']= $files['userfile']['name'][$i];
-            $_FILES['userfile']['type']= $files['userfile']['type'][$i];
-            $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
-            $_FILES['userfile']['error']= $files['userfile']['error'][$i];
-            $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
-
-            $this->upload->initialize($this->set_upload_options());
-            $this->upload->do_upload();
-            $dataInfo[] = $this->upload->data();
-        }
-
-        $data = array(
-            'name' => $this->input->post('pd_name'),
-            'prod_image' => $dataInfo[0]['file_name'],
-            'prod_image1' => $dataInfo[1]['file_name'],
-            'prod_image2' => $dataInfo[2]['file_name'],
-            'created_time' => date('Y-m-d H:i:s')
-        );
-        $result_set = $this->tbl_products_model->insertUser($data);
     }
 
     public function hapus_barang($productID){
@@ -380,7 +468,7 @@ class MemberC extends CI_Controller {
             $cityID         = $this->input->post('kota');
             $address        = $this->input->post('address');
             $memberID       = $this->input->post('memberID');
-            
+
             $data_update_member = array(
                 'memberName'    => $memberName, 
                 'email'         => $email, 
@@ -426,7 +514,7 @@ class MemberC extends CI_Controller {
             $phone          = $this->input->post('phone');
             $password       = $this->input->post('password');
             $memberID       = $this->input->post('memberID');
-            
+
             $data_update_member = array(
                 'memberName'    => $memberName, 
                 'email'         => $email, 
@@ -548,6 +636,7 @@ class MemberC extends CI_Controller {
         $this->form_validation->set_rules('kode_pos','kode pos');
         $this->form_validation->set_rules('id_kelurahan','kelurahan');
         $this->form_validation->set_rules('memberID','member ID','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('status_alamat','Status alamat');
         $this->form_validation->set_rules('shipping_addressID','Shipping Address ID','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('locationID','Location ID','required',array('required' => 'You must provide a %s.'));
 
@@ -564,6 +653,7 @@ class MemberC extends CI_Controller {
             $kode_pos               = $this->input->post('kode_pos');
             $id_kelurahan           = $this->input->post('id_kelurahan');
             $no_hp                  = $this->input->post('no_hp');
+            $status_alamat          = $this->input->post('status_alamat');
 
             $data_updateToLocation = array(
                 'id_kelurahan'  => $id_kelurahan, 
@@ -571,20 +661,20 @@ class MemberC extends CI_Controller {
                 'kode_pos'      => $kode_pos, 
             );
 
-            if($locationID = $this->MemberM->updateToLocation($locationID, $data_updateToLocation)){
+            if($this->MemberM->updateToLocation($locationID, $data_updateToLocation)){
                 $data_update_alamat         = array(
                     'memberID'              => $memberID, 
                     'locationID'            => $locationID, 
                     'shipping_address_name' => $shipping_address_name, 
                     'nama_penerima'         => $nama_penerima, 
                     'no_hp'                 => $no_hp, 
-                    'status_alamat'         => "no_default", 
+                    'status_alamat'         => $status_alamat, 
                 );
                 if($this->MemberM->updateToShippingAddress($shipping_addressID, $data_update_alamat)){
                     $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
                     redirect_back();
                 }else{
-                    $this->MemberM->delete($locationID);
+                    // $this->MemberM->delete($locationID);
                     $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
                     redirect_back();
                 }

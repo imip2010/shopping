@@ -231,14 +231,29 @@ class MemberM extends CI_Model{
 		return $this->db->insert_id();
 	}
 
+	// tambah shipping address
 	public function insertToShippingAddress($data){
 		$this->db->insert('shipping_address', $data);
 		return TRUE;
 	}
 
+	// hapus alamat
 	public function delete($locationID){
 		$this->db->where('locationID', $locationID);
 		$this->db->delete('location');
+		return TRUE;
+	}
+
+	// update location
+	public function updateToLocation($locationID, $data){
+		$this->db->where('locationID', $locationID);
+		$this->db->update('location', $data);
+		return TRUE;
+	}
+
+	public function updateToShippingAddress($shipping_addressID, $data){
+		$this->db->where('shipping_addressID', $shipping_addressID);
+		$this->db->update('shipping_address', $data);
 		return TRUE;
 	}
 
