@@ -437,6 +437,7 @@
                                                             <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
                                                             <input type="hidden" name="shipping_addressID" value="<?php echo $alamat->shipping_addressID;?>">
                                                             <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
+                                                            <input type="hidden" name="status_alamat" value="<?php echo $alamat->status_alamat;?>">
                                                             <div class="form-group">
                                                                 <label for="recipient-name" class="control-label">Nama Alamat:</label>
                                                                 <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : aalmat rumah, alamat kantor" required value="<?php echo $alamat->shipping_address_name;?>">
@@ -476,21 +477,21 @@
                                                                 <label for="message-text" class="control-label">Kota</label>
                                                                 <select class="form-control" id="kota-<?php echo $alamat->shipping_addressID?>" name="kota" required>
                                                                     <option>-----pilih kota-----</option>
-                                                                    <option selected value="<?php echo $alamat->nama_kabupaten_kota?>"><?php echo $alamat->nama_kabupaten_kota?></option>
+                                                                    <option selected value="<?php echo $alamat->id_kabupaten_kota?>"><?php echo $alamat->nama_kabupaten_kota?></option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Kecamatan</label>
                                                                 <select class="form-control" id="kecamatan-<?php echo $alamat->shipping_addressID?>" name="kecamatan" required>
                                                                     <option>-----pilih kecamatan-----</option>
-                                                                     <option selected value="<?php echo $alamat->nama_kecamatan?>"><?php echo $alamat->nama_kecamatan?></option>
+                                                                     <option selected value="<?php echo $alamat->id_kecamatan?>"><?php echo $alamat->nama_kecamatan?></option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Kelurahan</label>
                                                                 <select class="form-control" id="kelurahan-<?php echo $alamat->shipping_addressID?>" name="id_kelurahan" required>
                                                                     <option>-----pilih kelurahan-----</option>
-                                                                     <option selected value="<?php echo $alamat->nama_kelurahan?>"><?php echo $alamat->nama_kelurahan?></option>
+                                                                     <option selected value="<?php echo $alamat->id_kelurahan?>"><?php echo $alamat->nama_kelurahan?></option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
