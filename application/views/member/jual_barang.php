@@ -42,19 +42,16 @@ h1 small {
   height: 34px;
   margin-bottom: 0;
   border-radius: 100%;
-  background: #fff;
+  background-image: url(../assets/images/logo-icon.png);
   border: 1px solid transparent;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   font-weight: normal;
   transition: all 0.2s ease-in-out;
 }
-.avatar-upload .avatar-edit input + label:hover {
-  background: #f1f1f1;
-  border-color: #d6d6d6;
-}
+
 .avatar-upload .avatar-edit input + label:after {
-  content: "\f040";
+  content: "";
   font-family: 'FontAwesome';
   color: #757575;
   position: absolute;
@@ -70,6 +67,7 @@ h1 small {
   position: relative;
   border-radius: 100%;
   border: 6px solid #f8f8f8;
+  background-image: url(../assets/images/plus.png);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 .avatar-upload .avatar-preview > div {
@@ -80,6 +78,11 @@ h1 small {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+}
+
+
+
 
 </style>
 <br>
@@ -216,12 +219,112 @@ h1 small {
                         <!--/kiri-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="file" >Unggah Foto</label>
-                                <br>
-                                <input type="file" class="form-control" id="images" name="userfile[]" onchange="preview_images();" multiple/>
-                                <p style="margin-top: 0px;">Hanya berkas bertipe <b>.gif-.jpg-.png-.jpeg-.bmp</b></p>
-                                <div id="image_preview"></div>
-
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4" style="margin-top: 45px;">
+                                            <div class="avatar-upload" >
+                                                <div class="avatar-edit">
+                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                    <label for="imageUpload" style="margin-left: -45px;"></label>
+                                                </div>
+                                                <label for="imageUpload" >
+                                                    <div class="avatar-preview">
+                                                        <div id="imagePreview" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="avatar-upload" style="width: 125px; height: 125px;">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload2"></label>
+                                                        </div>
+                                                        <label for="imageUpload">
+                                                            <div class="avatar-preview" style="width: 125px; height: 125px;">
+                                                                <div id="imagePreview2" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="avatar-upload" style="width: 125px; height: 125px;">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload3" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload3"></label>
+                                                        </div>
+                                                        <label for="imageUpload">
+                                                            <div class="avatar-preview" style="width: 125px; height: 125px;">
+                                                                <div id="imagePreview3" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="avatar-upload" style="width: 125px; height: 125px;">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload4" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload4"></label>
+                                                        </div>
+                                                        <label for="imageUpload">
+                                                            <div class="avatar-preview" style="width: 125px; height: 125px;">
+                                                                <div id="imagePreview4" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" style="margin-top: -85px;">
+                                                    <div class="avatar-upload" style="width: 125px; height: 125px;">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload5" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload5"></label>
+                                                        </div>
+                                                        <label for="imageUpload">
+                                                            <div class="avatar-preview" style="width: 125px; height: 125px;">
+                                                                <div id="imagePreview5" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" style="margin-top: -85px;">
+                                                    <div class="avatar-upload" style="width: 125px; height: 125px;">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload6" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload6"></label>
+                                                        </div>
+                                                        <label for="imageUpload">
+                                                            <div class="avatar-preview" style="width: 125px; height: 125px;">
+                                                                <div id="imagePreview6" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" style="margin-top: -85px;">
+                                                    <div class="avatar-upload" style="width: 125px; height: 125px;">
+                                                        <div class="avatar-edit">
+                                                            <input type='file' id="imageUpload7" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload7"></label>
+                                                        </div>
+                                                        <label for="imageUpload7">
+                                                            <div class="avatar-preview" style="width: 125px; height: 125px;">
+                                                                <div id="imagePreview7" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!--/kiri-->
@@ -236,21 +339,7 @@ h1 small {
                         <!--/kanan-->
                     </div>
 
-                    <div class="row">
-                        <h1>jQuery Image Upload 
-                            <small>with preview</small>
-                        </h1>
-                        <div class="avatar-upload">
-                            <div class="avatar-edit">
-                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                                <label for="imageUpload"><i class="ti-pencil" aria-hidden="true"></i></label>
-                            </div>
-                            <div class="avatar-preview">
-                                <div id="imagePreview" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
 
                     <!--/row-->
@@ -278,20 +367,7 @@ h1 small {
         return true;
     }
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#imageUpload").change(function() {
-        readURL(this);
-    });
+    
 
     function hanyaAngkatitik(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode
@@ -327,12 +403,112 @@ h1 small {
 
 
 <script>
-    function preview_images() 
-    {
-     var total_file=document.getElementById("images").files.length;
-     for(var i=0;i<total_file;i++)
-     {
-      $('#image_preview').append("<img class='img-block' src='"+URL.createObjectURL(event.target.files[i])+"' style='width: 125px; height: 125px; border-style:ridge; margin: 5px;'></div>");
-  }
-}
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload").change(function() {
+        readURL(this);
+    });
+
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview2').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview2').hide();
+                $('#imagePreview2').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload2").change(function() {
+        readURL(this);
+    });
+
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview3').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview3').hide();
+                $('#imagePreview3').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload3").change(function() {
+        readURL(this);
+    });
+
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview4').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview4').hide();
+                $('#imagePreview4').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload4").change(function() {
+        readURL(this);
+    });
+
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview5').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview5').hide();
+                $('#imagePreview5').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload5").change(function() {
+        readURL(this);
+    });
+
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview6').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview6').hide();
+                $('#imagePreview6').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload6").change(function() {
+        readURL(this);
+    });
+
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview7').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview7').hide();
+                $('#imagePreview7').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload7").change(function() {
+        readURL(this);
+    });
+    
+
+    
 </script>
