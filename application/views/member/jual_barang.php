@@ -38,16 +38,19 @@ h1 small {
 }
 .avatar-upload .avatar-edit input + label {
   display: inline-block;
-  width: 34px;
-  height: 34px;
+  width: 27px;
+  height: 27px;
+  margin-top: -25px;
+  margin-right: -20px;
   margin-bottom: 0;
-  border-radius: 100%;
-  background-image: url(../assets/images/logo-icon.png);
+  border-radius: 0%;
+  background-image: url(../assets/images/x.png);
   border: 1px solid transparent;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   font-weight: normal;
   transition: all 0.2s ease-in-out;
+  background-size: cover;
 }
 
 .avatar-upload .avatar-edit input + label:after {
@@ -65,15 +68,15 @@ h1 small {
   width: 192px;
   height: 192px;
   position: relative;
-  border-radius: 100%;
+  border-radius: 0%;
   border: 6px solid #f8f8f8;
-  background-image: url(../assets/images/plus.png);
+  /*background-image: url(../assets/images/plus.png);*/
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 .avatar-upload .avatar-preview > div {
   width: 100%;
   height: 100%;
-  border-radius: 100%;
+  border-radius: 0%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -224,8 +227,8 @@ h1 small {
                                         <div class="col-md-4" style="margin-top: 45px;">
                                             <div class="avatar-upload" >
                                                 <div class="avatar-edit">
-                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                                                    <label for="imageUpload" style="margin-left: -45px;"></label>
+                                                    <input type='file' onchange="readURL1(this);"  id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                    <label for="imageUpload" ></label>
                                                 </div>
                                                 <label for="imageUpload" >
                                                     <div class="avatar-preview">
@@ -240,10 +243,10 @@ h1 small {
                                                 <div class="col-md-4">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload2" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL2(this);"  id="imageUpload2" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload2"></label>
                                                         </div>
-                                                        <label for="imageUpload">
+                                                        <label for="imageUpload2">
                                                             <div class="avatar-preview" style="width: 125px; height: 125px;">
                                                                 <div id="imagePreview2" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
                                                                 </div>
@@ -254,10 +257,10 @@ h1 small {
                                                 <div class="col-md-4">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload3" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL3(this);"  id="imageUpload3" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload3"></label>
                                                         </div>
-                                                        <label for="imageUpload">
+                                                        <label for="imageUpload3">
                                                             <div class="avatar-preview" style="width: 125px; height: 125px;">
                                                                 <div id="imagePreview3" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
                                                                 </div>
@@ -268,10 +271,10 @@ h1 small {
                                                 <div class="col-md-4">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload4" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL4(this);"  id="imageUpload4" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload4"></label>
                                                         </div>
-                                                        <label for="imageUpload">
+                                                        <label for="imageUpload4">
                                                             <div class="avatar-preview" style="width: 125px; height: 125px;">
                                                                 <div id="imagePreview4" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
                                                                 </div>
@@ -282,10 +285,10 @@ h1 small {
                                                 <div class="col-md-4" style="margin-top: -85px;">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload5" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL5(this);"  id="imageUpload5" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload5"></label>
                                                         </div>
-                                                        <label for="imageUpload">
+                                                        <label for="imageUpload5">
                                                             <div class="avatar-preview" style="width: 125px; height: 125px;">
                                                                 <div id="imagePreview5" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
                                                                 </div>
@@ -296,10 +299,10 @@ h1 small {
                                                 <div class="col-md-4" style="margin-top: -85px;">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload6" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL6(this);"  id="imageUpload6" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload6"></label>
                                                         </div>
-                                                        <label for="imageUpload">
+                                                        <label for="imageUpload6">
                                                             <div class="avatar-preview" style="width: 125px; height: 125px;">
                                                                 <div id="imagePreview6" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
                                                                 </div>
@@ -310,7 +313,7 @@ h1 small {
                                                 <div class="col-md-4" style="margin-top: -85px;">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' id="imageUpload7" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL7(this);"  id="imageUpload7" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload7"></label>
                                                         </div>
                                                         <label for="imageUpload7">
@@ -404,111 +407,82 @@ h1 small {
 
 <script>
 
-    function readURL(input) {
+    function readURL1(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var reader1 = new FileReader();
+            reader1.onload = function(e) {
                 $('#imagePreview').css('background-image', 'url('+e.target.result +')');
                 $('#imagePreview').hide();
                 $('#imagePreview').fadeIn(650);
             }
-            reader.readAsDataURL(input.files[0]);
+            reader1.readAsDataURL(input.files[0]);
         }
     }
-    $("#imageUpload").change(function() {
-        readURL(this);
-    });
 
-     function readURL(input) {
+     function readURL2(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var reader2 = new FileReader();
+            reader2.onload = function(e) {
                 $('#imagePreview2').css('background-image', 'url('+e.target.result +')');
                 $('#imagePreview2').hide();
                 $('#imagePreview2').fadeIn(650);
             }
-            reader.readAsDataURL(input.files[0]);
+            reader2.readAsDataURL(input.files[0]);
         }
     }
-    $("#imageUpload2").change(function() {
-        readURL(this);
-    });
-
-     function readURL(input) {
+     function readURL3(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var reader3 = new FileReader();
+            reader3.onload = function(e) {
                 $('#imagePreview3').css('background-image', 'url('+e.target.result +')');
                 $('#imagePreview3').hide();
                 $('#imagePreview3').fadeIn(650);
             }
-            reader.readAsDataURL(input.files[0]);
+            reader3.readAsDataURL(input.files[0]);
         }
     }
-    $("#imageUpload3").change(function() {
-        readURL(this);
-    });
-
-     function readURL(input) {
+     function readURL4(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var reader4 = new FileReader();
+            reader4.onload = function(e) {
                 $('#imagePreview4').css('background-image', 'url('+e.target.result +')');
                 $('#imagePreview4').hide();
                 $('#imagePreview4').fadeIn(650);
             }
-            reader.readAsDataURL(input.files[0]);
+            reader4.readAsDataURL(input.files[0]);
         }
     }
-    $("#imageUpload4").change(function() {
-        readURL(this);
-    });
-
-     function readURL(input) {
+     function readURL5(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var reader5 = new FileReader();
+            reader5.onload = function(e) {
                 $('#imagePreview5').css('background-image', 'url('+e.target.result +')');
                 $('#imagePreview5').hide();
                 $('#imagePreview5').fadeIn(650);
             }
-            reader.readAsDataURL(input.files[0]);
+            reader5.readAsDataURL(input.files[0]);
         }
     }
-    $("#imageUpload5").change(function() {
-        readURL(this);
-    });
-
-     function readURL(input) {
+     function readURL6(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var reader6 = new FileReader();
+            reader6.onload = function(e) {
                 $('#imagePreview6').css('background-image', 'url('+e.target.result +')');
                 $('#imagePreview6').hide();
                 $('#imagePreview6').fadeIn(650);
             }
-            reader.readAsDataURL(input.files[0]);
+            reader6.readAsDataURL(input.files[0]);
         }
     }
-    $("#imageUpload6").change(function() {
-        readURL(this);
-    });
-
-     function readURL(input) {
+     function readURL7(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
+            var reader7 = new FileReader();
+            reader7.onload = function(e) {
                 $('#imagePreview7').css('background-image', 'url('+e.target.result +')');
                 $('#imagePreview7').hide();
                 $('#imagePreview7').fadeIn(650);
             }
-            reader.readAsDataURL(input.files[0]);
+            reader7.readAsDataURL(input.files[0]);
         }
-    }
-    $("#imageUpload7").change(function() {
-        readURL(this);
-    });
-    
-
-    
+    }        
 </script>
