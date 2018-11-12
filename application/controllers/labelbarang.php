@@ -26,6 +26,7 @@ class Labelbarang extends CI_Controller {
 	
 	public function index()
 	{
+		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');
 		$this->data['isi'] = 'isi';
 		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
