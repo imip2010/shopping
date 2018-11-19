@@ -128,7 +128,7 @@ h1 small {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nama_barang">Nama Barang</label>
-                                <input type="text" class="form-control" id="nama_barang" name="nama_barang" style="height: 40px;" value="Tempe" required>
+                                <input type="text" class="form-control" id="nama_barang" name="nama_barang" style="height: 40px;" value="" required>
                             </div>
                         </div>
                         <!--/kiri-->
@@ -185,7 +185,7 @@ h1 small {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="harga">Harga</label>
-                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" id="harga" name="harga" style="height: 40px;" value="1000" required>
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" id="harga" name="harga" style="height: 40px;" value="" required>
                             </div>
                         </div>
                         <!--/kiri-->
@@ -193,7 +193,7 @@ h1 small {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="stok">Stok</label>
-                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" id="stok" name="stok" style="height: 40px;" value="10" required>
+                                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" id="stok" name="stok" style="height: 40px;" value="" required>
                             </div>
                         </div>
                         <!--/kanan-->
@@ -204,7 +204,7 @@ h1 small {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="berat">Berat(Kg)</label>
-                                <input type="text" class="form-control" onkeypress="return hanyaAngkatitik(event)" id="berat" name="berat" style="height: 40px;" value="1" required>
+                                <input type="text" class="form-control" onkeypress="return hanyaAngkatitik(event)" id="berat" name="berat" style="height: 40px;" value="" required>
                             </div>
                         </div>
                         <!--/kiri-->
@@ -212,7 +212,7 @@ h1 small {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="diskon">Diskon(%)</label>
-                                <input type="text" value="0" class="form-control" onkeypress="return hanyaAngkatitik(event)" id="diskon" name="diskon" style="height: 40px;" required>
+                                <input type="text" value="" class="form-control" onkeypress="return hanyaAngkatitik(event)" id="diskon" name="diskon" style="height: 40px;" required>
                             </div>
                         </div>
                         <!--/kanan-->
@@ -227,10 +227,10 @@ h1 small {
                                         <div class="col-md-4" style="margin-top: 45px;">
                                             <div class="avatar-upload" >
                                                 <div class="avatar-edit">
-                                                    <input type='file' onchange="readURL1(this);"  id="imageUpload" accept=".png, .jpg, .jpeg" />
-                                                    <label for="imageUpload" ></label>
+                                                    <input type='file' onchange="readURL1(this);" name="imageUpload1"  id="imageUpload1" accept=".png, .jpg, .jpeg" />
+                                                    <label for="imageUpload1" ></label>
                                                 </div>
-                                                <label for="imageUpload" >
+                                                <label for="imageUpload1" >
                                                     <div class="avatar-preview">
                                                         <div id="imagePreview" style="background-image: url(<?php echo base_url()?>assets/images/camera.png);">
                                                         </div>
@@ -243,7 +243,7 @@ h1 small {
                                                 <div class="col-md-4">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' onchange="readURL2(this);"  id="imageUpload2" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL2(this);" name="imageUpload2"  id="imageUpload2" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload2"></label>
                                                         </div>
                                                         <label for="imageUpload2">
@@ -257,7 +257,7 @@ h1 small {
                                                 <div class="col-md-4">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' onchange="readURL3(this);"  id="imageUpload3" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL3(this);" name="imageUpload3"  id="imageUpload3" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload3"></label>
                                                         </div>
                                                         <label for="imageUpload3">
@@ -271,7 +271,7 @@ h1 small {
                                                 <div class="col-md-4">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' onchange="readURL4(this);"  id="imageUpload4" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL4(this);" name="imageUpload4"  id="imageUpload4" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload4"></label>
                                                         </div>
                                                         <label for="imageUpload4">
@@ -285,7 +285,7 @@ h1 small {
                                                 <div class="col-md-4" style="margin-top: -85px;">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' onchange="readURL5(this);"  id="imageUpload5" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL5(this);" name="imageUpload5"  id="imageUpload5" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload5"></label>
                                                         </div>
                                                         <label for="imageUpload5">
@@ -299,7 +299,7 @@ h1 small {
                                                 <div class="col-md-4" style="margin-top: -85px;">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' onchange="readURL6(this);"  id="imageUpload6" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL6(this);" name="imageUpload6"  id="imageUpload6" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload6"></label>
                                                         </div>
                                                         <label for="imageUpload6">
@@ -313,7 +313,7 @@ h1 small {
                                                 <div class="col-md-4" style="margin-top: -85px;">
                                                     <div class="avatar-upload" style="width: 125px; height: 125px;">
                                                         <div class="avatar-edit">
-                                                            <input type='file' onchange="readURL7(this);"  id="imageUpload7" accept=".png, .jpg, .jpeg" />
+                                                            <input type='file' onchange="readURL7(this);" name="imageUpload7"  id="imageUpload7" accept=".png, .jpg, .jpeg" />
                                                             <label for="imageUpload7"></label>
                                                         </div>
                                                         <label for="imageUpload7">
@@ -341,10 +341,6 @@ h1 small {
                         </div>
                         <!--/kanan-->
                     </div>
-
-                    
-
-
                     <!--/row-->
                     <div class="form-actions text-center">
                         <div class="card-body"><button type="submit" class="btn btn-lg btn-success" style="width: 35%;">Jual</button></div>
@@ -369,9 +365,6 @@ h1 small {
             return false;
         return true;
     }
-
-    
-
     function hanyaAngkatitik(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode
         if (charCode > 31 && (charCode < 46 || charCode > 57))
