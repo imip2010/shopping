@@ -241,53 +241,23 @@ class MemberC extends CI_Controller {
             $productCode            = date('ymdhis');
             $productSeo             = $this->seo_title($nama_barang); 
 
-            $dataInfo = array();
-            $files = $_FILES;
-            $cpt = count($_FILES['userfile']['name']);
-            for($i=0; $i<=$cpt; $i++){           
-                $_FILES['userfile']['name']= $files['userfile']['name'][$i];
-                $_FILES['userfile']['type']= $files['userfile']['type'][$i];
-                $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
-                $_FILES['userfile']['error']= $files['userfile']['error'][$i];
-                $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
-
-                $config['upload_path'] = './assets/images/product/'; //path folder
-                $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
-                $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
-
-                $this->load->library('upload', $config);
-
-                // $this->upload->initialize($this->set_upload_options());
-
-                $this->upload->do_upload();
-                
-                $dataInfo[$i] = $this->upload->data();
-                
-                $config['image_library']='gd2';
-                $config['source_image']='./assets/images/product/'.$dataInfo[$i]['file_name'];
-                $config['create_thumb']= FALSE;
-                $config['maintain_ratio']= FALSE;
-                $config['quality']= '50%';
-                $config['width']= 200;
-                $config['height']= 200;
-                $config['new_image']= './assets/images/product/thumbnail/'.$dataInfo[$i]['file_name'];
-
-                $this->load->library('image_lib');
-                $this->image_lib->initialize($config);
-                $this->image_lib->resize();
-
-                $this->load->library('image_lib');
-                $this->image_lib->clear();
-            }
+            $namaFile1 = $this->upload_photo('imageUpload1');
+            $namaFile2 = $this->upload_photo('imageUpload2');
+            $namaFile3 = $this->upload_photo('imageUpload3');
+            $namaFile4 = $this->upload_photo('imageUpload4');
+            $namaFile5 = $this->upload_photo('imageUpload5');
+            $namaFile6 = $this->upload_photo('imageUpload6');
+            $namaFile7 = $this->upload_photo('imageUpload7');
 
             $data  = array(
                 'productName'       => $nama_barang,
-                'photo1'            => $dataInfo[0]['file_name'],
-                'photo2'            => $dataInfo[1]['file_name'],
-                'photo3'            => $dataInfo[2]['file_name'],
-                'photo4'            => $dataInfo[3]['file_name'],
-                'photo5'            => $dataInfo[4]['file_name'],
-                'photo6'            => $dataInfo[5]['file_name'],
+                'photo1'            => $namaFile1['file_name'],
+                'photo2'            => $namaFile2['file_name'],
+                'photo3'            => $namaFile3['file_name'],
+                'photo4'            => $namaFile4['file_name'],
+                'photo5'            => $namaFile5['file_name'],
+                'photo6'            => $namaFile6['file_name'],
+                'photo7'            => $namaFile7['file_name'],
                 'conditions'        => $kondisi,  
                 'categoryID'        => $kategori_barang,  
                 'subCategoryID'     => $sub_kategori_barang,  
@@ -310,89 +280,66 @@ class MemberC extends CI_Controller {
         }
     }
 
-    public function do_upload(){    
-        $files = $_FILES;    
-        $cpt = count($_FILES['userfile']['name']);
+    function upload_photo($input_name){
+        $config['upload_path'] = './assets/images/product/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
 
-        for($i=0; $i<$cpt; $i++){
+        $this->upload->initialize($config);
+        if(!empty($_FILES[$input_name]['name'])){
 
-            $_FILES['userfile']['name']= $files['userfile']['name'][$i];
-            $_FILES['userfile']['type']= $files['userfile']['type'][$i];
-            $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
-            $_FILES['userfile']['error']= $files['userfile']['error'][$i];
-            $_FILES['userfile']['size']= $files['userfile']['size'][$i];
-
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']    = '2000';
-            $config['max_width']   = '1024';
-            $config['max_height']  = '768';
-
-            $this->load->library('upload', $config);
-
-            if ( ! $this->upload->do_upload())
-            {
-                $error = array('error' => $this->upload->display_errors());    
-                $this->load->view('upload_form', $error);
-            }else{
-                $data = array('upload_data' => $this->upload->data());    
-                $path=$data['upload_data']['full_path'];
-                $q['name']=$data['upload_data']['file_name'];
-
-                $configi['image_library'] = 'gd2';
-                $configi['source_image']   = $path;
-                $configi['maintain_ratio'] = TRUE;
-                $configi['width']  = 75;
-                $configi['height'] = 50;
-
-                $this->load->library('image_lib');
-                $this->image_lib->initialize($config);
+            if ($this->upload->do_upload($input_name)){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['image_library']    ='gd2';
+                $config['source_image']     ='./assets/images/product/'.$gbr['file_name'];
+                $config['create_thumb']     = FALSE;
+                $config['maintain_ratio']   = FALSE;
+                $config['quality']          = '50%';
+                $config['width']            = 200;
+                $config['height']           = 200;
+                $config['new_image']        = './assets/images/product/thumbnail/'.$gbr['file_name'];
+                $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
 
-                $this ->load-> view('upload_success', $q);
-                unset($configi);
-                $this->load->library('image_lib');
-                $this->image_lib->clear(); 
+                echo "Image berhasil diupload";
+                $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'error' => '');
+                return $return;
+                // return $gbr['file_name'];
             }
+        }else{
+            $return = array('result' => 'success', 'file_name' => 'no file', 'error' => '');
+            return print_r($return);
+            echo "Image yang diupload kosong";
         }
-    }
-
-    private function set_upload_options(){   
-    //upload an image options
-        $config = array();
-        $config['upload_path']      = './assets/images/product/';
-        $config['allowed_types']    = 'gif|jpg|png';
-        // $config['create_thumb']     = TRUE;
-        $config['max_size']         = '';
-        $config['overwrite']        = FALSE;
-        $config['encrypt_name']     = TRUE;
-        // $new_name = time().$_FILES["userfile"]['name'];
-        // $config['file_name'] = 'small_'.$new_name;
-        return $config;
     }
 
     public function hapus_barang($productID){
         if($this->MemberM->hapus_barang($productID)){
-            // define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
-        // define('FCPATH', __FILE__);
-        // define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
-            // define('PUBPATH',str_replace(SELF,'',FCPATH));
+            define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
+            // define('FCPATH', __FILE__);
+            // define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+            define('PUBPATH',str_replace(SELF,'',FCPATH));
+            // $this->db->where('id_lampiran',$id_lampiran);
+            // $file = $this->db->get('lampiran')->row()->nama_file;
 
-            // $this->db->where('productID',$productID);
-            // $photo1 = $this->db->get('products')->row()->photo1;
-            // $photo2 = $this->db->get('products')->row()->photo2;
-            // $photo3 = $this->db->get('products')->row()->photo3;
-            // $photo4 = $this->db->get('products')->row()->photo4;
-            // $photo5 = $this->db->get('products')->row()->photo5;
-            // $photo6 = $this->db->get('products')->row()->photo6;
+            // if(unlink(PUBPATH."assets/upload/".$file)){    }
+
+            $this->db->where('productID',$productID);
+            $photo1 = $this->db->get('products')->row()->photo1;
+            $photo2 = $this->db->get('products')->row()->photo2;
+            $photo3 = $this->db->get('products')->row()->photo3;
+            $photo4 = $this->db->get('products')->row()->photo4;
+            $photo5 = $this->db->get('products')->row()->photo5;
+            $photo6 = $this->db->get('products')->row()->photo6;
 
 
-            // unlink(PUBPATH."assets\images\product".$photo1);
-            // unlink(PUBPATH."assets\images\product".$photo2);
-            // unlink(PUBPATH."assets\images\product".$photo3);
-            // unlink(PUBPATH."assets\images\product".$photo4);
-            // unlink(PUBPATH."assets\images\product".$photo5);
-            // unlink(PUBPATH."assets\images\product".$photo6);
+            unlink(PUBPATH."assets\images\product".$photo1);
+            unlink(PUBPATH."assets\images\product".$photo2);
+            unlink(PUBPATH."assets\images\product".$photo3);
+            unlink(PUBPATH."assets\images\product".$photo4);
+            unlink(PUBPATH."assets\images\product".$photo5);
+            unlink(PUBPATH."assets\images\product".$photo6);
             $this->session->set_flashdata('sukses','Data anda berhasil dihapus');
             redirect_back();
         }else{
