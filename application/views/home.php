@@ -61,13 +61,13 @@
             <div class="card-body" >
                 <div class="d-flex align-items-center">
                     <div class="m-r-10">
-                        <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/pulsa.png" class="btn btn-circle btn-lg bg-danger"/></a>
+                        <a href="<?php echo site_url()?>CobaC/pulsa"><img src="<?php echo base_url()?>assets/images/icon_white/pulsa.png" class="btn btn-circle btn-lg bg-danger"/></a>
                     </div>
                     <div>
                      <h3 style="padding-left: 15px;" > Pulsa </h3>
                  </div>
                  <div class="ml-auto">
-                    <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                    <a href="<?php echo site_url()?>CobaC/pulsa"><i class="ti-angle-double-right font-20"></i></a>
                 </div>
             </div>
         </div>
@@ -78,14 +78,14 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/paketdata.png" class="btn btn-circle btn-lg bg-info"/></a>
+                    <a href="<?php echo site_url()?>CobaC/paket"><img src="<?php echo base_url()?>assets/images/icon_white/paketdata.png" class="btn btn-circle btn-lg bg-info"/></a>
                 </div>
                 <div>
                     <h3 style="padding-left: 15px;" > Paket Data </h3>
 
                 </div>
                 <div class="ml-auto">
-                    <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                    <a href="<?php echo site_url()?>CobaC/paket"><i class="ti-angle-double-right font-20"></i></a>
                 </div>
             </div>
         </div>
@@ -138,13 +138,13 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/kereta.png" class="btn btn-circle btn-lg bg-danger"/></a>
+                    <a href="<?php echo site_url()?>CobaC/kereta"><img src="<?php echo base_url()?>assets/images/icon_white/kereta.png" class="btn btn-circle btn-lg bg-danger"/></a>
                 </div>
                 <div>
                     <h3 style="padding-left: 15px;" > Tiket Kereta Api </h3>
                 </div>
                 <div class="ml-auto">
-                    <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                    <a href="<?php echo site_url()?>CobaC/kereta"><i class="ti-angle-double-right font-20"></i></a>
                 </div>
             </div>
         </div>

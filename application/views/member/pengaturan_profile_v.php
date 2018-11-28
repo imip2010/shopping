@@ -133,13 +133,14 @@
             </ul>
 
 
-            <h5 class="card-title">Profil Akun </h5>
-            <p> Data Anda selalu rahasia dan tidak akan kami beritahukan kepada pihak ketiga.</p>
+            
 
             <div class="tab-content br-n pn">
                 <div id="navpills-1" class="tab-pane active">
                     <div class="row">
                         <div class="table-responsive">
+                            <h5 class="card-title">Profil Akun </h5>
+                            <p> Data Anda selalu rahasia dan tidak akan kami beritahukan kepada pihak ketiga.</p>
                             <?php echo validation_errors(); ?>
                             <form action="<?php echo site_url('MemberC/update_member')?>" method="post">
                                 <table class="table">
@@ -590,7 +591,91 @@
         </div>
     </div>
     <div id="navpills-3" class="tab-pane">
-        Toko
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-12"> 
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td width=><h4>Informasi Toko</h4></td>
+                                            <td class="text-right">
+                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Foto Header Toko</td>
+                                            <td> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 20%"/> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Deskripsi Toko</td>
+                                            <td> 
+                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <div id=" ">Deskripsi toko belum diatur</div>
+                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Batas Jam Pengiriman Barang</td>
+                                            <td>
+                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;">
+                                                <div id=" ">Sewaktu terakhir pemesanan belum diatur</div>
+                                                <span class="text-danger" style="color: red;"><?php echo form_error('memberName'); ?></span> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width=><h4>Lokasi Toko</h4><p>Kamu dapat menambahkan lokasi fisik toko kamu di sini</p></td>
+                                            <td class="text-right">
+                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nomor Kontak Toko</td>
+                                            <td> 
+                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <div id=" ">nomor kontak toko belum diatur</div>
+                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width=><h4>Catatan Toko</h4><p>Diperuntukkan bagi pemilik toko yang ingin memberikan catatan tambahan.</p></td>
+                                            <td class="text-right">
+                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Catatan Toko</td>
+                                            <td> 
+                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <div id=" ">Pemilik toko belum memberikan catatan</div>
+                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width=><h4>Tutup Toko</h4><p>Anda dapat menggunakan fitur tutup lapak untuk menonaktifkan lapak Anda selama waktu yang dapat Anda tentukan sendiri. Manfaatkan fitur ini ketika Anda akan berlibur atau ketika Anda sedang tidak bisa menangani transaksi di Bukalapak. Perlu diperhatikan bahwa semua barang yang telah didiskon, akan menjadi normal setelah lapak aktif kembali.</p></td>
+                                            <td class="text-right">
+                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Catatan Toko</td>
+                                            <td> 
+                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <div id=" ">Pemilik toko belum memberikan catatan</div>
+                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="navpills-4" class="tab-pane">
         Pegiriman
