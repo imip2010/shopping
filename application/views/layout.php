@@ -19,6 +19,7 @@
     <link href="<?php echo base_url()?>assets/libs/morris.js/morris.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>assets/dist/css/style.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>assets/dist/css/pulsa.css" rel="stylesheet">
     <!-- This Page CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
 
@@ -531,6 +532,7 @@
                         <script src="<?php echo base_url()?>assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
                         <!-- apps -->
                         <script src="<?php echo base_url()?>assets/dist/js/app.min.js"></script>
+                        <script src="<?php echo base_url()?>assets/dist/js/pulsa.js"></script>
                         <script src="<?php echo base_url()?>assets/dist/js/app.init.horizontal-fullwidth.js"></script>
                         <script src="<?php echo base_url()?>assets/dist/js/app-style-switcher.horizontal.js"></script>
                         <!-- slimscrollbar scrollbar JavaScript -->

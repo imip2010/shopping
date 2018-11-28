@@ -1,0 +1,43 @@
+.pulsa-1 {
+	border: 1px solid #ddd;
+	display: block;
+	opacity: 0.5;
+	padding: 20px;
+	background-color: #fff;
+	text-align: center !important;
+	border-width: 2px;
+	}
+
+.pulsa-dipilih, .pulsa-1:hover{
+	border: 1px solid #ddd;
+	display: block;
+	opacity: 0.5;
+	padding: 20px;
+	background-color: #fff;
+	border-color: #d71149;
+	text-align: center !important;
+	border-width: 2px;
+	}
+
+.client-brand-list {
+    margin-left: -44px;
+    overflow: hidden;
+}	
+
+
+.logo-operator {
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    overflow: hidden;
+    background: url("images/operators_10022017.png") no-repeat;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    background-position: 0 9999px;
+    vertical-align: middle;
+    margin-left: 345px !important;
+}
+
+.nomor-input  {
+width: 441px !important;
+}

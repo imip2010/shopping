@@ -171,7 +171,7 @@ h1 small {
                             <div class="form-group">
                                 <label for="kategori">Sub Kategori Barang:</label>
                                 <div class="form-group">
-                                    <select class="form-control" id="sub_kategori" name="sub_kategori">
+                                    <select class="form-control" id="sub_kategori" name="sub_kategori" required="">
                                         <option>----pilih sub kategori----</option>
                                     </select>
                                 </div>
