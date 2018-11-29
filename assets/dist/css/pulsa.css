@@ -30,12 +30,12 @@
     width: 90px;
     height: 30px;
     overflow: hidden;
-    background: url("images/operators_10022017.png") no-repeat;
+    background: url("../images/operators_10022017.png") no-repeat;
     -webkit-background-size: 100% auto;
     background-size: 100% auto;
     background-position: 0 9999px;
     vertical-align: middle;
-    margin-left: 345px !important;
+    margin-left: -94px !important;
 }
 
 .nomor-input  {

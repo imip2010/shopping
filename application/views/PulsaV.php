@@ -6,8 +6,23 @@
             <!-- Main Container -->
                 <form action="<?php echo site_url() ?>pembayaran" method="GET">
                     <div class="col-xs-12 col-md-12 col-sm-12 " >
-                        <h4><span class="heading-color"> Ayo isi pulsamu di sini</span></h4>
+                        <h5><span class="heading-color"> Ayo isi pulsamu di sini</span></h5><br>
                         <div class="control-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="show" name="customRadio" class="custom-control-input">
+                                    <label class="custom-control-label" for="show">Prabayar</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="hide" name="customRadio" class="custom-control-input" checked="">
+                                    <label class="custom-control-label" for="hide">Pascabayar</label>
+                                </div>
+                            </div>
+                        </div><br>
+
                             <label class="control-label" for="nomor">Nomor Telepon</label>
                             <div class="controls">
                                 <div class="input-prepend">
@@ -21,7 +36,7 @@
                     <div class="col-xs-12 col-md-12 col-sm-12">
                         <label>Pilih Nominal</label><br>
                         <!-- pulsa-->
-                        <div>
+                        <div id="nominal">
                             <div class="container">
                                 <div class="row clients-space">
                                     <div class="col-md-3 col-xs-3 col-sm-3">
