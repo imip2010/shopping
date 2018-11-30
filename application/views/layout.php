@@ -553,25 +553,23 @@
                         <script src="<?php echo base_url()?>assets/extra-libs/c3/c3.min.js"></script>
                         <!--chartjs -->
                         <script src="<?php echo base_url()?>assets/libs/raphael/raphael.min.js"></script>
-                        <script src="<?php echo base_url()?>assets/libs/morris.js/morris.min.js"></script>
+                        <!-- <script src="<?php echo base_url()?>assets/libs/morris.js/morris.min.js"></script> -->
 
                         <script src="<?php echo base_url()?>assets/libs/raty-js/lib/jquery.raty.js"></script>
 
-                        <script src="<?php echo base_url()?>assets/dist/js/pages/dashboards/dashboard1.js"></script>
+                        <!-- <script src="<?php echo base_url()?>assets/dist/js/pages/dashboards/dashboard1.js"></script> -->
                         <!-- This Page JS -->
                         <script src="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
                         <script src="<?php echo base_url()?>assets/libs/nestable/jquery.nestable.js"></script>
                         <script src="<?php echo base_url()?>assets/extra-libs/DataTables/datatables.min.js"></script>
 
                         <script src="<?php echo base_url()?>assets/dist/js/pages/datatable/datatable-basic.init.js"></script>
-                        <script src="<?php echo base_url()?>assets/libs/ckeditor/ckeditor.js"></script>
-                        <script src="<?php echo base_url()?>assets/libs/ckeditor/samples/js/sample.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function() {
                                 $('#mytable').DataTable();
                             });
                         </script>
-                        <script>
+<!--                         <script>
                             $(function() {
                             // Nestable
                             var updateOutput = function(e) {
@@ -608,43 +606,8 @@
 
                                 $('#nestable-menu').nestable();
                             });
-                        </script>
-                        <script>
-                            //default
-                            initSample();
-
-                            //inline editor
-                            // We need to turn off the automatic editor creation first.
-                            CKEDITOR.disableAutoInline = true;
-
-                            CKEDITOR.inline('editor2', {
-                                extraPlugins: 'sourcedialog',
-                                removePlugins: 'sourcearea'
-                            });
-
-                            var editor1 = CKEDITOR.replace('editor1', {
-                                extraAllowedContent: 'div',
-                                height: 460
-                            });
-                            editor1.on('instanceReady', function() {
-                                // Output self-closing tags the HTML4 way, like <br>.
-                                this.dataProcessor.writer.selfClosingEnd = '>';
-
-                                // Use line breaks for block elements, tables, and lists.
-                                var dtd = CKEDITOR.dtd;
-                                for (var e in CKEDITOR.tools.extend({}, dtd.$nonBodyContent, dtd.$block, dtd.$listItem, dtd.$tableContent)) {
-                                    this.dataProcessor.writer.setRules(e, {
-                                        indent: true,
-                                        breakBeforeOpen: true,
-                                        breakAfterOpen: true,
-                                        breakBeforeClose: true,
-                                        breakAfterClose: true
-                                    });
-                                }
-                                // Start in source mode.
-                                this.setMode('source');
-                            });
-                        </script>
+                        </script> -->
+                        
 
 
                     </body>

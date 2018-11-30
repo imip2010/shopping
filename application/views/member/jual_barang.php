@@ -336,7 +336,7 @@ h1 small {
                             <div class='form-field'>
                                 <label for="deskripsi">Deskripsi </label>
                                 <p style="margin-top: -10px;">Masukan deskripsi barang anda</p>
-                                <textarea name="deskripsi" style='width: 450px; height: 150px;' class='ckeditor'>bagus</textarea>
+                                <textarea name="deskripsi" id="deskripsi" style='width: 450px; height: 150px;' class='ckeditor'>bagus</textarea>
                             </div>  
                         </div>
                         <!--/kanan-->
@@ -356,21 +356,11 @@ h1 small {
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 <script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="<?php echo base_url()?>assets/libs/ckeditor/ckeditor.js"></script>
+<!-- <script src="<?php echo base_url()?>assets/libs/ckeditor/samples/js/sample.js"></script> -->
 <script src="<?php echo base_url()?>assets/dist/js/imgage-multi.js"></script>
 
 <script type="text/javascript">
-    function hanyaAngka(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
-    }
-    function hanyaAngkatitik(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 46 || charCode > 57))
-            return false;
-        return true;
-    }
     $(document).ready(function(){
         // City change
         $('#kategori').change(function(){
@@ -395,10 +385,56 @@ h1 small {
             });
         });
     });
-</script>
+//default
+// initSample();
 
+//inline editor
+// We need to turn off the automatic editor creation first.
+CKEDITOR.disableAutoInline = true;
 
-<script>
+// CKEDITOR.inline('editor2', {
+//     extraPlugins: 'sourcedialog',
+//     removePlugins: 'sourcearea'
+// });
+
+var editor1 = CKEDITOR.replace('deskripsi', {
+    extraPlugins: 'sourcedialog',
+    removePlugins: 'sourcearea',
+    extraAllowedContent: 'div',
+    height: 250
+});
+editor1.on('instanceReady', function() {
+    // Output self-closing tags the HTML4 way, like <br>.
+    this.dataProcessor.writer.selfClosingEnd = '>';
+
+        // Use line breaks for block elements, tables, and lists.
+        var dtd = CKEDITOR.dtd;
+        for (var e in CKEDITOR.tools.extend({}, dtd.$nonBodyContent, dtd.$block, dtd.$listItem, dtd.$tableContent)) {
+            this.dataProcessor.writer.setRules(e, {
+                indent: true,
+                breakBeforeOpen: true,
+                breakAfterOpen: true,
+                breakBeforeClose: true,
+                breakAfterClose: true
+            });
+        }
+    // Start in source mode.
+    this.setMode('source');
+});
+
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    function hanyaAngkatitik(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 46 || charCode > 57))
+            return false;
+        return true;
+    }
+
 
     function readURL1(input) {
         if (input.files && input.files[0]) {
