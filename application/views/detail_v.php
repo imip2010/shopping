@@ -527,7 +527,7 @@
                                           ?>
                                       </div>
                                       <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo site_url('HomeC/detail_produk/')?><?php echo $terkait->productID;?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                                        <a href="<?php echo site_url('detail_produk/')?><?php echo $terkait->productID;?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
                                     </div>
                                 </div>
                             </div>

@@ -54,7 +54,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?php echo base_url()?>HomeC">
+                    <a class="navbar-brand" href="<?php echo base_url()?>">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -275,16 +275,16 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-home m-r-5 m-l-5"></i>Toko Saya
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url('MemberC/jual_barang')?>">
+                                    <a class="dropdown-item" href="<?php echo site_url('jual_barang')?>">
                                         <i class="ti-wallet m-r-5 m-l-5"></i> Jual Barang
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url('MemberC/daftar_barang')?>">
+                                    <a class="dropdown-item" href="<?php echo site_url('daftar_barang')?>">
                                         <i class="ti-settings m-r-5 m-l-5"></i> Daftar Barang
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
+                                    <a class="dropdown-item" href="<?php echo site_url('labelbarang')?>">
                                         <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Label Barang
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
+                                    <a class="dropdown-item" href="<?php echo site_url('labelbarang')?>">
                                         <i class="ti-home m-r-5 m-l-5"></i> Courier
                                     </a>
                                 </div>
@@ -320,7 +320,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-wallet m-r-5 m-l-5"></i> Saldo Saya Rp. 20.000</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="<?php echo site_url('MemberC/pengaturan_profile');?>">
+                                        <a class="dropdown-item" href="<?php echo site_url('pengaturan_profile');?>">
                                             <i class="ti-settings m-r-5 m-l-5"></i> Pengaturan Profil</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="javascript:void(0)">
