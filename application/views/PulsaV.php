@@ -195,6 +195,7 @@ $(document).ready(function(){
             $("#nominal").show();
             $("#tagihan").hide();
             $("#isitagihan").hide();
+            $("#isipulsa").show();
         }
         else {
             $("#nominal").hide();
