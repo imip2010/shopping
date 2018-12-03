@@ -140,9 +140,17 @@
                                                 </a>
                                             </li> -->
                                         </div>
-                                    </ul>
-                                </div>
-                            </li>
+                                    </div>
+                                    <li>
+                                    </li>
+                                        <hr/>
+                                        <h4 style="float: right; margin-right: 20px; font-size: 1rem;">
+                                            <a class="btn btn-info" style="padding: 6px 8px 6px 8px; color: #FFF;border-radius: 7px;">Bayar</a>
+                                        </h4>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="ti-bell font-20"></i>
