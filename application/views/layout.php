@@ -27,7 +27,21 @@
     <!-- This page plugin CSS -->
     <link href="<?php echo base_url()?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
-    
+    <style type="text/css">
+    #lblCartCount {
+        font-size: 12px;
+        background: #ff0000;
+        color: #fff;
+        padding: 0 5px;
+        vertical-align: top;
+        margin: 5px 0px 0px -10px;
+        padding-left: 7px;
+        padding-right: 7px;
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+    }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -95,14 +109,16 @@
                     if($logged_in == 1){
                         ?>
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="dp-cart">
                           <!--   <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-shopping-cart font-20"></i>
                             </a> -->
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>"><i class="ti-shopping-cart font-20"></i>
-                                <div class="basket-item-count"><span class="count">2</span></div>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dp-xp-cart">
+                                <i class="ti-shopping-cart font-20"></i>
+                                <span class="badge badge-warning" id="lblCartCount"> 5 </span>
+                                <!-- <div class="basket-item-count"><span class="count">2</span></div> -->
                             </a>
-                            <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
+                            <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2" id="dp-list-cart">
                                 <span class="with-arrow">
                                     <span class="bg-info"></span>
                                 </span>

@@ -8,6 +8,7 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
+                <div id="flash-session"></div>
                 <h3 class="card-title"><?php echo $detail_produk->productName?></h3>
                 <h6 class="card-subtitle"><?php echo $detail_produk->memberName?></h6>
                 <div class="row">
@@ -547,7 +548,7 @@
     </div>
 </div>
 </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#add_cart').click(function(){
@@ -559,7 +560,19 @@
                 method : "POST",
                 data : {productID: productID, memberID: memberID},
                 success: function(data){
-                    alert('success');
+                    // alert('success');
+                    $("#dp-cart").attr("class", "nav-item dropdown show");
+                    $("#dp-xp-cart").attr("aria-expanded", "true");
+                    $("#dp-list-cart").attr("class", "dropdown-menu mailbox animated bounceInDown show");
+                    $("#flash-session").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span></button><h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3>Produk berhasil dimasukkan ke keranjang</div>');
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(100, 0).slideUp(100, function(){
+                            $(this).remove(); 
+                        });
+                    }, 5000);
+                    $('.alert .close').on("click", function(e){
+                        $(this).parent().fadeTo(100, 0).slideUp(100);
+                     });
                     $('#detail_cart').html(data);
                 }
             });
