@@ -96,14 +96,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="m-r-10">
-                        <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/pln.png" class="btn btn-circle btn-lg bg-success"/></a>
+                        <a href="<?php echo site_url()?>CobaC/listrik"><img src="<?php echo base_url()?>assets/images/icon_white/pln.png" class="btn btn-circle btn-lg bg-success"/></a>
                     </div>
                     <div>
                         <h3 style="padding-left: 15px;" > Listrik </h3>
 
                     </div>
                     <div class="ml-auto">
-                        <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                        <a href="<?php echo site_url()?>CobaC/listrik"><i class="ti-angle-double-right font-20"></i></a>
                     </div>
                 </div>
             </div>
@@ -114,13 +114,13 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="m-r-10">
-                        <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/pdam.png" class="btn btn-circle btn-lg bg-warning"/></a>
+                        <a href="<?php echo site_url()?>CobaC/pdam"><img src="<?php echo base_url()?>assets/images/icon_white/pdam.png" class="btn btn-circle btn-lg bg-warning"/></a>
                     </div>
                     <div>
                         <h3 style="padding-left: 15px;" > PDAM </h3>
                     </div>
                     <div class="ml-auto">
-                        <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                        <a href="<?php echo site_url()?>CobaC/pdam"><i class="ti-angle-double-right font-20"></i></a>
                     </div>
                 </div>
             </div>
@@ -155,14 +155,14 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/pesawat.png" class="btn btn-circle btn-lg bg-info"/></a>
+                    <a href="<?php echo site_url()?>CobaC/pesawat"><img src="<?php echo base_url()?>assets/images/icon_white/pesawat.png" class="btn btn-circle btn-lg bg-info"/></a>
                 </div>
                 <div>
                     <h3 style="padding-left: 15px;" > Tiket Pesawat </h3>
 
                 </div>
                 <div class="ml-auto">
-                    <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                    <a href="<?php echo site_url()?>CobaC/pesawat"><i class="ti-angle-double-right font-20"></i></a>
                 </div>
             </div>
         </div>
@@ -173,14 +173,14 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/hotel.png" class="btn btn-circle btn-lg bg-success"/></a>
+                    <a href="<?php echo site_url()?>CobaC/hotel"><img src="<?php echo base_url()?>assets/images/icon_white/hotel.png" class="btn btn-circle btn-lg bg-success"/></a>
                 </div>
                 <div>
                     <h3 style="padding-left: 15px;" > Hotel </h3>
 
                 </div>
                 <div class="ml-auto">
-                    <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                    <a href="<?php echo site_url()?>CobaC/hotel"><i class="ti-angle-double-right font-20"></i></a>
                 </div>
             </div>
         </div>
@@ -191,14 +191,14 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div class="m-r-10">
-                    <a href="#"><img src="<?php echo base_url()?>assets/images/icon_white/bpjs.png" class="btn btn-circle btn-lg bg-warning"/></a>
+                    <a href="<?php echo site_url()?>CobaC/bpjs"><img src="<?php echo base_url()?>assets/images/icon_white/bpjs.png" class="btn btn-circle btn-lg bg-warning"/></a>
                 </div>
                 <div>
                     <h3 style="padding-left: 15px;" > BPJS </h3>
 
                 </div>
                 <div class="ml-auto">
-                    <a href="#"><i class="ti-angle-double-right font-20"></i></a>
+                    <a href="<?php echo site_url()?>CobaC/bpjs"><i class="ti-angle-double-right font-20"></i></a>
                 </div>
             </div>
         </div>

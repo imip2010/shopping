@@ -381,10 +381,9 @@
                             <aside class="left-sidebar">
                                 <!-- Sidebar scroll-->
                                 <div class="scroll-sidebar">
-                                    <!-- Sidebar navigation-->
+                                    <!-- Sidebar navigation
                                     <nav class="sidebar-nav">
                                         <ul id="sidebarnav">
-                                            <!-- User Profile-->
                                             <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><span class="hide-menu">Pencarian Populer</span><i class="ti-angle-left"></i></a></li>
                                             <?php
                                             foreach ($produk_terpopuler as $produk_populer) {
@@ -394,8 +393,7 @@
                                             }
                                             ?>
                                         </ul>
-                                    </nav>
-                                    <!-- End Sidebar navigation -->
+                                    </nav> End Sidebar navigation -->
                                 </div>
                                 <!-- End Sidebar scroll-->
                             </aside>
