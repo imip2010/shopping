@@ -145,7 +145,7 @@
                                     </li>
                                         <hr/>
                                         <h4 style="float: right; margin-right: 20px; font-size: 1rem;">
-                                            <a class="btn btn-info" style="padding: 6px 8px 6px 8px; color: #FFF;border-radius: 7px;">Bayar</a>
+                                            <a href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>" class="btn btn-info" style="padding: 6px 8px 6px 8px; color: #FFF;border-radius: 7px;">Bayar</a>
                                         </h4>
                                     </li>
                                 </ul>
