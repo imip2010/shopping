@@ -115,7 +115,7 @@
                             </a> -->
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dp-xp-cart">
                                 <i class="ti-shopping-cart font-20"></i>
-                                <span class="badge badge-warning" id="lblCartCount"> 5 </span>
+                                <span class="badge badge-warning" id="lblCartCount"> </span>
                                 <!-- <div class="basket-item-count"><span class="count">2</span></div> -->
                             </a>
                             <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2" id="dp-list-cart">
@@ -130,14 +130,15 @@
                                     </li>
 
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6">
-                                            <li>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div id="detail_cart"></div>
+                                            <!-- <li>
                                                 <a href="#" >
                                                     <div class="message-body  " style=" margin-left: 20px;">
                                                         <h5><img src="<?php echo base_url()?>assets/images/kategori/handphone.png" />&nbsp Handphone</h5>
                                                     </div>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </div>
                                     </ul>
                                 </div>
@@ -583,6 +584,11 @@
                         <script type="text/javascript">
                             $(document).ready(function() {
                                 $('#mytable').DataTable();
+ 
+                                // Load shopping cart
+                                $('#detail_cart').load("<?php echo base_url();?>Cart/show_cart");
+                                // Load number of shopping cart
+                                $('#lblCartCount').load("<?php echo base_url();?>Cart/cart_count");
                             });
                         </script>
 <!--                         <script>

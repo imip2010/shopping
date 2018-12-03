@@ -16,35 +16,29 @@ class Cart extends CI_Controller {
         $this->load->view('v_cart',$data);
 	}
 
+	public function cart_count()
+	{
+		$data_count=$this->Cart_model->count_product($this->session->memberID);
+        echo $data_count;
+	}
+
 	public function show_cart()
 	{
-		// $data['carts']=$this->Cart_model->get_cart(4);
-        // echo json_encode($data);
-        $output = "";
-		$no = 0;
-		foreach ($this->Cart_model->get_cart(4) as $items) {
-			$no++;
-			echo "<tr>
-					<td>".$items->productID."</td>
-					<td>".$items->productName."</td>
-					<td>".$items->price."</td>
-					<td>".$items->quantity."</td>
-					<td>".$items->price*$items->quantity."</td>
-				</tr>";
-			// $output .="
-			// 	<tr>
-			// 		<td>".$items->productID."</td>
-			// 		<td>".$items->productName."</td>
-			// 	</tr>
-			// ";
+		foreach ($this->Cart_model->get_cart($this->session->memberID) as $items) {
+			echo "
+				<li>
+                    <a>
+                        <div class='message-body' style='margin-left: 20px;'>
+	                        <img src='".base_url()."assets/images/product/".$items->photo1."' width='50' height='30'>&nbsp <b>".$items->productName."</b>
+	                        <span style='float:right; margin-right: 20px;'>
+	                        	<span style='color:#4798e8;'>Rp ".number_format($items->price,0,',','.')."</span>
+	                        	<span style='font-size:9px;'> x </span>".$items->quantity."
+	                        </span>
+                        </div>
+                    </a>
+                </li>
+			";
 		}
-		// $output .="
-		// 	<tr>
-		// 		<th colspan='3'>Total</th>
-		// 		<th colspan='2'>".$this->cart->total()."</th>
-		// 	</tr>
-		// ";
-		// return $output;
 	}
 
 	public function add_to_cart()

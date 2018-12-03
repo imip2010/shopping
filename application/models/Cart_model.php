@@ -7,7 +7,7 @@ class Cart_model extends CI_Model{
 		$this->load->database();
 	}
 
-	//mengambil produk terpopuler
+	//mengambil produk 
 	public function get_all_produk(){
 		$hasil=$this->db->get('products');
         return $hasil->result();
@@ -24,6 +24,21 @@ class Cart_model extends CI_Model{
 		$query = $this->db->get();
 		if($query){
 			return $query->result();
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	//mengambil total produk dalam keranjang 
+	public function count_product($memberID){
+		$this->db->select('count(C.cartID) as Total');
+		$this->db->from('carts C');
+		$this->db->join('products P','C.productID = P.productID');
+		$this->db->join('members M','C.memberID = M.memberID');
+		$this->db->where('C.memberID', $memberID);
+		$query = $this->db->get();
+		if($query){
+			return $query->row()->Total;
 		}else{
 			echo "tidak ditemukan";
 		}

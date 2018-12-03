@@ -574,11 +574,9 @@
                         $(this).parent().fadeTo(100, 0).slideUp(100);
                      });
                     $('#detail_cart').html(data);
+                    $('#lblCartCount').load("<?php echo base_url();?>Cart/cart_count");
                 }
             });
         });
- 
-        // Load shopping cart
-        $('#detail_cart').load("<?php echo base_url();?>Cart/show_cart");
     });
 </script>
