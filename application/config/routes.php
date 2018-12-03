@@ -58,6 +58,7 @@ $route['translate_uri_dashes'] = FALSE;
 //Produk
 $route['detail_produk/(:num)'] = 'HomeC/detail_produk/$1';
 $route['cart/'] = 'Cart/index';
+$route['beli_barang/(:num)'] = 'MemberC/beli_barang/$1';
 // $route['add_to_cart/'] = 'Cart/add_to_cart';
 
 //Member
