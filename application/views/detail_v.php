@@ -8,6 +8,7 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
+                <div id="flash-session"></div>
                 <h3 class="card-title"><?php echo $detail_produk->productName?></h3>
                 <h6 class="card-subtitle"><?php echo $detail_produk->memberName?></h6>
                 <div class="row">
@@ -51,7 +52,9 @@
                             echo "";
                         }else{
                             ?>
-                            <button class="btn btn-dark btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> Tambah Ke keranjang </button>
+                            <button class="btn btn-dark btn-rounded m-r-5" id="add_cart" data-toggle="tooltip" title="" data-original-title="Add to cart" data-produkid="<?php echo $detail_produk->productID;?>" data-produknama="<?php echo $detail_produk->productName;?>" data-produkharga="<?php echo $detail_produk->salePrice;?>" data-memberID="$dataDiri['memberID']">
+                                <i class="ti-shopping-cart"></i> Tambah Ke keranjang 
+                            </button>
                             <a class="btn btn-info btn-rounded" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
                             <?php
                         }
@@ -527,7 +530,7 @@
                                           ?>
                                       </div>
                                       <div class="ml-auto m-r-15"><br>
-                                        <a href="<?php echo site_url('HomeC/detail_produk/')?><?php echo $terkait->productID;?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                                        <a href="<?php echo site_url('detail_produk/')?><?php echo $terkait->productID;?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
                                     </div>
                                 </div>
                             </div>
@@ -545,3 +548,35 @@
     </div>
 </div>
 </div>
+<script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#add_cart').click(function(){
+            var productID = $(this).data("produkid");
+            var memberID = $(this).data("memberID");
+            $.ajax({
+                // url : "<?php echo site_url('add_to_cart')?>",
+                url : "<?php echo base_url();?>Cart/add_to_cart",
+                method : "POST",
+                data : {productID: productID, memberID: memberID},
+                success: function(data){
+                    // alert('success');
+                    $("#dp-cart").attr("class", "nav-item dropdown show");
+                    $("#dp-xp-cart").attr("aria-expanded", "true");
+                    $("#dp-list-cart").attr("class", "dropdown-menu mailbox animated bounceInDown show");
+                    $("#flash-session").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span></button><h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3>Produk berhasil dimasukkan ke keranjang</div>');
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(100, 0).slideUp(100, function(){
+                            $(this).remove(); 
+                        });
+                    }, 5000);
+                    $('.alert .close').on("click", function(e){
+                        $(this).parent().fadeTo(100, 0).slideUp(100);
+                     });
+                    $('#detail_cart').html(data);
+                    $('#lblCartCount').load("<?php echo base_url();?>Cart/cart_count");
+                }
+            });
+        });
+    });
+</script>

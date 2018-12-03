@@ -27,7 +27,21 @@
     <!-- This page plugin CSS -->
     <link href="<?php echo base_url()?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
-    
+    <style type="text/css">
+    #lblCartCount {
+        font-size: 12px;
+        background: #ff0000;
+        color: #fff;
+        padding: 0 5px;
+        vertical-align: top;
+        margin: 5px 0px 0px -10px;
+        padding-left: 7px;
+        padding-right: 7px;
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+    }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,7 +68,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?php echo base_url()?>HomeC">
+                    <a class="navbar-brand" href="<?php echo base_url()?>">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -95,14 +109,16 @@
                     if($logged_in == 1){
                         ?>
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="dp-cart">
                           <!--   <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-shopping-cart font-20"></i>
                             </a> -->
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>"><i class="ti-shopping-cart font-20"></i>
-                                <div class="basket-item-count"><span class="count">2</span></div>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dp-xp-cart">
+                                <i class="ti-shopping-cart font-20"></i>
+                                <span class="badge badge-warning" id="lblCartCount"> </span>
+                                <!-- <div class="basket-item-count"><span class="count">2</span></div> -->
                             </a>
-                            <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
+                            <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2" id="dp-list-cart">
                                 <span class="with-arrow">
                                     <span class="bg-info"></span>
                                 </span>
@@ -114,18 +130,27 @@
                                     </li>
 
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6">
-                                            <li>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div id="detail_cart"></div>
+                                            <!-- <li>
                                                 <a href="#" >
                                                     <div class="message-body  " style=" margin-left: 20px;">
                                                         <h5><img src="<?php echo base_url()?>assets/images/kategori/handphone.png" />&nbsp Handphone</h5>
                                                     </div>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </div>
-                                    </ul>
-                                </div>
-                            </li>
+                                    </div>
+                                    <li>
+                                    </li>
+                                        <hr/>
+                                        <h4 style="float: right; margin-right: 20px; font-size: 1rem;">
+                                            <a href="<?php echo site_url('MemberC/beli_barang/').$dataDiri['memberID'];?>" class="btn btn-info" style="padding: 6px 8px 6px 8px; color: #FFF;border-radius: 7px;">Bayar</a>
+                                        </h4>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="ti-bell font-20"></i>
@@ -275,16 +300,16 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-home m-r-5 m-l-5"></i>Toko Saya
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url('MemberC/jual_barang')?>">
+                                    <a class="dropdown-item" href="<?php echo site_url('jual_barang')?>">
                                         <i class="ti-wallet m-r-5 m-l-5"></i> Jual Barang
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url('MemberC/daftar_barang')?>">
+                                    <a class="dropdown-item" href="<?php echo site_url('daftar_barang')?>">
                                         <i class="ti-settings m-r-5 m-l-5"></i> Daftar Barang
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
+                                    <a class="dropdown-item" href="<?php echo site_url('labelbarang')?>">
                                         <i class="ti-bookmark-alt m-r-5 m-l-5"></i> Label Barang
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url()?>labelbarang">
+                                    <a class="dropdown-item" href="<?php echo site_url('labelbarang')?>">
                                         <i class="ti-home m-r-5 m-l-5"></i> Courier
                                     </a>
                                 </div>
@@ -320,7 +345,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-wallet m-r-5 m-l-5"></i> Saldo Saya Rp. 20.000</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="<?php echo site_url('MemberC/pengaturan_profile');?>">
+                                        <a class="dropdown-item" href="<?php echo site_url('pengaturan_profile');?>">
                                             <i class="ti-settings m-r-5 m-l-5"></i> Pengaturan Profil</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="javascript:void(0)">
@@ -565,6 +590,11 @@
                         <script type="text/javascript">
                             $(document).ready(function() {
                                 $('#mytable').DataTable();
+ 
+                                // Load shopping cart
+                                $('#detail_cart').load("<?php echo base_url();?>Cart/show_cart");
+                                // Load number of shopping cart
+                                $('#lblCartCount').load("<?php echo base_url();?>Cart/cart_count");
                             });
                         </script>
 <!--                         <script>

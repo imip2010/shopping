@@ -238,7 +238,7 @@
                             ?>
                         </div>
                         <div class="ml-auto m-r-15"><br>
-                            <a href="<?php echo site_url('HomeC/detail_produk/').$produk_diskon->productID?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                  
+                            <a href="<?php echo site_url('detail_produk/').$produk_diskon->productID?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                  
                         </div>
                     </div>
                 </div>
@@ -298,7 +298,7 @@
                         <h5><?php  echo $divharga;?></h5>
                     </div>
                     <div class="ml-auto m-r-15"><br>
-                        <a href="<?php echo site_url('HomeC/detail_produk/').$produk_terbaru->productID?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
+                        <a href="<?php echo site_url('detail_produk/').$produk_terbaru->productID?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                    
                     </div>
                 </div>
             </div>
