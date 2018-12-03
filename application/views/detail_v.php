@@ -51,7 +51,9 @@
                             echo "";
                         }else{
                             ?>
-                            <button class="btn btn-dark btn-rounded m-r-5" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> Tambah Ke keranjang </button>
+                            <button class="btn btn-dark btn-rounded m-r-5" id="add_cart" data-toggle="tooltip" title="" data-original-title="Add to cart" data-produkid="<?php echo $detail_produk->productID;?>" data-produknama="<?php echo $detail_produk->productName;?>" data-produkharga="<?php echo $detail_produk->salePrice;?>" data-memberID="$dataDiri['memberID']">
+                                <i class="ti-shopping-cart"></i> Tambah Ke keranjang 
+                            </button>
                             <a class="btn btn-info btn-rounded" href="<?php echo base_url('MemberC/insertToCart/').$dataDiri['memberID']."/".$detail_produk->productID;?>">Beli Sekarang</a>
                             <?php
                         }
@@ -545,3 +547,25 @@
     </div>
 </div>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#add_cart').click(function(){
+            var productID = $(this).data("produkid");
+            var memberID = $(this).data("memberID");
+            $.ajax({
+                // url : "<?php echo site_url('add_to_cart')?>",
+                url : "<?php echo base_url();?>Cart/add_to_cart",
+                method : "POST",
+                data : {productID: productID, memberID: memberID},
+                success: function(data){
+                    alert('success');
+                    $('#detail_cart').html(data);
+                }
+            });
+        });
+ 
+        // Load shopping cart
+        $('#detail_cart').load("<?php echo base_url();?>Cart/show_cart");
+    });
+</script>

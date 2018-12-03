@@ -12,8 +12,39 @@ class Cart extends CI_Controller {
 
 	public function index()
 	{
-		$data['data']=$this->Cart_model->get_all_produk();
+		$data['products']=$this->Cart_model->get_all_produk();
         $this->load->view('v_cart',$data);
+	}
+
+	public function show_cart()
+	{
+		// $data['carts']=$this->Cart_model->get_cart(4);
+        // echo json_encode($data);
+        $output = "";
+		$no = 0;
+		foreach ($this->Cart_model->get_cart(4) as $items) {
+			$no++;
+			echo "<tr>
+					<td>".$items->productID."</td>
+					<td>".$items->productName."</td>
+					<td>".$items->price."</td>
+					<td>".$items->quantity."</td>
+					<td>".$items->price*$items->quantity."</td>
+				</tr>";
+			// $output .="
+			// 	<tr>
+			// 		<td>".$items->productID."</td>
+			// 		<td>".$items->productName."</td>
+			// 	</tr>
+			// ";
+		}
+		// $output .="
+		// 	<tr>
+		// 		<th colspan='3'>Total</th>
+		// 		<th colspan='2'>".$this->cart->total()."</th>
+		// 	</tr>
+		// ";
+		// return $output;
 	}
 
 	public function add_to_cart()
@@ -37,6 +68,8 @@ class Cart extends CI_Controller {
             'quantity'      => "1", 
             'stockCart'     => "0", 
         );
+        // $this->cart->insert($data_cart);
+        // echo $this->show_cart();
 
 
         // cari product berdasarkan member
@@ -71,25 +104,30 @@ class Cart extends CI_Controller {
         }
 	}
 
-	public function show_cart()
-	{
-		$output = "";
-		$no = 0;
+	// public function show_cart()
+	// {
+	// 	$output = "";
+	// 	$no = 0;
+	// 	foreach ($this->cart->contents() as $items) {
+	// 		$no++;
+	// 		$output .="
+	// 			<tr>
+	// 				<td>".$items['price']."</td>
+	// 				<td>".$items['productID']."</td>
+	// 			</tr>
+	// 		";
+	// 	}
+	// 	$output .="
+	// 		<tr>
+	// 			<th colspan='3'>Total</th>
+	// 			<th colspan='2'>".$this->cart->total()."</th>
+	// 		</tr>
+	// 	";
+	// 	return $output;
+	// }
 
-		foreach ($this->Cart_model->get_cart(4) as $items) {
-			$no++;
-			$output .= "
-				<tr>
-					<td>".$items['productID']."</td>
-				</tr>
-			";
-		}
-		return $output;
-	}
-
-	public function load_cart()
-	{
-		echo $this->show_cart();
-	}
-
+	// public function load_cart()
+	// {
+	// 	echo $this->show_cart();
+	// }
 }

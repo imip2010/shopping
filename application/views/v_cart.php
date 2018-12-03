@@ -13,7 +13,7 @@
             <h4>Produk</h4>
             <div class="row">
 	<?php
-		foreach ($data as $row) { ?>
+		foreach ($products as $row) { ?>
 	
                 <div class="col-md-4">
                     <div class="thumbnail">
@@ -43,10 +43,11 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+						<th></th>
                         <th>Produk</th>
                         <th>Harga</th>
                         <th>Qty</th>
-                        <th>Subtotal</th>
+                        <th>Total</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -74,14 +75,14 @@
                 method : "POST",
                 data : {productID: productID, memberID: memberID, salePrice: salePrice, quantity: quantity},
                 success: function(data){
-	alert('success');
+					alert('success');
                     $('#detail_cart').html(data);
                 }
             });
         });
  
         // Load shopping cart
-        $('#detail_cart').load("<?php echo base_url();?>Cart/load_cart");
+        $('#detail_cart').load("<?php echo base_url();?>Cart/show_cart");
  
         //Hapus Item Cart
 //         $(document).on('click','.hapus_cart',function(){
