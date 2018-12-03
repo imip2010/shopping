@@ -44,7 +44,7 @@ class Cart extends CI_Controller {
 	public function add_to_cart()
 	{
 		$productID = $this->input->post('productID');
-		$memberID = 4;
+		$memberID = $this->session->memberID;
 
 		$harga  = $this->HomeM->get_detail_product($productID)->result()[0]->salePrice;
         $diskon = $this->HomeM->get_detail_product($productID)->result()[0]->discount;
