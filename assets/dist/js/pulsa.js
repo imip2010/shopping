@@ -1,14 +1,14 @@
 $( document ).ready(function() {
 
 
-	$('.pulsa-1').on("click", function(){
+	$('.nominal-1').on("click", function(){
 	  var duit_dipilih=$(this)[0].textContent;
 
 	  $('#duit').text(duit_dipilih);
 
 	  $('#pulsa').val(duit_dipilih);
 
-	  $('.pulsa-1').removeClass( "pulsa-dipilih" );
+	  $('.nominal-1').removeClass( "pulsa-dipilih" );
 	  $(this).addClass( "pulsa-dipilih" );
 	});
 
