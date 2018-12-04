@@ -1,4 +1,4 @@
-.pulsa-1 {
+.nominal-1 {
 	border: 1px solid #ddd;
 	display: block;
 	opacity: 0.5;
@@ -8,7 +8,7 @@
 	border-width: 2px;
 	}
 
-.pulsa-dipilih, .pulsa-1:hover{
+.pulsa-dipilih, .nominal-1:hover{
 	border: 1px solid #ddd;
 	display: block;
 	opacity: 0.5;
@@ -39,5 +39,5 @@
 }
 
 .nomor-input  {
-width: 441px !important;
+width: 460px !important;
 }

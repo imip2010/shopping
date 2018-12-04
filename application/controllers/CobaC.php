@@ -50,6 +50,16 @@ class CobaC extends CI_Controller {
 		$this->data['isi'] = $this->load->view('ListrikV', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
 	}
+	
+	public function pdam()
+	{
+		$this->data['dataDiri'] = $this->session->userdata();
+		$this->data['logged_in'] = $this->session->userdata('logged_in');
+		$this->data['isi'] = 'isi';
+		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['isi'] = $this->load->view('PdamV', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
 	public function detail(){
 		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');

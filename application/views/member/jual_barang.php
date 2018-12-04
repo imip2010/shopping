@@ -153,7 +153,8 @@ h1 small {
                             <div class="form-group">
                                 <label for="kategori">Kategori Barang:</label>
                                 <div class="form-group">
-                                    <select class="form-control" id="kategori" name="kategori" style="height: 40px;">
+                                    <select class="form-control" id="kategori" name="kategori" style="height: 40px;" required="required">
+                                    <option>----pilih kategori----</option>
                                         <?php 
                                         foreach ($kategori as $kat) {
                                             ?>
@@ -171,7 +172,7 @@ h1 small {
                             <div class="form-group">
                                 <label for="kategori">Sub Kategori Barang:</label>
                                 <div class="form-group">
-                                    <select class="form-control" id="sub_kategori" name="sub_kategori" required="">
+                                    <select class="form-control" id="sub_kategori" name="sub_kategori" required="required">
                                         <option>----pilih sub kategori----</option>
                                     </select>
                                 </div>
