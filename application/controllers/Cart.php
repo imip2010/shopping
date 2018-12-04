@@ -98,30 +98,21 @@ class Cart extends CI_Controller {
         }
 	}
 
-	// public function show_cart()
-	// {
-	// 	$output = "";
-	// 	$no = 0;
-	// 	foreach ($this->cart->contents() as $items) {
-	// 		$no++;
-	// 		$output .="
-	// 			<tr>
-	// 				<td>".$items['price']."</td>
-	// 				<td>".$items['productID']."</td>
-	// 			</tr>
-	// 		";
-	// 	}
-	// 	$output .="
-	// 		<tr>
-	// 			<th colspan='3'>Total</th>
-	// 			<th colspan='2'>".$this->cart->total()."</th>
-	// 		</tr>
-	// 	";
-	// 	return $output;
-	// }
+	public function count_p($cartID)
+	{
+		$data_count=$this->Cart_model->count_p($cartID);
+        // echo $data_count;
+	}
 
-	// public function load_cart()
-	// {
-	// 	echo $this->show_cart();
-	// }
+	public function count_m($cartID)
+	{
+		$data_count=$this->Cart_model->count_m($cartID);
+        // echo $data_count;
+	}
+
+	public function get_cart_quantity($cartID)
+	{
+		$data_count=$this->Cart_model->get_quantity($this->session->memberID,$cartID);
+		echo $data_count;
+	}
 }

@@ -3,6 +3,7 @@
 		<div class='container_page'>
 			<div class='page'>
 				<main class='page-content'>
+					<input type="hidden" id="memberIDs" value="<?php echo $this->session->memberID ?>">
 					<h3 class='page-heading' data-cart-page-title>Keranjang Belanja (
 						<?php echo count($keranjang);?> item)</h3>
 					<div class='page-cart'>
@@ -42,9 +43,9 @@
 										<th class='cart-header-item'>No</th>
 										<th class='cart-header-item'>Image</th>
 										<th class='cart-header-item' style="min-width: 200px;">Produk</th>
-										<th class='cart-header-item'>Harga</th>
+										<th class='cart-header-item' style="min-width: 200px;">Harga</th>
 										<th class='cart-header-item'>Quantity</th>
-										<th class='cart-header-item'>Total</th>
+										<th class='cart-header-item' style="min-width: 200px;">Total</th>
 										<th class='cart-header-item' style="width: 10px;">Aksi</th>
 									</tr>
 								</thead>
@@ -102,7 +103,13 @@
 												?>
 										</td>
 										<td class='cart-item-block cart-item-info cart-item-quantity'>
-											<div class='form-increment'>
+											<div class="btn-group">
+											    <button type="button" class="btn btn-info ccount_m" id="count_m<?php echo $ker->cartID ?>">-</button>
+											    <span class="btn col-md-6" id="cquantity<?php echo $ker->cartID ?>" style="background: #FFF;"><?php echo $ker->quantity ?></span>
+											    <!-- <input type="text" class="btn col-md-2" id="cquantity<?php echo $ker->cartID ?>" value="<?php echo $ker->quantity ?>"> -->
+											    <button type="button" class="btn btn-info ccount_p" id="count_p<?php echo $ker->cartID ?>">+</button>
+											</div>
+											<!-- <div class='form-increment'>
 												<select name='myfield'>
 													<?php
 														for ($i=1; $i <= $ker->qty; $i++) { 
@@ -123,11 +130,11 @@
 														?>
 												</select>
 												<noscript><input type="submit" value="Submit"></noscript>
-											</div>
+											</div> -->
 										</td>
 										<td class='cart-item-block'>
 											<strong class='cart-item-value'>
-												<span class='cart-item-label'>
+												<span class='cart-item-label' id="itemLabel">
 													<?php 
 														$total = $ker->quantity*$ker->salePrice;
 														echo "Rp".number_format(($total),0,",",".");
@@ -159,14 +166,14 @@
 
 						<div class="col-lg-12">
 							<div class="row">
-								<div class="col-lg-11">
+								<div class="col-lg-10">
 									<div class="text-right">
 										<h3> Sub Total &nbsp Rp </h3>
 										<h3> Diskon &nbsp Rp </h3>
 										<h3> Grand Total &nbsp Rp </h3>
 									</div>
 								</div>
-								<div class="col-lg-1">
+								<div class="col-lg-2">
 									<div class="text-right">
 										<h6 style="font-size: 20px;"> <?php echo "&nbsp;".number_format(($sub_total),0,",","."); ?> </h6>
 										<h6 style="font-size: 20px;"> <?php echo "&nbsp".number_format(($total_diskon),0,",","."); ?> </h6>
@@ -199,3 +206,54 @@
 		<div class='loadingOverlay'></div>
 	</div>
 </div>
+<script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function (){
+        $(".ccount_m").click(function (){
+            var btnID = '#' + $(this).attr('id');
+            var fnID = btnID.replace('#count_m','');
+	        var request = $.ajax({
+		        type: "POST",
+		        url: "<?php echo base_url();?>Cart/count_m/"+fnID
+	        });
+	        request.done(function( msg ) {
+	        	// $('#cquantity'+fnID).load("<?php echo base_url();?>Cart/get_cart_quantity/"+fnID);
+	        	$('#cquantity'+fnID).fadeOut(300, function(){
+					$('#cquantity'+fnID).load("<?php echo base_url();?>Cart/get_cart_quantity/"+fnID).fadeIn().delay(1000);
+					// $('#itemLabel').html("<?php echo site_url();?>MemberC/beli_barang/ #itemLabel").fadeIn().delay(1000);
+				});
+				// $('#cquantity'+fnID).load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID+" #cquantity"+fnID);
+				// $('#cquantity'+fnID).replaceWith("");
+				// alert(msg);
+	   //      	$('#cquantity'+fnID).load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID+" #cquantity"+fnID);
+	   //      	// $('.container_page').load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID);
+				// $('#cquantity'+fnID).fadeOut(800, function(){
+				// 	$('#cquantity'+fnID).load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID+" #cquantity"+fnID).fadeIn().delay(2000);
+    //                 // $('#cquantity'+fnID).html("xx").fadeIn().delay(2000);
+    //                 // $('.container_page').load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID).fadeIn().delay(2000);
+				// });
+			});
+	        request.fail(function(jqXHR, textStatus) {
+	            alert( "Request failed: " + textStatus );
+	        });
+        });
+        $(".ccount_p").click(function (){
+            var btnID = '#' + $(this).attr('id');
+            var fnID = btnID.replace('#count_p','');
+	        var request = $.ajax({
+		        type: "POST",
+		        url: "<?php echo base_url();?>Cart/count_p/"+fnID
+	        });
+	        request.done(function( msg ) {
+	        	$('#cquantity'+fnID).fadeOut(300, function(){
+					$('#cquantity'+fnID).load("<?php echo base_url();?>Cart/get_cart_quantity/"+fnID).fadeIn().delay(1000);
+				});
+				// alert('Success');
+	            // return;
+			});
+	        request.fail(function(jqXHR, textStatus) {
+	            alert( "Request failed: " + textStatus );
+	        });
+        });
+    });
+</script>
