@@ -109,85 +109,78 @@
 
 <div class="card">
     <div class="card-body">
-        <!-- Home Banner 1 End -->
-        <!-- Main Content Area -->
-        <div class="container">
-            <!-- Main Container -->
-                <form action="<?php echo site_url() ?>pembayaran" method="GET">
-                    <div class="col-xs-12 col-md-12 col-sm-12 " >
-                        <h5>
-                            <span class="heading-color"> Penuhi kebutuhan listrik kamu di sini.</span>
-                        </h5><br>
-                        <div class="control-group">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="show" name="customRadio" class="custom-control-input" value="pra" checked="">
-                                    <label class="custom-control-label" for="show">Prabayar</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="hide" name="customRadio" class="custom-control-input" value="pasca">
-                                    <label class="custom-control-label" for="hide">Pascabayar</label>
-                                </div>
-                            </div>
-                        </div><br>
+        <!-- Main Container -->
+        <form action="<?php echo site_url() ?>pembayaran" method="GET">
+            <div class="col-xs-12 col-md-12 col-sm-12 " >
+                <h5>
+                    <h4 class="heading-color"> Penuhi kebutuhan listrik kamu di sini.</h4>
+                </h5><br>
+                <div class="control-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="show" name="customRadio" class="custom-control-input" value="pra" checked="">
+                            <label class="custom-control-label" for="show">Prabayar</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="hide" name="customRadio" class="custom-control-input" value="pasca">
+                            <label class="custom-control-label" for="hide">Pascabayar</label>
+                        </div>
+                    </div>
+                </div><br>
 
-                            <label class="control-label" for="nomor">Nomor Meter/ID Pelanggan</label>
-                            <div class="controls">
-                                <div class="input-prepend">
-                                    <input class="span4 nomor-input form-control" id="nomor" nama="nomor" type="text"><br>
-                                </div>
+                    <label class="control-label" for="nomor">Nomor Meter/ID Pelanggan</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <input class="span4 nomor-input form-control" id="nomor" nama="nomor" type="text"><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12 col-sm-12">
+                <!-- pulsa-->
+                <div id="nominal">
+                    <div class="container">
+                        <div class="row clients-space">
+                            <div class="col-md-3 col-xs-3 col-sm-3">
+                                <span class="nominal-1"  ><h4> 25.000</h4></span><br>
+                                <span class="nominal-1"  ><h4> 40.000</h4></span>
+                            </div>
+
+                            <div class="col-md-3 col-xs-3 col-sm-3">
+                                <span class="nominal-1"  ><h4> 50.000</h4></span><br>
+                                <span class="nominal-1"  ><h4> 100.000</h4></span>
+                            </div>
+
+                            <div class="col-md-3 col-xs-3 col-sm-3">
+                                <span class="nominal-1"  ><h4> 150.000</h4></span><br>
+                                <span class="nominal-1"  ><h4> 200.000</h4></span>
+                            </div>
+
+                            <div class="col-md-3 col-xs-3 col-sm-3">
+                                <span class="nominal-1 text-center"  ><h4> 300.000</h4></span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xs-12 col-md-12 col-sm-12">
-                        <!-- pulsa-->
-                        <div id="nominal">
-                            <div class="container">
-                                <div class="row clients-space">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <span class="nominal-1"  ><h4> 25.000</h4></span><br>
-                                        <span class="nominal-1"  ><h4> 40.000</h4></span>
-                                    </div>
-
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <span class="nominal-1"  ><h4> 50.000</h4></span><br>
-                                        <span class="nominal-1"  ><h4> 100.000</h4></span>
-                                    </div>
-
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <span class="nominal-1"  ><h4> 150.000</h4></span><br>
-                                        <span class="nominal-1"  ><h4> 200.000</h4></span>
-                                    </div>
-
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <span class="nominal-1 text-center"  ><h4> 300.000</h4></span>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+            </div> 
+            
+            <!-- tombol beli -->
+            <div class="col-xs-12 col-md-12 col-sm-12"> 
+                <div class="control-group pull-right">
+                    <div class="controls">
+                        <div class="input-prepend text-right"><br>
+                            <button id="beli" type="submit" class="btn btn-info ">Beli Token</button>
+                            <button  id="tagihan" visibility type="submit" class="btn btn-info ">Bayar Tagihan</button>
                         </div>
-                    </div> 
-                    
-                    <input id="tipe" name="tipe" type="hidden" value="pulsa">
-                    <input id="nomortelpon" name="nomortelpon" type="hidden">
-                    
-                    <!-- tombol beli -->
-                    <div class="col-xs-12 col-md-12 col-sm-12"> 
-                        <div class="control-group pull-right">
-                            <div class="controls">
-                                <div class="input-prepend text-right"><br>
-                                    <button id="beli" type="submit" class="btn btn-info ">Beli Token</button>
-                                    <button  id="tagihan" visibility type="submit" class="btn btn-info ">Bayar Tagihan</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                    <!-- tombol beli end -->
-                </form>
-        </div>
+                    </div>
+                </div>
+            </div>  
+            <!-- tombol beli end -->
+        </form>
     </div>
 </div>
 

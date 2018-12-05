@@ -104,59 +104,56 @@
 
 
 <div class="card">
-  <div class="cardd-body"></div>
-</div>
-
-<div class="card">
     <div class="card-body">
-        <!-- Home Banner 1 End -->
-        <!-- Main Content Area -->
-        <div class="container">
-            <!-- Main Container -->
-                <form action="<?php echo site_url() ?>pembayaran" method="GET">
-                    <div class="col-xs-12 col-md-12 col-sm-12 " >
-                        <h5>Bayar tagihan Air PDAM kamu di sini.</h5><br>
-                        <div class="control-group">
-                            <select class="select2 form-control custom-select" style="width: 50%; height:36px;">
-                                <option>Area</option>
-                                <optgroup label="DKI Jakarta">
-                                    <option value="AK">PDAM AETRA</option>
-                                    <option value="HI">PDAM Aetra Jakarta</option>
-                                    <option value="HI">PDAM PALYJA</option>
-                                </optgroup>
-                                <optgroup label="Bali">
-                                    <option value="CA">PDAM Kab Badung</option>
-                                    <option value="NV">PDAM Kab Buleleng</option>
-                                    <option value="OR">PDAM Kab Klungkung</option>
-                                    <option value="WA">PDAM Kota Denpasar</option>
-                                </optgroup>
-                            </select><br><br>
+        <!-- Main Container -->
+        <form action="<?php echo site_url() ?>pembayaran" method="GET">
+            <div class="col-xs-12 col-md-12 col-sm-12 " >
+                <h4>Bayar tagihan Air PDAM kamu di sini.</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="m-t-20">Area</label><br>
+                        <select class="select2 form-control custom-select">
+                            <option>Area</option>
+                            <optgroup label="DKI Jakarta">
+                                <option value="AK">PDAM AETRA</option>
+                                <option value="HI">PDAM Aetra Jakarta</option>
+                                <option value="HI">PDAM PALYJA</option>
+                            </optgroup>
+                            <optgroup label="Bali">
+                                <option value="CA">PDAM Kab Badung</option>
+                                <option value="NV">PDAM Kab Buleleng</option>
+                                <option value="OR">PDAM Kab Klungkung</option>
+                                <option value="WA">PDAM Kota Denpasar</option>
+                            </optgroup>
+                        </select>
+                    </div>
 
-                            <label class="control-label" for="nomor">Nomor Pelanggan</label>
-                            <div class="controls">
-                                <div class="input-prepend">
-                                    <input class="span4 nomor-input form-control" id="nomor" nama="nomor" type="text"><br>
-                                </div>
+                    <div class="col-md-6"><br>
+                        <label class="control-label" for="nomor">Nomor Pelanggan</label>
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <input class="span4 nomor-input form-control" id="nomor" nama="nomor" type="text"><br>
                             </div>
                         </div>
                     </div>
-                    
-                    <input id="tipe" name="tipe" type="hidden" value="pulsa">
-                    <input id="nomortelpon" name="nomortelpon" type="hidden">
-                    
-                    <!-- tombol beli -->
-                    <div class="col-xs-12 col-md-12 col-sm-12"> 
-                        <div class="control-group pull-right">
-                            <div class="controls">
-                                <div class="input-prepend text-right"><br>
-                                    <button visibility type="submit" class="btn btn-info ">Bayar Air PDAM</button>
-                                </div>
-                            </div>
+                </div>
+            </div>
+            
+            <input id="tipe" name="tipe" type="hidden" value="pulsa">
+            <input id="nomortelpon" name="nomortelpon" type="hidden">
+            
+            <!-- tombol beli -->
+            <div class="col-xs-12 col-md-12 col-sm-12"> 
+                <div class="control-group pull-right">
+                    <div class="controls">
+                        <div class="input-prepend text-right"><br>
+                            <button visibility type="submit" class="btn btn-info ">Bayar Air PDAM</button>
                         </div>
-                    </div>  
-                    <!-- tombol beli end -->
-                </form>
-        </div>
+                    </div>
+                </div>
+            </div>  
+            <!-- tombol beli end -->
+        </form>
     </div>
 </div>
 
