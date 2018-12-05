@@ -49,7 +49,7 @@
 										<th class='cart-header-item' style="width: 10px;">Aksi</th>
 									</tr>
 								</thead>
-								<tbody class='cart-list'>
+								<tbody class='cart-list' id="memberDetailCard">
 									<?php
 									// print_r($keranjang);
 									$j=0;
@@ -134,7 +134,7 @@
 										</td>
 										<td class='cart-item-block'>
 											<strong class='cart-item-value'>
-												<span class='cart-item-label' id="itemLabel">
+												<span class='cart-item-label' id="card-total<?php echo $ker->cartID ?>">
 													<?php 
 														$total = $ker->quantity*$ker->salePrice;
 														echo "Rp".number_format(($total),0,",",".");
@@ -174,7 +174,7 @@
 									</div>
 								</div>
 								<div class="col-lg-2">
-									<div class="text-right">
+									<div class="text-right" id="paid">
 										<h6 style="font-size: 20px;"> <?php echo "&nbsp;".number_format(($sub_total),0,",","."); ?> </h6>
 										<h6 style="font-size: 20px;"> <?php echo "&nbsp".number_format(($total_diskon),0,",","."); ?> </h6>
 										<h6 style="font-size: 20px;"> <?php $grand_total = $sub_total-$total_diskon; echo "&nbsp".number_format(($grand_total),0,",","."); ?> </h6>
@@ -209,6 +209,7 @@
 <script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
 <script>
     $(function (){
+    	var memberID = $('#memberIDs').val();
         $(".ccount_m").click(function (){
             var btnID = '#' + $(this).attr('id');
             var fnID = btnID.replace('#count_m','');
@@ -221,6 +222,12 @@
 	        	$('#cquantity'+fnID).fadeOut(300, function(){
 					$('#cquantity'+fnID).load("<?php echo base_url();?>Cart/get_cart_quantity/"+fnID).fadeIn().delay(1000);
 					// $('#itemLabel').html("<?php echo site_url();?>MemberC/beli_barang/ #itemLabel").fadeIn().delay(1000);
+				});
+				$('#card-total'+fnID).fadeOut(300, function(){
+					$('#card-total'+fnID).load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #card-total"+fnID).fadeIn().delay(1000);
+				});
+				$('#paid').fadeOut(300, function(){
+					$('#paid').load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #paid").fadeIn().delay(1000);
 				});
 				// $('#cquantity'+fnID).load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID+" #cquantity"+fnID);
 				// $('#cquantity'+fnID).replaceWith("");
@@ -247,6 +254,12 @@
 	        request.done(function( msg ) {
 	        	$('#cquantity'+fnID).fadeOut(300, function(){
 					$('#cquantity'+fnID).load("<?php echo base_url();?>Cart/get_cart_quantity/"+fnID).fadeIn().delay(1000);
+				});
+				$('#card-total'+fnID).fadeOut(300, function(){
+					$('#card-total'+fnID).load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #card-total"+fnID).fadeIn().delay(1000);
+				});
+				$('#paid').fadeOut(300, function(){
+					$('#paid').load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #paid").fadeIn().delay(1000);
 				});
 				// alert('Success');
 	            // return;
