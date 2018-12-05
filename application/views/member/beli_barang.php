@@ -105,7 +105,7 @@
 										<td class='cart-item-block cart-item-info cart-item-quantity'>
 											<div class="btn-group">
 											    <button type="button" class="btn btn-info ccount_m" id="count_m<?php echo $ker->cartID ?>">-</button>
-											    <span class="btn col-md-6" id="cquantity<?php echo $ker->cartID ?>" style="background: #FFF;"><?php echo $ker->quantity ?></span>
+											    <span class="btn col-md-6 qtt" id="cquantity<?php echo $ker->cartID ?>" style="background: #FFF;"><?php echo $ker->quantity ?></span>
 											    <!-- <input type="text" class="btn col-md-2" id="cquantity<?php echo $ker->cartID ?>" value="<?php echo $ker->quantity ?>"> -->
 											    <button type="button" class="btn btn-info ccount_p" id="count_p<?php echo $ker->cartID ?>">+</button>
 											</div>
@@ -210,6 +210,15 @@
 <script>
     $(function (){
     	var memberID = $('#memberIDs').val();
+		$('.qtt').each(function() {
+			var btnID = $(this).attr('id').replace('cquantity','count_m');
+			if ($(this).text()=='1') {
+				$('#'+btnID).prop('disabled', true);
+			}else{
+				$('#'+btnID).prop('disabled', false);
+			}
+			// console.log($(this).text()+" <br> "+$(this).attr('id'))
+		})
         $(".ccount_m").click(function (){
             var btnID = '#' + $(this).attr('id');
             var fnID = btnID.replace('#count_m','');
