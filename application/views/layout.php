@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/extra-libs/prism/prism.css">
 
 
     <!-- This page plugin CSS -->
@@ -587,6 +588,7 @@
                         <script src="<?php echo base_url()?>assets/extra-libs/DataTables/datatables.min.js"></script>
 
                         <script src="<?php echo base_url()?>assets/dist/js/pages/datatable/datatable-basic.init.js"></script>
+                        <script src="<?php echo base_url()?>assets/extra-libs/prism/prism.js"></script>
 
                         
                         <script src="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
