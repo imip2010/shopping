@@ -49,8 +49,11 @@
                                         <h5 class="card-title">18.000</h5>
                                         <h5 class="card-title">3.518.000</h5>
                                     </div>
+                                    <div>
+                                        <a href="<?php echo site_url('CobaC/metodepembayaran')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a> 
+                                        <a href="<?php echo site_url('CobaC/metodepembayaran')?>"><span class="text-right"> Gunakan Kode Voucher ? </span></a>
+                                    </div> 
                                 </div>
-                                <a href="javascript:void(0)" class="btn btn-info">Lanjut Pembayaran</a>
                             </div>
                         </div>
                     </div>
