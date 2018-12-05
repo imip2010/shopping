@@ -106,7 +106,7 @@
 											<div class="btn-group">
 											    <button type="button" class="btn btn-info ccount_m" id="count_m<?php echo $ker->cartID ?>">-</button>
 											    <span class="btn col-md-6 qtt" id="cquantity<?php echo $ker->cartID ?>" style="background: #FFF;"><?php echo $ker->quantity ?></span>
-											    <!-- <input type="text" class="btn col-md-2" id="cquantity<?php echo $ker->cartID ?>" value="<?php echo $ker->quantity ?>"> -->
+											    <input type="hidden" class="btn col-md-2" id="cqty<?php echo $ker->cartID ?>" value="<?php echo $ker->qty ?>">
 											    <button type="button" class="btn btn-info ccount_p" id="count_p<?php echo $ker->cartID ?>">+</button>
 											</div>
 											<!-- <div class='form-increment'>
@@ -210,11 +210,21 @@
     $(function (){
     	var memberID = $('#memberIDs').val();
 		$('.qtt').each(function() {
-			var btnID = $(this).attr('id').replace('cquantity','count_m');
-			if ($(this).text()=='1') {
-				$('#'+btnID).prop('disabled', true);
+			var btnIDm = $(this).attr('id').replace('cquantity','count_m');
+			var btnIDp = $(this).attr('id').replace('cquantity','count_p');
+			var cartID = $(this).attr('id').replace('cquantity','');
+			// console.log($('#cqty'+cartID).val());
+			// console.log(parseInt($(this).text()))
+			// console.log(parseInt($('#cqty'+cartID).val()))
+			if(parseInt($(this).text())>parseInt($('#cqty'+cartID).val())-1){
+				$('#'+btnIDp).prop('disabled', true);
 			}else{
-				$('#'+btnID).prop('disabled', false);
+				$('#'+btnIDp).prop('disabled', false);
+			}
+			if ($(this).text()=='1') {
+				$('#'+btnIDm).prop('disabled', true);
+			}else{
+				$('#'+btnIDm).prop('disabled', false);
 			}
 			// console.log($(this).text()+" <br> "+$(this).attr('id'))
 		})
@@ -238,6 +248,7 @@
 					$('#paid').load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #paid").fadeIn().delay(1000);
 				});
 				if ($('#cquantity'+fnID).text()=='2') {$('#count_m'+fnID).prop('disabled', true);}
+				if (parseInt($('#cquantity'+fnID).text())<parseInt($('#cqty'+fnID).val())+1) {$('#count_p'+fnID).prop('disabled', false);}
 				// $('#cquantity'+fnID).load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID+" #cquantity"+fnID);
 				// $('#cquantity'+fnID).replaceWith("");
 				// alert(msg);
@@ -271,6 +282,7 @@
 					$('#paid').load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #paid").fadeIn().delay(1000);
 				});
 				if ($('#cquantity'+fnID).text()>'0') {$('#count_m'+fnID).prop('disabled', false);}
+				if (parseInt($('#cquantity'+fnID).text())>parseInt($('#cqty'+fnID).val())-2) {$('#count_p'+fnID).prop('disabled', true);}
 			});
 	        request.fail(function(jqXHR, textStatus) {
 	            alert( "Request failed: " + textStatus );
