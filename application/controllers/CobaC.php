@@ -90,7 +90,7 @@ class CobaC extends CI_Controller {
 		$this->data['isi'] = $this->load->view('BpjsV', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
 	}
-
+  
 	public function detail(){
 		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');
