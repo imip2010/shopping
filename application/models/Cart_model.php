@@ -43,4 +43,34 @@ class Cart_model extends CI_Model{
 			echo "tidak ditemukan";
 		}
 	}
+
+	//tambah kuantitas
+	public function count_p($cartID){
+		$this->db->set('quantity','quantity+1', FALSE);
+		$this->db->where('cartID',$cartID);
+		$this->db->update('carts');
+	}
+
+	//kurangi kuantitas
+	public function count_m($cartID){
+		$this->db->set('quantity','quantity-1', FALSE);
+		$this->db->where('cartID',$cartID);
+		$this->db->update('carts');
+	}
+
+	public function get_quantity($memberID,$cartID)
+	{
+		$this->db->select('quantity');
+		$this->db->from('carts C');
+		$this->db->join('products P','C.productID = P.productID');
+		$this->db->join('members M','C.memberID = M.memberID');
+		$this->db->where('C.memberID', $memberID);
+		$this->db->where('C.cartID', $cartID);
+		$query = $this->db->get();
+		if($query){
+			return $query->row()->quantity;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
 }
