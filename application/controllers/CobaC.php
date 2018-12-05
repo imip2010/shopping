@@ -31,16 +31,6 @@ class CobaC extends CI_Controller {
 		$this->load->view('layout', $this->data);
 	}
 	
-	public function kereta()
-	{
-		$this->data['dataDiri'] = $this->session->userdata();
-		$this->data['logged_in'] = $this->session->userdata('logged_in');
-		$this->data['isi'] = 'isi';
-		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
-		$this->data['isi'] = $this->load->view('KeretaV', $this->data, TRUE);
-		$this->load->view('layout', $this->data);
-	}
-	
 	public function listrik()
 	{
 		$this->data['dataDiri'] = $this->session->userdata();
@@ -60,6 +50,37 @@ class CobaC extends CI_Controller {
 		$this->data['isi'] = $this->load->view('PdamV', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
 	}
+	
+	public function kereta()
+	{
+		$this->data['dataDiri'] = $this->session->userdata();
+		$this->data['logged_in'] = $this->session->userdata('logged_in');
+		$this->data['isi'] = 'isi';
+		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['isi'] = $this->load->view('KeretaV', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
+	
+	public function pesawat()
+	{
+		$this->data['dataDiri'] = $this->session->userdata();
+		$this->data['logged_in'] = $this->session->userdata('logged_in');
+		$this->data['isi'] = 'isi';
+		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['isi'] = $this->load->view('PesawatV', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
+	
+	public function bpjs()
+	{
+		$this->data['dataDiri'] = $this->session->userdata();
+		$this->data['logged_in'] = $this->session->userdata('logged_in');
+		$this->data['isi'] = 'isi';
+		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['isi'] = $this->load->view('BpjsV', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
+  
 	public function detail(){
 		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');
