@@ -229,6 +229,7 @@
 				$('#paid').fadeOut(300, function(){
 					$('#paid').load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #paid").fadeIn().delay(1000);
 				});
+				if ($('#cquantity'+fnID).text()=='2') {$('#count_m'+fnID).prop('disabled', true);}
 				// $('#cquantity'+fnID).load("<?php echo site_url('MemberC/beli_barang/');?>"+memberID+" #cquantity"+fnID);
 				// $('#cquantity'+fnID).replaceWith("");
 				// alert(msg);
@@ -261,8 +262,7 @@
 				$('#paid').fadeOut(300, function(){
 					$('#paid').load("<?php echo base_url();?>MemberC/beli_barang/"+memberID+" #paid").fadeIn().delay(1000);
 				});
-				// alert('Success');
-	            // return;
+				if ($('#cquantity'+fnID).text()>'0') {$('#count_m'+fnID).prop('disabled', false);}
 			});
 	        request.fail(function(jqXHR, textStatus) {
 	            alert( "Request failed: " + textStatus );
