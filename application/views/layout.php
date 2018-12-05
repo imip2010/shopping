@@ -342,8 +342,6 @@
                                         <p class=" m-b-0"><?php echo $dataDiri['email'];?></p>
                                     </div>
                                 </div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-home m-r-5 m-l-5"></i>Toko Saya</a>
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-wallet m-r-5 m-l-5"></i> Saldo Saya Rp. 20.000</a>
                                         <div class="dropdown-divider"></div>
@@ -606,6 +604,8 @@
                         // MAterial Date picker    
                         $('#pergi').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
                         $('#pulang').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+                        $('#checkin').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+                        $('#checkout').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
                         $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
                         $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
 
