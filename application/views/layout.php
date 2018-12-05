@@ -22,6 +22,8 @@
     <link href="<?php echo base_url()?>assets/dist/css/pulsa.css" rel="stylesheet">
     <!-- This Page CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
 
 
     <!-- This page plugin CSS -->
@@ -587,6 +589,34 @@
                         <script src="<?php echo base_url()?>assets/extra-libs/DataTables/datatables.min.js"></script>
 
                         <script src="<?php echo base_url()?>assets/dist/js/pages/datatable/datatable-basic.init.js"></script>
+
+                        
+                        <script src="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+                        <script src="<?php echo base_url()?>assets/libs/moment/moment.js"></script>
+                        <script src="<?php echo base_url()?>assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js"></script>
+                        
+                        <script>
+                            //==================================================//
+                            //                  Normal Touchspin                //
+                            //==================================================//
+                            $("input[name='demo3']").TouchSpin();
+                        </script>
+
+                        <script>
+                        // MAterial Date picker    
+                        $('#pergi').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+                        $('#pulang').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+                        $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
+                        $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
+
+                        $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+                        $('#date-fr').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', lang: 'fr', weekStart: 1, cancelText: 'ANNULER' });
+                        $('#date-end').bootstrapMaterialDatePicker({ weekStart: 0 });
+                        $('#date-start').bootstrapMaterialDatePicker({ weekStart: 0 }).on('change', function(e, date) {
+                            $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+                        });
+                        </script>
+    
                         <script type="text/javascript">
                             $(document).ready(function() {
                                 $('#mytable').DataTable();
