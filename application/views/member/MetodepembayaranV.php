@@ -1,3 +1,20 @@
+<?php
+$sub_total = 0;
+$total_diskon = 0;
+foreach ($keranjang as $ker) {
+    if($ker->discount != 0){
+        $diskon_harga = ($ker->discount/100*$ker->salePrice)*$ker->quantity;
+        $harga = $ker->price;
+    }else{
+        $harga = $ker->price;
+        $diskon_harga = 0;
+    }
+    $total = $ker->quantity*$ker->salePrice;
+    $sub_total = $sub_total+$total;
+    $total_diskon = $total_diskon+$diskon_harga;
+}
+// print_r($keranjang); 
+?>
 <div class="card">
 	<div class='card-body'>
 		<div class='container_page'>
@@ -8,14 +25,17 @@
                         <label class="m-t-20">Pilih Kurir :</label><br>
                         <select class="select2 form-control custom-select" >
                             <option>Pilih Kurir </option>
-                            <option value="AK">JNE Reg (2-3 hari kerja)</option>
-                            <option value="AK">JNT Reg (2-3 hari kerja)</option>
-                            <option value="AK">JNE ekspress</option>
-                            <option value="AK">Pos</option>
+                            <?php
+                                foreach ($kurirs as $kurir) {
+                                    ?>
+                                    <option value="<?php echo $kurir->courierID;?>"><?php echo $kurir->courierName;?></option>
+                                    <?php
+                                }
+                            ?>
                         </select><br>
 
                         <label class="m-t-20">Catatan Tambahan :</label><br>
-                        <textarea class="form-control" maxlength="200" style="height: 150px;"></textarea>
+                        <textarea class="form-control" maxlength="200" style="height: 150px;" name="note" id="note"></textarea>
                         <p class="text-right">200 karakter</p>
                         
                         <div class="card border-info">
@@ -55,10 +75,13 @@
                                     <label class="m-t-20">Pilih Bank</label><br>
                                     <select class="select2 form-control custom-select">
                                         <option>Pilih Bank</option>
-                                            <option value="AK">BNI (112345678)</option>
-                                            <option value="HI">BRI (098765432)</option>
-                                            <option value="HI">Mandiri (345672342)</option>
-                                            <option value="CA">BCA (234568809)</option>
+                                            <?php
+                                                foreach ($banks as $bank) {
+                                                    ?>
+                                                    <option value="<?php echo $bank->bankID;?>"><?php echo $bank->bankName." (".$bank->noRek.") - ".$bank->atasNama;?></option>
+                                                    <?php
+                                                }
+                                            ?>
                                     </select>
                                 </div>
                             </div>
@@ -74,13 +97,14 @@
                                         <h5 class="card-title">Total Belanja</h5>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <h5 class="card-title">3.500.000</h5>
-                                        <h5 class="card-title">18.000</h5>
-                                        <h5 class="card-title">3.518.000</h5>
+                                        <h5 class="card-title"><?php echo "&nbsp;".number_format(($sub_total),0,",","."); ?></h5>
+                                        <h5 class="card-title"><?php echo "&nbsp".number_format(($total_diskon),0,",","."); ?></h5>
+                                        <h5 class="card-title"><?php $grand_total = $sub_total-$total_diskon; echo "&nbsp".number_format(($grand_total),0,",","."); ?></h5>
                                     </div>
                                     <div>
-                                        <a href="<?php echo site_url('CobaC/pembayaran')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a> 
-                                        <a href="<?php echo site_url('CobaC/pembayaran')?>"><span class="text-right"> Gunakan Kode Voucher ? </span></a>
+                                        <a href="<?php echo site_url('CobaC/metodepembayaran')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a> 
+                                        <a href="<?php echo site_url('CobaC/metodepembayaran')?>"><span class="text-right"> Gunakan Kode Voucher ? </span></a><br><br>
+                                        <a href="<?php echo site_url('/bayar')?>" class="btn btn-danger" style="width: 250px;">Dummy Bayar</a> 
                                     </div> 
                                 </div>
                             </div>
@@ -95,7 +119,8 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
 
 <script>
 $(document).ready(function(){

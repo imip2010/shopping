@@ -18,7 +18,20 @@ class CheckoutM extends CI_model
 		if($query){
 			return $query;
 		}else{
-			echo "tidak ada produk terpopuler";
+			echo "kosong";
+		}
+	}
+
+	//mengambil data bank
+	public function get_bank(){
+		$this->db->select('*');
+		$this->db->from('bank');
+		$this->db->order_by('bankID', 'ASC');
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "kosong";
 		}
 	}
 
@@ -35,7 +48,7 @@ class CheckoutM extends CI_model
 		if($query){
 			return $query;
 		}else{
-			echo "tidak ditemukan";
+			echo "kosong";
 		}
 	}
 }

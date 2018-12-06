@@ -64,7 +64,7 @@ $route['beli_barang/(:num)'] = 'MemberC/beli_barang/$1';
 //Pembayaran
 $route['tagihan'] = 'CheckoutC/index';
 $route['seller_detail'] = 'CheckoutC/get_seller';
-$route['pesanan'] = 'CheckoutC/add_to_orders';
+$route['bayar'] = 'CheckoutC/add_to_orders';
 
 //Member
 $route['pengaturan_profile']	= 'MemberC/pengaturan_profile';

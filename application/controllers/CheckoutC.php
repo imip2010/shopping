@@ -23,12 +23,13 @@ class CheckoutC extends CI_Controller {
         //ambil barang di keranjang
         $this->data['keranjang'] = $lele = $this->MemberM->get_keranjang_by_id($this->session->memberID)->result();
         $this->data['kurirs'] = $this->CheckoutM->get_courier()->result();
+        $this->data['banks'] = $this->CheckoutM->get_bank()->result();
         if(count($lele) == 0){
             $this->session->set_flashdata('error_keranjang','Keranjang anda masih kosong !');
             redirect('HomeC');
         }else{
             $this->data['isi'] = 'isi';
-            $this->data['isi'] = $this->load->view('member/TagihanV', $this->data, TRUE);
+            $this->data['isi'] = $this->load->view('member/MetodepembayaranV', $this->data, TRUE);
             $this->load->view('layout', $this->data);
         }
     }
@@ -79,5 +80,7 @@ class CheckoutC extends CI_Controller {
             $this->OrderM->add_to_order_detail($data_order_detail);
             // print_r($data_order_detail);
         }
+
+        
     }
 }
