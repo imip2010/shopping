@@ -187,8 +187,7 @@
 					</div>
 
 					<div class='cart-actions text-right'>
-						<input type="submit" name="submit" value="Proses Checkout" class='btn btn-info btn-lg'>
-						</a>
+						<a class="btn default btn-info" href="<?php echo site_url('CobaC/metodepembayaran ')?>">Proses Checkout</a>
 					</div>
 					<br>
 					<!-- snippet location cart -->
