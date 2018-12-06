@@ -7,6 +7,7 @@ class CheckoutC extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model(['Cart_model','HomeM','MemberM','CheckoutM','OrderM']);
+        $this->load->helper('string');
 		//in_access(); //helper buat batasi akses login/session
 	}
 
@@ -45,7 +46,7 @@ class CheckoutC extends CI_Controller {
         $arrLength = count($cek);
 
         $data_order = array(
-            'invoice'       => 'ZSN12312312312312', 
+            'invoice'       => 'AN'.random_string('numeric', 15), 
             'statusOrder'   => 'Pending', 
             'dateOrder'     => date('Y-m-d H:i:s'), 
             'pendingOrder'  => '1', 
@@ -60,7 +61,7 @@ class CheckoutC extends CI_Controller {
             'photo'         => 'xxxxxxxx.jpg', 
             'dibaca'        => 'N', 
             'rate'          => 0, 
-            'catatan'       => '', 
+            'catatan'       => $this->input->post('catatan'), 
             'resi'          => 'JNE12312312312312312', 
         );
         $orderID = $this->OrderM->add_to_orders($data_order);
@@ -77,10 +78,14 @@ class CheckoutC extends CI_Controller {
                 'discount'  => $data->discount, 
                 'price'     => $total[$key], 
             );
-            $this->OrderM->add_to_order_detail($data_order_detail);
+            $stored = $this->OrderM->add_to_order_detail($data_order_detail);
             // print_r($data_order_detail);
         }
 
-        
+        if (!empty($stored)) {
+            redirect('/transaksi');
+        }else{
+            redirect('/beli_barang'.$this->session->memberID);
+        }
     }
 }

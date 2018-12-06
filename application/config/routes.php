@@ -71,3 +71,4 @@ $route['pengaturan_profile']	= 'MemberC/pengaturan_profile';
 $route['jual_barang'] 			= 'MemberC/jual_barang';
 $route['daftar_barang'] 		= 'MemberC/daftar_barang';
 $route['labelbarang'] 			= 'CobaC/label_barang';
+$route['transaksi'] 			= 'MemberC/get_transaksi';
