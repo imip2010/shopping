@@ -187,7 +187,7 @@
 					</div>
 
 					<div class='cart-actions text-right'>
-						<a class="btn default btn-info" href="<?php echo site_url('CobaC/metodepembayaran ')?>">Proses Checkout</a>
+						<a class="btn default btn-info" href="<?php echo site_url('/tagihan ')?>">Proses Checkout</a>
 					</div>
 					<br>
 					<!-- snippet location cart -->

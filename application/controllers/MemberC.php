@@ -632,6 +632,11 @@ class MemberC extends CI_Controller {
 
         }
     }
+
+    public function get_transaksi()
+    {
+        echo "Sukses melakukan pembayaran -> Tabel daftar transaksi";
+    }
 }
 
 
