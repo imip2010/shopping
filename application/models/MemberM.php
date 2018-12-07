@@ -326,6 +326,20 @@ class MemberM extends CI_Model{
 		}
 	}
 
+	//ambil alamat utama
+	public function get_default_address($id){
+		$this->db->select('*');
+		$this->db->from('shipping_address A');
+		$this->db->where('A.status_alamat', "default");
+		$this->db->where('A.memberID', $id);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
 	// hapus alamat
 	public function hapus_alamat($shipping_addressID){
 		$this->db->where('shipping_addressID', $shipping_addressID);

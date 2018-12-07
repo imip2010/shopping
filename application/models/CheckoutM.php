@@ -51,5 +51,38 @@ class CheckoutM extends CI_model
 			echo "kosong";
 		}
 	}
+
+	public function get_ongkir($kurir)
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "POST",
+		CURLOPT_POSTFIELDS => "origin=160&destination=500&weight=1700&courier=".$kurir,
+		CURLOPT_HTTPHEADER => array(
+		    "cache-control: no-cache",
+		    "content-type: application/x-www-form-urlencoded",
+		    "key: 966efb3eebb5d1bb9fa6fbaecdc4c967",
+		    "postman-token: 00066086-b0eb-4ef8-cebb-c6ee5b54cede"
+		),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+		  echo "cURL Error #:" . $err;
+		} else {
+		  echo $response;
+		}
+	}
 }
 ?>

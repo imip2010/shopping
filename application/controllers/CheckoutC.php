@@ -43,7 +43,6 @@ class CheckoutC extends CI_Controller {
     public function add_to_orders()
     {
         $cek = $this->CheckoutM->get_seller_detail()->result();
-        $arrLength = count($cek);
 
         $data_order = array(
             'invoice'       => 'AN'.random_string('numeric', 15), 
@@ -87,5 +86,22 @@ class CheckoutC extends CI_Controller {
         }else{
             redirect('/beli_barang'.$this->session->memberID);
         }
+    }
+
+    public function get_ongkir($kurir)
+    {
+        $data = $this->CheckoutM->get_ongkir($kurir);
+        print_r($data);
+        // $cek = $this->CheckoutM->get_seller_detail()->result();
+
+
+        // print_r($this->MemberM->get_default_address(3)->result());
+
+        // foreach ($cek as $key => $value) {
+            
+        //     $sellerAdd = $this->MemberM->get_shipping_address_utama($value->sellerID)
+        //     print_r($sellerAdd);
+        // }
+        // echo $data;
     }
 }
