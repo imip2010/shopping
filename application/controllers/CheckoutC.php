@@ -88,6 +88,17 @@ class CheckoutC extends CI_Controller {
         }
     }
 
+    public function cek_ongkir()
+    {
+        $data = $this->CheckoutM->get_courier()->result();
+        $count_data = count($data);
+        // print_r($data);
+        foreach ($data as $key => $kurir) {
+            $ongkir = $this->CheckoutM->cek_ongkir($kurir->courierName);
+            print_r($ongkir);
+        }
+    }
+
     public function get_ongkir($kurir)
     {
         $data = $this->CheckoutM->get_ongkir($kurir);

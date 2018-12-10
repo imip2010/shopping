@@ -627,6 +627,7 @@
                                 $('#detail_cart').load("<?php echo base_url();?>Cart/show_cart");
                                 // Load number of shopping cart
                                 $('#lblCartCount').load("<?php echo base_url();?>Cart/cart_count");
+                                $('#tabel_cek_ongkir').load("<?php echo base_url();?>HomeC/cek_ongkir/");
                             });
                         </script>
 <!--                         <script>
