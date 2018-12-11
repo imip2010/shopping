@@ -66,6 +66,7 @@ $route['tagihan'] = 'CheckoutC/index';
 $route['seller_detail'] = 'CheckoutC/get_seller';
 $route['bayar'] = 'CheckoutC/add_to_orders';
 $route['biaya/(:any)'] = 'CheckoutC/get_ongkir/$1';
+$route['cek_ongkir/(:num)/(:num)'] = 'HomeC/cek_ongkir/$1/$2';
 
 //Member
 $route['pengaturan_profile']	= 'MemberC/pengaturan_profile';

@@ -74,6 +74,12 @@
                     </ul> -->
                 </div>
 
+                <!-- <form method="POST" action="" id="cek_ongkir">
+                    <input type="text" name="origin" id="origin" value="<?php echo $detail_produk->id_kabupaten_kota?>">
+                    <input type="text" name="destination" id="destination">
+                    <button type="submit">CEK</button>
+                </form> -->
+
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <ul class="nav nav-pills m-t-30 m-b-30">
                         <li class=" nav-item"> <a href="#navpills-1" class="nav-link active" data-toggle="tab" aria-expanded="false">General Info</a> </li>
@@ -220,9 +226,9 @@
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <td width="390">Masukan Jumlah</td>
+                                                <td width="170">Masukkan Jumlah</td>
                                                 <td>
-                                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected" style="width: 150px;">
+                                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected" style="width: 110px;">
                                                         <span class="input-group-btn input-group-prepend"></span>
                                                         <input id="demo3" type="text" value="-1" name="demo3" class="form-control">
                                                     </div>
@@ -234,15 +240,22 @@
                                             </tr>
                                             <tr>
                                                 <td>Masukan Tujuan</td>
-                                                <td style="width: 300px">
-                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                                        <option selected>Pilih Provinsi </option>
-                                                        <option value="1">DKI Jakarta</option>
-                                                        <option value="2">Banten</option>
-                                                        <option value="3">Bengkulu</option>
-                                                    </select>
+                                                <td style="width: 200px">
+                                                    <form method="POST" action="" id="cek_ongkir">
+                                                        <input type="hidden" name="origin" id="origin" value="<?php echo $detail_produk->id_kabupaten_kota?>">
+                                                        <select class="custom-select mr-sm-2" id="destination" >
+                                                            <?php
+                                                                echo "<option selected>Kota/Kabupaten </option>";
+                                                                foreach ($kabupaten as $kab) {
+                                                                    echo "
+                                                                        <option value='".$kab->id_kabupaten_kota."'>".$kab->nama_kabupaten_kota."</option>
+                                                                    ";
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </form>
                                                 </td>
-                                                <td style="width: 555px">
+                                                <!-- <td style="width: 555px">
                                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                                         <option selected>Pilih Kota/Kabupaten </option>
                                                         <option value="1">Jakarta Pusat</option>
@@ -257,40 +270,14 @@
                                                         <option value="2">Kebayoran Lama</option>
                                                         <option value="3">Pasar Minggu</option>
                                                     </select>
-                                                </td>
+                                                </td> -->
                                                 <td style="width: 0px"></td>
                                                 <td style="width: 0px"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Estimasi ongkos ke </td>
-                                                <td></td>
-                                                <td> SERVIS </td>
-                                                <td>WAKTU PENGANTARAN</td>
-                                                <td>ONGKOS KIRIM</td>
-                                                <td>HARGA + ONGKOS KIRIM</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td><img src="<?php echo base_url()?>assets/images/jasa/jt.png" style="width: 50%;"/></td>
-                                                <td>J&T REG</td>
-                                                <td  style="width: 400px"><p style="color: red;">Tidak dijangkau pelapak</p></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td><img src="<?php echo base_url()?>assets/images/jasa/jne.png" style="width: 50%;"/></td>
-                                                <td> <p> JNE REG </p>
-                                                    <p> JNE Trucking </p> 
-                                                </td>
-                                                <td  style="width: 400px">
-                                                    <p style="color: red;">Tidak dijangkau pelapak</p>
-                                                    <p style="color: red;">Tidak dijangkau pelapak</p>
-                                                </td>
-                                                <td></td>
-                                                <td></td>
                                             </tr>
                                         </tbody>
+                                    </table>
+
+                                    <table class="table" id="tabel_cek_ongkir">
                                     </table>
                                 </div>
                             </div>
@@ -578,5 +565,23 @@
                 }
             });
         });
+        
+        $('#destination').change(function(e) {
+            var form = $(this);
+            var originID = $('#origin').val();
+            var destinationID = $('#destination').val();
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url();?>HomeC/cek_ongkir/"+originID+"/"+destinationID,
+                success: function(data){
+                    // $('#tabel_cek_ongkir').html(data).fadeIn();
+                    $('#tabel_cek_ongkir').fadeOut(400, function() {
+                        $(this).html(data).fadeIn();
+                    });
+                },
+                error: function() { alert("Error posting feed."); }
+           });
+        });
     });
 </script>
