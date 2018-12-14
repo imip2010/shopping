@@ -612,7 +612,7 @@
                                         <tr>
                                             <td>Deskripsi Toko</td>
                                             <td> 
-                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <input type="text" name=""  class="form-control is-valid" value=" " style="display: none;" >
                                                 <div id=" ">Deskripsi toko belum diatur</div>
                                                 <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
                                             </td>
@@ -620,7 +620,7 @@
                                         <tr>
                                             <td>Batas Jam Pengiriman Barang</td>
                                             <td>
-                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;">
+                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;">
                                                 <div id=" ">Sewaktu terakhir pemesanan belum diatur</div>
                                                 <span class="text-danger" style="color: red;"><?php echo form_error('memberName'); ?></span> 
                                             </td>
@@ -634,7 +634,7 @@
                                         <tr>
                                             <td>Nomor Kontak Toko</td>
                                             <td> 
-                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;" >
                                                 <div id=" ">nomor kontak toko belum diatur</div>
                                                 <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
                                             </td>
@@ -648,7 +648,7 @@
                                         <tr>
                                             <td>Catatan Toko</td>
                                             <td> 
-                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;" >
                                                 <div id=" ">Pemilik toko belum memberikan catatan</div>
                                                 <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
                                             </td>
@@ -662,7 +662,7 @@
                                         <tr>
                                             <td>Catatan Toko</td>
                                             <td> 
-                                                <input type="text" name=" " id=" " class="form-control is-valid" value=" " style="display: none;" >
+                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;" >
                                                 <div id=" ">Pemilik toko belum memberikan catatan</div>
                                                 <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
                                             </td>
@@ -710,7 +710,7 @@
 <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <?php echo validation_errors(); ?>
-        <form action="<?php echo site_url('MemberC/post_tambah_alamat')?>" method="post">
+        <form action="<?php echo site_url('tambah_alamat')?>" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Tambah Alamat</h4>
@@ -720,7 +720,7 @@
                     <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Nama Alamat:</label>
-                        <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : aalmat rumah, alamat kantor" required>
+                        <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : alamat rumah, alamat kantor, dll" required>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">Nama Penerima</label>
@@ -753,7 +753,7 @@
                             <option>-----pilih kota-----</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                   <!--  <div class="form-group">
                         <label for="message-text" class="control-label">Kecamatan</label>
                         <select class="form-control" id="kecamatan" name="kecamatan" required>
                             <option>-----pilih kecamatan-----</option>
@@ -764,14 +764,14 @@
                         <select class="form-control" id="kelurahan" name="id_kelurahan" required>
                             <option>-----pilih kelurahan-----</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="message-text" class="control-label">Kode Pos</label>
                         <input type="number" name="kode_pos" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Batal</button>
                     <input type="submit" name="submit" class="btn btn-info" value="Simpan">
                 </div>
             </div>
@@ -951,27 +951,27 @@
             });
         });
 
-        $('#kecamatan').change(function(){
-            var kecamatan = $(this).val(); //ambil value dr kode_unit
-            // window.alert(unit);
+        // $('#kecamatan').change(function(){
+        //     var kecamatan = $(this).val(); //ambil value dr kode_unit
+        //     // window.alert(unit);
 
-            // AJAX request
-            $.ajax({
-                url:'<?=base_url()?>MemberC/get_kelurahan',
-                method: 'post',
-                data: {id_kecamatan : kecamatan}, // data post ke controller 
-                dataType: 'json',
-                success: function(response){
-                    // Remove options
-                    $('#kelurahan').find('option').not(':first').remove();
+        //     // AJAX request
+        //     $.ajax({
+        //         url:'<?=base_url()?>MemberC/get_kelurahan',
+        //         method: 'post',
+        //         data: {id_kecamatan : kecamatan}, // data post ke controller 
+        //         dataType: 'json',
+        //         success: function(response){
+        //             // Remove options
+        //             $('#kelurahan').find('option').not(':first').remove();
 
-                    // Add options
-                    $.each(response,function(daftar,data){
-                        $('#kelurahan').append('<option value="'+data['id_kelurahan']+'">'+data['nama_kelurahan']+'</option>');
-                    });
-                }
-            });
-        });
+        //             // Add options
+        //             $.each(response,function(daftar,data){
+        //                 $('#kelurahan').append('<option value="'+data['id_kelurahan']+'">'+data['nama_kelurahan']+'</option>');
+        //             });
+        //         }
+        //     });
+        // });
 
         //buat reoad ke current tab pane 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

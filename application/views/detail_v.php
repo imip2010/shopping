@@ -34,12 +34,14 @@
                         if ($d!='0'){
                             $divharga=$hargadiskon;
                             ?>
-                            <h2 class="m-t-40"><?php echo $divharga;?></h2>
+                            <h2 class="m-t-40 har"><?php echo $divharga;?></h2>
+                            <input type="hidden" name="fn_harga" id="fn_harga" value="<?php echo $detail_produk->salePrice-$disc ?>">
                             <?php
                         }else{
                           $divharga=$hargatetap;
                           ?>
                           <h2 class="m-t-40"><?php echo $divharga;?></h2>
+                            <input type="hidden" name="fn_harga" id="fn_harga" value="<?php echo $detail_produk->salePrice-$disc ?>">
                           <?php
                       } 
                       ?>
@@ -221,40 +223,52 @@
 
 
                         <div id="navpills-2" class="tab-pane">
+                            <input type="hidden" name="weight" id="weight" value="<?php echo $detail_produk->weight?>">
                             <div class="row">
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tbody>
+                                            <form method="POST" action="" id="cek_ongkir">
                                             <tr>
                                                 <td width="170">Masukkan Jumlah</td>
                                                 <td>
                                                     <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected" style="width: 110px;">
                                                         <span class="input-group-btn input-group-prepend"></span>
-                                                        <input id="demo3" type="text" value="-1" name="demo3" class="form-control">
+                                                        <input id="demo3" type="text" value="1" name="demo3" class="form-control">
                                                     </div>
                                                 </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Masukan Tujuan</td>
                                                 <td style="width: 200px">
-                                                    <form method="POST" action="" id="cek_ongkir">
-                                                        <input type="hidden" name="origin" id="origin" value="<?php echo $detail_produk->id_kabupaten_kota?>">
-                                                        <select class="custom-select mr-sm-2" id="destination" >
-                                                            <?php
-                                                                echo "<option selected>Kota/Kabupaten </option>";
+                                                    <input type="hidden" name="origin" id="origin" value="<?php echo $detail_produk->id_kabupaten_kota?>">
+                                                    <select class="custom-select mr-sm-2" id="provinsi" >
+                                                        <?php
+                                                            echo "<option selected>Provinsi </option>";
+                                                                foreach ($provinsi as $prov) {
+                                                                    echo "
+                                                                        <option value='".$prov->id_propinsi."'>".$prov->nama_propinsi."</option>
+                                                                    ";
+                                                                }
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                                <td style="width: 200px">
+                                                    <select class="custom-select mr-sm-2" id="destination" >
+                                                        <option>Kota/Kabupaten</option>
+                                                    </select>
+                                                    <!-- <select class="custom-select mr-sm-2" id="destination" >
+                                                        <?php
+                                                            echo "<option selected>Kota/Kabupaten </option>";
                                                                 foreach ($kabupaten as $kab) {
                                                                     echo "
                                                                         <option value='".$kab->id_kabupaten_kota."'>".$kab->nama_kabupaten_kota."</option>
                                                                     ";
                                                                 }
-                                                            ?>
-                                                        </select>
-                                                    </form>
+                                                        ?>
+                                                    </select> -->
                                                 </td>
+                                                </form>
                                                 <!-- <td style="width: 555px">
                                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                                         <option selected>Pilih Kota/Kabupaten </option>
@@ -565,15 +579,61 @@
                 }
             });
         });
+
+        $('#provinsi').change(function(){
+            var id=$(this).val();
+            $.ajax({
+                url : "<?php echo base_url();?>HomeC/get_kabupaten",
+                method : "POST",
+                data : {id_provinsi: id},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+                    html += '<option value="">Kota/Kabupaten</option>';
+                    for(i=0; i<data.length; i++){
+                        html += '<option value="'+data[i].id_kabupaten_kota+'">'+data[i].nama_kabupaten_kota+'</option>';
+                    }
+                    $('#destination').html(html);
+                     
+                }
+            });
+        });
         
         $('#destination').change(function(e) {
-            var form = $(this);
+            // var form = $(this);
             var originID = $('#origin').val();
             var destinationID = $('#destination').val();
+            var weight = $('#weight').val();
+            var total = $('#demo3').val();
+            var totalWeight = weight*total;
+            var cost = $('#fn_harga').val();
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url();?>HomeC/cek_ongkir/"+originID+"/"+destinationID,
+                url: "<?php echo base_url();?>HomeC/cek_ongkir/"+originID+"/"+destinationID+"/"+totalWeight+"/"+total+"/"+cost,
+                success: function(data){
+                    // $('#tabel_cek_ongkir').html(data).fadeIn();
+                    $('#tabel_cek_ongkir').fadeOut(400, function() {
+                        $(this).html(data).fadeIn();
+                    });
+                },
+                error: function() { alert("Error posting feed."); }
+           });
+        });
+
+        $('#demo3').change(function(e) {
+            var originID = $('#origin').val();
+            var destinationID = $('#destination').val();
+            var weight = $('#weight').val();
+            var total = $('#demo3').val();
+            var totalWeight = weight*total;
+            var cost = $('#fn_harga').val();
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url();?>HomeC/cek_ongkir/"+originID+"/"+destinationID+"/"+totalWeight+"/"+total+"/"+cost,
                 success: function(data){
                     // $('#tabel_cek_ongkir').html(data).fadeIn();
                     $('#tabel_cek_ongkir').fadeOut(400, function() {
