@@ -191,10 +191,24 @@ class HomeM extends CI_model
 		return TRUE;
 	}
 
-	public function get_kabupaten()
+	public function get_provinsi()
+	{
+		$this->db->select('*');
+		$this->db->from('propinsi');
+		$this->db->order_by('nama_propinsi');
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_kabupaten($id_propinsi)
 	{
 		$this->db->select('*');
 		$this->db->from('kabupaten_kota');
+		$this->db->where('id_propinsi', $id_propinsi);
 		$this->db->order_by('id_kabupaten_kota');
 		$query = $this->db->get();
 		if($query){

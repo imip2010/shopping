@@ -40,14 +40,21 @@ class HomeC extends CI_Controller {
 		$hits_new = $hit + 1;
 		$this->HomeM->dilihat($id_produk, $hits_new);
 
-		$this->data['kabupaten'] = $this->HomeM->get_kabupaten()->result();
+		$this->data['provinsi'] = $this->HomeM->get_provinsi()->result();
 
 		$this->data['favorit'] = $this->HomeM->favorit($id_produk)->num_rows();
 		$this->data['isi'] = $this->load->view('detail_v', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
 	}
 
-	public function cek_ongkir($origin,$destination)
+	public function get_kabupaten()
+	{
+		$id_provinsi = $this->input->post('id_provinsi');
+		$data = $this->HomeM->get_kabupaten($id_provinsi)->result();
+		echo json_encode($data);
+	}
+
+	public function cek_ongkir($origin,$destination,$weight,$total,$cost)
     {
         $data = $this->CheckoutM->get_courier()->result();
         echo "
@@ -55,33 +62,43 @@ class HomeC extends CI_Controller {
 			    <tbody>
 			";
         foreach ($data as $key => $kurir) {
-            $ongkir = $this->CheckoutM->cek_ongkir($origin,$destination,$kurir->courierName);
+            $ongkir = $this->CheckoutM->cek_ongkir($origin,$destination,$weight,$kurir->courierName);
             $service = count($ongkir['rajaongkir']['results'][0]['costs']);
-            echo "
-			        <tr>
-			            <td style='border: 0px; background:#3587d8; color:#FFF' width='250'><b>".$ongkir['rajaongkir']['results'][0]['name']."</b></td>
-			            <td style='border: 0px'>
-							<tr>
-					            <td width='200' style='color: #3587d8'><b>SERVIS</b></td>
-					            <td style='color: #3587d8'><b>WAKTU PENGANTARAN</b></td>
-					            <td style='color: #3587d8'><b>ONGKOS KIRIM</b></td>
-					            <td style='color: #3587d8'><b>HARGA + ONGKOS KIRIM</b></td>
-							</tr>
-			";
-				for ($i=0; $i < $service; $i++) { 
-					echo "
-							<tr>
-								<td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['service']." - (".$ongkir['rajaongkir']['results'][0]['costs'][$i]['description'].")</td>
-								<td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."</td>
-								<td style='color: #000'>Rp ".number_format($ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value'],0,',','.')."</td>
-							</tr>
-					";
-				};
-			echo "
-						</td>
-			            <td></td>
-			        </tr>
-			";
+            if($service>0){
+	            echo "
+				        <tr>
+				            <td style='border: 0px; background:#3587d8; color:#FFF' width='250'><b>".$ongkir['rajaongkir']['results'][0]['name']."</b></td>
+				            <td style='border: 0px'>
+								<tr>
+						            <td width='200' style='color: #3587d8'><b>SERVIS</b></td>
+						            <td style='color: #3587d8'><b>WAKTU PENGANTARAN</b></td>
+						            <td style='color: #3587d8'><b>ONGKOS KIRIM</b></td>
+						            <td style='color: #3587d8'><b>TOTAL HARGA</b></td>
+								</tr>
+				";
+					for ($i=0; $i < $service; $i++) { 
+						echo "
+								<tr>
+									<td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['service']." - (".$ongkir['rajaongkir']['results'][0]['costs'][$i]['description'].")</td>
+									<td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."</td>
+									<td style='color: #000'>Rp ".number_format($ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value'],0,',','.')."</td>
+									<td style='color: #000'>Rp ".number_format(($ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value']+($total*$cost)),0,',','.')."</td>
+								</tr>
+						";
+					};
+				echo "
+							</td>
+				            <td></td>
+				        </tr>
+				";
+			}else{
+				echo "
+				        <tr>
+				            <td style='border: 0px; background:#ff7878; color:#FFF' width='250'><b>".$ongkir['rajaongkir']['results'][0]['name']."</b></td>
+				            <td style='color: #ff7878;'>Tidak mendukung pengiriman</td>
+				        </tr>
+				";
+			}
 			            // <td><img src='".base_url()."assets/images/jasa/jt.png' style='width: 50%;'/></td>
             // print_r(count($ongkir['rajaongkir']['results'][0]['costs']));
             // echo " *X* ";
