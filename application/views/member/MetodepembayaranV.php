@@ -13,13 +13,152 @@ foreach ($keranjang as $ker) {
     $sub_total = $sub_total+$total;
     $total_diskon = $total_diskon+$diskon_harga;
 }
-// print_r($keranjang); 
+// print_r($get_default_address); 
 ?>
 <form method="POST" action="<?php echo site_url('/bayar')?>">
     <div class="card">
        <div class='card-body'>
           <div class='container_page'>
              <div class='page'>
+                                    <div class='page-cart'>
+                        <div data-cart-status></div>
+                        <div class='loadingOverlay'></div>
+                        <div data-cart-content class='hl-cart-content'>
+                            <?php
+                                $data=$this->session->flashdata('sukses');
+                                if($data!=""){ 
+                            ?>
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span>
+                                </button>
+                                <h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3>
+                                <?=$data;?>
+                            </div>
+                            <?php 
+                                } 
+                            ?>
+                            <?php 
+                                $data2=$this->session->flashdata('error');
+                                if($data2!=""){ 
+                            ?>
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span>
+                                </button>
+                                <h3 class="text-danger"><i class="fa fa-check-circle"></i> Gagal!</h3>
+                                <?=$data2;?>
+                            </div>
+                            <?php 
+                                } 
+                            ?>
+                            <form method='post' action='<?php echo site_url(' MemberC/checkout')?>'> <table class='table table-striped table-bordered'
+                                data-cart-quantity=''>
+                                <thead class='cart-header'>
+                                    <tr>
+                                        <th class='cart-header-item'>No</th>
+                                        <th class='cart-header-item'>Image</th>
+                                        <th class='cart-header-item' style="min-width: 200px;">Produk</th>
+                                        <th class='cart-header-item' style="min-width: 200px;">Harga</th>
+                                        <th class='cart-header-item'>Quantity</th>
+                                        <th class='cart-header-item' style="min-width: 200px;">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class='cart-list' id="memberDetailCard">
+                                    <?php
+                                    // print_r($keranjang);
+                                    $j=0;
+                                    $sub_total = 0;
+                                    $total_diskon = 0;
+                                    foreach ($keranjang as $ker) {
+                                        $j++;
+                                        ?>
+                                    <!-- inputan tabel orders -->
+                                    <input type="hidden" name="memberID[]" value="<?php echo $dataDiri['memberID']?>">
+                                    <input type="hidden" name="memberTo[]" value="<?php echo $MemberM->whose_product($ker->productID)->result()[0]->memberID;?>">
+                                    <input type="hidden" name="customerName[]" value="<?php echo $ker->memberName;?>">
+                                    <input type="hidden" name="qty[]" value="<?php echo $ker->quantity;?>">
+
+
+                                    <tr class='cart-item' data-item-row>
+                                        <td class='cart-item-block cart-item-figure'>
+                                            <?php echo $j;?>
+                                        </td>
+                                        <td>
+                                            <img style="max-width: 200px;" src='<?php echo base_url()?>assets/images/product/<?php echo $ker->photo1?>'>
+                                        </td>
+                                        <td class='cart-item-block cart-item-title'>
+                                            <h6 class='cart-item-name'><a href='#'>
+                                                    <?php echo $ker->productName;?> </a></h6>
+                                        </td>
+                                        <td class='cart-item-block cart-item-info cart-item-total'>
+                                            <?php
+                                                if($ker->discount != 0){
+                                                    ?>
+                                            <strike><strong class='cart-item-value'>
+                                                    <?php echo "Rp".number_format(($ker->salePrice),0,",",".");?></strong></strike>
+                                            <span class='cart-item-label'>
+                                                <?php 
+                                                        $diskon = $ker->salePrice-($ker->discount/100*$ker->salePrice);
+                                                        echo "Rp".number_format(($diskon),0,",",".");
+                                                        ?>
+                                            </span>
+                                            <?php
+                                                    // $harga = $diskon;
+                                                    $diskon_harga = ($ker->discount/100*$ker->salePrice)*$ker->quantity;
+                                                    $harga = $ker->price;
+                                                }else{
+                                            ?>
+                                            <strong class='cart-item-value'>
+                                                <?php echo "Rp".number_format(($ker->price),0,",",".");?></strong>
+                                                <?php
+                                                        $harga = $ker->price;
+                                                        $diskon_harga = 0;
+                                                    }
+                                                ?>
+                                        </td>
+                                        <td class='cart-item-block cart-item-info cart-item-quantity'>
+                                            <b><?php echo $ker->quantity ?></b>
+                                        </td>
+                                        <td class='cart-item-block'>
+                                            <strong class='cart-item-value'>
+                                                <span class='cart-item-label' id="card-total<?php echo $ker->cartID ?>">
+                                                    <?php 
+                                                        $total = $ker->quantity*$ker->salePrice;
+                                                        echo "Rp".number_format(($total),0,",",".");
+                                                        ?>
+
+                                                </span>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Pilih jasa pengiriman
+                                        </td>
+                                        <td>
+                                            <!-- Example single danger button -->
+                                            <div class="btn-group col-md-10 pl-0">
+                                                <button type="button" class="btn btn-info dropdown-toggle col-md-11" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php
+
+                                    }
+                                    ?>
+                                </tbody>
+                                </table>
+                                <!-- </form> -->
+                        </div><br>
+                    </div>
                 <h3>Metode Pembayaran</h3>
                 <div class="row">
                     <div class="col-md-6">
@@ -44,11 +183,21 @@ foreach ($keranjang as $ker) {
                                 <h4 class="m-b-0 text-white">Alamat Pengiriman</h4>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Alamat Kantor</h5>
+                                <!-- <h5 class="card-title">Alamat Kantor</h5>
                                 <p class="card-text">Graha KAS (Lantai 3 PT.Arnawa),Kota Jakarta Selatan</p>
                                 <p class="card-text">Kecamatan Kebayoran Baru, Kota Jakarta Selatan</p>
                                 <p class="card-text">DKI Jakarta</p>
-                                <p class="card-text">081269305494</p>
+                                <p class="card-text">081269305494</p> -->
+                                <?php 
+                                    foreach ($get_default_address as $address) {
+                                        echo "
+                                            <p class='card-text'>".$address->locationName."</p>
+                                            <p class='card-text'>".$address->nama_kabupaten_kota."</p>
+                                            <p class='card-text'>".$address->kode_pos."</p>
+                                            <p class='card-text'>".$address->nama_propinsi."</p>
+                                        ";
+                                    }
+                                ?>
                                 <a href="<?php echo site_url('pengaturan_profile#navpills-2')?>" class="btn btn-info">Pilih ALamat Lain</a>
                             </div>
                         </div>

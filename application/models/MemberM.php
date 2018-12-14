@@ -329,9 +329,11 @@ class MemberM extends CI_Model{
 	//ambil alamat utama
 	public function get_default_address($id){
 		$this->db->select('*');
-		$this->db->from('shipping_address A');
-		$this->db->where('A.status_alamat', "default");
-		$this->db->where('A.memberID', $id);
+		$this->db->from('location L');
+		$this->db->join('kabupaten_kota K','L.id_kabupaten_kota = K.id_kabupaten_kota');
+		$this->db->join('propinsi P','K.id_propinsi = P.id_propinsi');
+		$this->db->where('L.status_alamat', '1');
+		$this->db->where('L.memberID', $id);
 		$query = $this->db->get();
 		if($query){
 			return $query;

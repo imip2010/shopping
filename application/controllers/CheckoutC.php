@@ -20,6 +20,7 @@ class CheckoutC extends CI_Controller {
         $this->data['kategori'] = $this->MemberM->get_all_kategori();
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
         $this->data['MemberM'] = $this->MemberM;
+        $this->data['get_default_address'] = $this->MemberM->get_default_address($this->session->memberID)->result();
 
         //ambil barang di keranjang
         $this->data['keranjang'] = $lele = $this->MemberM->get_keranjang_by_id($this->session->memberID)->result();
