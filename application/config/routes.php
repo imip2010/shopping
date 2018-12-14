@@ -61,12 +61,15 @@ $route['cart/'] = 'Cart/index';
 $route['beli_barang/(:num)'] = 'MemberC/beli_barang/$1';
 // $route['add_to_cart/'] = 'Cart/add_to_cart';
 
+//Detail Produk
+$route['kabupaten'] = 'HomeC/get_kabupaten';
+
 //Pembayaran
 $route['tagihan'] = 'CheckoutC/index';
 $route['seller_detail'] = 'CheckoutC/get_seller';
 $route['bayar'] = 'CheckoutC/add_to_orders';
 $route['biaya/(:any)'] = 'CheckoutC/get_ongkir/$1';
-$route['cek_ongkir/(:num)/(:num)'] = 'HomeC/cek_ongkir/$1/$2';
+$route['cek_ongkir/(:num)/(:num)/(:num)/(:num)'] = 'HomeC/cek_ongkir/$1/$2/$3/$4';
 
 //Member
 $route['pengaturan_profile']	= 'MemberC/pengaturan_profile';
@@ -74,3 +77,4 @@ $route['jual_barang'] 			= 'MemberC/jual_barang';
 $route['daftar_barang'] 		= 'MemberC/daftar_barang';
 $route['labelbarang'] 			= 'CobaC/label_barang';
 $route['transaksi'] 			= 'MemberC/get_transaksi';
+$route['tambah_alamat']			= 'MemberC/post_tambah_alamat';
