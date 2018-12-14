@@ -77,3 +77,4 @@ $route['jual_barang'] 			= 'MemberC/jual_barang';
 $route['daftar_barang'] 		= 'MemberC/daftar_barang';
 $route['labelbarang'] 			= 'CobaC/label_barang';
 $route['transaksi'] 			= 'MemberC/get_transaksi';
+$route['tambah_alamat']			= 'MemberC/post_tambah_alamat';

@@ -38,11 +38,11 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(<?php echo base_url()?>assets/images/big/auth-bg.jpg) no-repeat center center;">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(<?php echo base_url()?>assets/images/background/bg_shopping-01.jpg) no-repeat center center; background-size: cover;">
             <div class="auth-box">
                 <div id="loginform">
                     <div class="logo">
-                        <span class="db"><img src="<?php echo base_url()?>assets/images/logo-icon.png" alt="logo" /></span><br><br>
+                        <span class="db"><img style="width:40%;" src="<?php echo base_url()?>assets/images/Arnawa_Apps Logo.png" alt="logo" /></span><br><br>
                         <h5 class="font-medium m-b-20">Silakan masuk ke dalam akun kamu</h5>
                     </div>
                     <!-- Form -->
@@ -76,7 +76,7 @@
                                 <div class="col-md-12">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Ingat Saya</label>
+                                        <!-- <labeemaill class="custom-control-label" for="customCheck1">Ingat Saya</label> -->
                                         <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> Lupa password?</a>
                                     </div>
                                 </div>
@@ -86,14 +86,14 @@
                                     <button class="btn btn-block btn-lg btn-info" type="submit" name="submit">Masuk</button>
                                 </div>
                             </div>
-                            <div class="row">
+                           <!--  <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                                     <div class="social">
                                         <a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip" title="" data-original-title="Login with Facebook"> <i aria-hidden="true" class="fab  fa-facebook"></i> </a>
                                         <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="" data-original-title="Login with Google"> <i aria-hidden="true" class="fab  fa-google-plus"></i> </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group m-b-0 m-t-10">
                                 <div class="col-sm-12 text-center">
                                     Belum Punya Akun ?<a href="<?php echo site_url('LoginC/register')?>" class="text-info m-l-5"><b>Daftar Sekarang</b></a>
@@ -105,9 +105,9 @@
             </div>
             <div id="recoverform">
                 <div class="logo">
-                    <span class="db"><img src="<?php echo base_url()?>assets/images/logo-icon.png" alt="logo" /></span>
-                    <h5 class="font-medium m-b-20">Recover Password</h5>
-                    <span>Enter your Email and instructions will be sent to you!</span>
+                    <span class="db"><img style="width:40%;" src="<?php echo base_url()?>assets/images/Arnawa_Apps Logo.png" alt="logo" /></span>
+                    <h5 class="font-medium m-b-20">Atur ulang password</h5>
+                    <span>Masukkan email anda dan ikuti langkah selanjutnya yang tertera.</span>
                 </div>
                 <div class="row m-t-20">
                     <!-- Form -->
@@ -115,7 +115,7 @@
                         <!-- email -->
                         <div class="form-group row">
                             <div class="col-12">
-                                <input class="form-control form-control-lg" type="email" required="" placeholder="Username">
+                                <input class="form-control form-control-lg" type="email" required="" placeholder="Email">
                             </div>
                         </div>
                         <!-- pwd -->
