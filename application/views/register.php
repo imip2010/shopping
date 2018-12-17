@@ -38,12 +38,12 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(<?php echo base_url()?>assets/images/big/auth-bg.jpg) no-repeat center center;">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(<?php echo base_url()?>assets/images/background/bg_shopping-01.jpg) no-repeat center center;background-size: cover;">
             <div class="auth-box">
                 <div>
                     <div class="logo">
-                        <span class="db"><img src="<?php echo base_url()?>assets/images/logo-icon.png" alt="logo" /></span>
-                        <h5 class="font-medium m-b-20">Sign Up</h5>
+                        <span class="db"><img style="width: 40%;" src="<?php echo base_url()?>assets/images/Arnawa_Apps Logo.png" alt="logo" /></span>
+                        <h5 class="font-medium m-b-20">Daftar akun</h5>
                     </div>
                     <!-- Form -->
                     <div class="row">
@@ -71,12 +71,12 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-12 ">
-                                    <input class="form-control form-control-lg" name="fullName" type="text" required=" " placeholder="Full Name">
+                                    <input class="form-control form-control-lg" name="fullName" type="text" required=" " placeholder="Nama lengkap">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-12 ">
-                                    <input class="form-control form-control-lg" name="phone" type="text" required=" " placeholder="Phone">
+                                    <input class="form-control form-control-lg" name="phone" type="text" required=" " placeholder="No. Handphone">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -86,17 +86,17 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-12 ">
-                                    <input class="form-control form-control-lg" name="confirm_password" type="password" required=" " placeholder="Confirm Password">
+                                    <input class="form-control form-control-lg" name="confirm_password" type="password" required=" " placeholder="Konfirmasi password">
                                 </div>
                             </div>
                             <div class="form-group text-center ">
                                 <div class="col-xs-12 p-b-20 ">
-                                    <button class="btn btn-block btn-lg btn-info " type="submit ">SIGN UP</button>
+                                    <button class="btn btn-block btn-lg btn-info " type="submit ">Daftar</button>
                                 </div>
                             </div>
                             <div class="form-group m-b-0 m-t-10 ">
                                 <div class="col-sm-12 text-center ">
-                                    Already have an account? <a href="<?php echo site_url('LoginC')?> " class="text-info m-l-5 "><b>Sign In</b></a>
+                                    Sudah punya akun? Silahkan<a href="<?php echo site_url('LoginC')?>" class="text-info m-l-5 "><b>Masuk</b></a>.
                                 </div>
                             </div>
                         </form>
