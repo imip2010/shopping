@@ -13,7 +13,7 @@ foreach ($keranjang as $ker) {
     $sub_total = $sub_total+$total;
     $total_diskon = $total_diskon+$diskon_harga;
 }
-// print_r($get_default_address); 
+// print_r($keranjang); 
 ?>
 <form method="POST" action="<?php echo site_url('/bayar')?>">
     <div class="card">
@@ -117,6 +117,7 @@ foreach ($keranjang as $ker) {
                                         </td>
                                         <td class='cart-item-block cart-item-info cart-item-quantity'>
                                             <b><?php echo $ker->quantity ?></b>
+                                            <input type="hidden" id="weight<?php echo $ker->cartID?>" value="<?php echo $ker->quantity*$ker->weight ?>">
                                         </td>
                                         <td class='cart-item-block'>
                                             <strong class='cart-item-value'>
@@ -135,19 +136,45 @@ foreach ($keranjang as $ker) {
                                             Pilih jasa pengiriman
                                         </td>
                                         <td>
-                                            <!-- Example single danger button -->
-                                            <div class="btn-group col-md-10 pl-0">
-                                                <button type="button" class="btn btn-info dropdown-toggle col-md-11" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Separated link</a>
+                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
+                                                Pilih kurir
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="kurirModal<?php echo $ker->cartID?>" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modal_label">Pilih jasa pengiriman</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <center>
+                                                                <table id="tabel_ongkir"></table>
+                                                            </center>
+                                                        </div>
+                                                        <!-- <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div> -->
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <!-- <select class="form-control" name="kurir<?php echo $ker->cartID?>">
+                                                <option>Pilih Kurir </option>
+                                                <?php
+                                                foreach ($kurirs as $kurir) {
+                                                    ?>
+                                                    <option value="<?php echo $kurir->courierID;?>"><?php echo $kurir->courierName;?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select> -->
+                                        </td>
+                                        <td>
+                                            <input type="hidden" id="origin<?php echo $ker->cartID?>" value="<?php echo $ker->id_kabupaten_kota ?>">
                                         </td>
                                     </tr>
                                     <?php
@@ -159,10 +186,10 @@ foreach ($keranjang as $ker) {
                                 <!-- </form> -->
                         </div><br>
                     </div>
-                <h3>Metode Pembayaran</h3>
+                <!-- <h3>Metode Pembayaran</h3> -->
                 <div class="row">
                     <div class="col-md-6">
-                        <label class="m-t-20">Pilih Kurir :</label><br>
+                        <!-- <label class="m-t-20">Pilih Kurir :</label><br>
                         <select class="select2 form-control custom-select" name="kurir">
                             <option>Pilih Kurir </option>
                             <?php
@@ -172,7 +199,7 @@ foreach ($keranjang as $ker) {
                                 <?php
                             }
                             ?>
-                        </select><br>
+                        </select><br> -->
 
                         <label class="m-t-20">Catatan Tambahan :</label><br>
                         <textarea class="form-control" maxlength="200" style="height: 150px;" name="catatan" id="catatan"></textarea>
@@ -191,6 +218,7 @@ foreach ($keranjang as $ker) {
                                 <?php 
                                     foreach ($get_default_address as $address) {
                                         echo "
+                                            <p class='card-text'>".$address->id_kabupaten_kota."</p>
                                             <p class='card-text'>".$address->locationName."</p>
                                             <p class='card-text'>".$address->nama_kabupaten_kota."</p>
                                             <p class='card-text'>".$address->kode_pos."</p>
@@ -198,6 +226,7 @@ foreach ($keranjang as $ker) {
                                         ";
                                     }
                                 ?>
+                                <input type="hidden" id="destination" value="<?php echo $address->id_kabupaten_kota?>">
                                 <a href="<?php echo site_url('pengaturan_profile#navpills-2')?>" class="btn btn-info">Pilih ALamat Lain</a>
                             </div>
                         </div>
@@ -285,6 +314,22 @@ foreach ($keranjang as $ker) {
                     $("#bank").show();
                 }
             });
+
+        $('#btn29').click(function(e) {
+            // var form = $(this);
+            var originID = $('#origin29').val();
+            var destinationID = $('#destination').val();
+            var weight = $('#weight29').val();
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url();?>CheckoutC/cek_ongkir/"+originID+"/"+destinationID+"/"+weight+"/"+0+"/"+0,
+                success: function(data){
+                        $('#tabel_ongkir').html(data);
+                },
+                error: function() { alert("Error posting feed."); }
+            });
+        });
     });
 
 
