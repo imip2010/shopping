@@ -20,6 +20,7 @@ class CheckoutC extends CI_Controller {
         $this->data['kategori'] = $this->MemberM->get_all_kategori();
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
         $this->data['MemberM'] = $this->MemberM;
+        $this->data['get_default_address'] = $this->MemberM->get_default_address($this->session->memberID)->result();
 
         //ambil barang di keranjang
         $this->data['keranjang'] = $lele = $this->MemberM->get_keranjang_by_id($this->session->memberID)->result();
@@ -88,14 +89,42 @@ class CheckoutC extends CI_Controller {
         }
     }
 
-    public function cek_ongkir()
+    public function cek_ongkir($origin,$destination,$weight)
     {
         $data = $this->CheckoutM->get_courier()->result();
-        $count_data = count($data);
-        // print_r($data);
-        foreach ($data as $key => $kurir) {
-            $ongkir = $this->CheckoutM->cek_ongkir($kurir->courierName);
-            print_r($ongkir);
+
+        foreach ($data as $kurir) {
+            $ongkir = $this->CheckoutM->cek_ongkir($origin,$destination,$weight,$kurir->courierName);
+            $service = count($ongkir['rajaongkir']['results'][0]['costs']);
+            if($service>0){
+                echo "
+                        <tr style='border: 0px; background: transparent;'>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style='border: 0px; background:#3587d8; color:#FFF' width='250'><b>".$ongkir['rajaongkir']['results'][0]['name']."</b>
+                            </td>
+                        </tr>
+                                <tr>
+                                    <td width='200' style='color: #3587d8'><b>SERVIS</b></td>
+                                    <td style='color: #3587d8'><b>WAKTU PENGANTARAN</b></td>
+                                    <td style='color: #3587d8'><b>ONGKOS KIRIM</b></td>
+                                    <td style='color: #3587d8'><b>AKSI</b></td>
+                                </tr>
+                ";
+                    for ($i=0; $i < $service; $i++) { 
+                        echo "
+                                <tr style='background: transparent;'>
+                                    <td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['service']." - (".$ongkir['rajaongkir']['results'][0]['costs'][$i]['description'].")</td>
+                                    <td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."</td>
+                                    <td style='color: #000'>Rp ".number_format($ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value'],0,',','.')."</td>
+                                    <td>
+                                        <button class='btn btn-info'>Pilih</button>
+                                    </td>
+                                </tr>
+                        ";
+                    };
+            }
         }
     }
 
