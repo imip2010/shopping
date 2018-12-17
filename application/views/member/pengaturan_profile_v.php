@@ -6,90 +6,83 @@
 
     <!-- Column bagian kiri : mulai -->
 
-    <div class="col-lg-2 col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="myadmin-dd dd" id="nestable">
-                    <div class="text-center">
-                        <button type="button" class="btn waves-effect waves-light btn-outline-info"> Jual Barang </button>
-                    </div><br>
-                    <ol class="dd-list">
-                        <li class="dd-item" >
-                            <a href="#"> Ringkasan Akun </a>
-                        </li><br>
-                        <li class="dd-item">
-                            <a href="<?php echo base_url()?>labelbarang" > Label Barang </a>   
-                        </li><br>
-                        <li class="dd-item" >
-                            <a href="#"> Daftar Barang </a>
-                            <ol class="dd-list"><br>
-                                <li class="dd-item" >
-                                    <a href="#"> Barang Dijual </a>
-                                </li><br>
-                                <li class="dd-item" >
-                                    <a href="#"> Barang Tidak Dijual </a> 
-                                </li><br>
-                                <li class="dd-item" >
-                                    <a href="#"> Barang Draf  </a>    
-                                </li><br>
-                            </ol>
-                        </li>
+<div class="col-lg-2 col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="myadmin-dd dd" id="nestable">
+                <div class="text-center">
+                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Jual Barang </button>
+                </div><br>
+                <ul class="list-style-none el-info" >
+                    <li class="el-item"> 
+                        <a href="#"> Ringkasan Akun </a>
+                    </li>
+                    <li class="el-item">
+                        <a href="<?php echo base_url()?>labelbarang"  style="color: #4798e8;" > Label Barang </a>
+                    </li>
+                    <li class="el-item">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne"> Daftar Barang <i class="ti-angle-down" style="padding: 55px;"></i></a>
+                        <ul id="collapseOne" class="collapse show" data-parent="#accordion" style="margin-left: -20px;">
+                            <li>Barang Dijual</li>
+                            <li>Barang Tidak Dijual</li>
+                            <li>Barang Draf</li>
+                        </ul>
+                    </li>
+                    <div class="dropdown-divider"></div>
 
-                        <div class="dropdown-divider"></div>
+                    <li  class="el-item">
+                        <a href="<?php echo base_url()?>labelbarang"> Teman </a> 
+                    </li>
+                  <li  class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Barang Favorit </a> 
+                  </li>
+                  <li class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Langganan </a>    
+                  </li>
+                  <li class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Pembelian Rutin </a>   
+                  </li>
+                  
+                  <div class="dropdown-divider"></div>
 
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Teman </a> 
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Barang Favorit </a> 
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Langganan </a>    
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Pembelian Rutin </a>   
-                        </li>
-
-                        <div class="dropdown-divider"></div>
-
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Saldo </a>   
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Transaksi </a>   
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Feedback </a>   
-                        </li>
-
-                        <div class="dropdown-divider"></div>
-
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Pesan </a>  
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Diskusi Barang </a>  
-                        </li>
-
-                        <div class="dropdown-divider"></div>
-
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Kode Promo </a> 
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>labelbarang"> Koperasi Widget </a> 
-                        </li><br>
-                        <li class="dd-item" data-id="1">
-                            <a href="<?php echo base_url()?>pengaturan_profile" style="color: #4798e8;"> Pengaturan </a>
-                        </li>
-                    </ol><br>
-                    <div class="text-center">
-                        <button type="button" class="btn waves-effect waves-light btn-outline-info"> Preview Lapak </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                  <li class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Saldo </a>   
+                  </li>
+                  <li class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Transaksi </a>   
+                  </li>
+                  <li class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Feedback </a>   
+                  </li>
+                  
+                  <div class="dropdown-divider"></div>
+                  
+                  <li class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Pesan </a>  
+                  </li>
+                  <li class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Diskusi Barang </a>  
+                  </li>
+                  
+                  <div class="dropdown-divider"></div>
+                  
+                  <li  class="el-item">
+                      <a href="<?php echo base_url()?>labelbarang"> Kode Promo </a> 
+                  </li>
+                  <li  class="el-item"">
+                      <a href="<?php echo base_url()?>labelbarang"> Koperasi Widget </a> 
+                  </li>
+                  <li  class="el-item">
+                      <a href="<?php echo base_url()?>pengaturan_profile"> Pengaturan </a>
+                  </li>
+                </ul><br>
+              <div class="text-center">
+                  <button type="button" class="btn waves-effect waves-light btn-outline-info"> Preview Lapak </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
     <!-- Column bagian kiri : selasai -->
 
@@ -606,8 +599,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Foto Header Toko</td>
-                                            <td> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 20%"/> </td>
+                                            <td style="vertical-align: middle;">Foto Header Toko</td>
+                                            <td > <img src="<?php echo base_url()?>assets/images/hotel.jpg" style="width: 600px;"/> </td>
                                         </tr>
                                         <tr>
                                             <td>Deskripsi Toko</td>
@@ -640,7 +633,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width=><h4>Catatan Toko</h4><p>Diperuntukkan bagi pemilik toko yang ingin memberikan catatan tambahan.</p></td>
+                                            <td width=><h4>Catatan Toko</h4><p>(REFERENSI BUKALAPAK) Diperuntukkan bagi pemilik toko yang ingin memberikan catatan tambahan.</p></td>
                                             <td class="text-right">
                                                 <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
                                             </td>
@@ -654,17 +647,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width=><h4>Tutup Toko</h4><p>Anda dapat menggunakan fitur tutup lapak untuk menonaktifkan lapak Anda selama waktu yang dapat Anda tentukan sendiri. Manfaatkan fitur ini ketika Anda akan berlibur atau ketika Anda sedang tidak bisa menangani transaksi di Bukalapak. Perlu diperhatikan bahwa semua barang yang telah didiskon, akan menjadi normal setelah lapak aktif kembali.</p></td>
+                                            <td width=><h4>Tutup Toko</h4><p>(REFERENSI BUKALAPAK) Anda dapat menggunakan fitur tutup lapak untuk menonaktifkan lapak Anda selama waktu yang dapat Anda tentukan sendiri.</p></td>
                                             <td class="text-right">
                                                 <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Catatan Toko</td>
-                                            <td> 
-                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;" >
-                                                <div id=" ">Pemilik toko belum memberikan catatan</div>
-                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
                                             </td>
                                         </tr>
                                     </tbody>
@@ -677,8 +662,35 @@
             </div>
         </div>
     </div>
-    <div id="navpills-4" class="tab-pane">
-        Pegiriman
+    <div id="navpills-4" class="tab-pane">                        
+        <div class="card border-info">
+            <div class="card-body">
+                <ul>
+                    <li class="card-text">Pilih paket jasa pengiriman untuk semua barang Anda di bawah ini.</li>
+                    <li class="card-text">Pelapak dianggap menolak pesanan jika tidak mengirimkan barang sejak transaksi berhasil dibayar dalam batas waktu berikut ini:</li>
+                    <ul class="list-style-none el-info" >
+                        <li class="el-item">1.  &nbsp;   2 hari kerja untuk pengiriman reguler</li>
+                        <li class="el-item">2.&nbsp;   2x24 jam (tidak termasuk hari besar) untuk pengiriman kilat </li>
+                        <li class="el-item">3.&nbsp;   1x24 jam untuk pengiriman sameday service </li>
+                        <li class="el-item">4.&nbsp;   1x2 jam untuk pengiriman Rush Delivery service</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-12"> 
+                            <div class="col-md-12">
+                            <h4>Layanan Jasa Pengiriman</h4><hr>
+                            </div>
+                            <!--  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="navpills-5" class="tab-pane">
         Rekening Bank

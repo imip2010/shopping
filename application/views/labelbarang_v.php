@@ -24,7 +24,7 @@
                         <a href="<?php echo base_url()?>labelbarang"  style="color: #4798e8;" > Label Barang </a>
                     </li>
                     <li class="el-item">
-                        <a class="card-link" data-toggle="collapse" href="#collapseOne"> Daftar Barang <i class="ti-angle-down" sty></i></a>
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne"> Daftar Barang <i class="ti-angle-down" style="padding: 55px;"></i></a>
                         <ul id="collapseOne" class="collapse show" data-parent="#accordion" style="margin-left: -20px;">
                             <li>Barang Dijual</li>
                             <li>Barang Tidak Dijual</li>
