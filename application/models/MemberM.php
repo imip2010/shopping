@@ -63,10 +63,12 @@ class MemberM extends CI_Model{
 
 	//ambil keranjang by member id
 	public function get_keranjang_by_id($memberID){
-		$this->db->select('*');
+		$this->db->select('P.productID,P.categoryID,subCategoryID,P.memberID AS sellerID,P.productCode,P.productName,P.productSeo,P.salePrice,P.conditions,P.qty,P.weight,P.discount,P.sold,P.status,P.photo1,P.photo2,P.photo3,P.photo4,P.photo5,P.photo6,P.photo7,P.description,P.ad_type,P.hits,M.memberID AS memberID,M.memberName,M.tmp_lahir,M.tgl_lahir,M.gender,M.phone,M.rekening,C.*,L.*');
 		$this->db->from('carts C');
 		$this->db->join('products P','C.productID = P.productID');
 		$this->db->join('members M','C.memberID = M.memberID');
+		$this->db->join('location L','L.memberID = P.memberID');
+		$this->db->where('L.status_alamat', '1');
 		$this->db->where('C.memberID', $memberID);
 		$this->db->order_by('C.createDate');
 		$query = $this->db->get();
@@ -329,9 +331,11 @@ class MemberM extends CI_Model{
 	//ambil alamat utama
 	public function get_default_address($id){
 		$this->db->select('*');
-		$this->db->from('shipping_address A');
-		$this->db->where('A.status_alamat', "default");
-		$this->db->where('A.memberID', $id);
+		$this->db->from('location L');
+		$this->db->join('kabupaten_kota K','L.id_kabupaten_kota = K.id_kabupaten_kota');
+		$this->db->join('propinsi P','K.id_propinsi = P.id_propinsi');
+		$this->db->where('L.status_alamat', '1');
+		$this->db->where('L.memberID', $id);
 		$query = $this->db->get();
 		if($query){
 			return $query;
