@@ -89,7 +89,7 @@ class CheckoutC extends CI_Controller {
         }
     }
 
-    public function cek_ongkir($origin,$destination,$weight)
+    public function cek_ongkir($origin,$destination,$weight,$cartID)
     {
         $data = $this->CheckoutM->get_courier()->result();
 
@@ -119,7 +119,13 @@ class CheckoutC extends CI_Controller {
                                     <td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."</td>
                                     <td style='color: #000'>Rp ".number_format($ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value'],0,',','.')."</td>
                                     <td>
-                                        <button class='btn btn-info'>Pilih</button>
+                                        <form method='POST' action='".base_url()."/cart_update'>
+                                            <input type='hidden' name='cartID' value='".$cartID."'>
+                                            <input type='hidden' name='service' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['service']."'>
+                                            <input type='hidden' name='estimate' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."'>
+                                            <input type='hidden' name='cost' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value']."'>
+                                            <button class='btn btn-info' type='submit'>Pilih</button>
+                                        </form>
                                     </td>
                                 </tr>
                         ";

@@ -136,7 +136,7 @@ foreach ($keranjang as $ker) {
                                             Pilih jasa pengiriman
                                         </td>
                                         <td>
-                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
+                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary cek_kurir" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
                                                 Pilih kurir
                                             </button>
 
@@ -152,7 +152,7 @@ foreach ($keranjang as $ker) {
                                                         </div>
                                                         <div class="modal-body">
                                                             <center>
-                                                                <table id="tabel_ongkir"></table>
+                                                                <table id="tabel_ongkir<?php echo $ker->cartID?>"></table>
                                                             </center>
                                                         </div>
                                                         <!-- <div class="modal-footer">
@@ -175,6 +175,13 @@ foreach ($keranjang as $ker) {
                                         </td>
                                         <td>
                                             <input type="hidden" id="origin<?php echo $ker->cartID?>" value="<?php echo $ker->id_kabupaten_kota ?>">
+                                            <?php echo (empty($ker->service))?'':"<b>Servis : </b>".$ker->service ?>
+                                        </td>
+                                        <td>
+                                            <?php echo (empty($ker->estimate))?'':"<b>Pengiriman : </b>".$ker->estimate ?>
+                                        </td>
+                                        <td>
+                                            <?php echo ($ker->cost==0)?'': '<b>Biaya : </b>Rp'.number_format(($ker->cost),0,",","."); ?>
                                         </td>
                                     </tr>
                                     <?php
@@ -315,17 +322,17 @@ foreach ($keranjang as $ker) {
                 }
             });
 
-        $('#btn29').click(function(e) {
-            // var form = $(this);
-            var originID = $('#origin29').val();
+        $('.cek_kurir').click(function(e){
+            var id = $(this).attr('id').replace('btn','');
+            var originID = $('#origin'+id).val();
             var destinationID = $('#destination').val();
-            var weight = $('#weight29').val();
+            var weight = $('#weight'+id).val();
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url();?>CheckoutC/cek_ongkir/"+originID+"/"+destinationID+"/"+weight+"/"+0+"/"+0,
+                url: "<?php echo base_url();?>CheckoutC/cek_ongkir/"+originID+"/"+destinationID+"/"+weight+"/"+id+"/"+0,
                 success: function(data){
-                        $('#tabel_ongkir').html(data);
+                        $('#tabel_ongkir'+id).html(data);
                 },
                 error: function() { alert("Error posting feed."); }
             });

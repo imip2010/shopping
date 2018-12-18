@@ -115,4 +115,23 @@ class Cart extends CI_Controller {
 		$data_count=$this->Cart_model->get_quantity($this->session->memberID,$cartID);
 		echo $data_count;
 	}
+
+    public function update_courier_cart()
+    {
+        $cartID     = $this->input->post('cartID');
+        $service    = $this->input->post('service');
+        $estimate   = $this->input->post('estimate');
+        $cost       = $this->input->post('cost');
+
+        $data = array(
+            'service'   => $service,
+            'estimate'  => $estimate,
+            'cost'      => $cost
+        );
+
+        $where = array('cartID' => $cartID);
+
+        $this->Cart_model->update_courier_cart($where,$data,'carts');
+        redirect('/tagihan');
+    }
 }
