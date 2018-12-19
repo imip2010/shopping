@@ -1,6 +1,7 @@
 <?php
 $sub_total = 0;
 $total_diskon = 0;
+$total_ongkir = 0;
 foreach ($keranjang as $ker) {
     if($ker->discount != 0){
         $diskon_harga = ($ker->discount/100*$ker->salePrice)*$ker->quantity;
@@ -12,8 +13,9 @@ foreach ($keranjang as $ker) {
     $total = $ker->quantity*$ker->salePrice;
     $sub_total = $sub_total+$total;
     $total_diskon = $total_diskon+$diskon_harga;
+    $total_ongkir = $total_ongkir+$ker->cost;
 }
-// print_r($keranjang); 
+// print_r($total_ongkir); 
 ?>
 <form method="POST" action="<?php echo site_url('/bayar')?>">
     <div class="card">
@@ -66,8 +68,8 @@ foreach ($keranjang as $ker) {
                                     <?php
                                     // print_r($keranjang);
                                     $j=0;
-                                    $sub_total = 0;
-                                    $total_diskon = 0;
+                                    // $sub_total = 0;
+                                    // $total_diskon = 0;
                                     foreach ($keranjang as $ker) {
                                         $j++;
                                         ?>
@@ -286,9 +288,9 @@ foreach ($keranjang as $ker) {
                                             <h5 class="card-title">Total Belanja</h5>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                            <h5 class="card-title"><?php echo "&nbsp;".number_format(($sub_total),0,",","."); ?></h5>
-                                            <h5 class="card-title"><?php echo "&nbsp".number_format(($total_diskon),0,",","."); ?></h5>
-                                            <h5 class="card-title"><?php $grand_total = $sub_total-$total_diskon; echo "&nbsp".number_format(($grand_total),0,",","."); ?></h5>
+                                            <h5 class="card-title"><?php echo "&nbsp;".number_format(($sub_total-$total_diskon),0,",","."); ?></h5>
+                                            <h5 class="card-title"><?php echo "&nbsp".number_format(($total_ongkir),0,",","."); ?></h5>
+                                            <h5 class="card-title"><?php $grand_total = $sub_total-$total_diskon+$total_ongkir; echo "&nbsp".number_format(($grand_total),0,",","."); ?></h5>
                                         </div>
                                         <div>
                                             <!-- <a href="<?php echo site_url('CobaC/metodepembayaran')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a>  -->
