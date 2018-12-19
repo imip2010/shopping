@@ -15,7 +15,7 @@ foreach ($keranjang as $ker) {
     $total_diskon = $total_diskon+$diskon_harga;
     $total_ongkir = $total_ongkir+$ker->cost;
 }
-// print_r($total_ongkir); 
+// print_r($keranjang); 
 ?>
 <form method="POST" action="<?php echo site_url('/bayar')?>">
     <div class="card">
@@ -125,9 +125,13 @@ foreach ($keranjang as $ker) {
                                             <strong class='cart-item-value'>
                                                 <span class='cart-item-label' id="card-total<?php echo $ker->cartID ?>">
                                                     <?php 
-                                                        $total = $ker->quantity*$ker->salePrice;
-                                                        echo "Rp".number_format(($total),0,",",".");
-                                                        ?>
+                                                        if($ker->discount != 0){
+                                                            $total = $ker->quantity*($ker->salePrice-($ker->discount/100*$ker->salePrice));
+                                                            echo "Rp".number_format(($total),0,",",".");
+                                                        }else{
+                                                            echo "Rp".number_format(($ker->price),0,",",".");
+                                                        }
+                                                    ?>
 
                                                 </span>
                                             </strong>
