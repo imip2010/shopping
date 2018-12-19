@@ -46,6 +46,8 @@ class CheckoutC extends CI_Controller {
         $cek = $this->CheckoutM->get_seller_detail()->result();
 
         $data_order = array(
+            'memberID'      => $this->session->memberID, 
+            'bankID'        => $this->input->post('bankID'), 
             'invoice'       => 'AN'.random_string('numeric', 15), 
             'statusOrder'   => 'Pending', 
             'dateOrder'     => date('Y-m-d H:i:s'), 
@@ -74,6 +76,9 @@ class CheckoutC extends CI_Controller {
                 'productID' => $data->productID, 
                 'sellerID'  => $data->sellerID, 
                 'memberID'  => $data->memberID, 
+                'service'   => $this->input->post('service'.$data->productID), 
+                'estimasi'  => $this->input->post('estimate'.$data->productID), 
+                'biaya_ongkir'  => $this->input->post('cost'.$data->productID), 
                 'quantity'  => $data->quantity, 
                 'discount'  => $data->discount, 
                 'price'     => $total[$key], 
@@ -85,7 +90,7 @@ class CheckoutC extends CI_Controller {
         if (!empty($stored)) {
             redirect('/transaksi');
         }else{
-            redirect('/beli_barang'.$this->session->memberID);
+            redirect('/beli_barang/'.$this->session->memberID);
         }
     }
 

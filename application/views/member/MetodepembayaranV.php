@@ -136,7 +136,7 @@ foreach ($keranjang as $ker) {
                                             Pilih jasa pengiriman
                                         </td>
                                         <td>
-                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary cek_kurir" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
+                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary cek_kurir" data-produkid="<?php echo $ker->productID;?>" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
                                                 Pilih kurir
                                             </button>
 
@@ -176,12 +176,15 @@ foreach ($keranjang as $ker) {
                                         <td>
                                             <input type="hidden" id="origin<?php echo $ker->cartID?>" value="<?php echo $ker->id_kabupaten_kota ?>">
                                             <?php echo (empty($ker->service))?'':"<b>Servis : </b>".$ker->service ?>
+                                            <input type="hidden" name="service<?php echo $ker->productID?>" value="<?php echo $ker->service?>">
                                         </td>
                                         <td>
                                             <?php echo (empty($ker->estimate))?'':"<b>Pengiriman : </b>".$ker->estimate ?>
+                                            <input type="hidden" name="estimate<?php echo $ker->productID?>" value="<?php echo $ker->estimate?>">
                                         </td>
                                         <td>
                                             <?php echo ($ker->cost==0)?'': '<b>Biaya : </b>Rp'.number_format(($ker->cost),0,",","."); ?>
+                                            <input type="hidden" name="cost<?php echo $ker->productID?>" value="<?php echo $ker->cost?>">
                                         </td>
                                     </tr>
                                     <?php
@@ -259,7 +262,7 @@ foreach ($keranjang as $ker) {
                                 </div>
                                 <div id="bank">
                                     <label class="m-t-20">Pilih Bank</label><br>
-                                    <select class="select2 form-control custom-select">
+                                    <select class="select2 form-control custom-select" name="bankID">
                                         <option>Pilih Bank</option>
                                         <?php
                                         foreach ($banks as $bank) {
@@ -327,6 +330,7 @@ foreach ($keranjang as $ker) {
             var originID = $('#origin'+id).val();
             var destinationID = $('#destination').val();
             var weight = $('#weight'+id).val();
+            var productID = $(this).data("produkid");
             e.preventDefault();
             $.ajax({
                 type: "POST",
