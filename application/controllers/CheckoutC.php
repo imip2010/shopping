@@ -44,10 +44,12 @@ class CheckoutC extends CI_Controller {
     public function add_to_orders()
     {
         $cek = $this->CheckoutM->get_seller_detail()->result();
+        $member_shipping_address_id = $this->MemberM->get_default_address($this->session->memberID)->row()->locationID;
 
         $data_order = array(
             'memberID'      => $this->session->memberID, 
             'bankID'        => $this->input->post('bankID'), 
+            'member_shipping_address_id' => $member_shipping_address_id,
             'invoice'       => 'AN'.random_string('numeric', 15), 
             'statusOrder'   => 'Pending', 
             'dateOrder'     => date('Y-m-d H:i:s'), 
