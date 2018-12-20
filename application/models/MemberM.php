@@ -363,4 +363,12 @@ class MemberM extends CI_Model{
 		$this->db->delete('location');
 		return "berhasil";
 	}
+
+	public function get_bank_id($id)
+	{
+		$this->db->select('*');
+		$this->db->from('bank');
+		$this->db->where('bankID',$id);
+		return $this->db->get();
+	}
 }

@@ -65,7 +65,6 @@ class CheckoutC extends CI_Controller {
             'sendOrder'     => '0', 
             'acceptOrder'   => '0', 
             'rejectOrder'   => '0', 
-            'accountBank'   => 'BRI', 
             'datePaid'      => date('Y-m-d H:i:s'), 
             'dateSend'      => date('Y-m-d H:i:s'), 
             'dateFinish'    => date('Y-m-d H:i:s'), 
@@ -105,9 +104,12 @@ class CheckoutC extends CI_Controller {
             // print_r($data_order_detail);
         }
 
+
         if (!empty($stored)) {
-            redirect('/transaksi');
+            $this->send_invoice($orderID);
+            // redirect('/transaksi');
         }else{
+            // $this->send_invoice($orderID);
             redirect('/beli_barang/'.$this->session->memberID);
         }
     }
@@ -157,20 +159,47 @@ class CheckoutC extends CI_Controller {
         }
     }
 
-    public function get_ongkir($kurir)
+    public function send_invoice($orderID)
     {
-        $data = $this->CheckoutM->get_ongkir($kurir);
-        print_r($data);
-        // $cek = $this->CheckoutM->get_seller_detail()->result();
+        // $data['invoice'] = $this->OrderM->get_orders($orderID)->row()->invoice;
+        // $data['memberName'] = $this->session->nama;
+        $bankID = $this->OrderM->get_orders($orderID)->row()->bankID;
+        // $data['bank_detail'] = $this->MemberM->get_bank_id($bankID)->result();
+        // $data['order_detail'] = $this->OrderM->get_order_detail($orderID)->result();
+        // print_r($detail_order);
+        // $this->load->view('emails/invoice',$data);
+        $userEmail = 'rumbleroom5@gmail.com';
+        $subject = 'Arnawa SMTP Dicoba';
 
+        $config = Array(    
+            'protocol' => 'sendmail',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_port' => 587,
+            'smtp_user' => 'evote.hore@gmail.com',
+            'smtp_pass' => 'Katasandi2',
+            'smtp_timeout' => '4',
+            'charset' => 'iso-8859-1'
+        );
 
-        // print_r($this->MemberM->get_default_address(3)->result());
+        $this->load->library('email', $config);
 
-        // foreach ($cek as $key => $value) {
-            
-        //     $sellerAdd = $this->MemberM->get_shipping_address_utama($value->sellerID)
-        //     print_r($sellerAdd);
-        // }
-        // echo $data;
-    }
+        // $this->email->set_newline("\r\n");
+        $this->email->from('evote.hore@gmail.com', 'Arnawa Tes');
+
+        $data = array(
+            'invoice' => $this->OrderM->get_orders($orderID)->row()->invoice,
+            'memberName' => $this->session->nama,
+            'bank_detail' => $this->MemberM->get_bank_id($bankID)->result(),
+            'order_detail' => $this->OrderM->get_order_detail($orderID)->result()
+        );
+
+        $this->email->to($userEmail); // replace it with receiver mail id
+        $this->email->subject($subject); // replace it with relevant subject
+        $this->email->set_mailtype("html");
+
+        $body = $this->load->view('emails/invoice',$data,TRUE);
+        $this->email->message($body); 
+        $this->email->send();
+
+        }
 }
