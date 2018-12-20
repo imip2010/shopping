@@ -44,12 +44,20 @@ class CheckoutC extends CI_Controller {
     public function add_to_orders()
     {
         $cek = $this->CheckoutM->get_seller_detail()->result();
-        $member_shipping_address_id = $this->MemberM->get_default_address($this->session->memberID)->row()->locationID;
+        // $member_shipping_address_id = $this->MemberM->get_default_address($this->session->memberID)->row()->locationID;
+
+        $shipping_address = array(
+            'memberID' => $this->session->memberID, 
+            'id_kabupaten_kota' => $this->MemberM->get_default_address($this->session->memberID)->row()->id_kabupaten_kota, 
+            'shipping_address_name' => $this->MemberM->get_default_address($this->session->memberID)->row()->locationName, 
+            'nama_penerima' => $this->session->nama, 
+        );
+        $shipping_address_id = $this->MemberM->insertToShippingAddress($shipping_address);
 
         $data_order = array(
             'memberID'      => $this->session->memberID, 
             'bankID'        => $this->input->post('bankID'), 
-            'member_shipping_address_id' => $member_shipping_address_id,
+            'member_shipping_address_id' => $shipping_address_id,
             'invoice'       => 'AN'.random_string('numeric', 15), 
             'statusOrder'   => 'Pending', 
             'dateOrder'     => date('Y-m-d H:i:s'), 

@@ -236,7 +236,7 @@ class MemberM extends CI_Model{
 	// tambah shipping address
 	public function insertToShippingAddress($data){
 		$this->db->insert('shipping_address', $data);
-		return TRUE;
+		return $this->db->insert_id();
 	}
 
 	// hapus alamat
