@@ -44,7 +44,6 @@ class CheckoutC extends CI_Controller {
     public function add_to_orders()
     {
         $cek = $this->CheckoutM->get_seller_detail()->result();
-        // $member_shipping_address_id = $this->MemberM->get_default_address($this->session->memberID)->row()->locationID;
 
         $shipping_address = array(
             'memberID' => $this->session->memberID, 
@@ -80,11 +79,20 @@ class CheckoutC extends CI_Controller {
         // print_r($orderID);
 
         foreach ($cek as $key => $data) {
+            $shipment_address = array(
+                'sellerID' => $data->sellerID, 
+                'id_kabupaten_kota' => $this->MemberM->get_default_address($data->sellerID)->row()->id_kabupaten_kota, 
+                'shipping_address_name' => $this->MemberM->get_default_address($data->sellerID)->row()->locationName, 
+                'seller_name' => $this->MemberM->get_members($data->sellerID)->row()->memberName, 
+            );
+            $shipment_address_id = $this->MemberM->insertToShipmentAddress($shipment_address);
+
             $total[$key] = $data->quantity*$data->price;
             $data_order_detail = array(
                 'orderID'   => $orderID, 
                 'productID' => $data->productID, 
                 'sellerID'  => $data->sellerID, 
+                'seller_shipment_address_id'  => $shipment_address_id, 
                 'memberID'  => $data->memberID, 
                 'service'   => $this->input->post('service'.$data->productID), 
                 'estimasi'  => $this->input->post('estimate'.$data->productID), 
