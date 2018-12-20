@@ -73,4 +73,10 @@ class Cart_model extends CI_Model{
 			echo "tidak ditemukan";
 		}
 	}
+
+	public function update_courier_cart($where,$data,$table)
+	{
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
 }

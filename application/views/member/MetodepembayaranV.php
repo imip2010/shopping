@@ -1,6 +1,7 @@
 <?php
 $sub_total = 0;
 $total_diskon = 0;
+$total_ongkir = 0;
 foreach ($keranjang as $ker) {
     if($ker->discount != 0){
         $diskon_harga = ($ker->discount/100*$ker->salePrice)*$ker->quantity;
@@ -12,6 +13,7 @@ foreach ($keranjang as $ker) {
     $total = $ker->quantity*$ker->salePrice;
     $sub_total = $sub_total+$total;
     $total_diskon = $total_diskon+$diskon_harga;
+    $total_ongkir = $total_ongkir+$ker->cost;
 }
 // print_r($keranjang); 
 ?>
@@ -66,8 +68,8 @@ foreach ($keranjang as $ker) {
                                     <?php
                                     // print_r($keranjang);
                                     $j=0;
-                                    $sub_total = 0;
-                                    $total_diskon = 0;
+                                    // $sub_total = 0;
+                                    // $total_diskon = 0;
                                     foreach ($keranjang as $ker) {
                                         $j++;
                                         ?>
@@ -123,9 +125,13 @@ foreach ($keranjang as $ker) {
                                             <strong class='cart-item-value'>
                                                 <span class='cart-item-label' id="card-total<?php echo $ker->cartID ?>">
                                                     <?php 
-                                                        $total = $ker->quantity*$ker->salePrice;
-                                                        echo "Rp".number_format(($total),0,",",".");
-                                                        ?>
+                                                        if($ker->discount != 0){
+                                                            $total = $ker->quantity*($ker->salePrice-($ker->discount/100*$ker->salePrice));
+                                                            echo "Rp".number_format(($total),0,",",".");
+                                                        }else{
+                                                            echo "Rp".number_format(($ker->price),0,",",".");
+                                                        }
+                                                    ?>
 
                                                 </span>
                                             </strong>
@@ -136,7 +142,7 @@ foreach ($keranjang as $ker) {
                                             Pilih jasa pengiriman
                                         </td>
                                         <td>
-                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
+                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary cek_kurir" data-produkid="<?php echo $ker->productID;?>" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
                                                 Pilih kurir
                                             </button>
 
@@ -152,7 +158,7 @@ foreach ($keranjang as $ker) {
                                                         </div>
                                                         <div class="modal-body">
                                                             <center>
-                                                                <table id="tabel_ongkir"></table>
+                                                                <table id="tabel_ongkir<?php echo $ker->cartID?>"></table>
                                                             </center>
                                                         </div>
                                                         <!-- <div class="modal-footer">
@@ -175,6 +181,16 @@ foreach ($keranjang as $ker) {
                                         </td>
                                         <td>
                                             <input type="hidden" id="origin<?php echo $ker->cartID?>" value="<?php echo $ker->id_kabupaten_kota ?>">
+                                            <?php echo (empty($ker->service))?'':"<b>Servis : </b>".$ker->service ?>
+                                            <input type="hidden" name="service<?php echo $ker->productID?>" value="<?php echo $ker->service?>">
+                                        </td>
+                                        <td>
+                                            <?php echo (empty($ker->estimate))?'':"<b>Pengiriman : </b>".$ker->estimate ?>
+                                            <input type="hidden" name="estimate<?php echo $ker->productID?>" value="<?php echo $ker->estimate?>">
+                                        </td>
+                                        <td>
+                                            <?php echo ($ker->cost==0)?'': '<b>Biaya : </b>Rp'.number_format(($ker->cost),0,",","."); ?>
+                                            <input type="hidden" name="cost<?php echo $ker->productID?>" value="<?php echo $ker->cost?>">
                                         </td>
                                     </tr>
                                     <?php
@@ -252,7 +268,7 @@ foreach ($keranjang as $ker) {
                                 </div>
                                 <div id="bank">
                                     <label class="m-t-20">Pilih Bank</label><br>
-                                    <select class="select2 form-control custom-select">
+                                    <select class="select2 form-control custom-select" name="bankID">
                                         <option>Pilih Bank</option>
                                         <?php
                                         foreach ($banks as $bank) {
@@ -276,9 +292,9 @@ foreach ($keranjang as $ker) {
                                             <h5 class="card-title">Total Belanja</h5>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                            <h5 class="card-title"><?php echo "&nbsp;".number_format(($sub_total),0,",","."); ?></h5>
-                                            <h5 class="card-title"><?php echo "&nbsp".number_format(($total_diskon),0,",","."); ?></h5>
-                                            <h5 class="card-title"><?php $grand_total = $sub_total-$total_diskon; echo "&nbsp".number_format(($grand_total),0,",","."); ?></h5>
+                                            <h5 class="card-title"><?php echo "&nbsp;".number_format(($sub_total-$total_diskon),0,",","."); ?></h5>
+                                            <h5 class="card-title"><?php echo "&nbsp".number_format(($total_ongkir),0,",","."); ?></h5>
+                                            <h5 class="card-title"><?php $grand_total = $sub_total-$total_diskon+$total_ongkir; echo "&nbsp".number_format(($grand_total),0,",","."); ?></h5>
                                         </div>
                                         <div>
                                             <!-- <a href="<?php echo site_url('CobaC/metodepembayaran')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a>  -->
@@ -315,17 +331,18 @@ foreach ($keranjang as $ker) {
                 }
             });
 
-        $('#btn29').click(function(e) {
-            // var form = $(this);
-            var originID = $('#origin29').val();
+        $('.cek_kurir').click(function(e){
+            var id = $(this).attr('id').replace('btn','');
+            var originID = $('#origin'+id).val();
             var destinationID = $('#destination').val();
-            var weight = $('#weight29').val();
+            var weight = $('#weight'+id).val();
+            var productID = $(this).data("produkid");
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url();?>CheckoutC/cek_ongkir/"+originID+"/"+destinationID+"/"+weight+"/"+0+"/"+0,
+                url: "<?php echo base_url();?>CheckoutC/cek_ongkir/"+originID+"/"+destinationID+"/"+weight+"/"+id+"/"+0,
                 success: function(data){
-                        $('#tabel_ongkir').html(data);
+                        $('#tabel_ongkir'+id).html(data);
                 },
                 error: function() { alert("Error posting feed."); }
             });

@@ -45,7 +45,18 @@ class CheckoutC extends CI_Controller {
     {
         $cek = $this->CheckoutM->get_seller_detail()->result();
 
+        $shipping_address = array(
+            'memberID' => $this->session->memberID, 
+            'id_kabupaten_kota' => $this->MemberM->get_default_address($this->session->memberID)->row()->id_kabupaten_kota, 
+            'shipping_address_name' => $this->MemberM->get_default_address($this->session->memberID)->row()->locationName, 
+            'nama_penerima' => $this->session->nama, 
+        );
+        $shipping_address_id = $this->MemberM->insertToShippingAddress($shipping_address);
+
         $data_order = array(
+            'memberID'      => $this->session->memberID, 
+            'bankID'        => $this->input->post('bankID'), 
+            'member_shipping_address_id' => $shipping_address_id,
             'invoice'       => 'AN'.random_string('numeric', 15), 
             'statusOrder'   => 'Pending', 
             'dateOrder'     => date('Y-m-d H:i:s'), 
@@ -54,7 +65,6 @@ class CheckoutC extends CI_Controller {
             'sendOrder'     => '0', 
             'acceptOrder'   => '0', 
             'rejectOrder'   => '0', 
-            'accountBank'   => 'BRI', 
             'datePaid'      => date('Y-m-d H:i:s'), 
             'dateSend'      => date('Y-m-d H:i:s'), 
             'dateFinish'    => date('Y-m-d H:i:s'), 
@@ -68,12 +78,24 @@ class CheckoutC extends CI_Controller {
         // print_r($orderID);
 
         foreach ($cek as $key => $data) {
+            $shipment_address = array(
+                'sellerID' => $data->sellerID, 
+                'id_kabupaten_kota' => $this->MemberM->get_default_address($data->sellerID)->row()->id_kabupaten_kota, 
+                'shipping_address_name' => $this->MemberM->get_default_address($data->sellerID)->row()->locationName, 
+                'seller_name' => $this->MemberM->get_members($data->sellerID)->row()->memberName, 
+            );
+            $shipment_address_id = $this->MemberM->insertToShipmentAddress($shipment_address);
+
             $total[$key] = $data->quantity*$data->price;
             $data_order_detail = array(
                 'orderID'   => $orderID, 
                 'productID' => $data->productID, 
                 'sellerID'  => $data->sellerID, 
+                'seller_shipment_address_id'  => $shipment_address_id, 
                 'memberID'  => $data->memberID, 
+                'service'   => $this->input->post('service'.$data->productID), 
+                'estimasi'  => $this->input->post('estimate'.$data->productID), 
+                'biaya_ongkir'  => $this->input->post('cost'.$data->productID), 
                 'quantity'  => $data->quantity, 
                 'discount'  => $data->discount, 
                 'price'     => $total[$key], 
@@ -82,14 +104,17 @@ class CheckoutC extends CI_Controller {
             // print_r($data_order_detail);
         }
 
+
         if (!empty($stored)) {
-            redirect('/transaksi');
+            $this->send_invoice($orderID);
+            // redirect('/transaksi');
         }else{
-            redirect('/beli_barang'.$this->session->memberID);
+            // $this->send_invoice($orderID);
+            redirect('/beli_barang/'.$this->session->memberID);
         }
     }
 
-    public function cek_ongkir($origin,$destination,$weight)
+    public function cek_ongkir($origin,$destination,$weight,$cartID)
     {
         $data = $this->CheckoutM->get_courier()->result();
 
@@ -119,7 +144,13 @@ class CheckoutC extends CI_Controller {
                                     <td style='color: #000'>".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."</td>
                                     <td style='color: #000'>Rp ".number_format($ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value'],0,',','.')."</td>
                                     <td>
-                                        <button class='btn btn-info'>Pilih</button>
+                                        <form method='POST' action='".base_url()."/cart_update'>
+                                            <input type='hidden' name='cartID' value='".$cartID."'>
+                                            <input type='hidden' name='service' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['service']."'>
+                                            <input type='hidden' name='estimate' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."'>
+                                            <input type='hidden' name='cost' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value']."'>
+                                            <button class='btn btn-info' type='submit'>Pilih</button>
+                                        </form>
                                     </td>
                                 </tr>
                         ";
@@ -128,20 +159,47 @@ class CheckoutC extends CI_Controller {
         }
     }
 
-    public function get_ongkir($kurir)
+    public function send_invoice($orderID)
     {
-        $data = $this->CheckoutM->get_ongkir($kurir);
-        print_r($data);
-        // $cek = $this->CheckoutM->get_seller_detail()->result();
+        // $data['invoice'] = $this->OrderM->get_orders($orderID)->row()->invoice;
+        // $data['memberName'] = $this->session->nama;
+        $bankID = $this->OrderM->get_orders($orderID)->row()->bankID;
+        // $data['bank_detail'] = $this->MemberM->get_bank_id($bankID)->result();
+        // $data['order_detail'] = $this->OrderM->get_order_detail($orderID)->result();
+        // print_r($detail_order);
+        // $this->load->view('emails/invoice',$data);
+        $userEmail = 'rumbleroom5@gmail.com';
+        $subject = 'Arnawa SMTP Dicoba';
 
+        $config = Array(    
+            'protocol' => 'sendmail',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_port' => 587,
+            'smtp_user' => 'evote.hore@gmail.com',
+            'smtp_pass' => 'Katasandi2',
+            'smtp_timeout' => '4',
+            'charset' => 'iso-8859-1'
+        );
 
-        // print_r($this->MemberM->get_default_address(3)->result());
+        $this->load->library('email', $config);
 
-        // foreach ($cek as $key => $value) {
-            
-        //     $sellerAdd = $this->MemberM->get_shipping_address_utama($value->sellerID)
-        //     print_r($sellerAdd);
-        // }
-        // echo $data;
-    }
+        // $this->email->set_newline("\r\n");
+        $this->email->from('evote.hore@gmail.com', 'Arnawa Tes');
+
+        $data = array(
+            'invoice' => $this->OrderM->get_orders($orderID)->row()->invoice,
+            'memberName' => $this->session->nama,
+            'bank_detail' => $this->MemberM->get_bank_id($bankID)->result(),
+            'order_detail' => $this->OrderM->get_order_detail($orderID)->result()
+        );
+
+        $this->email->to($userEmail); // replace it with receiver mail id
+        $this->email->subject($subject); // replace it with relevant subject
+        $this->email->set_mailtype("html");
+
+        $body = $this->load->view('emails/invoice',$data,TRUE);
+        $this->email->message($body); 
+        $this->email->send();
+
+        }
 }

@@ -236,7 +236,13 @@ class MemberM extends CI_Model{
 	// tambah shipping address
 	public function insertToShippingAddress($data){
 		$this->db->insert('shipping_address', $data);
-		return TRUE;
+		return $this->db->insert_id();
+	}
+
+	// tambah shipment address
+	public function insertToShipmentAddress($data){
+		$this->db->insert('shipment_address', $data);
+		return $this->db->insert_id();
 	}
 
 	// hapus alamat
@@ -356,5 +362,13 @@ class MemberM extends CI_Model{
 		$this->db->where('locationID', $locationID);
 		$this->db->delete('location');
 		return "berhasil";
+	}
+
+	public function get_bank_id($id)
+	{
+		$this->db->select('*');
+		$this->db->from('bank');
+		$this->db->where('bankID',$id);
+		return $this->db->get();
 	}
 }
