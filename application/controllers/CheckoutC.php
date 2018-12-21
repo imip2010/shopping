@@ -166,7 +166,7 @@ class CheckoutC extends CI_Controller {
         $bankID = $this->OrderM->get_orders($orderID)->row()->bankID;
         // $data['bank_detail'] = $this->MemberM->get_bank_id($bankID)->result();
         // $data['order_detail'] = $this->OrderM->get_order_detail($orderID)->result();
-        // print_r($detail_order);
+        // print_r($data['order_detail']);
         // $this->load->view('emails/invoice',$data);
         $userEmail = 'rumbleroom5@gmail.com';
         $subject = 'Arnawa SMTP Dicoba';
@@ -201,5 +201,5 @@ class CheckoutC extends CI_Controller {
         $this->email->message($body); 
         $this->email->send();
 
-        }
+    }
 }
