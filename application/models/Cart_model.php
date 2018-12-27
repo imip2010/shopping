@@ -79,4 +79,12 @@ class Cart_model extends CI_Model{
 		$this->db->where($where);
 		$this->db->update($table,$data);
 	}
+
+	public function update_product($productID,$qty,$sold)
+	{
+		$this->db->set('qty','qty-'.$qty, FALSE);
+		$this->db->set('sold','sold+'.$sold, FALSE);
+		$this->db->where('productID',$productID);
+		$this->db->update('products');
+	}
 }

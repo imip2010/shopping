@@ -12,9 +12,9 @@ class MailM extends CI_Model{
         $config = Array(    
             'protocol' => 'sendmail',
             'smtp_host' => 'mail.arnawa.co.id',
-            'smtp_port' => 587,
+            'smtp_port' => 465,
             'smtp_user' => 'info@arnawa.co.id',
-            'smtp_pass' => 'Kosong?123',
+            'smtp_pass' => 'arnawa2018',
             'smtp_timeout' => '4',
             'charset' => 'iso-8859-1'
         );

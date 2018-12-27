@@ -159,6 +159,22 @@ class CheckoutC extends CI_Controller {
         }
     }
 
+    public function update_products()
+    {
+        $product = $this->Cart_model->get_cart($this->session->memberID);
+        foreach ($product as $key => $cart) {
+            $productID = $cart->productID;
+            $sold = $cart->quantity;
+            $qty = $cart->quantity;
+
+            $cartID = $cart->cartID;
+
+            $this->Cart_model->update_product($productID,$qty,$sold);
+            $this->MemberM->hapus_cart($cartID);
+        }
+        // $this->Cart_model->update_product();
+    }
+
     public function send_invoice($orderID)
     {
         // $data['invoice'] = $this->OrderM->get_orders($orderID)->row()->invoice;
@@ -182,5 +198,6 @@ class CheckoutC extends CI_Controller {
 
         $this->MailM->send_invoice($userEmail,$subject,$data);
 
+        $this->update_products();
     }
 }
