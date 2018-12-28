@@ -6,7 +6,7 @@ class CheckoutC extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(['Cart_model','HomeM','MemberM','CheckoutM','OrderM']);
+		$this->load->model(['Cart_model','HomeM','MemberM','CheckoutM','OrderM','MailM']);
         $this->load->helper('string');
 		//in_access(); //helper buat batasi akses login/session
 	}
@@ -92,7 +92,7 @@ class CheckoutC extends CI_Controller {
                 'productID' => $data->productID, 
                 'sellerID'  => $data->sellerID, 
                 'seller_shipment_address_id'  => $shipment_address_id, 
-                'memberID'  => $data->memberID, 
+                'memberID'  => $this->session->memberID, 
                 'service'   => $this->input->post('service'.$data->productID), 
                 'estimasi'  => $this->input->post('estimate'.$data->productID), 
                 'biaya_ongkir'  => $this->input->post('cost'.$data->productID), 
@@ -159,6 +159,22 @@ class CheckoutC extends CI_Controller {
         }
     }
 
+    public function update_products()
+    {
+        $product = $this->Cart_model->get_cart($this->session->memberID);
+        foreach ($product as $key => $cart) {
+            $productID = $cart->productID;
+            $sold = $cart->quantity;
+            $qty = $cart->quantity;
+
+            $cartID = $cart->cartID;
+
+            $this->Cart_model->update_product($productID,$qty,$sold);
+            $this->MemberM->hapus_cart($cartID);
+        }
+        // $this->Cart_model->update_product();
+    }
+
     public function send_invoice($orderID)
     {
         // $data['invoice'] = $this->OrderM->get_orders($orderID)->row()->invoice;
@@ -166,25 +182,12 @@ class CheckoutC extends CI_Controller {
         $bankID = $this->OrderM->get_orders($orderID)->row()->bankID;
         // $data['bank_detail'] = $this->MemberM->get_bank_id($bankID)->result();
         // $data['order_detail'] = $this->OrderM->get_order_detail($orderID)->result();
-        // print_r($detail_order);
+        // print_r($data['order_detail']);
         // $this->load->view('emails/invoice',$data);
+
+        
         $userEmail = 'rumbleroom5@gmail.com';
         $subject = 'Arnawa SMTP Dicoba';
-
-        $config = Array(    
-            'protocol' => 'sendmail',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_port' => 587,
-            'smtp_user' => 'evote.hore@gmail.com',
-            'smtp_pass' => 'Katasandi2',
-            'smtp_timeout' => '4',
-            'charset' => 'iso-8859-1'
-        );
-
-        $this->load->library('email', $config);
-
-        // $this->email->set_newline("\r\n");
-        $this->email->from('evote.hore@gmail.com', 'Arnawa Tes');
 
         $data = array(
             'invoice' => $this->OrderM->get_orders($orderID)->row()->invoice,
@@ -193,13 +196,8 @@ class CheckoutC extends CI_Controller {
             'order_detail' => $this->OrderM->get_order_detail($orderID)->result()
         );
 
-        $this->email->to($userEmail); // replace it with receiver mail id
-        $this->email->subject($subject); // replace it with relevant subject
-        $this->email->set_mailtype("html");
+        $this->MailM->send_invoice($userEmail,$subject,$data);
 
-        $body = $this->load->view('emails/invoice',$data,TRUE);
-        $this->email->message($body); 
-        $this->email->send();
-
-        }
+        $this->update_products();
+    }
 }

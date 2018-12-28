@@ -383,7 +383,13 @@ table th, table td {
 		<section id="items">
 			<table style="margin-top: -25px;" >
 				<tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; ">Lakukan Pembayaran Sebesar :</th></tr>
-				<tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;">Rp. 20000</th></tr>
+        <?php 
+            $sub_total1 = 0;
+            foreach($order_detail as $key1 => $order1){
+              $total1 = $order1->biaya_ongkir+$order1->price; 
+              $sub_total1 = $sub_total1+$total1;
+            }?>
+				<tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo "Rp".number_format($sub_total1,0,",",".")?></th></tr>
 			</table>
 		</section>
 		<?php foreach($bank_detail as $bank) {?>
@@ -428,19 +434,27 @@ table th, table td {
             <th>Jumlah Produk</th>
             <th>Harga</th>
             <th>Diskon</th>
-            <th>Pajak</th>
+            <th>Ongkos Kirim</th>
             <th>Total</th>
           </tr>
-          
-          <tr data-iterate="item">
-            <td>1}</td> <!-- Don't remove this column as it's needed for the row commands -->
-            <td>Popok</td>
-            <td>2</td>
-            <td>10000</td>
-            <td>0%</td>
-            <td>0%</td>
-            <td>20000</td>
-          </tr>
+          <?php 
+            $sub_total = 0;
+            $total_diskon = 0;
+            $total_ongkir = 0;
+            foreach($order_detail as $key => $order){?>
+              <tr data-iterate="item">
+                <td><?php echo $key+1?></td> <!-- Don't remove this column as it's needed for the row commands -->
+                <td><?php echo $order->productName?></td>
+                <td><?php echo $order->quantity?></td>
+                <td><?php echo "Rp".number_format($order->salePrice,0,",",".")?></td>
+                <td><?php echo $order->discount?>%</td>
+                <td><?php echo "Rp".number_format($order->biaya_ongkir,0,",",".")?></td>
+                <td><?php echo "Rp".number_format($order->biaya_ongkir+$order->price,0,",",".")?></td>
+              </tr>
+          <?php
+            $total = $order->biaya_ongkir+$order->price; 
+            $sub_total = $sub_total+$total;
+            }?>
           
         </table>
         
@@ -451,7 +465,7 @@ table th, table td {
         <table cellpadding="0" cellspacing="0">
           <tr>
             <th>Sub-total</th>
-            <td>20000</td>
+            <td><?php echo "Rp".number_format($sub_total,0,",",".")?></td>
           </tr>
           
           <tr data-iterate="tax">
@@ -461,7 +475,7 @@ table th, table td {
           
           <tr class="amount-total">
             <th>Grand Total</th>
-            <td>20000</td>
+            <td><?php echo "Rp".number_format($sub_total,0,",",".")?></td>
           </tr>
 		  
         </table>

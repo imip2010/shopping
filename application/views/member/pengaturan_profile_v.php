@@ -382,17 +382,13 @@
                                         ?>
                                         <tr>
                                             <td style="max-width: 10px; text-align: center; vertical-align: center;"><?php echo $i;?></td>
-                                            <td><?php echo $alamat->shipping_address_name;?></td>
+                                            <td><?php echo $alamat->locationName;?></td>
                                             <td>
                                                 <?php 
-                                                echo "<p><b>".$alamat->nama_penerima."</b><br>";
-                                                echo $alamat->locationName."<br>";
-                                                echo $alamat->nama_kelurahan."<br>";
-                                                echo $alamat->nama_kecamatan."<br>";
+                                                echo "<p><b>".$this->session->nama."</b><br>";
                                                 echo $alamat->nama_kabupaten_kota."<br>";
                                                 echo $alamat->nama_propinsi.", ";
                                                 echo $alamat->kode_pos."<br>";
-                                                echo "Telepon/HP: ".$alamat->no_hp."<br></p>";
 
                                                 ?>
                                             </td>
@@ -406,19 +402,19 @@
                                                 }else{
 
                                                     ?>
-                                                    <a href="<?php echo site_url('MemberC/hapus_alamat/').$alamat->shipping_addressID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus alamat ini?')"><span class="ti-trash"></span>
+                                                    <a href="<?php echo site_url('MemberC/hapus_alamat/').$alamat->locationID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus alamat ini?')"><span class="ti-trash"></span>
                                                     </a>
-                                                    <a href="<?php echo site_url('MemberC/set_utama/').$dataDiri['memberID']."/".$alamat->shipping_addressID;?>" title="set utama" class="btn btn-secondary btn-sm" onClick="return confirm('Anda yakin akan menggunakan alamat ini sebagai alamat utama ?')"><span class="ti-save"></span> Set Utama
+                                                    <a href="<?php echo site_url('MemberC/set_utama/').$dataDiri['memberID']."/".$alamat->locationID;?>" title="set utama" class="btn btn-secondary btn-sm" onClick="return confirm('Anda yakin akan menggunakan alamat ini sebagai alamat utama ?')"><span class="ti-save"></span> Set Utama
                                                     </a>
                                                     <?php
                                                 }
                                                 ?>
-                                                <button title="edit" data-toggle="modal" data-target="#responsive-modal-<?php echo $alamat->shipping_addressID?>" class="btn btn-success btn-sm"><span class="ti-pencil-alt"></span>
+                                                <button title="edit" data-toggle="modal" data-target="#responsive-modal-<?php echo $alamat->locationID?>" class="btn btn-success btn-sm"><span class="ti-pencil-alt"></span>
                                                 </button>
                                             </td>
                                         </tr>
 
-                                        <div id="responsive-modal-<?php echo $alamat->shipping_addressID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div id="responsive-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog">
                                                 <?php echo validation_errors(); ?>
                                                 <form action="<?php echo site_url('MemberC/post_ubah_alamat')?>" method="post">
@@ -429,28 +425,28 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
-                                                            <input type="hidden" name="shipping_addressID" value="<?php echo $alamat->shipping_addressID;?>">
+                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
                                                             <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
                                                             <input type="hidden" name="status_alamat" value="<?php echo $alamat->status_alamat;?>">
                                                             <div class="form-group">
                                                                 <label for="recipient-name" class="control-label">Nama Alamat:</label>
-                                                                <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : aalmat rumah, alamat kantor" required value="<?php echo $alamat->shipping_address_name;?>">
+                                                                <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : aalmat rumah, alamat kantor" required value="<?php echo $alamat->locationName;?>">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Nama Penerima</label>
-                                                                <input type="text" class="form-control" id="nama_penerima-<?php echo $alamat->shipping_addressID?>" name="nama_penerima" required value="<?php echo $alamat->nama_penerima;?>">
+                                                                <input type="text" class="form-control" id="nama_penerima-<?php echo $alamat->locationID?>" name="nama_penerima" required value="<?php echo $this->session->nama;?>">
                                                             </div>
-                                                            <div class="form-group">
+                                                            <!-- <div class="form-group">
                                                                 <label for="message-text" class="control-label">No Handphone</label>
-                                                                <input type="text" class="form-control" id="no_hp-<?php echo $alamat->shipping_addressID?>" name="no_hp" required value="<?php echo $alamat->no_hp;?>">
-                                                            </div>
+                                                                <input type="text" class="form-control" id="no_hp-<?php echo $alamat->locationID?>" name="no_hp" required value="<?php echo $alamat->no_hp;?>">
+                                                            </div> -->
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Alamat</label>
-                                                                <textarea type="text" class="form-control" id="locationName-<?php echo $alamat->shipping_addressID?>" name="locationName" required><?php echo $alamat->locationName;?></textarea>
+                                                                <textarea type="text" class="form-control" id="locationName-<?php echo $alamat->locationID?>" name="locationName" required><?php echo $alamat->locationName;?></textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Propinsi</label>
-                                                                <select class="form-control" id="propinsi-<?php echo $alamat->shipping_addressID?>" name="propinsi" required>
+                                                                <select class="form-control" id="propinsi-<?php echo $alamat->locationID?>" name="propinsi" required>
                                                                     <option>-----pilih provinsi-----</option>
                                                                     <?php 
                                                                     foreach ($provinsi as $prov) {
@@ -469,23 +465,9 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Kota</label>
-                                                                <select class="form-control" id="kota-<?php echo $alamat->shipping_addressID?>" name="kota" required>
+                                                                <select class="form-control" id="kota-<?php echo $alamat->locationID?>" name="kota" required>
                                                                     <option>-----pilih kota-----</option>
                                                                     <option selected value="<?php echo $alamat->id_kabupaten_kota?>"><?php echo $alamat->nama_kabupaten_kota?></option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="message-text" class="control-label">Kecamatan</label>
-                                                                <select class="form-control" id="kecamatan-<?php echo $alamat->shipping_addressID?>" name="kecamatan" required>
-                                                                    <option>-----pilih kecamatan-----</option>
-                                                                     <option selected value="<?php echo $alamat->id_kecamatan?>"><?php echo $alamat->nama_kecamatan?></option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="message-text" class="control-label">Kelurahan</label>
-                                                                <select class="form-control" id="kelurahan-<?php echo $alamat->shipping_addressID?>" name="id_kelurahan" required>
-                                                                    <option>-----pilih kelurahan-----</option>
-                                                                     <option selected value="<?php echo $alamat->id_kelurahan?>"><?php echo $alamat->nama_kelurahan?></option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
@@ -505,7 +487,7 @@
                                         <script type="text/javascript">
                                             $(document).ready(function(){
                                                 // City change
-                                                $('#propinsi-<?php echo $alamat->shipping_addressID?>').change(function(){
+                                                $('#propinsi-<?php echo $alamat->locationID?>').change(function(){
                                                     var propinsi = $(this).val(); //ambil value dr kode_unit
                                                     // window.alert(unit);
 
@@ -517,17 +499,17 @@
                                                         dataType: 'json',
                                                         success: function(response){
                                                             // Remove options
-                                                            $('#kota-<?php echo $alamat->shipping_addressID?>').find('option').not(':first').remove();
+                                                            $('#kota-<?php echo $alamat->locationID?>').find('option').not(':first').remove();
 
                                                             // Add options
                                                             $.each(response,function(daftar,data){
-                                                                $('#kota-<?php echo $alamat->shipping_addressID?>').append('<option value="'+data['id_kabupaten_kota']+'">'+data['nama_kabupaten_kota']+'</option>');
+                                                                $('#kota-<?php echo $alamat->locationID?>').append('<option value="'+data['id_kabupaten_kota']+'">'+data['nama_kabupaten_kota']+'</option>');
                                                             });
                                                         }
                                                     });
                                                 });
 
-                                                $('#kota-<?php echo $alamat->shipping_addressID?>').change(function(){
+                                                $('#kota-<?php echo $alamat->locationID?>').change(function(){
                                                     var kota = $(this).val(); //ambil value dr kode_unit
                                                     // window.alert(unit);
 
@@ -539,17 +521,17 @@
                                                         dataType: 'json',
                                                         success: function(response){
                                                             // Remove options
-                                                            $('#kecamatan-<?php echo $alamat->shipping_addressID?>').find('option').not(':first').remove();
+                                                            $('#kecamatan-<?php echo $alamat->locationID?>').find('option').not(':first').remove();
 
                                                             // Add options
                                                             $.each(response,function(daftar,data){
-                                                                $('#kecamatan-<?php echo $alamat->shipping_addressID?>').append('<option value="'+data['id_kecamatan']+'">'+data['nama_kecamatan']+'</option>');
+                                                                $('#kecamatan-<?php echo $alamat->locationID?>').append('<option value="'+data['id_kecamatan']+'">'+data['nama_kecamatan']+'</option>');
                                                             });
                                                         }
                                                     });
                                                 });
 
-                                                $('#kecamatan-<?php echo $alamat->shipping_addressID?>').change(function(){
+                                                $('#kecamatan-<?php echo $alamat->locationID?>').change(function(){
                                                     var kecamatan = $(this).val(); //ambil value dr kode_unit
                                                     // window.alert(unit);
 
@@ -561,11 +543,11 @@
                                                         dataType: 'json',
                                                         success: function(response){
                                                             // Remove options
-                                                            $('#kelurahan-<?php echo $alamat->shipping_addressID?>').find('option').not(':first').remove();
+                                                            $('#kelurahan-<?php echo $alamat->locationID?>').find('option').not(':first').remove();
 
                                                             // Add options
                                                             $.each(response,function(daftar,data){
-                                                                $('#kelurahan-<?php echo $alamat->shipping_addressID?>').append('<option value="'+data['id_kelurahan']+'">'+data['nama_kelurahan']+'</option>');
+                                                                $('#kelurahan-<?php echo $alamat->locationID?>').append('<option value="'+data['id_kelurahan']+'">'+data['nama_kelurahan']+'</option>');
                                                             });
                                                         }
                                                     });
