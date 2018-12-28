@@ -290,7 +290,12 @@
                                             </tr>
                                         </tbody>
                                     </table>
-
+                                    
+                                    <div style="background: rgba(173, 173, 173, 0.12); position: fixed; display: none;width: 100%;height: 100%;top: 0;left: 0;right: 0;bottom: 0;z-index: 2;" id="loader">
+                                        <center>
+                                            <img src="<?php echo base_url()?>assets/images/loading/fluid-loader.gif" style="height: 30%; width: 30%;">
+                                        </center>
+                                    </div>
                                     <table class="table" id="tabel_cek_ongkir">
                                     </table>
                                 </div>
@@ -552,6 +557,7 @@
 <script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+    $('#loader').hide();
         $('#add_cart').click(function(){
             var productID = $(this).data("produkid");
             var memberID = $(this).data("memberID");
@@ -609,12 +615,14 @@
             var total = $('#demo3').val();
             var totalWeight = weight*total;
             var cost = $('#fn_harga').val();
+            $('#loader').show();
             e.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>HomeC/cek_ongkir/"+originID+"/"+destinationID+"/"+totalWeight+"/"+total+"/"+cost,
                 success: function(data){
                     // $('#tabel_cek_ongkir').html(data).fadeIn();
+                    $('#loader').hide();
                     $('#tabel_cek_ongkir').fadeOut(400, function() {
                         $(this).html(data).fadeIn();
                     });
@@ -630,12 +638,14 @@
             var total = $('#demo3').val();
             var totalWeight = weight*total;
             var cost = $('#fn_harga').val();
+            $('#loader').show();
             e.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>HomeC/cek_ongkir/"+originID+"/"+destinationID+"/"+totalWeight+"/"+total+"/"+cost,
                 success: function(data){
                     // $('#tabel_cek_ongkir').html(data).fadeIn();
+                    $('#loader').hide();
                     $('#tabel_cek_ongkir').fadeOut(400, function() {
                         $(this).html(data).fadeIn();
                     });

@@ -270,14 +270,19 @@ class MemberM extends CI_Model{
 	// GET ALAMAT
 	public function get_shipping_address($memberID){
 		$this->db->select('*');
-		$this->db->from('shipping_address A');
-		$this->db->join('location L', 'A.locationID = L.locationID');
-		// $this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
-		// $this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
-		$this->db->join('kabupaten_kota P','L.id_kabupaten_kota = P.id_kabupaten_kota');
-		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
-		$this->db->where('A.memberID', $memberID);
-		$this->db->order_by('L.status_alamat','ASC');
+		// $this->db->from('shipping_address A');
+		// $this->db->join('location L', 'A.locationID = L.locationID');
+		// // $this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
+		// // $this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
+		// $this->db->join('kabupaten_kota P','L.id_kabupaten_kota = P.id_kabupaten_kota');
+		// $this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
+		// $this->db->where('A.memberID', $memberID);
+		// $this->db->order_by('L.status_alamat','ASC');
+		$this->db->from('location L');
+		$this->db->join('kabupaten_kota K','L.id_kabupaten_kota = K.id_kabupaten_kota');
+		$this->db->join('propinsi P','K.id_propinsi = P.id_propinsi');
+		$this->db->where('L.status_alamat', '1');
+		$this->db->where('L.memberID', $memberID);
 		$query = $this->db->get();
 		if($query){
 			return $query;
