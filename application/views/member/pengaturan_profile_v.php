@@ -401,8 +401,6 @@
                                                 }else{
 
                                                     ?>
-                                                    <!-- <a href="<?php echo site_url('MemberC/hapus_alamat/').$alamat->locationID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus alamat ini?')"><span class="ti-trash"></span>
-                                                    </a> -->
                                                     <button title="delete" data-toggle="modal" data-target="#delete-modal-<?php echo $alamat->locationID?>" class="btn btn-danger btn-sm"><span class="ti-trash"></span>
                                                     </button>
                                                     <a href="<?php echo site_url('MemberC/set_utama/').$dataDiri['memberID']."/".$alamat->locationID;?>" title="set utama" class="btn btn-secondary btn-sm" onClick="return confirm('Anda yakin akan menggunakan alamat ini sebagai alamat utama ?')"><span class="ti-save"></span> Set Utama

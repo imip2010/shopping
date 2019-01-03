@@ -553,8 +553,8 @@ class MemberC extends CI_Controller {
 
     // set utama alamat
     public function set_utama($memberID, $shipping_addressID){
-        $default = array('status_alamat' => "default");
-        $no_default = array('status_alamat' => "no_default");
+        $default = array('status_alamat' => "1");
+        $no_default = array('status_alamat' => "0");
         if ($this->MemberM->update_alamat($memberID, $no_default)) {
             if ($this->MemberM->set_utama($memberID, $shipping_addressID, $default)) {
                 $locationID = $this->MemberM->get_shipping_address_utama($memberID)->result()[0]->locationID;
