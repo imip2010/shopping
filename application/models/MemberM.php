@@ -216,6 +216,16 @@ class MemberM extends CI_Model{
 		return $response;
 	}
 
+	public function get_postcode($postData){
+		$response = array();
+		$this->db->select('*');
+		$this->db->from('kabupaten_kota');
+		$this->db->where('id_kabupaten_kota', $postData['id_kabupaten_kota']);
+		$query = $this->db->get();
+		$response = $query->result_array();
+		return $response;
+	}
+
 	public function get_kelurahan($postData){
 		$response = array();
 		$this->db->select('*');

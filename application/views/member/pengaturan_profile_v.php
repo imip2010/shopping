@@ -385,7 +385,7 @@
                                             <td><?php echo $alamat->locationName;?></td>
                                             <td>
                                                 <?php 
-                                                echo "<p><b>".$this->session->nama."</b><br>";
+                                                echo "<p><b>".$alamat->memberName."</b><br>";
                                                 echo $alamat->nama_kabupaten_kota."<br>";
                                                 echo $alamat->nama_propinsi.", ";
                                                 echo $alamat->kode_pos."<br>";
@@ -761,7 +761,7 @@
                     </div> -->
                     <div class="form-group">
                         <label for="message-text" class="control-label">Kode Pos</label>
-                        <input type="number" name="kode_pos" class="form-control" required>
+                        <input type="text" name="kodepos" class="form-control" id="kodepos" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -929,18 +929,12 @@
 
             // AJAX request
             $.ajax({
-                url:'<?=base_url()?>MemberC/get_kecamatan',
+                url:'<?=base_url()?>MemberC/get_postcode',
                 method: 'post',
                 data: {id_kabupaten_kota: kota}, // data post ke controller 
                 dataType: 'json',
                 success: function(response){
-                    // Remove options
-                    $('#kecamatan').find('option').not(':first').remove();
-
-                    // Add options
-                    $.each(response,function(daftar,data){
-                        $('#kecamatan').append('<option value="'+data['id_kecamatan']+'">'+data['nama_kecamatan']+'</option>');
-                    });
+                  $('#kodepos').val(response[0].kode_pos);
                 }
             });
         });

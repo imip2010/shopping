@@ -87,6 +87,12 @@ class MemberC extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function get_postcode(){
+        $postData = $this->input->post();
+        $data = $this->MemberM->get_postcode($postData);
+        echo json_encode($data);
+    }
+
     public function get_kecamatan(){
         $postData = $this->input->post();
         $data = $this->MemberM->get_kecamatan($postData);
