@@ -278,6 +278,20 @@ class MemberM extends CI_Model{
 	// =========
 
 	// GET ALAMAT
+	public function get_address($memberID){
+		$this->db->select('*');
+		$this->db->from('location L');
+		$this->db->join('kabupaten_kota K','L.id_kabupaten_kota = K.id_kabupaten_kota');
+		$this->db->join('propinsi P','K.id_propinsi = P.id_propinsi');
+		$this->db->where('L.memberID', $memberID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
 	public function get_shipping_address($memberID){
 		$this->db->select('*');
 		// $this->db->from('shipping_address A');

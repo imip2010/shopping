@@ -367,8 +367,8 @@
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="max-width: 10px; text-align: center;">No.</th>
-                                        <th>Nama Alamat</th>
+                                        <th style="max-width: 20px; text-align: center;">No.</th>
+                                        <th>Nama Penerima</th>
                                         <th>Alamat</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -381,11 +381,11 @@
                                         $i++;
                                         ?>
                                         <tr>
-                                            <td style="max-width: 10px; text-align: center; vertical-align: center;"><?php echo $i;?></td>
-                                            <td><?php echo $alamat->locationName;?></td>
+                                            <td style="max-width: 20px; text-align: center; vertical-align: center;"><?php echo $i;?></td>
+                                            <td><?php echo "<p><b>".$alamat->memberName."</b><br>";?></td>
                                             <td>
                                                 <?php 
-                                                echo "<p><b>".$alamat->memberName."</b><br>";
+                                                echo $alamat->locationName;
                                                 echo $alamat->nama_kabupaten_kota."<br>";
                                                 echo $alamat->nama_propinsi.", ";
                                                 echo $alamat->kode_pos."<br>";
@@ -714,7 +714,7 @@
                     <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Nama Alamat:</label>
-                        <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : alamat rumah, alamat kantor, dll" required>
+                        <input type="text" class="form-control" id="address_name" name="address_name" placeholder="contoh : alamat rumah, alamat kantor, dll" required>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">Nama Penerima</label>

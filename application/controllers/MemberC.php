@@ -72,7 +72,7 @@ class MemberC extends CI_Controller {
         $memberID = $this->session->userdata('memberID');
         $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
         $this->data['provinsi'] = $this->MemberM->get_all_provinsi();
-        $this->data['shipping_address'] = $this->MemberM->get_shipping_address($memberID)->result();
+        $this->data['shipping_address'] = $this->MemberM->get_address($memberID)->result();
         // $this->data['locationID'] = $this->MemberM->get_shipping_address_by_id(4)->result()[0]->locationID;
 
         $this->data['isi'] = 'isi';
@@ -492,53 +492,61 @@ class MemberC extends CI_Controller {
 
     // tambah alamat
     public function post_tambah_alamat(){
-        $this->form_validation->set_rules('shipping_address_name','Nama alamat','required',array('required' => 'You must provide a %s.'));
+        // $this->form_validation->set_rules('shipping_address_name','Nama alamat','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('nama_penerima','Nama penerima','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('no_hp','No HP','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('locationName','Nama lokasi','required',array('required' => 'You must provide a %s.'));
-        $this->form_validation->set_rules('kode_pos','kode pos','required',array('required' => 'You must provide a %s.'));
-        $this->form_validation->set_rules('id_kelurahan','kelurahan','required',array('required' => 'You must provide a %s.'));
-        $this->form_validation->set_rules('memberID','member ID','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('kodepos','kode pos','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('kota','kota','required',array('required' => 'You must provide a %s.'));
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
             redirect_back();
         }else{
             $memberID               = $this->input->post('memberID');
-            $shipping_address_name  = $this->input->post('shipping_address_name');
-            $nama_penerima          = $this->input->post('nama_penerima');
+            // $shipping_address_name  = $this->input->post('shipping_address_name');
+            $memberName             = $this->input->post('nama_penerima');
             $locationName           = $this->input->post('locationName');
-            $kode_pos               = $this->input->post('kode_pos');
-            $id_kelurahan           = $this->input->post('id_kelurahan');
-            $no_hp                  = $this->input->post('no_hp');
+            $id_kabupaten_kota      = $this->input->post('kota');
+            $phone                  = $this->input->post('no_hp');
 
             $data_insertToLocation = array(
-                'id_kelurahan'  => $id_kelurahan, 
-                'locationName'  => $locationName, 
-                'kode_pos'      => $kode_pos, 
+                'memberID'              => $this->session->memberID, 
+                'memberName'            => $memberName, 
+                'phone'                 => $phone, 
+                'id_kabupaten_kota'     => $id_kabupaten_kota, 
+                'locationName'          => $locationName, 
+                'status_alamat'         => "0"
             );
-
-            if($locationID = $this->MemberM->insertToLocation($data_insertToLocation)){
-                $data_tambah_alamat = array(
-                    'memberID'              => $memberID, 
-                    'locationID'            => $locationID, 
-                    'shipping_address_name' => $shipping_address_name, 
-                    'nama_penerima'         => $nama_penerima, 
-                    'no_hp'                 => $no_hp, 
-                    'status_alamat'         => "no_default", 
-                );
-                if($this->MemberM->insertToShippingAddress($data_tambah_alamat)){
-                    $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
-                    redirect_back();
-                }else{
-                    $this->MemberM->delete($locationID);
-                    $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
-                    redirect_back();
-                }
-            }else{                
+            // $this->MemberM->insertToLocation($data_insertToLocation);
+            if($this->MemberM->insertToLocation($data_insertToLocation)){
+                $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
+                redirect_back();
+            }else{
                 $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
                 redirect_back();
             }
+
+            // if($locationID = $this->MemberM->insertToLocation($data_insertToLocation)){
+            //     $data_tambah_alamat = array(
+            //         'memberID'              => $memberID, 
+            //         // 'shipping_address_name' => $shipping_address_name, 
+            //         'nama_penerima'         => $nama_penerima, 
+            //         'no_hp'                 => $no_hp, 
+            //         'status_alamat'         => "0", 
+            //     );
+            //     if($this->MemberM->insertToShippingAddress($data_tambah_alamat)){
+            //         $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
+            //         redirect_back();
+            //     }else{
+            //         $this->MemberM->delete($locationID);
+            //         $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            //         redirect_back();
+            //     }
+            // }else{                
+            //     $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            //     redirect_back();
+            // }
 
         }
     }
