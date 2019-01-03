@@ -394,16 +394,17 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                if ($alamat->status_alamat == "default") {
+                                                if ($alamat->status_alamat == "1") {
                                                     ?>
-
                                                     <button title="alamat utama" class="btn btn-info btn-sm"><span class="ti-check"></span> Alamat Utama</button>
                                                     <?php
                                                 }else{
 
                                                     ?>
-                                                    <a href="<?php echo site_url('MemberC/hapus_alamat/').$alamat->locationID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus alamat ini?')"><span class="ti-trash"></span>
-                                                    </a>
+                                                    <!-- <a href="<?php echo site_url('MemberC/hapus_alamat/').$alamat->locationID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus alamat ini?')"><span class="ti-trash"></span>
+                                                    </a> -->
+                                                    <button title="delete" data-toggle="modal" data-target="#delete-modal-<?php echo $alamat->locationID?>" class="btn btn-danger btn-sm"><span class="ti-trash"></span>
+                                                    </button>
                                                     <a href="<?php echo site_url('MemberC/set_utama/').$dataDiri['memberID']."/".$alamat->locationID;?>" title="set utama" class="btn btn-secondary btn-sm" onClick="return confirm('Anda yakin akan menggunakan alamat ini sebagai alamat utama ?')"><span class="ti-save"></span> Set Utama
                                                     </a>
                                                     <?php
@@ -413,6 +414,30 @@
                                                 </button>
                                             </td>
                                         </tr>
+                                        
+                                        <div id="delete-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <?php echo validation_errors(); ?>
+                                                <form action="<?php echo site_url('MemberC/hapus_alamat/').$alamat->locationID;?>" method="post">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Hapus Alamat</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label">Anda yakin akan menghapus alamat <?php echo $alamat->locationName?>?</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">Batal</button>
+                                                            <input type="submit" name="submit" class="btn btn-danger" value="Hapus">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
 
                                         <div id="responsive-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog">

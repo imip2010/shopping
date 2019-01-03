@@ -387,18 +387,24 @@ class MemberM extends CI_Model{
 	}
 
 	// hapus alamat
-	public function hapus_alamat($shipping_addressID){
-		$this->db->where('shipping_addressID', $shipping_addressID);
-		$this->db->delete('shipping_address');
-		return "berhasil";
-	}
-
-	// hapus location
-	public function hapus_location($locationID){
-		$this->db->where('locationID', $locationID);
+	public function delete_address($id){
+		$this->db->where('locationID', $id);
 		$this->db->delete('location');
 		return "berhasil";
 	}
+
+	// public function hapus_alamat($shipping_addressID){
+	// 	$this->db->where('shipping_addressID', $shipping_addressID);
+	// 	$this->db->delete('shipping_address');
+	// 	return "berhasil";
+	// }
+
+	// hapus location
+	// public function hapus_location($locationID){
+	// 	$this->db->where('locationID', $locationID);
+	// 	$this->db->delete('location');
+	// 	return "berhasil";
+	// }
 
 	public function get_bank_id($id)
 	{

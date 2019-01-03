@@ -573,20 +573,27 @@ class MemberC extends CI_Controller {
     }
 
     // hapus alamat
-    public function hapus_alamat($shipping_addressID){
-        $locationID = $this->MemberM->get_shipping_address_by_id($shipping_addressID)->result()[0]->locationID;
-        if($this->MemberM->hapus_location($locationID)){
-            if($this->MemberM->hapus_alamat($shipping_addressID)){
-                $this->session->set_flashdata('sukses', 'Alamat berhasil dihapus');
-                redirect_back();
-            }else{
-                $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
-                redirect_back();                
-            }
+    public function hapus_alamat($id){
+        if($this->MemberM->delete_address($id)){
+            $this->session->set_flashdata('sukses', 'Alamat berhasil dihapus');
+            redirect_back();
         }else{
             $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
-            redirect_back();
+            redirect_back();                
         }
+        // $locationID = $this->MemberM->get_shipping_address_by_id($shipping_addressID)->result()[0]->locationID;
+        // if($this->MemberM->hapus_location($locationID)){
+        //     if($this->MemberM->hapus_alamat($shipping_addressID)){
+        //         $this->session->set_flashdata('sukses', 'Alamat berhasil dihapus');
+        //         redirect_back();
+        //     }else{
+        //         $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
+        //         redirect_back();                
+        //     }
+        // }else{
+        //     $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
+        //     redirect_back();
+        // }
     }
 
     public function post_ubah_alamat(){
