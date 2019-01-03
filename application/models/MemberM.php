@@ -275,6 +275,13 @@ class MemberM extends CI_Model{
 		return TRUE;
 	}
 
+	// UPDATE ALAMAT
+	public function update_address($locationID, $data){
+		$this->db->where('locationID', $locationID);
+		$this->db->update('location', $data);
+		return TRUE;
+	}
+
 	// =========
 
 	// GET ALAMAT

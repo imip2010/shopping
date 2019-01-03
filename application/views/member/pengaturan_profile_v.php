@@ -424,22 +424,15 @@
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
                                                             <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
-                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
-                                                            <input type="hidden" name="status_alamat" value="<?php echo $alamat->status_alamat;?>">
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="control-label">Nama Alamat:</label>
-                                                                <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : aalmat rumah, alamat kantor" required value="<?php echo $alamat->locationName;?>">
-                                                            </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Nama Penerima</label>
-                                                                <input type="text" class="form-control" id="nama_penerima-<?php echo $alamat->locationID?>" name="nama_penerima" required value="<?php echo $this->session->nama;?>">
+                                                                <input type="text" class="form-control" id="nama_penerima-<?php echo $alamat->locationID?>" name="nama_penerima" required value="<?php echo $alamat->memberName;?>">
                                                             </div>
-                                                            <!-- <div class="form-group">
+                                                            <div class="form-group">
                                                                 <label for="message-text" class="control-label">No Handphone</label>
-                                                                <input type="text" class="form-control" id="no_hp-<?php echo $alamat->locationID?>" name="no_hp" required value="<?php echo $alamat->no_hp;?>">
-                                                            </div> -->
+                                                                <input type="text" class="form-control" id="no_hp-<?php echo $alamat->locationID?>" name="no_hp" required value="<?php echo $alamat->phone;?>">
+                                                            </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Alamat</label>
                                                                 <textarea type="text" class="form-control" id="locationName-<?php echo $alamat->locationID?>" name="locationName" required><?php echo $alamat->locationName;?></textarea>
@@ -472,7 +465,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Kode Pos</label>
-                                                                <input type="number" name="kode_pos" class="form-control" value="<?php echo $alamat->kode_pos?>" required>
+                                                                <input type="number" id="kodepos-<?php echo $alamat->locationID?>" name="kodepos" class="form-control" value="<?php echo $alamat->kode_pos?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -711,7 +704,6 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Nama Alamat:</label>
                         <input type="text" class="form-control" id="address_name" name="address_name" placeholder="contoh : alamat rumah, alamat kantor, dll" required>
