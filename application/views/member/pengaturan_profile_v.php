@@ -385,7 +385,7 @@
                                             <td><?php echo "<p><b>".$alamat->memberName."</b><br>";?></td>
                                             <td>
                                                 <?php 
-                                                echo $alamat->locationName;
+                                                echo $alamat->locationName.", ";
                                                 echo $alamat->nama_kabupaten_kota."<br>";
                                                 echo $alamat->nama_propinsi.", ";
                                                 echo $alamat->kode_pos."<br>";
@@ -403,8 +403,8 @@
                                                     ?>
                                                     <button title="delete" data-toggle="modal" data-target="#delete-modal-<?php echo $alamat->locationID?>" class="btn btn-danger btn-sm"><span class="ti-trash"></span>
                                                     </button>
-                                                    <a href="<?php echo site_url('MemberC/set_utama/').$dataDiri['memberID']."/".$alamat->locationID;?>" title="set utama" class="btn btn-secondary btn-sm" onClick="return confirm('Anda yakin akan menggunakan alamat ini sebagai alamat utama ?')"><span class="ti-save"></span> Set Utama
-                                                    </a>
+                                                    <button title="sd_address" data-toggle="modal" data-target="#sd-modal-<?php echo $alamat->locationID?>" class="btn btn-secondary btn-sm"><span class="ti-save"></span> Set Utama
+                                                    </button>
                                                     <?php
                                                 }
                                                 ?>
@@ -413,19 +413,43 @@
                                             </td>
                                         </tr>
                                         
-                                        <div id="delete-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div id="sd-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog">
                                                 <?php echo validation_errors(); ?>
-                                                <form action="<?php echo site_url('MemberC/hapus_alamat/').$alamat->locationID;?>" method="post">
+                                                <form action="<?php echo site_url('set_default_address/').$alamat->locationID;?>" method="post">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Hapus Alamat</h4>
+                                                            <h4 class="modal-title"><span class="ti-save" style="color: #1b9a85;"></span> Set Alamat Utama</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
                                                             <div class="form-group">
-                                                                <label for="message-text" class="control-label">Anda yakin akan menghapus alamat <?php echo $alamat->locationName?>?</label>
+                                                                <label for="message-text" class="control-label" style="font-weight: normal;">Anda yakin akan menjadikan alamat <b><?php echo $alamat->locationName?></b> sebagai alamat utama ?</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">Batal</button>
+                                                            <input type="submit" name="submit" class="btn btn-success" value="Simpan">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div id="delete-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <?php echo validation_errors(); ?>
+                                                <form action="<?php echo site_url('hapus_alamat/').$alamat->locationID;?>" method="post">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"><span class="ti-trash" style="color: #ef6e6e;"></span> Hapus Alamat</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label" style="font-weight: normal;">Anda yakin akan menghapus alamat <b><?php echo $alamat->locationName?></b> ?</label>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -440,7 +464,7 @@
                                         <div id="responsive-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog">
                                                 <?php echo validation_errors(); ?>
-                                                <form action="<?php echo site_url('MemberC/post_ubah_alamat')?>" method="post">
+                                                <form action="<?php echo site_url('ubah_alamat')?>" method="post">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h4 class="modal-title">Ubah Alamat</h4>

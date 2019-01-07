@@ -322,19 +322,17 @@ class MemberM extends CI_Model{
 		}
 	}
 
-
-	//update almaat no default semua
-	public function update_alamat($memberID, $data){
-		$this->db->where('memberID', $memberID);
-		$this->db->update('shipping_address', $data);
+	//update almaat no default
+	public function update_alamat($locationID,$data){
+		$this->db->where('locationID', $locationID);
+		$this->db->update('location', $data);
 		return TRUE;
 	}
 
 	// jadiin utama  alamat
-	public function set_utama($memberID, $shipping_addressID, $data){
-		$this->db->where('memberID', $memberID);
-		$this->db->where('shipping_addressID', $shipping_addressID);
-		$this->db->update('shipping_address', $data);
+	public function set_utama($locationID, $data){
+		$this->db->where('locationID', $locationID);
+		$this->db->update('location', $data);
 		return TRUE;
 	}
 	//ambil shpping addres utama

@@ -552,20 +552,13 @@ class MemberC extends CI_Controller {
     }
 
     // set utama alamat
-    public function set_utama($memberID, $shipping_addressID){
-        $default = array('status_alamat' => "1");
-        $no_default = array('status_alamat' => "0");
-        if ($this->MemberM->update_alamat($memberID, $no_default)) {
-            if ($this->MemberM->set_utama($memberID, $shipping_addressID, $default)) {
-                $locationID = $this->MemberM->get_shipping_address_utama($memberID)->result()[0]->locationID;
-                $data = array('locationID' => $locationID);
-                $this->MemberM->update_data_member($memberID, $data);
-                $this->session->set_flashdata('sukses', 'Alamat berhasil diubah menjadi alamat utama');
-                redirect_back();
-            }else{
-                $this->session->set_flashdata('error', 'Alamat tidak berhasil diubah');
-                redirect_back();
-            }
+    public function set_utama($locationID){
+        $default_address_id = $this->MemberM->get_default_address($this->session->userdata('memberID'))->row()->locationID;
+        $set_no_default = $this->MemberM->update_alamat($default_address_id,array('status_alamat' => "0"));
+        $set_new_default = $this->MemberM->set_utama($locationID,array('status_alamat' => "1"));
+        if ($set_no_default && $set_new_default) {
+            $this->session->set_flashdata('sukses', 'Alamat berhasil diubah menjadi alamat utama');
+            redirect_back();
         }else{
             $this->session->set_flashdata('error', 'Alamat tidak berhasil diubah');
             redirect_back();
