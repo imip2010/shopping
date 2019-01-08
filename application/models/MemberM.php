@@ -216,6 +216,16 @@ class MemberM extends CI_Model{
 		return $response;
 	}
 
+	public function get_postcode($postData){
+		$response = array();
+		$this->db->select('*');
+		$this->db->from('kabupaten_kota');
+		$this->db->where('id_kabupaten_kota', $postData['id_kabupaten_kota']);
+		$query = $this->db->get();
+		$response = $query->result_array();
+		return $response;
+	}
+
 	public function get_kelurahan($postData){
 		$response = array();
 		$this->db->select('*');
@@ -265,9 +275,30 @@ class MemberM extends CI_Model{
 		return TRUE;
 	}
 
+	// UPDATE ALAMAT
+	public function update_address($locationID, $data){
+		$this->db->where('locationID', $locationID);
+		$this->db->update('location', $data);
+		return TRUE;
+	}
+
 	// =========
 
 	// GET ALAMAT
+	public function get_address($memberID){
+		$this->db->select('*');
+		$this->db->from('location L');
+		$this->db->join('kabupaten_kota K','L.id_kabupaten_kota = K.id_kabupaten_kota');
+		$this->db->join('propinsi P','K.id_propinsi = P.id_propinsi');
+		$this->db->where('L.memberID', $memberID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
 	public function get_shipping_address($memberID){
 		$this->db->select('*');
 		// $this->db->from('shipping_address A');
@@ -291,19 +322,17 @@ class MemberM extends CI_Model{
 		}
 	}
 
-
-	//update almaat no default semua
-	public function update_alamat($memberID, $data){
-		$this->db->where('memberID', $memberID);
-		$this->db->update('shipping_address', $data);
+	//update almaat no default
+	public function update_alamat($locationID,$data){
+		$this->db->where('locationID', $locationID);
+		$this->db->update('location', $data);
 		return TRUE;
 	}
 
 	// jadiin utama  alamat
-	public function set_utama($memberID, $shipping_addressID, $data){
-		$this->db->where('memberID', $memberID);
-		$this->db->where('shipping_addressID', $shipping_addressID);
-		$this->db->update('shipping_address', $data);
+	public function set_utama($locationID, $data){
+		$this->db->where('locationID', $locationID);
+		$this->db->update('location', $data);
 		return TRUE;
 	}
 	//ambil shpping addres utama
@@ -356,18 +385,24 @@ class MemberM extends CI_Model{
 	}
 
 	// hapus alamat
-	public function hapus_alamat($shipping_addressID){
-		$this->db->where('shipping_addressID', $shipping_addressID);
-		$this->db->delete('shipping_address');
-		return "berhasil";
-	}
-
-	// hapus location
-	public function hapus_location($locationID){
-		$this->db->where('locationID', $locationID);
+	public function delete_address($id){
+		$this->db->where('locationID', $id);
 		$this->db->delete('location');
 		return "berhasil";
 	}
+
+	// public function hapus_alamat($shipping_addressID){
+	// 	$this->db->where('shipping_addressID', $shipping_addressID);
+	// 	$this->db->delete('shipping_address');
+	// 	return "berhasil";
+	// }
+
+	// hapus location
+	// public function hapus_location($locationID){
+	// 	$this->db->where('locationID', $locationID);
+	// 	$this->db->delete('location');
+	// 	return "berhasil";
+	// }
 
 	public function get_bank_id($id)
 	{
