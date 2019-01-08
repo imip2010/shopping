@@ -74,9 +74,14 @@ $route['biaya/(:any)'] = 'CheckoutC/get_ongkir/$1';
 $route['cek_ongkir/(:num)/(:num)/(:num)/(:num)'] = 'HomeC/cek_ongkir/$1/$2/$3/$4';
 
 //Member
-$route['pengaturan_profile']	= 'MemberC/pengaturan_profile';
 $route['jual_barang'] 			= 'MemberC/jual_barang';
 $route['daftar_barang'] 		= 'MemberC/daftar_barang';
 $route['labelbarang'] 			= 'CobaC/label_barang';
 $route['transaksi'] 			= 'MemberC/get_transaksi';
+//Member -> Profil
+$route['pengaturan_profile']	= 'MemberC/pengaturan_profile';
+//Member -> Alamat
 $route['tambah_alamat']			= 'MemberC/post_tambah_alamat';
+$route['set_default_address/(:num)'] = 'MemberC/set_utama/$1';
+$route['hapus_alamat/(:num)']	= 'MemberC/hapus_alamat/$1';
+$route['ubah_alamat']			= 'MemberC/post_ubah_alamat';

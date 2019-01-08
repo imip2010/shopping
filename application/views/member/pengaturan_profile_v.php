@@ -367,8 +367,8 @@
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="max-width: 10px; text-align: center;">No.</th>
-                                        <th>Nama Alamat</th>
+                                        <th style="max-width: 20px; text-align: center;">No.</th>
+                                        <th>Nama Penerima</th>
                                         <th>Alamat</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -381,11 +381,11 @@
                                         $i++;
                                         ?>
                                         <tr>
-                                            <td style="max-width: 10px; text-align: center; vertical-align: center;"><?php echo $i;?></td>
-                                            <td><?php echo $alamat->locationName;?></td>
+                                            <td style="max-width: 20px; text-align: center; vertical-align: center;"><?php echo $i;?></td>
+                                            <td><?php echo "<p><b>".$alamat->memberName."</b><br>";?></td>
                                             <td>
                                                 <?php 
-                                                echo "<p><b>".$this->session->nama."</b><br>";
+                                                echo $alamat->locationName.", ";
                                                 echo $alamat->nama_kabupaten_kota."<br>";
                                                 echo $alamat->nama_propinsi.", ";
                                                 echo $alamat->kode_pos."<br>";
@@ -394,18 +394,17 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                if ($alamat->status_alamat == "default") {
+                                                if ($alamat->status_alamat == "1") {
                                                     ?>
-
                                                     <button title="alamat utama" class="btn btn-info btn-sm"><span class="ti-check"></span> Alamat Utama</button>
                                                     <?php
                                                 }else{
 
                                                     ?>
-                                                    <a href="<?php echo site_url('MemberC/hapus_alamat/').$alamat->locationID;?>" title="hapus" class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin akan menghapus alamat ini?')"><span class="ti-trash"></span>
-                                                    </a>
-                                                    <a href="<?php echo site_url('MemberC/set_utama/').$dataDiri['memberID']."/".$alamat->locationID;?>" title="set utama" class="btn btn-secondary btn-sm" onClick="return confirm('Anda yakin akan menggunakan alamat ini sebagai alamat utama ?')"><span class="ti-save"></span> Set Utama
-                                                    </a>
+                                                    <button title="delete" data-toggle="modal" data-target="#delete-modal-<?php echo $alamat->locationID?>" class="btn btn-danger btn-sm"><span class="ti-trash"></span>
+                                                    </button>
+                                                    <button title="sd_address" data-toggle="modal" data-target="#sd-modal-<?php echo $alamat->locationID?>" class="btn btn-secondary btn-sm"><span class="ti-save"></span> Set Utama
+                                                    </button>
                                                     <?php
                                                 }
                                                 ?>
@@ -413,33 +412,74 @@
                                                 </button>
                                             </td>
                                         </tr>
+                                        
+                                        <div id="sd-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <?php echo validation_errors(); ?>
+                                                <form action="<?php echo site_url('set_default_address/').$alamat->locationID;?>" method="post">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"><span class="ti-save" style="color: #1b9a85;"></span> Set Alamat Utama</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label" style="font-weight: normal;">Anda yakin akan menjadikan alamat <b><?php echo $alamat->locationName?></b> sebagai alamat utama ?</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">Batal</button>
+                                                            <input type="submit" name="submit" class="btn btn-success" value="Simpan">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div id="delete-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <?php echo validation_errors(); ?>
+                                                <form action="<?php echo site_url('hapus_alamat/').$alamat->locationID;?>" method="post">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"><span class="ti-trash" style="color: #ef6e6e;"></span> Hapus Alamat</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
+                                                            <div class="form-group">
+                                                                <label for="message-text" class="control-label" style="font-weight: normal;">Anda yakin akan menghapus alamat <b><?php echo $alamat->locationName?></b> ?</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">Batal</button>
+                                                            <input type="submit" name="submit" class="btn btn-danger" value="Hapus">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
 
                                         <div id="responsive-modal-<?php echo $alamat->locationID?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog">
                                                 <?php echo validation_errors(); ?>
-                                                <form action="<?php echo site_url('MemberC/post_ubah_alamat')?>" method="post">
+                                                <form action="<?php echo site_url('ubah_alamat')?>" method="post">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h4 class="modal-title">Ubah Alamat</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
                                                             <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
-                                                            <input type="hidden" name="locationID" value="<?php echo $alamat->locationID;?>">
-                                                            <input type="hidden" name="status_alamat" value="<?php echo $alamat->status_alamat;?>">
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="control-label">Nama Alamat:</label>
-                                                                <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : aalmat rumah, alamat kantor" required value="<?php echo $alamat->locationName;?>">
-                                                            </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Nama Penerima</label>
-                                                                <input type="text" class="form-control" id="nama_penerima-<?php echo $alamat->locationID?>" name="nama_penerima" required value="<?php echo $this->session->nama;?>">
+                                                                <input type="text" class="form-control" id="nama_penerima-<?php echo $alamat->locationID?>" name="nama_penerima" required value="<?php echo $alamat->memberName;?>">
                                                             </div>
-                                                            <!-- <div class="form-group">
+                                                            <div class="form-group">
                                                                 <label for="message-text" class="control-label">No Handphone</label>
-                                                                <input type="text" class="form-control" id="no_hp-<?php echo $alamat->locationID?>" name="no_hp" required value="<?php echo $alamat->no_hp;?>">
-                                                            </div> -->
+                                                                <input type="text" class="form-control" id="no_hp-<?php echo $alamat->locationID?>" name="no_hp" required value="<?php echo $alamat->phone;?>">
+                                                            </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Alamat</label>
                                                                 <textarea type="text" class="form-control" id="locationName-<?php echo $alamat->locationID?>" name="locationName" required><?php echo $alamat->locationName;?></textarea>
@@ -472,7 +512,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="message-text" class="control-label">Kode Pos</label>
-                                                                <input type="number" name="kode_pos" class="form-control" value="<?php echo $alamat->kode_pos?>" required>
+                                                                <input type="number" id="kodepos-<?php echo $alamat->locationID?>" name="kodepos" class="form-control" value="<?php echo $alamat->kode_pos?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -711,10 +751,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID'];?>">
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Nama Alamat:</label>
-                        <input type="text" class="form-control" id="shipping_address_name" name="shipping_address_name" placeholder="contoh : alamat rumah, alamat kantor, dll" required>
+                        <input type="text" class="form-control" id="address_name" name="address_name" placeholder="contoh : alamat rumah, alamat kantor, dll" required>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">Nama Penerima</label>
@@ -761,7 +800,7 @@
                     </div> -->
                     <div class="form-group">
                         <label for="message-text" class="control-label">Kode Pos</label>
-                        <input type="number" name="kode_pos" class="form-control" required>
+                        <input type="text" name="kodepos" class="form-control" id="kodepos" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -929,18 +968,12 @@
 
             // AJAX request
             $.ajax({
-                url:'<?=base_url()?>MemberC/get_kecamatan',
+                url:'<?=base_url()?>MemberC/get_postcode',
                 method: 'post',
                 data: {id_kabupaten_kota: kota}, // data post ke controller 
                 dataType: 'json',
                 success: function(response){
-                    // Remove options
-                    $('#kecamatan').find('option').not(':first').remove();
-
-                    // Add options
-                    $.each(response,function(daftar,data){
-                        $('#kecamatan').append('<option value="'+data['id_kecamatan']+'">'+data['nama_kecamatan']+'</option>');
-                    });
+                  $('#kodepos').val(response[0].kode_pos);
                 }
             });
         });

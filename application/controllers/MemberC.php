@@ -72,7 +72,7 @@ class MemberC extends CI_Controller {
         $memberID = $this->session->userdata('memberID');
         $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
         $this->data['provinsi'] = $this->MemberM->get_all_provinsi();
-        $this->data['shipping_address'] = $this->MemberM->get_shipping_address($memberID)->result();
+        $this->data['shipping_address'] = $this->MemberM->get_address($memberID)->result();
         // $this->data['locationID'] = $this->MemberM->get_shipping_address_by_id(4)->result()[0]->locationID;
 
         $this->data['isi'] = 'isi';
@@ -84,6 +84,12 @@ class MemberC extends CI_Controller {
     public function get_kabupaten_kota(){
         $postData = $this->input->post();
         $data = $this->MemberM->get_kabupaten_kota($postData);
+        echo json_encode($data);
+    }
+
+    public function get_postcode(){
+        $postData = $this->input->post();
+        $data = $this->MemberM->get_postcode($postData);
         echo json_encode($data);
     }
 
@@ -486,72 +492,73 @@ class MemberC extends CI_Controller {
 
     // tambah alamat
     public function post_tambah_alamat(){
-        $this->form_validation->set_rules('shipping_address_name','Nama alamat','required',array('required' => 'You must provide a %s.'));
+        // $this->form_validation->set_rules('shipping_address_name','Nama alamat','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('nama_penerima','Nama penerima','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('no_hp','No HP','required',array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('locationName','Nama lokasi','required',array('required' => 'You must provide a %s.'));
-        $this->form_validation->set_rules('kode_pos','kode pos','required',array('required' => 'You must provide a %s.'));
-        $this->form_validation->set_rules('id_kelurahan','kelurahan','required',array('required' => 'You must provide a %s.'));
-        $this->form_validation->set_rules('memberID','member ID','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('kodepos','kode pos','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('kota','kota','required',array('required' => 'You must provide a %s.'));
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
             redirect_back();
         }else{
             $memberID               = $this->input->post('memberID');
-            $shipping_address_name  = $this->input->post('shipping_address_name');
-            $nama_penerima          = $this->input->post('nama_penerima');
+            // $shipping_address_name  = $this->input->post('shipping_address_name');
+            $memberName             = $this->input->post('nama_penerima');
             $locationName           = $this->input->post('locationName');
-            $kode_pos               = $this->input->post('kode_pos');
-            $id_kelurahan           = $this->input->post('id_kelurahan');
-            $no_hp                  = $this->input->post('no_hp');
+            $id_kabupaten_kota      = $this->input->post('kota');
+            $phone                  = $this->input->post('no_hp');
 
             $data_insertToLocation = array(
-                'id_kelurahan'  => $id_kelurahan, 
-                'locationName'  => $locationName, 
-                'kode_pos'      => $kode_pos, 
+                'memberID'              => $this->session->memberID, 
+                'memberName'            => $memberName, 
+                'phone'                 => $phone, 
+                'id_kabupaten_kota'     => $id_kabupaten_kota, 
+                'locationName'          => $locationName, 
+                'status_alamat'         => "0"
             );
-
-            if($locationID = $this->MemberM->insertToLocation($data_insertToLocation)){
-                $data_tambah_alamat = array(
-                    'memberID'              => $memberID, 
-                    'locationID'            => $locationID, 
-                    'shipping_address_name' => $shipping_address_name, 
-                    'nama_penerima'         => $nama_penerima, 
-                    'no_hp'                 => $no_hp, 
-                    'status_alamat'         => "no_default", 
-                );
-                if($this->MemberM->insertToShippingAddress($data_tambah_alamat)){
-                    $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
-                    redirect_back();
-                }else{
-                    $this->MemberM->delete($locationID);
-                    $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
-                    redirect_back();
-                }
-            }else{                
+            // $this->MemberM->insertToLocation($data_insertToLocation);
+            if($this->MemberM->insertToLocation($data_insertToLocation)){
+                $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
+                redirect_back();
+            }else{
                 $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
                 redirect_back();
             }
+
+            // if($locationID = $this->MemberM->insertToLocation($data_insertToLocation)){
+            //     $data_tambah_alamat = array(
+            //         'memberID'              => $memberID, 
+            //         // 'shipping_address_name' => $shipping_address_name, 
+            //         'nama_penerima'         => $nama_penerima, 
+            //         'no_hp'                 => $no_hp, 
+            //         'status_alamat'         => "0", 
+            //     );
+            //     if($this->MemberM->insertToShippingAddress($data_tambah_alamat)){
+            //         $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
+            //         redirect_back();
+            //     }else{
+            //         $this->MemberM->delete($locationID);
+            //         $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            //         redirect_back();
+            //     }
+            // }else{                
+            //     $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            //     redirect_back();
+            // }
 
         }
     }
 
     // set utama alamat
-    public function set_utama($memberID, $shipping_addressID){
-        $default = array('status_alamat' => "default");
-        $no_default = array('status_alamat' => "no_default");
-        if ($this->MemberM->update_alamat($memberID, $no_default)) {
-            if ($this->MemberM->set_utama($memberID, $shipping_addressID, $default)) {
-                $locationID = $this->MemberM->get_shipping_address_utama($memberID)->result()[0]->locationID;
-                $data = array('locationID' => $locationID);
-                $this->MemberM->update_data_member($memberID, $data);
-                $this->session->set_flashdata('sukses', 'Alamat berhasil diubah menjadi alamat utama');
-                redirect_back();
-            }else{
-                $this->session->set_flashdata('error', 'Alamat tidak berhasil diubah');
-                redirect_back();
-            }
+    public function set_utama($locationID){
+        $default_address_id = $this->MemberM->get_default_address($this->session->userdata('memberID'))->row()->locationID;
+        $set_no_default = $this->MemberM->update_alamat($default_address_id,array('status_alamat' => "0"));
+        $set_new_default = $this->MemberM->set_utama($locationID,array('status_alamat' => "1"));
+        if ($set_no_default && $set_new_default) {
+            $this->session->set_flashdata('sukses', 'Alamat berhasil diubah menjadi alamat utama');
+            redirect_back();
         }else{
             $this->session->set_flashdata('error', 'Alamat tidak berhasil diubah');
             redirect_back();
@@ -559,76 +566,87 @@ class MemberC extends CI_Controller {
     }
 
     // hapus alamat
-    public function hapus_alamat($shipping_addressID){
-        $locationID = $this->MemberM->get_shipping_address_by_id($shipping_addressID)->result()[0]->locationID;
-        if($this->MemberM->hapus_location($locationID)){
-            if($this->MemberM->hapus_alamat($shipping_addressID)){
-                $this->session->set_flashdata('sukses', 'Alamat berhasil dihapus');
-                redirect_back();
-            }else{
-                $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
-                redirect_back();                
-            }
+    public function hapus_alamat($id){
+        if($this->MemberM->delete_address($id)){
+            $this->session->set_flashdata('sukses', 'Alamat berhasil dihapus');
+            redirect_back();
         }else{
             $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
-            redirect_back();
+            redirect_back();                
         }
+        // $locationID = $this->MemberM->get_shipping_address_by_id($shipping_addressID)->result()[0]->locationID;
+        // if($this->MemberM->hapus_location($locationID)){
+        //     if($this->MemberM->hapus_alamat($shipping_addressID)){
+        //         $this->session->set_flashdata('sukses', 'Alamat berhasil dihapus');
+        //         redirect_back();
+        //     }else{
+        //         $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
+        //         redirect_back();                
+        //     }
+        // }else{
+        //     $this->session->set_flashdata('error','Alamat tidak berhasil dihapus');
+        //     redirect_back();
+        // }
     }
 
     public function post_ubah_alamat(){
-        $this->form_validation->set_rules('shipping_address_name','Nama alamat');
+        // $this->form_validation->set_rules('shipping_address_name','Nama alamat');
         $this->form_validation->set_rules('nama_penerima','Nama penerima');
         $this->form_validation->set_rules('no_hp','No HP');
         $this->form_validation->set_rules('locationName','Nama lokasi');
-        $this->form_validation->set_rules('kode_pos','kode pos');
-        $this->form_validation->set_rules('id_kelurahan','kelurahan');
-        $this->form_validation->set_rules('memberID','member ID','required',array('required' => 'You must provide a %s.'));
-        $this->form_validation->set_rules('status_alamat','Status alamat');
-        $this->form_validation->set_rules('shipping_addressID','Shipping Address ID','required',array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('kodepos','kode pos');
+        $this->form_validation->set_rules('kota','kota');
         $this->form_validation->set_rules('locationID','Location ID','required',array('required' => 'You must provide a %s.'));
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
             redirect_back();
         }else{
-            $shipping_addressID     = $this->input->post('shipping_addressID');
             $memberID               = $this->input->post('memberID');
             $locationID             = $this->input->post('locationID');
-            $shipping_address_name  = $this->input->post('shipping_address_name');
-            $nama_penerima          = $this->input->post('nama_penerima');
+            $memberName          = $this->input->post('nama_penerima');
             $locationName           = $this->input->post('locationName');
-            $kode_pos               = $this->input->post('kode_pos');
-            $id_kelurahan           = $this->input->post('id_kelurahan');
+            $id_kabupaten_kota      = $this->input->post('kota');
             $no_hp                  = $this->input->post('no_hp');
-            $status_alamat          = $this->input->post('status_alamat');
 
             $data_updateToLocation = array(
-                'id_kelurahan'  => $id_kelurahan, 
-                'locationName'  => $locationName, 
-                'kode_pos'      => $kode_pos, 
+                'memberID'              => $this->session->memberID, 
+                'memberName'            => $memberName, 
+                'phone'                 => $phone, 
+                'id_kabupaten_kota'     => $id_kabupaten_kota, 
+                'locationName'          => $locationName
             );
 
-            if($this->MemberM->updateToLocation($locationID, $data_updateToLocation)){
-                $data_update_alamat         = array(
-                    'memberID'              => $memberID, 
-                    'locationID'            => $locationID, 
-                    'shipping_address_name' => $shipping_address_name, 
-                    'nama_penerima'         => $nama_penerima, 
-                    'no_hp'                 => $no_hp, 
-                    'status_alamat'         => $status_alamat, 
-                );
-                if($this->MemberM->updateToShippingAddress($shipping_addressID, $data_update_alamat)){
-                    $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
-                    redirect_back();
-                }else{
-                    // $this->MemberM->delete($locationID);
-                    $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
-                    redirect_back();
-                }
-            }else{                
+            if($this->MemberM->update_address($locationID,$data_updateToLocation)){
+                $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
+                redirect_back();
+            }else{
+                // $this->MemberM->delete($locationID);
                 $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
                 redirect_back();
             }
+
+            // if($this->MemberM->updateToLocation($locationID, $data_updateToLocation)){
+            //     $data_update_alamat         = array(
+            //         'memberID'              => $memberID, 
+            //         'locationID'            => $locationID, 
+            //         'shipping_address_name' => $shipping_address_name, 
+            //         'nama_penerima'         => $nama_penerima, 
+            //         'no_hp'                 => $no_hp, 
+            //         'status_alamat'         => $status_alamat, 
+            //     );
+            //     if($this->MemberM->updateToShippingAddress($shipping_addressID, $data_update_alamat)){
+            //         $this->session->set_flashdata('sukses', 'Data alamat berhasil disimpan');
+            //         redirect_back();
+            //     }else{
+            //         // $this->MemberM->delete($locationID);
+            //         $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            //         redirect_back();
+            //     }
+            // }else{                
+            //     $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            //     redirect_back();
+            // }
 
         }
     }
