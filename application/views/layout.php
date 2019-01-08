@@ -346,6 +346,9 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-wallet m-r-5 m-l-5"></i> Saldo Saya Rp. 20.000</a>
                                         <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="<?php echo site_url('CobaC/riwayat');?>">
+                                        <i class="ti-shopping-cart m-r-5 m-l-5"></i> Belanjaan Saya</a>
+                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="<?php echo site_url('pengaturan_profile');?>">
                                             <i class="ti-settings m-r-5 m-l-5"></i> Pengaturan Profil</a>
                                             <div class="dropdown-divider"></div>
