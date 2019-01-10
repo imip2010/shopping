@@ -188,15 +188,16 @@ class CheckoutC extends CI_Controller {
         
         $userEmail = 'rumbleroom5@gmail.com';
         $subject = 'Arnawa SMTP Dicoba';
-
+ 
         $data = array(
             'invoice' => $this->OrderM->get_orders($orderID)->row()->invoice,
             'memberName' => $this->session->nama,
             'bank_detail' => $this->MemberM->get_bank_id($bankID)->result(),
             'order_detail' => $this->OrderM->get_order_detail($orderID)->result()
         );
-
-        $this->MailM->send_invoice($userEmail,$subject,$data);
+        $template = 'emails/invoice';
+        
+        $this->MailM->send_invoice($userEmail,$subject,$data,$template);
 
         $this->update_products();
     }
