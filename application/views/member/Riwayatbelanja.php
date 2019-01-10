@@ -2,6 +2,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
+
 <div class="row">
 
     <!-- Column bagian kiri : mulai -->
@@ -10,18 +11,17 @@
         <div class="card">
             <div class="card-body">
                 <div class="myadmin-dd dd" id="nestable">
-                    <div class="text-center">
-                        <button type="button" class="btn waves-effect waves-light btn-outline-info"> Jual Barang </button>
+                    <div class="d-flex no-block align-items-center ">
+                        <div class="">
+                            <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="rounded-circle" width="50">
+                        </div>
+                        <div class="m-l-10">
+                            <h4 class="m-b-0"><?php echo $dataDiri['nama'];?></h4>
+                            <p class=" m-b-0"><?php echo $dataDiri['email'];?></p>
+                        </div>
                     </div><br>
-                    <ul class="list-style-none el-info" >
-                        <li class="el-item"> 
-                            <a href="#"> Ringkasan Akun </a>
-                        </li>
-                        <li class="el-item">
-                            <a href="<?php echo base_url()?>labelbarang"  style="color: #4798e8;" > Label Barang </a>
-                        </li>
-                        <div class="dropdown-divider"></div>
 
+                    <ul class="list-style-none el-info" >
                         <li class="el-item">
                             <a href="<?php echo base_url()?>labelbarang"  style="color: #4798e8;" > Akun Saya</a>
                         </li>
