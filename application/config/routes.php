@@ -74,6 +74,8 @@ $route['biaya/(:any)'] = 'CheckoutC/get_ongkir/$1';
 $route['cek_ongkir/(:num)/(:num)/(:num)/(:num)'] = 'HomeC/cek_ongkir/$1/$2/$3/$4';
 
 //Member
+$route['masuk']					= 'LoginC/index';
+$route['daftar']				= 'LoginC/register';
 $route['jual_barang'] 			= 'MemberC/jual_barang';
 $route['daftar_barang'] 		= 'MemberC/daftar_barang';
 $route['labelbarang'] 			= 'CobaC/label_barang';
@@ -87,3 +89,6 @@ $route['hapus_alamat/(:num)']	= 'MemberC/hapus_alamat/$1';
 $route['ubah_alamat']			= 'MemberC/post_ubah_alamat';
 //Member -> Verification
 $route['verify/(:any)']			= 'LoginC/activate/$1';
+//Member -> Reset Password
+$route['reset/(:any)']			= 'LoginC/load_reset/$1';
+$route['do_reset']				= 'LoginC/reset';

@@ -367,7 +367,7 @@
                                             }else{
                                                 ?>
                                                 <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle waves-effect waves-dark font-20" href="<?php echo site_url('LoginC')?>">Login</a>
+                                                    <a class="nav-link dropdown-toggle waves-effect waves-dark font-20" href="<?php echo site_url('/masuk')?>">Login</a>
                                                 </li>
                                                 <?php
                                             }
