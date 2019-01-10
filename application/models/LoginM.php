@@ -7,6 +7,7 @@ class LoginM extends CI_Model{
 	public function ceknum($email, $password){ //cek akun di db pengguna jabatan (berapa rows)
 		$this->db->where('email', $email);
 		$this->db->where('password', md5($password));
+		$this->db->where('status', 'Y');
 		return $this->db->get('members');
 	}
 
@@ -19,6 +20,13 @@ class LoginM extends CI_Model{
 		$data = array('lasLogin' => $time);
 
 		$this->db->where('memberID', $memberID);
+		$this->db->update('members', $data);
+		return TRUE;
+	}
+
+	public function activate($data, $verificationCode)
+	{
+		$this->db->where('codeVerication',$verificationCode);
 		$this->db->update('members', $data);
 		return TRUE;
 	}
