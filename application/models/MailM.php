@@ -7,7 +7,7 @@ class MailM extends CI_Model{
 		$this->load->database();
 	}
 
-	public function send_invoice($userEmail,$subject,$data)
+	public function send_invoice($userEmail,$subject,$data,$template)
 	{
         $config = Array(    
             'protocol' => 'smtp',
@@ -28,7 +28,7 @@ class MailM extends CI_Model{
         $this->email->subject($subject); // replace it with relevant subject
         $this->email->set_mailtype("html");
 
-        $body = $this->load->view('emails/invoice',$data,TRUE);
+        $body = $this->load->view($template,$data,TRUE);
         $this->email->message($body); 
         $this->email->send();
 	}

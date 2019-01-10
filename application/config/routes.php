@@ -85,3 +85,5 @@ $route['tambah_alamat']			= 'MemberC/post_tambah_alamat';
 $route['set_default_address/(:num)'] = 'MemberC/set_utama/$1';
 $route['hapus_alamat/(:num)']	= 'MemberC/hapus_alamat/$1';
 $route['ubah_alamat']			= 'MemberC/post_ubah_alamat';
+//Member -> Verification
+$route['verify/(:any)']			= 'LoginC/activate/$1';

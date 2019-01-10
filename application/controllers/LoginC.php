@@ -22,13 +22,13 @@ class LoginC extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('LoginM');
+		$this->load->model(['LoginM','MailM']);
 	}
 
 	public function index(){
 		$this->load->view('login_v');
 	}
-
+ 
 	public function log_in(){
 		if($this->input->post('submit')){
 			if($this->LoginM->check_captcha() == TRUE)
@@ -67,7 +67,7 @@ class LoginC extends CI_Controller {
 		$this->load->view('register');
 	}
 
-	function generate_password($length = 10){
+	function generate_password($length = 30){
 		$chars =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 		$str = '';
 		$max = strlen($chars) - 1;
@@ -112,7 +112,7 @@ class LoginC extends CI_Controller {
 				'codeVerication'	=> $verificationCode);
 			
 			if($this->LoginM->insert_data_member($data_register)){
-            	$this->sendemail($email, $passhash, $username); //kirim email
+            	$this->sendemail($email, $username, $verificationCode); //kirim email
 				$this->session->set_flashdata('sukses','Register successfull. Please Login. . .');  
 				redirect(base_url('LoginC/'));
 			}else{
@@ -123,36 +123,33 @@ class LoginC extends CI_Controller {
 
 	}
 
-	public function sendemail($email, $password, $username){
-		$to = $email;
-		$pass = $password;
-		$username = $username;		
-		$subject = "Email aktivasi: Aktifkan akun EMarket.com Anda melalui email ini!";
-		$html = "<h5>Thank you for your registration at e-market.com</h5>
-		<p>
-		Your username : $username <br>
-		Your email account : $to <br>
-		Your password : $pass <br><br>
-
-		Your activation code is $verificationCode <br><br>
-		For activation please click this url: <br>
-		<a href='http://www.ecommerce.com/activate.php?code=$verificationCode&email=$email'>http://www.ecommerce.com/activate.php?code=$verificationCode&email=$email</a>
-		<br><br><br>
-		Thank You<br>
-		This is an automated email. Do not reply. For trouble send to <a href='mailto: admin@ecommerce.com'>admin@ecommerce.com</a><br><br>
-		E-market.com
-		</p>
-		";	
-		// To send HTML mail, the Content-type header must be set
-		$headers  = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+	public function sendemail($email, $username, $verificationCode){
 		
-		// Additional headers
-		$headers .= 'From: Membership <membership@ecommerce.com>' . "\r\n";
+        $subject = "Email aktivasi: Aktifkan akun EMarket.com Anda melalui email ini!";
+ 
+        $data = array(
+            'username' => $username,
+            'email' => $email,
+            'verificationCode' => $verificationCode
+        );
 
-		mail($to, $subject, $html, $headers);
-		
-		header("Location: success.html?suc=ok");		
+        $template = 'emails/email_verification';
+        
+        $this->MailM->send_invoice($email,$subject,$data,$template);
+
+		redirect(base_url('LoginC/'));	
+	}
+
+	public function activate()
+	{
+		$verificationCode = $this->uri->segment(2);
+		$data = array('status' => 'Y');
+
+		if ($this->LoginM->activate($data, $verificationCode)) {
+			echo "Verified!";
+		}else{
+			echo "Failed to verify account!";
+		}
 	}
 }
 
