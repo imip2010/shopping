@@ -10,11 +10,11 @@ class MailM extends CI_Model{
 	public function send_invoice($userEmail,$subject,$data,$template)
 	{
         $config = Array(    
-            'protocol' => 'sendmail',
-            'smtp_host' => 'mail.arnawa.co.id',
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'info@arnawa.co.id',
-            'smtp_pass' => 'arnawa2018',
+            'smtp_user' => 'dtedi.svugm@gmail.com',
+            'smtp_pass' => 'Yogyakarta2018',
             'smtp_timeout' => '4',
             'charset' => 'iso-8859-1'
         );
@@ -24,7 +24,7 @@ class MailM extends CI_Model{
         // $this->email->set_newline("\r\n");
         $this->email->from('info@arnawa.co.id', 'Arnawa');
 
-        $this->email->to($userEmail); // replace it with receiver mail id
+        $this->email->to('febriyanyoga@gmail.com'); // replace it with receiver mail id
         $this->email->subject($subject); // replace it with relevant subject
         $this->email->set_mailtype("html");
 

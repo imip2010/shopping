@@ -72,7 +72,7 @@
                   <li  class="el-item">
                       <a href="<?php echo base_url()?>labelbarang"> Kode Promo </a> 
                   </li>
-                  <li  class="el-item"">
+                  <li  class="el-item">
                       <a href="<?php echo base_url()?>labelbarang"> Koperasi Widget </a> 
                   </li>
                   <li  class="el-item">
