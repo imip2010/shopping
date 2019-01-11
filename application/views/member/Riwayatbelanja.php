@@ -23,12 +23,12 @@
 
                     <ul class="list-style-none el-info" >
                         <li class="el-item">
-                            <a href="<?php echo base_url()?>labelbarang"  style="color: #4798e8;" > Akun Saya</a>
+                            <a href="<?php echo base_url()?>labelbarang" > Akun Saya</a>
                         </li>
                         <div class="dropdown-divider"></div>
 
                         <li  class="el-item">
-                            <a href="<?php echo base_url()?>labelbarang"> Belanjaan Saya </a> 
+                            <a href="<?php echo base_url()?>labelbarang" style="color: #4798e8;" > Belanjaan Saya </a> 
                         </li>
                         <div class="dropdown-divider"></div>
 
