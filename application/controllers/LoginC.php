@@ -22,7 +22,7 @@ class LoginC extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(['LoginM','MailM']);
+		$this->load->model(['LoginM','MailM','MemberM']);
 	}
 
 	public function index(){
@@ -112,7 +112,7 @@ class LoginC extends CI_Controller {
 				'codeVerication'	=> $verificationCode);
 			
 			if($this->LoginM->insert_data_member($data_register)){
-            	$this->sendemail($email, $username, $verificationCode); //kirim email
+            	$this->send_verification($email, $username, $verificationCode); //kirim email
 				$this->session->set_flashdata('sukses','Register successfull. Please Login. . .');  
 				redirect(base_url('LoginC/'));
 			}else{
@@ -123,7 +123,7 @@ class LoginC extends CI_Controller {
 
 	}
 
-	public function sendemail($email, $username, $verificationCode){
+	public function send_verification($email, $username, $verificationCode){
 		
         $subject = "Email aktivasi: Aktifkan akun EMarket.com Anda melalui email ini!";
  
@@ -150,6 +150,56 @@ class LoginC extends CI_Controller {
 		}else{
 			echo "Failed to verify account!";
 		}
+	}
+
+	public function reset_password()
+	{
+		$email = $this->input->post('email');
+		$codeVerication = $this->MemberM->get_member_by_email($email)->row()->codeVerication;
+
+		if (!empty($codeVerication)) {
+			$subject = "Ganti Kata Sandi : Ubah kata sandi Anda melalui email ini!";
+	 
+	        $data = array(
+	            'codeVerication' => $codeVerication
+	        );
+
+	        $template = 'emails/forgot_password';
+	        
+	        $this->MailM->send_invoice($email,$subject,$data,$template);
+
+	        echo "Buka email anda untuk mendapatkan tautan ganti kata sandi!";
+		}else{
+			echo "Alamat email Tidak Terdaftar!";
+		}
+	}
+
+	public function load_reset()
+	{
+		$this->data['dataDiri'] = $this->MemberM->get_member_by_vc($this->uri->segment(2))->row()->memberID;
+		return $this->load->view('member/reset_password', $this->data);
+	}
+
+	public function reset()
+	{
+		$this->form_validation->set_rules('password','Password','trim|required|min_length[6]|max_length[50]|matches[confirm_password]');
+		$this->form_validation->set_rules('confirm_password','Confirm password','trim|required|min_length[6]|max_length[50]');
+		if($this->form_validation->run() == FALSE){
+			$this->log_in();
+		}else{
+			$memberID 	= $this->input->post('dataDiri');
+			$password 	= $this->input->post('password');
+			$data = array('password' => hash('md5', $password));
+			// print_r($memberID);
+
+			if ($this->LoginM->reset_password($data, $memberID)) {
+				$this->session->set_flashdata('sukses','Kata sandi berhasil diubah!');  
+				redirect(base_url('LoginC/'));
+			}else{
+				echo "Gagal!";
+			}
+		}
+
 	}
 }
 
