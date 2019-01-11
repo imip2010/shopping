@@ -154,6 +154,30 @@ class MemberM extends CI_Model{
 		}
 	}
 
+	public function get_member_by_email($email){
+		$this->db->select('*');
+		$this->db->from('members D');
+		$this->db->where('D.email',$email);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_member_by_vc($vc){
+		$this->db->select('*');
+		$this->db->from('members D');
+		$this->db->where('D.codeVerication',$vc);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
 	// ambil semua porvinsi
 	public function get_provinces(){
 		$response = array();

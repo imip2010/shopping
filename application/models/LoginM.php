@@ -30,4 +30,11 @@ class LoginM extends CI_Model{
 		$this->db->update('members', $data);
 		return TRUE;
 	}
+
+	public function reset_password($data, $memberID)
+	{
+		$this->db->where('memberID',$memberID);
+		$this->db->update('members', $data);
+		return TRUE;
+	}
 }

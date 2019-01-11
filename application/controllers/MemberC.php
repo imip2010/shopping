@@ -451,7 +451,6 @@ class MemberC extends CI_Controller {
         $this->form_validation->set_rules('gender','gender');
         $this->form_validation->set_rules('email','email');
         $this->form_validation->set_rules('phone','phone');
-        $this->form_validation->set_rules('password','password');
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error','Data tidak berhasil diubah');  
@@ -465,7 +464,6 @@ class MemberC extends CI_Controller {
             $memberName     = $this->input->post('memberName');
             $email          = $this->input->post('email');
             $phone          = $this->input->post('phone');
-            $password       = $this->input->post('password');
             $memberID       = $this->input->post('memberID');
 
             $data_update_member = array(
@@ -475,8 +473,33 @@ class MemberC extends CI_Controller {
                 'username'      => $username, 
                 'gender'        => $gender, 
                 'tmp_lahir'     => $tmp_lahir, 
-                'password'      => md5($password), 
                 'tgl_lahir'     => $tgl_lahir, 
+            );
+
+            if($this->MemberM->update_data_member($memberID, $data_update_member)){
+                $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Data tidak berhasil diubah');
+                redirect_back();
+            }
+        }
+    }
+
+     //update member checkout
+    public function update_member_password(){
+        $this->form_validation->set_rules('memberID','memberID','required',  array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('password','password');
+
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Password belum diisi!');  
+            redirect_back();
+        }else{
+            $password       = $this->input->post('password');
+            $memberID       = $this->input->post('memberID');
+
+            $data_update_member = array(
+                'password'      => md5($password), 
             );
 
             if($this->MemberM->update_data_member($memberID, $data_update_member)){

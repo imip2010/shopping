@@ -135,9 +135,9 @@
                             <h5 class="card-title">Profil Akun </h5>
                             <p> Data Anda selalu rahasia dan tidak akan kami beritahukan kepada pihak ketiga.</p>
                             <?php echo validation_errors(); ?>
-                            <form action="<?php echo site_url('MemberC/update_member')?>" method="post">
                                 <table class="table">
                                     <tbody>
+                            <form action="<?php echo site_url('MemberC/update_member')?>" method="POST">
                                         <tr>
                                             <td width="230"><h4>Informasi Umum</h4></td>
                                             <td class="text-right">
@@ -281,6 +281,7 @@
                                     <td>
                                         <button type="submit" name="submit" class="btn waves-effect waves-light btn-info" id="save2"> Save </button>
                                     </td>
+                            </form>
                                     <tr>
                                         <td><h4>Password</h4></td>
                                         <td class="text-right">
@@ -290,10 +291,12 @@
                                             </button>
                                         </td>
                                     </tr>
+                            <form action="<?php echo site_url('MemberC/update_member_password')?>" method="POST">
+                              <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID']?>">
                                     <tr>
                                         <td>Password</td>
                                         <td>
-                                            <input type="password" name="password" id="password" class="form-control is-valid" value="" style="display: none;" ></input>
+                                            <input type="password" name="password" id="password" class="form-control is-valid" style="display: none;" ></input>
                                             <div id="password2">Diperbaharui beberapa waktu yang lalu</div>
                                         </td>
                                     </tr>
@@ -337,9 +340,9 @@
                                     </ul>
                                 </td>
                             </tr> -->
+                </form>
                         </tbody>
-                    </table>
-                </form><br><br>
+                    </table><br><br>
             </div>
             
         </div>
