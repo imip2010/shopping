@@ -76,6 +76,7 @@ class MemberC extends CI_Controller {
         // $this->data['locationID'] = $this->MemberM->get_shipping_address_by_id(4)->result()[0]->locationID;
 
         $this->data['isi'] = 'isi';
+        $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
         $this->data['isi'] = $this->load->view('member/pengaturan_profile_v', $this->data, TRUE);
         $this->load->view('layout', $this->data);
     }

@@ -79,7 +79,7 @@ $route['daftar']				= 'LoginC/register';
 $route['jual_barang'] 			= 'MemberC/jual_barang';
 $route['daftar_barang'] 		= 'MemberC/daftar_barang';
 $route['labelbarang'] 			= 'CobaC/label_barang';
-$route['transaksi'] 			= 'MemberC/get_transaksi';
+// $route['transaksi'] 			= 'MemberC/get_transaksi';
 //Member -> Profil
 $route['pengaturan_profile']	= 'MemberC/pengaturan_profile';
 //Member -> Alamat
@@ -92,3 +92,6 @@ $route['verify/(:any)']			= 'LoginC/activate/$1';
 //Member -> Reset Password
 $route['reset/(:any)']			= 'LoginC/load_reset/$1';
 $route['do_reset']				= 'LoginC/reset';
+
+//Member -> Transaction
+$route['transaksi']				= 'OrderC/transaction';
