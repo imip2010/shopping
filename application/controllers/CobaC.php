@@ -168,6 +168,17 @@ class CobaC extends CI_Controller {
 		$this->data['isi'] = $this->load->view('member/Riwayatbelanja', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
 	}
-}
 
+	
+	public function detailrincian(){
+		$this->data['dataDiri'] = $this->session->userdata();
+		$this->data['logged_in'] = $this->session->userdata('logged_in');
+		$this->data['isi'] = 'isi';
+		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['isi'] = $this->load->view('member/Detailpesanan_v', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
+	
+}
+  
 

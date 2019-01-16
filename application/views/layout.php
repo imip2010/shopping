@@ -25,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/extra-libs/prism/prism.css">
+    <link href="<?php echo base_url()?>assets/libs/jquery-steps/jquery.steps.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>assets/libs/jquery-steps/steps.css" rel="stylesheet">
 
 
     <!-- This page plugin CSS -->
@@ -597,6 +599,9 @@
                         <script src="<?php echo base_url()?>assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
                         <script src="<?php echo base_url()?>assets/libs/moment/moment.js"></script>
                         <script src="<?php echo base_url()?>assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js"></script>
+
+                        <script src="<?php echo base_url()?>assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
+                        <script src="<?php echo base_url()?>assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
                         
                         <script>
                             //==================================================//
@@ -604,6 +609,25 @@
                             //==================================================//
                             $("input[name='demo3']").TouchSpin();
                         </script>
+
+
+                        <script>
+                            //Custom design form example
+                            $(".tab-wizard").steps({
+                                headerTag: "h6",
+                                bodyTag: "section",
+                                transitionEffect: "fade",
+                                titleTemplate: '<span class="step">#index#</span> #title#',
+                                labels: {
+                                    finish: "Submit"
+                                },
+                                onFinished: function(event, currentIndex) {
+                                    swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
+
+                                }
+                            });
+                        </script>
+                        
 
                         <script>
                         // MAterial Date picker    

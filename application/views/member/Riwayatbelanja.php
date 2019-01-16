@@ -96,7 +96,7 @@
                                 </table><br>
                                 <div class="text-right" style="margin-right: 20px;">
                                     <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
+                                    <button type="button" class="btn waves-effect waves-light btn-outline-info" ><a href="<?php echo base_url()?>CobaC/detailrincian" > Tampilkan Rincian Barang </a></button>
                                     <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
