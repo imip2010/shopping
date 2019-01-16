@@ -80,6 +80,18 @@
                     <hr>
                     <?php }}}else{echo "Tidak ada transaksi!";}?>
                 </div>
+                <div id="navpills-2" class="tab-pane">
+                    Dikemas
+                </div>
+                <div id="navpills-3" class="tab-pane">
+                    Dikirim
+                </div>
+                <div id="navpills-4" class="tab-pane">
+                    Selesai
+                </div>
+                <div id="navpills-5" class="tab-pane">
+                    Batal
+                </div>
             </div>
 
 <!--             <div class="tab-content br-n pn">

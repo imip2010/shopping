@@ -58,21 +58,13 @@ class CheckoutC extends CI_Controller {
             'bankID'        => $this->input->post('bankID'), 
             'member_shipping_address_id' => $shipping_address_id,
             'invoice'       => 'AN'.random_string('numeric', 15), 
-            'statusOrder'   => 'Pending', 
+            'statusOrder'   => 'Unpaid', 
             'dateOrder'     => date('Y-m-d H:i:s'), 
-            'pendingOrder'  => '1', 
-            'paidOrder'     => '0', 
-            'sendOrder'     => '0', 
-            'acceptOrder'   => '0', 
-            'rejectOrder'   => '0', 
             'datePaid'      => date('Y-m-d H:i:s'), 
-            'dateSend'      => date('Y-m-d H:i:s'), 
             'dateFinish'    => date('Y-m-d H:i:s'), 
             'photo'         => 'xxxxxxxx.jpg', 
             'dibaca'        => 'N', 
-            'rate'          => 0, 
             'catatan'       => $this->input->post('catatan'), 
-            'resi'          => 'JNE12312312312312312', 
         );
         $orderID = $this->OrderM->add_to_orders($data_order);
         // print_r($orderID);
@@ -107,7 +99,7 @@ class CheckoutC extends CI_Controller {
 
         if (!empty($stored)) {
             $this->send_invoice($orderID);
-            // redirect('/transaksi');
+            redirect('/transaksi');
         }else{
             // $this->send_invoice($orderID);
             redirect('/beli_barang/'.$this->session->memberID);
