@@ -1,4 +1,4 @@
-<?php $total=0;?>
+<?php $total[]=0;error_reporting(0);?>
 <br>
 <!-- ============================================================== -->
 <!-- Start Page Content -->
@@ -61,12 +61,12 @@
                                         </td>
                                         <td></td>
                                     </tr>
-                                <?php $total=$total+$transaction->price;}}?>
+                                <?php $total[$key]=$total[$key]+$transaction->price;}}?>
                                 </tbody>
                             </table>
                             <hr style="margin-top: -1%;">
                             <div class="text-right" style="margin-right: 20px;">
-                                <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total, 0,',','.');?> </h4><br>
+                                <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
                                 <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
                                 <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
