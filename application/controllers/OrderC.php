@@ -31,6 +31,7 @@ class OrderC extends CI_Controller {
 
         $this->data['invoices'] = $this->OrderM->get_invoice_pack($this->session->memberID)->result();
         $this->data['transactions'] = $this->OrderM->get_transaction($this->session->memberID)->result();
+
         // print_r($this->data['transactions']);
         // if(count($lele) == 0){
         //     $this->session->set_flashdata('error_keranjang','Keranjang anda masih kosong !');
