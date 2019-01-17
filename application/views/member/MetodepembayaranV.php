@@ -17,6 +17,7 @@ foreach ($keranjang as $ker) {
 }
 // print_r($keranjang); 
 ?>
+<div class="loading" style="display: none;" id="loading_image">Loading&#8230;</div>
 <form method="POST" action="<?php echo site_url('/bayar')?>">
     <div class="card">
        <div class='card-body'>
@@ -52,7 +53,7 @@ foreach ($keranjang as $ker) {
                             <?php 
                                 } 
                             ?>
-                            <form method='post' action='<?php echo site_url(' MemberC/checkout')?>'> <table class='table table-striped table-bordered'
+                            <form method='post' action='<?php echo site_url(' MemberC/checkout')?>' id="form-submit"> <table class='table table-striped table-bordered'
                                 data-cart-quantity=''>
                                 <thead class='cart-header'>
                                     <tr>
@@ -299,7 +300,7 @@ foreach ($keranjang as $ker) {
                                         <div>
                                             <!-- <a href="<?php echo site_url('CobaC/metodepembayaran')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a>  -->
                                             <!-- <a href="<?php echo site_url('/bayar')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a>  -->
-                                            <button type="submit" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</button>
+                                            <button type="submit" class="btn btn-info" style="width: 250px;" id="btn-submit">Lanjut Pembayaran</button>
                                             <a href="<?php echo site_url('CobaC/metodepembayaran')?>"><span class="text-right"> Gunakan Kode Voucher ? </span></a>
                                         </div> 
                                     </div>
@@ -337,15 +338,21 @@ foreach ($keranjang as $ker) {
             var destinationID = $('#destination').val();
             var weight = $('#weight'+id).val();
             var productID = $(this).data("produkid");
+            $('#loading_image').show();
             e.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url();?>CheckoutC/cek_ongkir/"+originID+"/"+destinationID+"/"+weight+"/"+id+"/"+0,
                 success: function(data){
+                        $('#loading_image').hide();
                         $('#tabel_ongkir'+id).html(data);
                 },
                 error: function() { alert("Error posting feed."); }
             });
+        });
+
+        $('#btn-submit').on('click',function(){
+            $('#loading_image').show();
         });
     });
 

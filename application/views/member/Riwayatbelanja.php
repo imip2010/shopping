@@ -1,4 +1,4 @@
-<?php $total=0;?>
+<?php $total[]=0;error_reporting(0);?>
 <br>
 <!-- ============================================================== -->
 <!-- Start Page Content -->
@@ -24,8 +24,10 @@
             
             <div class="tab-content br-n pn">
                 <div id="navpills-1" class="tab-pane active">
-                    <?php foreach($invoices as $key => $order){ ?>
-                    <div class="row" style="background: #effff0;">
+                    <?php if(!empty($invoices)){
+                        foreach($invoices as $key => $order){ 
+                        if($order->statusOrder=='Unpaid'){?>
+                    <div class="row" style="background: #effff0;padding-bottom: 10px;border-bottom: 1px solid #dee2e6;">
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
@@ -35,7 +37,9 @@
                                         </td>
                                         <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;" class="text-right">Belum Bayar</h4></td>
                                     </tr>
-                                <?php foreach($transactions as $no => $transaction){ ?>
+                                <?php foreach($transactions as $no => $transaction){ 
+                                    if ($transaction->orderID == $order->orderID) {
+                                    ?>
                                     <tr>
                                         <td style="width: 10%"> <img src="<?php echo base_url()?>assets/images/product/thumbnail/<?php echo $transaction->photo1;?>" style="width: 100%"/></td>
                                         <td style="width: 75%"><?php echo $transaction->productName;?>
@@ -58,12 +62,12 @@
                                         </td>
                                         <td></td>
                                     </tr>
-                                <?php $total=$total+$transaction->price;}?>
+                                <?php $total[$key]=$total[$key]+$transaction->price;}}?>
                                 </tbody>
                             </table>
                             <hr style="margin-top: -1%;">
                             <div class="text-right" style="margin-right: 20px;">
-                                <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total, 0,',','.');?> </h4><br>
+                                <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
                                 <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
                                 <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
@@ -74,8 +78,20 @@
                             </div>
                         </div>
                     </div>
-                    <?php }?>
-                    <br>
+                    <hr>
+                    <?php }}}else{echo "Tidak ada transaksi!";}?>
+                </div>
+                <div id="navpills-2" class="tab-pane">
+                    Dikemas
+                </div>
+                <div id="navpills-3" class="tab-pane">
+                    Dikirim
+                </div>
+                <div id="navpills-4" class="tab-pane">
+                    Selesai
+                </div>
+                <div id="navpills-5" class="tab-pane">
+                    Batal
                 </div>
             </div>
 
