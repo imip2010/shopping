@@ -26,7 +26,7 @@ class OrderC extends CI_Controller {
         $this->data['pending_t'] = $lele = $this->OrderM->get_pending_transaction($this->session->memberID)->result();
         $this->data['packing_t'] = $lele = $this->OrderM->get_packing_transaction($this->session->memberID)->result();
         $this->data['deliver_t'] = $lele = $this->OrderM->get_deliver_transaction($this->session->memberID)->result();
-        $this->data['done_t'] = $lele = $this->OrderM->get_done_transaction($this->session->memberID)->result();
+        $this->data['done_t']       = $lele = $this->OrderM->get_done_transaction($this->session->memberID)->result();
         $this->data['reject_t'] = $lele = $this->OrderM->get_reject_transaction($this->session->memberID)->result();
 
         $this->data['invoices'] = $this->OrderM->get_invoice_pack($this->session->memberID)->result();
@@ -38,7 +38,7 @@ class OrderC extends CI_Controller {
         // }else{
             // print_r($this->data);
             $this->data['isi'] = 'isi';
-            $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
+            $this->data['sidebar'] = $this->load->view('member/Sidebar_transaksi', $this->data, TRUE);
             $this->data['isi'] = $this->load->view('member/Riwayatbelanja', $this->data, TRUE);
             $this->load->view('layout', $this->data);
         // } 

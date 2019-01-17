@@ -9,6 +9,7 @@
     <?php
         echo $sidebar;
     ?>
+
     <!-- Column bagian kanan : mulai -->
     <div class="col-lg-10 col-md-12">
         <h3 class="card-title">Riwayat Belanja </h3>
@@ -78,7 +79,7 @@
                 </div>
             </div>
 
-<!--             <div class="tab-content br-n pn">
+           <div class="tab-content br-n pn">
                 <div id="navpills-1" class="tab-pane active">
                     <?php 
                     if(!empty($pending_t)){
@@ -294,7 +295,7 @@
                     </div>
                     <?php }}else{echo "Transaksi Kosong!";}?>
                 </div>
-            </div> -->
+            </div> 
         </div>
     </div>
     <!-- Column bagian kanan : selesai -->
