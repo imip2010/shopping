@@ -31,16 +31,11 @@ class OrderC extends CI_Controller {
 
         $this->data['invoices'] = $this->OrderM->get_invoice_pack($this->session->memberID)->result();
         $this->data['transactions'] = $this->OrderM->get_transaction($this->session->memberID)->result();
+
         // print_r($this->data['transactions']);
-        // if(count($lele) == 0){
-        //     $this->session->set_flashdata('error_keranjang','Keranjang anda masih kosong !');
-        //     redirect('HomeC');
-        // }else{
-            // print_r($this->data);
-            $this->data['isi'] = 'isi';
-            $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
-            $this->data['isi'] = $this->load->view('member/Riwayatbelanja', $this->data, TRUE);
-            $this->load->view('layout', $this->data);
-        // } 
+        $this->data['isi'] = 'isi';
+        $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
+        $this->data['isi'] = $this->load->view('member/Riwayatbelanja', $this->data, TRUE);
+        $this->load->view('layout', $this->data);
     }
 }
