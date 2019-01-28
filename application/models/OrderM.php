@@ -33,10 +33,70 @@ class OrderM extends CI_model
 	{
 		$this->db->select('*');
 		$this->db->from('orders O');
+		$this->db->join('orders_detail OD','OD.orderID = O.orderID');
+		$this->db->join('products P','OD.productID = P.productID');
+		$this->db->join('members M','M.memberID = P.memberID');
+		$this->db->where('O.statusOrder','Unpaid');
+		$this->db->where('OD.stat',null);
+		$this->db->group_by('O.orderID');
 		$this->db->where('O.memberID',$memberID);
 		return $this->db->get();
 	}
 
+	public function get_invoice_pack_packing($memberID)
+	{
+		$this->db->select('*');
+		$this->db->from('orders O');
+		$this->db->join('orders_detail OD','OD.orderID = O.orderID');
+		$this->db->join('products P','OD.productID = P.productID');
+		$this->db->join('members M','M.memberID = P.memberID');
+		$this->db->where('O.statusOrder','Paid');
+		$this->db->where('OD.stat','Packing');
+		$this->db->group_by('O.orderID');
+		$this->db->where('O.memberID',$memberID);
+		return $this->db->get();
+	}
+
+	public function get_invoice_pack_send($memberID)
+	{
+		$this->db->select('*');
+		$this->db->from('orders O');
+		$this->db->join('orders_detail OD','OD.orderID = O.orderID');
+		$this->db->join('products P','OD.productID = P.productID');
+		$this->db->join('members M','M.memberID = P.memberID');
+		$this->db->where('O.statusOrder','Paid');
+		$this->db->where('OD.stat','Send');
+		$this->db->group_by('O.orderID');
+		$this->db->where('O.memberID',$memberID);
+		return $this->db->get();
+	}
+
+	public function get_invoice_pack_done($memberID)
+	{
+		$this->db->select('*');
+		$this->db->from('orders O');
+		$this->db->join('orders_detail OD','OD.orderID = O.orderID');
+		$this->db->join('products P','OD.productID = P.productID');
+		$this->db->join('members M','M.memberID = P.memberID');
+		$this->db->where('O.statusOrder','Paid');
+		$this->db->where('OD.stat','Done');
+		$this->db->group_by('O.orderID');
+		$this->db->where('O.memberID',$memberID);
+		return $this->db->get();
+	}
+
+	public function get_invoice_pack_reject($memberID)
+	{
+		$this->db->select('*');
+		$this->db->from('orders O');
+		$this->db->join('orders_detail OD','OD.orderID = O.orderID');
+		$this->db->join('products P','OD.productID = P.productID');
+		$this->db->join('members M','M.memberID = P.memberID');
+		$this->db->where('O.statusOrder','Reject');
+		$this->db->group_by('O.orderID');
+		$this->db->where('O.memberID',$memberID);
+		return $this->db->get();
+	}
 
 	public function get_transaction($memberID)
 	{
