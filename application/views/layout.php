@@ -30,6 +30,12 @@
     <link href="<?php echo base_url()?>assets/libs/jquery-steps/jquery.steps.css" rel="stylesheet">
     <link href="<?php echo base_url()?>assets/libs/jquery-steps/steps.css" rel="stylesheet">
 
+    
+    <link href="<?php echo base_url()?>assets/dist/css/wizard.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>assets/dist/js/wizard.js" rel="stylesheet">
+
+
+
 
     <!-- This page plugin CSS -->
     <link href="<?php echo base_url()?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">

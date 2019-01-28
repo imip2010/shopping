@@ -33,22 +33,10 @@ class OrderC extends CI_Controller {
         $this->data['transactions'] = $this->OrderM->get_transaction($this->session->memberID)->result();
 
         // print_r($this->data['transactions']);
-<<<<<<< HEAD
-        // if(count($lele) == 0){
-        //     $this->session->set_flashdata('error_keranjang','Keranjang anda masih kosong !');
-        //     redirect('HomeC');
-        // }else{
-            // print_r($this->data);
-            $this->data['isi'] = 'isi';
-            $this->data['sidebar'] = $this->load->view('member/Sidebar_transaksi', $this->data, TRUE);
-            $this->data['isi'] = $this->load->view('member/Riwayatbelanja', $this->data, TRUE);
-            $this->load->view('layout', $this->data);
-        // } 
-=======
+
         $this->data['isi'] = 'isi';
         $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
         $this->data['isi'] = $this->load->view('member/Riwayatbelanja', $this->data, TRUE);
         $this->load->view('layout', $this->data);
->>>>>>> 30cbd5cfa08a354e46d09311fd6b69fb8d5b9870
     }
 }

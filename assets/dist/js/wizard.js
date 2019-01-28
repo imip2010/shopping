@@ -1,35 +1,25 @@
-$(document).ready(function () {
-    //Initialize tooltips
-    $('.nav-tabs > li a[title]').tooltip();
-    
-    //Wizard
-    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-        var $target = $(e.target);
-    
-        if ($target.parent().hasClass('disabled')) {
-            return false;
-        }
+$(function(){
+    $('.btn-circle').on('click',function(){
+      $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+      $(this).addClass('btn-info').removeClass('btn-default').blur();
     });
-
-    $(".next-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        $active.next().removeClass('disabled');
-        nextTab($active);
-
+   
+    $('.next-step, .prev-step').on('click', function (e){
+      var $activeTab = $('.tab-pane.active');
+   
+      $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+   
+      if ( $(e.target).hasClass('next-step') )
+      {
+         var nextTab = $activeTab.next('.tab-pane').attr('id');
+         $('[href="#'+ nextTab +'"]').addClass('btn-info').removeClass('btn-default');
+         $('[href="#'+ nextTab +'"]').tab('show');
+      }
+      else
+      {
+         var prevTab = $activeTab.prev('.tab-pane').attr('id');
+         $('[href="#'+ prevTab +'"]').addClass('btn-info').removeClass('btn-default');
+         $('[href="#'+ prevTab +'"]').tab('show');
+      }
     });
-    $(".prev-step").click(function (e) {
-
-        var $active = $('.wizard .nav-tabs li.active');
-        prevTab($active);
-
-    });
-});
-
-function nextTab(elem) {
-    $(elem).next().find('a[data-toggle="tab"]').click();
-}
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
-}
+   });
