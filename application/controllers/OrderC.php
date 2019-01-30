@@ -23,13 +23,19 @@ class OrderC extends CI_Controller {
         $this->data['get_default_address'] = $this->MemberM->get_default_address($this->session->memberID)->result();
 
         //ambil barang di keranjang
+
         $this->data['pending_t'] = $lele = $this->OrderM->get_pending_transaction($this->session->memberID)->result();
         $this->data['packing_t'] = $lele = $this->OrderM->get_packing_transaction($this->session->memberID)->result();
         $this->data['deliver_t'] = $lele = $this->OrderM->get_deliver_transaction($this->session->memberID)->result();
         $this->data['done_t']       = $lele = $this->OrderM->get_done_transaction($this->session->memberID)->result();
         $this->data['reject_t'] = $lele = $this->OrderM->get_reject_transaction($this->session->memberID)->result();
 
+
         $this->data['invoices'] = $this->OrderM->get_invoice_pack($this->session->memberID)->result();
+        $this->data['invoices_packing'] = $this->OrderM->get_invoice_pack_packing($this->session->memberID)->result();
+        $this->data['invoices_send'] = $this->OrderM->get_invoice_pack_send($this->session->memberID)->result();
+        $this->data['invoices_done'] = $this->OrderM->get_invoice_pack_done($this->session->memberID)->result();
+        $this->data['invoices_reject'] = $this->OrderM->get_invoice_pack_reject($this->session->memberID)->result();
         $this->data['transactions'] = $this->OrderM->get_transaction($this->session->memberID)->result();
 
         // print_r($this->data['transactions']);

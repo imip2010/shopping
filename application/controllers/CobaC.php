@@ -178,6 +178,25 @@ class CobaC extends CI_Controller {
 		$this->data['isi'] = $this->load->view('member/Blmbayar_v', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
 	}
+
+	
+	public function dikemas(){
+		$this->data['dataDiri'] = $this->session->userdata();
+		$this->data['logged_in'] = $this->session->userdata('logged_in');
+		$this->data['isi'] = 'isi';
+		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['isi'] = $this->load->view('member/Dikemas_v', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
+	
+	public function dikirim(){
+		$this->data['dataDiri'] = $this->session->userdata();
+		$this->data['logged_in'] = $this->session->userdata('logged_in');
+		$this->data['isi'] = 'isi';
+		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+		$this->data['isi'] = $this->load->view('member/Dikirim_v', $this->data, TRUE);
+		$this->load->view('layout', $this->data);
+	}
 	
 }
   
