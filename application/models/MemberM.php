@@ -125,14 +125,10 @@ class MemberM extends CI_Model{
 	public function get_detail_members($memberID){
 		$this->db->select('*');
 		$this->db->from('members D');
-		$this->db->join('location L', 'D.locationID = L.locationID','left');
-		$this->db->join('kelurahan Z','L.id_kelurahan = Z.id_kelurahan');
-		$this->db->join('kecamatan K','Z.id_kecamatan = K.id_kecamatan');
-		$this->db->join('kabupaten_kota P','K.id_kabupaten_kota = P.id_kabupaten_kota');
-		$this->db->join('propinsi J','P.id_propinsi = J.id_propinsi');
-		// $this->db->join('courier D','M.courierID = D.courierID');
-		// $this->db->join('shipping S','M.shippingID = S.shippingID','left');
-		// $this->db->join('bank B', 'M.bankID = B.bankID');
+		$this->db->join('location L', 'D.memberID = L.memberID','left');
+		$this->db->join('kabupaten_kota K','K.id_kabupaten_kota = L.id_kabupaten_kota');
+		$this->db->join('propinsi P','K.id_propinsi = P.id_propinsi');
+		$this->db->where('L.status_alamat','1');
 		$this->db->where('D.memberID',$memberID);
 		$query = $this->db->get();
 		if($query){

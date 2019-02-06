@@ -67,7 +67,7 @@
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
                                 <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </button>
+                                <a href="<?php echo site_url('detail_transaksi/').$order->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
@@ -124,7 +124,7 @@
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
                                 <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
+                                <a href="<?php echo site_url('detail_transaksi/').$order_packing->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
@@ -181,7 +181,7 @@
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
                                 <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
+                                <a href="<?php echo site_url('detail_transaksi/').$order_send->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
@@ -238,7 +238,7 @@
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
                                 <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
+                                <a href="<?php echo site_url('detail_transaksi/').$order_done->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
@@ -295,7 +295,7 @@
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
                                 <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
+                                <a href="<?php echo site_url('detail_transaksi/').$order_reject->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>

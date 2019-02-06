@@ -98,6 +98,17 @@ class OrderM extends CI_model
 		return $this->db->get();
 	}
 
+	public function get_detail_transaction($orderID)
+	{
+		$this->db->select('*');
+		$this->db->from('orders O');
+		$this->db->join('orders_detail OD','OD.orderID = O.orderID');
+		$this->db->join('products P','OD.productID = P.productID');
+		$this->db->join('members M','M.memberID = P.memberID');
+		$this->db->where('O.orderID',$orderID);
+		return $this->db->get();
+	}
+
 	public function get_transaction($memberID)
 	{
 		$this->db->select('*');

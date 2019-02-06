@@ -7,6 +7,9 @@
     <div class="row">
     <?php
         echo $sidebar;
+        $total = 0;
+        $ongkir = 0;
+        // print_r($detail_transaksi);
     ?> 
         <div class="col-md-8">
             <div class="card">
@@ -14,35 +17,39 @@
                     <h4>Daftar Pembelian</h4>
                 </div>
                 <div class="card-body">
+                    <?php foreach ($detail_transaksi as $numb => $transaksi) {?>
                         <table class="table-bordered" style="background: rgba(184, 184, 184, 0.03);">
                             <tbody>
                                 <tr>
-                                    <td class="col-md-2">
+                                    <td class="col-md-2" style="width: 60%;">
                                         <small>TOKO</small><br>
-                                        <h5>Nama Toko</h5>
+                                        <h5><?php echo $transaksi->memberName;?></h5>
                                     </td>
-                                    <td class="col-md-3">
-                                        <button type="button" class="btn waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                    </td>
-                                    <td class="col-md-3">
-                                        <button type="button" class="btn waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
+                                    <td class="col-md-3 text-right" colspan="2">                                    
+                                        <a class="btn waves-effect waves-light btn-info text-white">
+                                            <i class="mdi mdi-message"></i> Chat 
+                                        </a>
+                                        <a class="btn waves-effect waves-light btn-outline-info text-info" style="display: inline-block;"> Kunjungi Toko </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="col-md-3">
                                         <small>CATATAN UNTUK PENJUAL</small><br>
-                                        <h5>----------</h5>
+                                        <?php 
+                                        if(!empty($transaksi->catatan)){echo "<h5>".$transaksi->catatan."</h5>";}else{echo "<h5>----------</h5>";}?>
+                                        
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="col-md-3">
                                         <img style="width: 15%; padding: 10px;" src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 100%">
                                         <span style="display: inline-block;">
-                                            Nama Produk<br>
-                                            <small>Jumlah : 1</small>
+                                            <span style="font-size: 0.9rem;font-weight: 500;"><?php echo $transaksi->productName;?></span><br>
+                                            <small>Jumlah : <?php echo $transaksi->quantity." x ".number_format($transaksi->price/$transaksi->quantity, 0,',','.');?></small><br>
+                                            <small>Berat : <?php echo $transaksi->weight;?>gr</small>
                                         </span>
                                         <span style="float: right;padding: 2%;">
-                                            Rp10.000
+                                            <h5>Rp<?php echo number_format($transaksi->price, 0,',','.');?></h5>
                                         </span>
                                     </td>
                                 </tr>
@@ -60,15 +67,15 @@
                                                     <span><h5>Belum Bayar</h5></span>
                                                 </div>
                                                 <div class="process-step">
-                                                    <button type="button" class="btn btn-info btn-bulat"  ><i class="fa fa-truck fa-3x"></i></button><br>
+                                                    <button type="button" class="btn <?php if($transaksi->stat=="Packing"||$transaksi->stat=="Send"||$transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-truck fa-3x"></i></button><br>
                                                     <span><h5>Belum Dikirimkan</h5></span>
                                                 </div>
                                                 <div class="process-step">
-                                                    <button type="button" class="btn btn-info btn-bulat" ><i class="fa fa-download fa-3x"></i></button><br>
+                                                    <button type="button" class="btn <?php if($transaksi->stat=="Send"||$transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-download fa-3x"></i></button><br>
                                                     <span><h5>Belum Diterima</h5></span>
                                                 </div>
                                                 <div class="process-step">
-                                                    <button type="button" class="btn btn-default btn-bulat" style="background-color: #96989a;"  ><i class="fa fa-star-o fa-3x"></i></button><br>
+                                                    <button type="button" class="btn <?php if($transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-star-o fa-3x"></i></button><br>
                                                     <span><h5>Belum Dinilai</h5></span>
                                                 </div>
                                             </div>
@@ -76,17 +83,23 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col-md-2">
+                                    <td class="col-md-2" style="width: 60%;">
                                         <small>JASA PENGIRIMAN</small><br>
-                                        <h5>JNE</h5>
+                                        <h5><?php echo $transaksi->expedition;?></h5>
                                     </td>
-                                    <td colspan="2" class="col-md-6">
+                                    <td class="col-md-3">
                                         <small>NO. RESI</small><br>
-                                        <h5>123456789</h5>
+                                        <?php if(!empty($transaksi->trackingCode)){echo "<h5>".$transaksi->trackingCode."</h5>";}else{echo "<h5>Pesanan Belum Dikirim</h5>";}?>
+                                    </td>
+                                    <td class="col-md-3">
+                                        <small>ONGKOS KIRIM</small><br>
+                                        <h5>Rp<?php echo number_format($transaksi->biaya_ongkir, 0,',','.');?></h5>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <hr>
+                    <?php }?>
                 </div>
             </div>
             <!-- <div class="table-responsive">
@@ -270,36 +283,51 @@
             <div class="card">
                 <div class="card-body">
                     <div class="myadmin-dd dd">
-                        <small>
-                            <span>NO. TAGIHAN</span>
-                        </small><br>
-                        <h5>AN109545798736262</h5>
-                        <hr>
-                        <small>
-                            <span>STATUS TAGIHAN</span>
-                        </small><br>
-                        <h5>Belum dibayar</h5>
-                        <hr>
-                        <small>
-                            <span>METODE PEMBAYARAN</span>
-                        </small><br>
-                        <h5>Transfer</h5>
-                        <hr>
-                        <small>
-                            <span>TOTAL PEMBAYARAN</span>
-                        </small><br>
-                        <h5>Rp999.999</h5>
-                        <hr>
-                        <small>
-                            <span>ALAMAT PENGIRIMAN</span>
-                        </small><br>
-                        <span>
-                            <h5>Jonathan</h5>
-                            alamat lengkap<br>
-                            kabupaten<br>
-                            provinsi, kodepos<br>
-                            telepon
-                        </span>
+                            <small>
+                                <span>NO. TAGIHAN</span>
+                            </small><br>
+                            <h5><?php echo $invoice;?></h5>
+                            <hr>
+                            <small>
+                                <span>STATUS TAGIHAN</span>
+                            </small><br>
+                            <h5><?php if($statusOrder=="Unpaid"){
+                                echo "Belum dibayar";
+                            }elseif($statusOrder=="Paid"){
+                                echo "Sudah dibayar";
+                            }else{
+                                echo "Dibatalkan";
+                            }?></h5>
+                            <hr>
+                            <small>
+                                <span>METODE PEMBAYARAN</span>
+                            </small><br>
+                            <h5><?php if(!empty($bankID)){
+                                echo "Transfer";
+                            }else{
+                                echo "---------";
+                            }?></h5>
+                            <hr>
+                            <small>
+                                <span>TOTAL PEMBAYARAN</span>
+                            </small><br>
+                        <?php foreach ($detail_transaksi as $no => $trans) {
+                            $sub[$no]=$trans->price;$subOngkir[$no]=$trans->biaya_ongkir;
+                            $ongkir=$ongkir+$subOngkir[$no];$total=$total+$sub[$no];} echo "<h5>Rp".number_format($total+$ongkir, 0,',','.')."</h5>";?>
+                            <hr>
+                        <?php foreach ($detail_member as $no => $personal) {?>
+                            <small>
+                                <span>ALAMAT PENGIRIMAN</span>
+                            </small><br>
+                            <span>
+                                <?php echo
+                                "<h5>".$personal->memberName."</h5>".
+                                $personal->locationName."<br>".
+                                $personal->nama_kabupaten_kota."<br>".
+                                $personal->nama_propinsi.", ".$personal->kode_pos."<br>".
+                                $personal->phone;?>
+                            </span>
+                        <?php }?>
                     </div>
                 </div>
             </div>

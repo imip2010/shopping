@@ -119,11 +119,13 @@ class Cart extends CI_Controller {
     public function update_courier_cart()
     {
         $cartID     = $this->input->post('cartID');
+        $expedition = $this->input->post('expedition');
         $service    = $this->input->post('service');
         $estimate   = $this->input->post('estimate');
         $cost       = $this->input->post('cost');
 
         $data = array(
+            'expedition'=> $expedition,
             'service'   => $service,
             'estimate'  => $estimate,
             'cost'      => $cost

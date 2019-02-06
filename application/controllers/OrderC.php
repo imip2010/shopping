@@ -49,14 +49,12 @@ class OrderC extends CI_Controller {
         $this->data['MemberM'] = $this->MemberM;
         $this->data['get_default_address'] = $this->MemberM->get_default_address($this->session->memberID)->result();
 
-        //ambil barang di keranjang
 
-        $this->data['invoices'] = $this->OrderM->get_invoice_pack($this->session->memberID)->result();
-        $this->data['invoices_packing'] = $this->OrderM->get_invoice_pack_packing($this->session->memberID)->result();
-        $this->data['invoices_send'] = $this->OrderM->get_invoice_pack_send($this->session->memberID)->result();
-        $this->data['invoices_done'] = $this->OrderM->get_invoice_pack_done($this->session->memberID)->result();
-        $this->data['invoices_reject'] = $this->OrderM->get_invoice_pack_reject($this->session->memberID)->result();
-        $this->data['transactions'] = $this->OrderM->get_transaction($this->session->memberID)->result();
+        $this->data['detail_transaksi'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->result();
+        $this->data['invoice'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->row()->invoice;
+        $this->data['statusOrder'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->row()->statusOrder;
+        $this->data['bankID'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->row()->bankID;
+        $this->data['detail_member'] = $this->MemberM->get_detail_members($this->session->memberID)->result();
 
         // print_r($this->data['transactions']);
         $this->data['isi'] = 'isi';
