@@ -38,7 +38,7 @@ class OrderC extends CI_Controller {
         $this->load->view('layout', $this->data);
     }
 
-    public function detail_transaction()
+    public function detail_transaction($orderID)
     {
         $this->data['dataDiri'] = $this->session->userdata();
         $this->data['logged_in'] = $this->session->userdata('logged_in');
@@ -50,11 +50,11 @@ class OrderC extends CI_Controller {
         $this->data['get_default_address'] = $this->MemberM->get_default_address($this->session->memberID)->result();
 
 
-        $this->data['detail_transaksi'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->result();
-        $this->data['invoice'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->row()->invoice;
-        $this->data['statusOrder'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->row()->statusOrder;
-        $this->data['bankID'] = $this->OrderM->get_detail_transaction($this->uri->segment(2))->row()->bankID;
-        $this->data['detail_member'] = $this->MemberM->get_detail_members($this->session->memberID)->result();
+        $this->data['detail_transaksi'] = $this->OrderM->get_detail_transaction($orderID)->result();
+        $this->data['invoice'] = $this->OrderM->get_detail_transaction($orderID)->row()->invoice;
+        $this->data['statusOrder'] = $this->OrderM->get_detail_transaction($orderID)->row()->statusOrder;
+        $this->data['bankID'] = $this->OrderM->get_detail_transaction($orderID)->row()->bankID;
+        $this->data['detail_member'] = $this->MemberM->get_detail_members_log($this->OrderM->get_detail_transaction($orderID)->row()->member_shipping_address_id)->result();
 
         // print_r($this->data['transactions']);
         $this->data['isi'] = 'isi';

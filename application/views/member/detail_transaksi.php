@@ -9,7 +9,7 @@
         echo $sidebar;
         $total = 0;
         $ongkir = 0;
-        // print_r($detail_transaksi);
+        // print_r($detail_member);
     ?> 
         <div class="col-md-8">
             <div class="card">
@@ -321,11 +321,10 @@
                             </small><br>
                             <span>
                                 <?php echo
-                                "<h5>".$personal->memberName."</h5>".
-                                $personal->locationName."<br>".
+                                "<h5>".$personal->nama_penerima."</h5>".
+                                $personal->shipping_address_name."<br>".
                                 $personal->nama_kabupaten_kota."<br>".
-                                $personal->nama_propinsi.", ".$personal->kode_pos."<br>".
-                                $personal->phone;?>
+                                $personal->nama_propinsi.", ".$personal->kode_pos;?>
                             </span>
                         <?php }?>
                     </div>
