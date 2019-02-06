@@ -182,6 +182,7 @@ foreach ($keranjang as $ker) {
                                         </td>
                                         <td>
                                             <input type="hidden" id="origin<?php echo $ker->cartID?>" value="<?php echo $ker->id_kabupaten_kota ?>">
+                                            <input type="hidden" name="expedition<?php echo $ker->productID?>" value="<?php echo $ker->expedition?>">
                                             <?php echo (empty($ker->service))?'':"<b>Servis : </b>".$ker->service ?>
                                             <input type="hidden" name="service<?php echo $ker->productID?>" value="<?php echo $ker->service?>">
                                         </td>
@@ -356,5 +357,5 @@ foreach ($keranjang as $ker) {
         });
     });
 
-
+ 
 </script>

@@ -95,3 +95,4 @@ $route['do_reset']				= 'LoginC/reset';
 
 //Member -> Transaction
 $route['transaksi']				= 'OrderC/transaction';
+$route['detail_transaksi/(:num)'] = 'OrderC/detail_transaction/$1';

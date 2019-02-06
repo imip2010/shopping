@@ -85,6 +85,7 @@ class CheckoutC extends CI_Controller {
                 'sellerID'  => $data->sellerID, 
                 'seller_shipment_address_id'  => $shipment_address_id, 
                 'memberID'  => $this->session->memberID, 
+                'expedition'=> $this->input->post('expedition'.$data->productID), 
                 'service'   => $this->input->post('service'.$data->productID), 
                 'estimasi'  => $this->input->post('estimate'.$data->productID), 
                 'biaya_ongkir'  => $this->input->post('cost'.$data->productID), 
@@ -138,6 +139,7 @@ class CheckoutC extends CI_Controller {
                                     <td>
                                         <form method='POST' action='".base_url()."/cart_update'>
                                             <input type='hidden' name='cartID' value='".$cartID."'>
+                                            <input type='hidden' name='expedition' value='".$ongkir['rajaongkir']['results'][0]['name']."'>
                                             <input type='hidden' name='service' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['service']."'>
                                             <input type='hidden' name='estimate' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['etd']."'>
                                             <input type='hidden' name='cost' value='".$ongkir['rajaongkir']['results'][0]['costs'][$i]['cost'][0]['value']."'>
