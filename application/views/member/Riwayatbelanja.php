@@ -33,7 +33,7 @@
                                         <td class="text-left" colspan="2" style="padding-bottom: 0rem;">
                                             <h3><?php echo $order->invoice;?></h3>
                                         </td>
-                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;" class="text-right">Belum Bayar</h4></td>
+                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;font-size: 0.97rem;" class="text-right">Belum Bayar</h4></td>
                                     </tr>
                                 <?php foreach($transactions as $no => $transaction){ 
                                     if ($transaction->orderID == $order->orderID) {
@@ -90,7 +90,7 @@
                                         <td class="text-left" colspan="2" style="padding-bottom: 0rem;">
                                             <h3><?php echo $order_packing->invoice;?></h3>
                                         </td>
-                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;" class="text-right">Belum Bayar</h4></td>
+                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;font-size: 0.97rem;" class="text-right">Belum Dikirimkan</h4></td>
                                     </tr>
                                 <?php foreach($transactions as $no => $transaction){ 
                                     if ($transaction->orderID == $order_packing->orderID) {
@@ -147,7 +147,7 @@
                                         <td class="text-left" colspan="2" style="padding-bottom: 0rem;">
                                             <h3><?php echo $order_send->invoice;?></h3>
                                         </td>
-                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;" class="text-right">Belum Bayar</h4></td>
+                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;font-size: 0.97rem;" class="text-right">Belum Diterima</h4></td>
                                     </tr>
                                 <?php foreach($transactions as $no => $transaction){ 
                                     if ($transaction->orderID == $order_send->orderID) {
@@ -204,7 +204,7 @@
                                         <td class="text-left" colspan="2" style="padding-bottom: 0rem;">
                                             <h3><?php echo $order_done->invoice;?></h3>
                                         </td>
-                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;" class="text-right">Belum Bayar</h4></td>
+                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;font-size: 0.97rem;" class="text-right">Belum Dinilai</h4></td>
                                     </tr>
                                 <?php foreach($transactions as $no => $transaction){ 
                                     if ($transaction->orderID == $order_done->orderID) {
@@ -261,7 +261,7 @@
                                         <td class="text-left" colspan="2" style="padding-bottom: 0rem;">
                                             <h3><?php echo $order_reject->invoice;?></h3>
                                         </td>
-                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;" class="text-right">Belum Bayar</h4></td>
+                                        <td style="padding-bottom: 0rem;"><h4 style="color: #4798e8;" class="text-right">Batal</h4></td>
                                     </tr>
                                 <?php foreach($transactions as $no => $transaction){ 
                                     if ($transaction->orderID == $order_reject->orderID) {
