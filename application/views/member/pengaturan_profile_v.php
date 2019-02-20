@@ -540,46 +540,70 @@
                             <div class="col-md-12">
                                 <table class="table">
                                     <tbody>
-                                        <tr>
-                                            <td width=><h4>Informasi Toko</h4></td>
-                                            <td class="text-right">
-                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="vertical-align: middle;">Foto Header Toko</td>
-                                            <td > <img src="<?php echo base_url()?>assets/images/hotel.jpg" style="width: 600px;"/> </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Deskripsi Toko</td>
-                                            <td> 
-                                                <input type="text" name=""  class="form-control is-valid" value=" " style="display: none;" >
-                                                <div id=" ">Deskripsi toko belum diatur</div>
-                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Batas Jam Pengiriman Barang</td>
-                                            <td>
-                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;">
-                                                <div id=" ">Sewaktu terakhir pemesanan belum diatur</div>
-                                                <span class="text-danger" style="color: red;"><?php echo form_error('memberName'); ?></span> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width=><h4>Lokasi Toko</h4><p>Kamu dapat menambahkan lokasi fisik toko kamu di sini</p></td>
-                                            <td class="text-right">
-                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nomor Kontak Toko</td>
-                                            <td> 
-                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;" >
-                                                <div id=" ">nomor kontak toko belum diatur</div>
-                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
-                                            </td>
-                                        </tr>
+                                        <form action="<?php echo site_url('MemberC/update_shop')?>" method="POST">
+                                            <tr>
+                                                <td width=><h4>Informasi Toko</h4></td>
+                                                <td class="text-right">
+                                                    <!-- <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit"> -->
+                                                    <button type="button" class="btn waves-effect waves-light btn-info" id="edit4"> Edit </button>
+                                                    <span> &nbsp;</span>
+                                                    <button type="button" name="cancel4" id="cancel4" class="btn waves-effect waves-light btn-secondary" style="display: none;"> Cancel </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: middle;">Foto Header Toko</td>
+                                                <td > <img src="<?php echo base_url()?>assets/images/hotel.jpg" style="width: 600px;"/> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Deskripsi Toko</td>
+                                                <td> 
+                                                    <textarea name="description" id="description"  class="form-control is-valid" style="display: none;" rows="4"><?php echo $detail_shop->shop_description;?></textarea>
+                                                    <div id="description2"><?php echo (!empty($detail_shop->shop_description))?$detail_shop->shop_description:'Deskripsi toko belum diatur'; $detail_shop->shop_description;?></div>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('description'); ?></span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Batas Jam Pengiriman Barang</td>
+                                                <td>
+                                                    <input type="text" name="service_time" id="service_time"  class="form-control is-valid" value="<?php echo $detail_shop->shop_service_time;?>" style="display: none;">
+                                                    <div id="service_time2"><?php echo (!empty($detail_shop->shop_service_time))?$detail_shop->shop_service_time:'Sewaktu terakhir pemesanan belum diatur'; $detail_shop->shop_service_time;?></div>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('service_time'); ?></span> 
+                                                </td>
+                                            </tr>
+                                            <tr id="kolom_save4" style="display: none;">
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save4"> Save </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Lokasi Toko</h4>
+                                                    <textarea name="shop_address" id="shop_address" class="form-control is-valid" style="display: none;" rows="4"><?php echo $detail_shop->shop_address;?></textarea>
+                                                    <p id="shop_address2"><?php echo (!empty($detail_shop->shop_address))?$detail_shop->shop_address."<br>".$detail_shop->nama_kabupaten_kota."<br>".$detail_shop->nama_propinsi."<br>".$detail_shop->kode_pos:'Kamu dapat menambahkan lokasi fisik toko kamu di sini'; $detail_shop->shop_address;?></p>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('shop_address'); ?></span> 
+                                                </td>
+                                                <td class="text-right">
+                                                    <input type="button" name="edit5" id="edit5" class="btn btn-info" value="Edit">
+                                                    <span> &nbsp;</span>
+                                                    <button type="button" name="cancel5" id="cancel5" class="btn waves-effect waves-light btn-secondary" style="display: none;"> Cancel </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nomor Kontak Toko</td>
+                                                <td> 
+                                                    <input type="text" name="shop_phone" id="shop_phone" class="form-control is-valid" value="<?php echo $detail_shop->shop_phone;?>" style="display: none;" >
+                                                    <div id="shop_phone2"><?php echo (!empty($detail_shop->shop_phone))?$detail_shop->shop_phone:'nomor kontak toko belum diatur'; $detail_shop->shop_phone;?></div>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('shop_phone'); ?></span> 
+                                                </td>
+                                            </tr>
+                                            <tr id="kolom_save5" style="display: none;">
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save5"> Save </button>
+                                                </td>
+                                            </tr>
+                                        </form>
                                         <tr>
                                             <td width=><h4>Catatan Toko</h4><p>(REFERENSI BUKALAPAK) Diperuntukkan bagi pemilik toko yang ingin memberikan catatan tambahan.</p></td>
                                             <td class="text-right">
@@ -773,8 +797,6 @@
         $("#email").focus();
         $("#edit2").hide();
         $("#cancel2").show();
-
-
     });
 
     $("#edit3").click(function(){
@@ -790,8 +812,32 @@
         $("#password").focus();
         $("#edit3").hide();
         $("#cancel3").show();
+    });
 
+    $("#edit4").click(function(){
+        $("#description2").hide();
+        $("#service_time2").hide();
 
+        $("#description").show();
+        $("#service_time").show();
+        $("#kolom_save4").show();
+
+        $("#description").focus();
+        $("#edit4").hide();
+        $("#cancel4").show();
+    });
+
+    $("#edit5").click(function(){
+        $("#shop_address2").hide();
+        $("#shop_phone2").hide();
+
+        $("#shop_address").show();
+        $("#shop_phone").show();
+        $("#kolom_save5").show();
+
+        $("#shop_address").focus();
+        $("#edit5").hide();
+        $("#cancel5").show();
     });
 
     $("#cancel").click(function(){
@@ -837,6 +883,30 @@
 
         $("#edit3").show();
         $("#cancel3").hide();
+    });
+
+    $("#cancel4").click(function(){
+        $("#description2").show();
+        $("#service_time2").show();
+
+        $("#description").hide();
+        $("#service_time").hide();
+        $("#kolom_save4").hide();
+
+        $("#edit4").show();
+        $("#cancel4").hide();
+    });
+
+    $("#cancel5").click(function(){
+        $("#shop_address2").show();
+        $("#shop_phone2").show();
+
+        $("#shop_address").hide();
+        $("#shop_phone").hide();
+        $("#kolom_save5").hide();
+
+        $("#edit5").show();
+        $("#cancel5").hide();
     });
 
     $(function () {

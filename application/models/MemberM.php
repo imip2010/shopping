@@ -445,4 +445,22 @@ class MemberM extends CI_Model{
 		$this->db->where('bankID',$id);
 		return $this->db->get();
 	}
+
+	public function get_shop($memberID)
+	{
+		$this->db->select('*');
+		$this->db->from('shop S');
+		$this->db->join('members M','S.memberID = M.memberID');
+		$this->db->join('kabupaten_kota K','S.id_kabupaten_kota = K.id_kabupaten_kota');
+		$this->db->join('propinsi P','K.id_propinsi = P.id_propinsi');
+		$this->db->where('S.memberID',$memberID);
+		return $this->db->get();
+	}
+
+	public function update_data($table,$data,$param)
+	{
+		$this->db->where('memberID', $param);
+		$this->db->update($table, $data);
+		return TRUE;
+	}
 }

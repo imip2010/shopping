@@ -71,6 +71,7 @@ class MemberC extends CI_Controller {
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
         $memberID = $this->session->userdata('memberID');
         $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
+        $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
         $this->data['provinsi'] = $this->MemberM->get_all_provinsi();
         $this->data['shipping_address'] = $this->MemberM->get_address($memberID)->result();
         // $this->data['locationID'] = $this->MemberM->get_shipping_address_by_id(4)->result()[0]->locationID;
@@ -678,6 +679,23 @@ class MemberC extends CI_Controller {
     public function get_transaksi()
     {
         echo "Sukses melakukan pembayaran -> Tabel daftar transaksi";
+    }
+
+    public function update_shop()
+    {
+        $data = array(
+            'shop_description'  => $this->input->post('description'),
+            'shop_service_time' => $this->input->post('service_time'),
+            'shop_address'      => $this->input->post('shop_address'),
+            'shop_phone'        => $this->input->post('shop_phone'),
+        );
+        if($this->MemberM->update_data('shop',$data,$this->session->memberID)){
+            $this->session->set_flashdata('sukses', 'Data toko berhasil disimpan');
+            redirect_back();
+        }else{
+            $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            redirect_back();
+        }
     }
 }
 
