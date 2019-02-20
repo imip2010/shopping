@@ -11,6 +11,12 @@ class LoginM extends CI_Model{
 		return $this->db->get('members');
 	}
 
+	public function ceknums($email, $password){ //cek akun di db pengguna jabatan (berapa rows)
+		$this->db->where('email', $email);
+		$this->db->where('password', md5($password));
+		return $this->db->get('members');
+	}
+
 	public function insert_data_member($data){ //post pengguna
 		$this->db->insert('members', $data);
 		return TRUE;

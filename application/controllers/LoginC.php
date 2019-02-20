@@ -39,6 +39,7 @@ class LoginC extends CI_Controller {
 		$password	=$this->input->post('password');
 		$ceknum		=$this->LoginM->ceknum($email,$password)->num_rows();
 		$query		=$this->LoginM->ceknum($email,$password)->row();
+		$cek_verified=$this->LoginM->ceknums($email,$password)->row();
 		if($ceknum>0){
 			$userData 	= array(
 				'email' 			=> $query->email,
@@ -52,6 +53,9 @@ class LoginC extends CI_Controller {
 			$this->LoginM->lastLogin($lastLogin, $query->memberID);
 			$this->session->set_userdata($userData);			
 			redirect('HomeC');
+		}elseif($cek_verified->status=="N"){
+			$this->session->set_flashdata('error','Email anda belum diverifikasi');
+			redirect('LoginC');
 		}else{
 			$this->session->set_flashdata('error','Email atau kata sandi salah');
 			redirect('LoginC');
@@ -140,15 +144,17 @@ class LoginC extends CI_Controller {
 		redirect(base_url('LoginC/'));	
 	}
 
-	public function activate()
+	public function activate($verificationCode)
 	{
-		$verificationCode = $this->uri->segment(2);
+		// $verificationCode = $this->uri->segment(2);
 		$data = array('status' => 'Y');
 
 		if ($this->LoginM->activate($data, $verificationCode)) {
-			echo "Verified!";
+			redirect('LoginC');
+			echo 'Email anda berhasil diverifikasi';
 		}else{
-			echo "Failed to verify account!";
+			redirect('LoginC');
+			echo 'Email anda gagal diverifikasi';
 		}
 	}
 

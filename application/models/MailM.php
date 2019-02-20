@@ -11,7 +11,7 @@ class MailM extends CI_Model{
 	{
         $config = Array(    
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_host' => 'smtp.gmail.com',
             'smtp_port' => 465,
             'smtp_user' => 'dtedi.svugm@gmail.com',
             'smtp_pass' => 'Yogyakarta2018',
@@ -24,7 +24,7 @@ class MailM extends CI_Model{
         // $this->email->set_newline("\r\n");
         $this->email->from('info@arnawa.co.id', 'Arnawa');
 
-        $this->email->to('febriyanyoga@gmail.com'); // replace it with receiver mail id
+        $this->email->to($userEmail); // replace it with receiver mail id
         $this->email->subject($subject); // replace it with relevant subject
         $this->email->set_mailtype("html");
 
