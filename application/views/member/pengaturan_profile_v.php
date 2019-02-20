@@ -558,7 +558,7 @@
                                                 <td>Deskripsi Toko</td>
                                                 <td> 
                                                     <textarea name="description" id="description"  class="form-control is-valid" style="display: none;" rows="4"><?php echo $detail_shop->shop_description;?></textarea>
-                                                    <div id="description2"><?php echo (!empty($detail_shop->shop_description))?$detail_shop->shop_description:'Deskripsi toko belum diatur'; $detail_shop->shop_description;?></div>
+                                                    <div id="description2"><?php echo (!empty($detail_shop->shop_description))?"<pre style='font-family: Poppins,sans-serif;    font-size: .875rem;font-weight: 300;line-height: 1.5;color: #3e5569;'>".$detail_shop->shop_description."</pre>":'Deskripsi toko belum diatur'; $detail_shop->shop_description;?></div>
                                                     <span class="text-danger" style="color: red;"><?php echo form_error('description'); ?></span> 
                                                 </td>
                                             </tr>
@@ -579,7 +579,32 @@
                                             <tr>
                                                 <td>
                                                     <h4>Lokasi Toko</h4>
-                                                    <textarea name="shop_address" id="shop_address" class="form-control is-valid" style="display: none;" rows="4"><?php echo $detail_shop->shop_address;?></textarea>
+                                                    <div id="shop_address" style="display: none;">
+                                                        <span>Alamat Lengkap</span>
+                                                        <textarea name="shop_address" class="form-control is-valid" rows="4"><?php echo $detail_shop->shop_address;?></textarea><br>
+                                                        <span>Provinsi</span>
+                                                        <select class="form-control" id="shop_propinsi" name="shop_propinsi">
+                                                            <option>-----pilih provinsi-----</option>
+                                                            <?php 
+                                                                foreach ($provinsi as $prov) {
+                                                                    if($detail_shop->id_propinsi == $prov['id_propinsi']){
+                                                                        ?>
+                                                                        <option selected value="<?php echo $prov['id_propinsi']?>"><?php echo $prov['nama_propinsi'];?></option>
+                                                                    <?php
+                                                                    }else{
+                                                                    ?>
+                                                                        <option value="<?php echo $prov['id_propinsi']?>"><?php echo $prov['nama_propinsi'];?></option>
+                                                                    <?php
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </select><br>
+                                                        <span>Kabupaten</span>
+                                                        <select class="form-control" id="shop_kota" name="shop_kota" required>
+                                                            <option>-----pilih kota-----</option>
+                                                            <option selected value="<?php echo $detail_shop->id_kabupaten_kota?>"><?php echo $detail_shop->nama_kabupaten_kota?></option>
+                                                        </select>
+                                                    </div>
                                                     <p id="shop_address2"><?php echo (!empty($detail_shop->shop_address))?$detail_shop->shop_address."<br>".$detail_shop->nama_kabupaten_kota."<br>".$detail_shop->nama_propinsi."<br>".$detail_shop->kode_pos:'Kamu dapat menambahkan lokasi fisik toko kamu di sini'; $detail_shop->shop_address;?></p>
                                                     <span class="text-danger" style="color: red;"><?php echo form_error('shop_address'); ?></span> 
                                                 </td>
@@ -974,27 +999,43 @@
             });
         });
 
-        // $('#kecamatan').change(function(){
-        //     var kecamatan = $(this).val(); //ambil value dr kode_unit
-        //     // window.alert(unit);
+        $('#shop_propinsi').change(function(){
+            var propinsi = $(this).val(); //ambil value dr kode_unit
+            // window.alert(unit);
 
-        //     // AJAX request
-        //     $.ajax({
-        //         url:'<?=base_url()?>MemberC/get_kelurahan',
-        //         method: 'post',
-        //         data: {id_kecamatan : kecamatan}, // data post ke controller 
-        //         dataType: 'json',
-        //         success: function(response){
-        //             // Remove options
-        //             $('#kelurahan').find('option').not(':first').remove();
+            // AJAX request
+            $.ajax({
+                url:'<?=base_url()?>MemberC/get_kabupaten_kota',
+                method: 'post',
+                data: {id_propinsi: propinsi}, // data post ke controller 
+                dataType: 'json',
+                success: function(response){
+                    // Remove options
+                    $('#shop_kota').find('option').not(':first').remove();
 
-        //             // Add options
-        //             $.each(response,function(daftar,data){
-        //                 $('#kelurahan').append('<option value="'+data['id_kelurahan']+'">'+data['nama_kelurahan']+'</option>');
-        //             });
-        //         }
-        //     });
-        // });
+                    // Add options
+                    $.each(response,function(daftar,data){
+                        $('#shop_kota').append('<option value="'+data['id_kabupaten_kota']+'">'+data['nama_kabupaten_kota']+'</option>');
+                    });
+                }
+            });
+        });
+
+        $('#shop_kota').change(function(){
+            var kota = $(this).val(); //ambil value dr kode_unit
+            // window.alert(unit);
+
+            // AJAX request
+            $.ajax({
+                url:'<?=base_url()?>MemberC/get_postcode',
+                method: 'post',
+                data: {id_kabupaten_kota: kota}, // data post ke controller 
+                dataType: 'json',
+                success: function(response){
+                  $('#kodepos').val(response[0].kode_pos);
+                }
+            });
+        });
 
         //buat reoad ke current tab pane 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

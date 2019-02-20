@@ -684,6 +684,7 @@ class MemberC extends CI_Controller {
     public function update_shop()
     {
         $data = array(
+            'id_kabupaten_kota' => $this->input->post('shop_kota'),
             'shop_description'  => $this->input->post('description'),
             'shop_service_time' => $this->input->post('service_time'),
             'shop_address'      => $this->input->post('shop_address'),
