@@ -217,7 +217,7 @@
                                             <span> &nbsp;</span>
                                             <button type="button" name="cancel3" id="cancel3" class="btn waves-effect waves-light btn-secondary" id="save" style="display: none;"> Cancel 
                                             </button>
-                                        </td>
+                                        </td> 
                                     </tr>
                             <form action="<?php echo site_url('MemberC/update_member_password')?>" method="POST">
                               <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID']?>">
