@@ -7,6 +7,7 @@ class MemberC extends CI_Controller {
 		parent::__construct();
 		$this->load->model(['HomeM','LoginM','MemberM']);
         $this->load->library('upload');
+        $this->load->helper(array('url','html','form'));
 		in_access(); //helper buat batasi akses login/session
 	}
 
@@ -696,6 +697,23 @@ class MemberC extends CI_Controller {
         }else{
             $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
             redirect_back();
+        }
+    }
+
+    public function upload_profile_picture()
+    {
+        if (!empty($_FILES)) {
+            $tempFile = $_FILES['file']['tmp_name'];
+            $fileName = $_FILES['file']['name'];
+            $targetPath = getcwd() . '/assets/images/users/';
+            $targetFile = $targetPath . $fileName ;
+            move_uploaded_file($tempFile, $targetFile);
+            // if you want to save in db,where here
+            // with out model just for example
+            $this->load->database(); // load database
+            // $this->db->insert('members',array('photo' => $fileName));
+            $this->db->where('memberID', $this->session->userdata('memberID'));
+            $this->db->update('members',array('photo' => $fileName)); 
         }
     }
 }

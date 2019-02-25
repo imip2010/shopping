@@ -59,7 +59,6 @@
                             <?php echo validation_errors(); ?>
                                 <table class="table">
                                     <tbody>
-                            <form action="<?php echo site_url('MemberC/update_member')?>" method="POST">
                                         <tr>
                                             <td width="230"><h4>Informasi Umum</h4></td>
                                             <td class="text-right">
@@ -67,12 +66,19 @@
                                                 <span> &nbsp;</span>
                                                 <button type="button" name="cancel" id="cancel" class="btn waves-effect waves-light btn-info" id="save" style="display: none;"> Cancel </button>
                                             </td>
-                                            <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID']?>">
                                         </tr>
                                         <tr>
                                             <td>Foto Profil</td>
-                                            <td> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 20%"/> </td>
+                                            <td>
+                                                <img id="dropzonePP2" src="<?php echo base_url()?>assets/images/users/<?php echo $detail_member->photo;?>" style="width: 20%"/>
+                                                <div id="dropzonePP" style="display: none;">
+                                                    <!-- Dropzone -->
+                                                    <form action="<?php echo site_url('/MemberC/upload_profile_picture'); ?>" class="dropzone" id="profile_picture"></form>
+                                                </div> 
+                                            </td>
                                         </tr>
+                            <form action="<?php echo site_url('MemberC/update_member')?>" method="POST">
+                                            <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID']?>">
                                         <tr>
                                             <td>Username</td>
                                             <td> 
@@ -792,13 +798,31 @@
 <script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
 
 <script language="JavaScript">
+    var currentFile = null;
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#profile_picture", {
+        addRemoveLinks: true,
+        url: "<?php echo site_url('/MemberC/upload_profile_picture'); ?>",
+        maxFiles:1,
+        init: function() {
+        this.on("addedfile", function(file) {
+            if (currentFile) {
+            this.removeFile(currentFile);
+            }
+            currentFile = file;
+        });
+        }   
+    });
+
     $("#edit").click(function(){
+        $("#dropzonePP2").hide();
         $("#username2").hide();
         $("#memberName2").hide();
         $("#tmp_lahir2").hide();
         $("#tgl_lahir2").hide();
         $("#gender2").hide();
 
+        $("#dropzonePP").show();
         $("#username").show();
         $("#memberName").show();
         $("#tmp_lahir").show();
@@ -866,12 +890,14 @@
     });
 
     $("#cancel").click(function(){
+        $("#dropzonePP2").show();
         $("#username2").show();
         $("#memberName2").show();
         $("#tmp_lahir2").show();
         $("#tgl_lahir2").show();
         $("#gender2").show();
 
+        $("#dropzonePP").hide();
         $("#username").hide();
         $("#memberName").hide();
         $("#tmp_lahir").hide();
