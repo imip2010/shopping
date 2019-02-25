@@ -64,7 +64,7 @@
                                             <td class="text-right">
                                                 <button type="button" class="btn waves-effect waves-light btn-info" id="edit"> Edit </button>
                                                 <span> &nbsp;</span>
-                                                <button type="button" name="cancel" id="cancel" class="btn waves-effect waves-light btn-info" id="save" style="display: none;"> Cancel </button>
+                                                <button type="button" name="cancel" id="cancel" class="btn waves-effect waves-light btn-secondary" id="save" style="display: none;"> Cancel </button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -176,7 +176,7 @@
 
                                     </td>
                                     <td>
-                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-info" id="save"> Save </button>
+                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save"> Save </button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -184,7 +184,7 @@
                                     <td class="text-right">
                                         <button type="button" class="btn waves-effect waves-light btn-info" id="edit2"> Edit </button>
                                         <span> &nbsp;</span>
-                                        <button type="button" name="cancel" id="cancel2" class="btn waves-effect waves-light btn-info" id="save" style="display: none;"> Cancel 
+                                        <button type="button" name="cancel" id="cancel2" class="btn waves-effect waves-light btn-secondary" id="save" style="display: none;"> Cancel 
                                         </button>
                                     </td>
                                 </tr>
@@ -207,7 +207,7 @@
 
                                     </td>
                                     <td>
-                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-info" id="save2"> Save </button>
+                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save2"> Save </button>
                                     </td>
                             </form>
                                     <tr>
@@ -215,7 +215,7 @@
                                         <td class="text-right">
                                             <button type="button" class="btn waves-effect waves-light btn-info" id="edit3"> Edit </button>
                                             <span> &nbsp;</span>
-                                            <button type="button" name="cancel3" id="cancel3" class="btn waves-effect waves-light btn-info" id="save" style="display: none;"> Cancel 
+                                            <button type="button" name="cancel3" id="cancel3" class="btn waves-effect waves-light btn-secondary" id="save" style="display: none;"> Cancel 
                                             </button>
                                         </td>
                                     </tr>
@@ -239,7 +239,7 @@
 
                                         </td>
                                         <td>
-                                            <button type="submit" name="submit" class="btn waves-effect waves-light btn-info" id="save3"> Save 
+                                            <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save3"> Save 
                                             </button>
                                         </td>
                                         <tr>
@@ -546,7 +546,6 @@
                             <div class="col-md-12">
                                 <table class="table">
                                     <tbody>
-                                        <form action="<?php echo site_url('MemberC/update_shop')?>" method="POST">
                                             <tr>
                                                 <td width=><h4>Informasi Toko</h4></td>
                                                 <td class="text-right">
@@ -558,8 +557,15 @@
                                             </tr>
                                             <tr>
                                                 <td style="vertical-align: middle;">Foto Header Toko</td>
-                                                <td > <img src="<?php echo base_url()?>assets/images/hotel.jpg" style="width: 600px;"/> </td>
+                                                <td >
+                                                    <img id="dropzoneStore2" src="<?php echo base_url()?>assets/images/store/<?php echo $detail_shop->shop_header;?>" style="width: 600px;"/>
+                                                    <div id="dropzoneStore" style="display: none;">
+                                                        <!-- Dropzone -->
+                                                        <form action="<?php echo site_url('/MemberC/upload_store_picture'); ?>" class="dropzone" id="store_picture"></form>
+                                                    </div> 
+                                                </td>
                                             </tr>
+                                        <form action="<?php echo site_url('MemberC/update_shop')?>" method="POST">
                                             <tr>
                                                 <td>Deskripsi Toko</td>
                                                 <td> 
@@ -814,6 +820,20 @@
         }   
     });
 
+    new Dropzone("#store_picture", {
+        addRemoveLinks: true,
+        url: "<?php echo site_url('/MemberC/upload_store_picture'); ?>",
+        maxFiles:1,
+        init: function() {
+        this.on("addedfile", function(file) {
+            if (currentFile) {
+            this.removeFile(currentFile);
+            }
+            currentFile = file;
+        });
+        }   
+    });
+
     $("#edit").click(function(){
         $("#dropzonePP2").hide();
         $("#username2").hide();
@@ -864,9 +884,11 @@
     });
 
     $("#edit4").click(function(){
+        $("#dropzoneStore2").hide();
         $("#description2").hide();
         $("#service_time2").hide();
 
+        $("#dropzoneStore").show();
         $("#description").show();
         $("#service_time").show();
         $("#kolom_save4").show();
@@ -937,9 +959,11 @@
     });
 
     $("#cancel4").click(function(){
+        $("#dropzoneStore2").show();
         $("#description2").show();
         $("#service_time2").show();
 
+        $("#dropzoneStore").hide();
         $("#description").hide();
         $("#service_time").hide();
         $("#kolom_save4").hide();

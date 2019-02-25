@@ -704,7 +704,7 @@ class MemberC extends CI_Controller {
     {
         if (!empty($_FILES)) {
             $tempFile = $_FILES['file']['tmp_name'];
-            $fileName = $_FILES['file']['name'];
+            $fileName = hash('md5', $_FILES['file']['name']).'.jpg';
             $targetPath = getcwd() . '/assets/images/users/';
             $targetFile = $targetPath . $fileName ;
             move_uploaded_file($tempFile, $targetFile);
@@ -714,6 +714,23 @@ class MemberC extends CI_Controller {
             // $this->db->insert('members',array('photo' => $fileName));
             $this->db->where('memberID', $this->session->userdata('memberID'));
             $this->db->update('members',array('photo' => $fileName)); 
+        }
+    }
+
+    public function upload_store_picture()
+    {
+        if (!empty($_FILES)) {
+            $tempFile = $_FILES['file']['tmp_name'];
+            $fileName = hash('md5', $_FILES['file']['name']).'.jpg';
+            $targetPath = getcwd() . '/assets/images/store/';
+            $targetFile = $targetPath . $fileName ;
+            move_uploaded_file($tempFile, $targetFile);
+            // if you want to save in db,where here
+            // with out model just for example
+            $this->load->database(); // load database
+            // $this->db->insert('members',array('photo' => $fileName));
+            $this->db->where('memberID', $this->session->userdata('memberID'));
+            $this->db->update('shop',array('shop_header' => $fileName)); 
         }
     }
 }
