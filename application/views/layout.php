@@ -34,6 +34,10 @@
     <link href="<?php echo base_url()?>assets/dist/css/wizard.css" rel="stylesheet">
     <link href="<?php echo base_url()?>assets/dist/js/wizard.js" rel="stylesheet">
 
+    <link href='<?php echo base_url()?>assets/libs/dropzone/dist/dropzone.css' type='text/css' rel='stylesheet'>
+    <script src='<?php echo base_url()?>assets/libs/dropzone/dist/dropzone.js' type='text/javascript'></script>
+
+
 
 
 
@@ -41,6 +45,13 @@
     <link href="<?php echo base_url()?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style type="text/css">
+    #profile_picture{
+        width: 300px;
+    }
+    #store_picture{
+        width: 600px;
+        height: 198px;
+    }
     #lblCartCount {
         font-size: 12px;
         background: #ff0000;

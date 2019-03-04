@@ -67,7 +67,7 @@ foreach ($keranjang as $ker) {
                                 </thead>
                                 <tbody class='cart-list' id="memberDetailCard">
                                     <?php
-                                    // print_r($keranjang);
+                                    // print_r($get_shop);
                                     $j=0;
                                     // $sub_total = 0;
                                     // $total_diskon = 0;
@@ -143,7 +143,7 @@ foreach ($keranjang as $ker) {
                                             Pilih jasa pengiriman
                                         </td>
                                         <td>
-                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary cek_kurir" data-produkid="<?php echo $ker->productID;?>" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>">
+                                            <button id="btn<?php echo $ker->cartID?>" type="button" class="btn btn-primary cek_kurir" data-produkid="<?php echo $ker->productID;?>" data-toggle="modal" data-target="#kurirModal<?php echo $ker->cartID?>" <?php echo (empty($get_default_address))?'disabled title="Alamat tujuan tidak ditemukan!"':'';?>>
                                                 Pilih kurir
                                             </button>
 
@@ -162,26 +162,12 @@ foreach ($keranjang as $ker) {
                                                                 <table id="tabel_ongkir<?php echo $ker->cartID?>"></table>
                                                             </center>
                                                         </div>
-                                                        <!-- <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <select class="form-control" name="kurir<?php echo $ker->cartID?>">
-                                                <option>Pilih Kurir </option>
-                                                <?php
-                                                foreach ($kurirs as $kurir) {
-                                                    ?>
-                                                    <option value="<?php echo $kurir->courierID;?>"><?php echo $kurir->courierName;?></option>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select> -->
                                         </td>
                                         <td>
-                                            <input type="hidden" id="origin<?php echo $ker->cartID?>" value="<?php echo $ker->id_kabupaten_kota ?>">
+                                            <input type="hidden" id="origin<?php echo $ker->cartID?>" value="<?php echo $get_shop ?>">
                                             <input type="hidden" name="expedition<?php echo $ker->productID?>" value="<?php echo $ker->expedition?>">
                                             <?php echo (empty($ker->service))?'':"<b>Servis : </b>".$ker->service ?>
                                             <input type="hidden" name="service<?php echo $ker->productID?>" value="<?php echo $ker->service?>">
@@ -222,32 +208,39 @@ foreach ($keranjang as $ker) {
                         <label class="m-t-20">Catatan Tambahan :</label><br>
                         <textarea class="form-control" maxlength="200" style="height: 150px;" name="catatan" id="catatan"></textarea>
                         <p class="text-right">200 karakter</p>
-                        
-                        <div class="card border-info">
-                            <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">Alamat Pengiriman</h4>
+                        <?php error_reporting(0); if(!empty($get_default_address)){ ?>
+                            <div class="card border-info">
+                                <div class="card-header bg-info">
+                                    <h4 class="m-b-0 text-white">Alamat Pengiriman</h4>
+                                </div>
+                                <div class="card-body">
+                                    <?php 
+                                        foreach ($get_default_address as $address) {
+                                            echo "
+                                                <p class='card-text'>".$address->id_kabupaten_kota."</p>
+                                                <p class='card-text'>".$address->locationName."</p>
+                                                <p class='card-text'>".$address->nama_kabupaten_kota."</p>
+                                                <p class='card-text'>".$address->kode_pos."</p>
+                                                <p class='card-text'>".$address->nama_propinsi."</p>
+                                            ";
+                                        }
+                                    ?>
+                                        <input type="hidden" id="destination" value="<?php echo $address->id_kabupaten_kota?>">
+                                        <a href="<?php echo site_url('pengaturan_profile#navpills-2')?>" class="btn btn-info">Pilih Alamat Lain</a>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <!-- <h5 class="card-title">Alamat Kantor</h5>
-                                <p class="card-text">Graha KAS (Lantai 3 PT.Arnawa),Kota Jakarta Selatan</p>
-                                <p class="card-text">Kecamatan Kebayoran Baru, Kota Jakarta Selatan</p>
-                                <p class="card-text">DKI Jakarta</p>
-                                <p class="card-text">081269305494</p> -->
-                                <?php 
-                                    foreach ($get_default_address as $address) {
-                                        echo "
-                                            <p class='card-text'>".$address->id_kabupaten_kota."</p>
-                                            <p class='card-text'>".$address->locationName."</p>
-                                            <p class='card-text'>".$address->nama_kabupaten_kota."</p>
-                                            <p class='card-text'>".$address->kode_pos."</p>
-                                            <p class='card-text'>".$address->nama_propinsi."</p>
-                                        ";
-                                    }
-                                ?>
-                                <input type="hidden" id="destination" value="<?php echo $address->id_kabupaten_kota?>">
-                                <a href="<?php echo site_url('pengaturan_profile#navpills-2')?>" class="btn btn-info">Pilih ALamat Lain</a>
+                        <?php }else{ ?>
+                            <div class="card border-danger">
+                                <div class="card-header bg-danger">
+                                    <h4 class="m-b-0 text-white">Alamat Pengiriman</h4>
+                                </div>
+                                <div class="card-body">
+                                    <p class='card-text'>Alamat tujuan tidak ditemukan!</p>
+                                    <input type="hidden" id="destination" value="<?php echo $address->id_kabupaten_kota?>">
+                                    <a href="<?php echo site_url('pengaturan_profile#navpills-2')?>" class="btn btn-danger">Tambah Alamat Baru!</a>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
 
                     <div class="col-md-6">

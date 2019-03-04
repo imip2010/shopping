@@ -7,6 +7,7 @@ class MemberC extends CI_Controller {
 		parent::__construct();
 		$this->load->model(['HomeM','LoginM','MemberM']);
         $this->load->library('upload');
+        $this->load->helper(array('url','html','form'));
 		in_access(); //helper buat batasi akses login/session
 	}
 
@@ -71,6 +72,7 @@ class MemberC extends CI_Controller {
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
         $memberID = $this->session->userdata('memberID');
         $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
+        $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
         $this->data['provinsi'] = $this->MemberM->get_all_provinsi();
         $this->data['shipping_address'] = $this->MemberM->get_address($memberID)->result();
         // $this->data['locationID'] = $this->MemberM->get_shipping_address_by_id(4)->result()[0]->locationID;
@@ -678,6 +680,58 @@ class MemberC extends CI_Controller {
     public function get_transaksi()
     {
         echo "Sukses melakukan pembayaran -> Tabel daftar transaksi";
+    }
+
+    public function update_shop()
+    {
+        $data = array(
+            'id_kabupaten_kota' => $this->input->post('shop_kota'),
+            'shop_description'  => $this->input->post('description'),
+            'shop_service_time' => $this->input->post('service_time'),
+            'shop_address'      => $this->input->post('shop_address'),
+            'shop_phone'        => $this->input->post('shop_phone'),
+        );
+        if($this->MemberM->update_data('shop',$data,$this->session->memberID)){
+            $this->session->set_flashdata('sukses', 'Data toko berhasil disimpan');
+            redirect_back();
+        }else{
+            $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+            redirect_back();
+        }
+    }
+
+    public function upload_profile_picture()
+    {
+        if (!empty($_FILES)) {
+            $tempFile = $_FILES['file']['tmp_name'];
+            $fileName = hash('md5', $_FILES['file']['name']).'.jpg';
+            $targetPath = getcwd() . '/assets/images/users/';
+            $targetFile = $targetPath . $fileName ;
+            move_uploaded_file($tempFile, $targetFile);
+            // if you want to save in db,where here
+            // with out model just for example
+            $this->load->database(); // load database
+            // $this->db->insert('members',array('photo' => $fileName));
+            $this->db->where('memberID', $this->session->userdata('memberID'));
+            $this->db->update('members',array('photo' => $fileName)); 
+        }
+    }
+
+    public function upload_store_picture()
+    {
+        if (!empty($_FILES)) {
+            $tempFile = $_FILES['file']['tmp_name'];
+            $fileName = hash('md5', $_FILES['file']['name']).'.jpg';
+            $targetPath = getcwd() . '/assets/images/store/';
+            $targetFile = $targetPath . $fileName ;
+            move_uploaded_file($tempFile, $targetFile);
+            // if you want to save in db,where here
+            // with out model just for example
+            $this->load->database(); // load database
+            // $this->db->insert('members',array('photo' => $fileName));
+            $this->db->where('memberID', $this->session->userdata('memberID'));
+            $this->db->update('shop',array('shop_header' => $fileName)); 
+        }
     }
 }
 

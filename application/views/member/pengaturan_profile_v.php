@@ -59,20 +59,26 @@
                             <?php echo validation_errors(); ?>
                                 <table class="table">
                                     <tbody>
-                            <form action="<?php echo site_url('MemberC/update_member')?>" method="POST">
                                         <tr>
                                             <td width="230"><h4>Informasi Umum</h4></td>
                                             <td class="text-right">
                                                 <button type="button" class="btn waves-effect waves-light btn-info" id="edit"> Edit </button>
                                                 <span> &nbsp;</span>
-                                                <button type="button" name="cancel" id="cancel" class="btn waves-effect waves-light btn-info" id="save" style="display: none;"> Cancel </button>
+                                                <button type="button" name="cancel" id="cancel" class="btn waves-effect waves-light btn-secondary" id="save" style="display: none;"> Cancel </button>
                                             </td>
-                                            <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID']?>">
                                         </tr>
                                         <tr>
                                             <td>Foto Profil</td>
-                                            <td> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 20%"/> </td>
+                                            <td>
+                                                <img id="dropzonePP2" src="<?php echo base_url()?>assets/images/users/<?php echo $detail_member->photo;?>" style="width: 20%"/>
+                                                <div id="dropzonePP" style="display: none;">
+                                                    <!-- Dropzone -->
+                                                    <form action="<?php echo site_url('/MemberC/upload_profile_picture'); ?>" class="dropzone" id="profile_picture"></form>
+                                                </div> 
+                                            </td>
                                         </tr>
+                            <form action="<?php echo site_url('MemberC/update_member')?>" method="POST">
+                                            <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID']?>">
                                         <tr>
                                             <td>Username</td>
                                             <td> 
@@ -170,7 +176,7 @@
 
                                     </td>
                                     <td>
-                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-info" id="save"> Save </button>
+                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save"> Save </button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -178,7 +184,7 @@
                                     <td class="text-right">
                                         <button type="button" class="btn waves-effect waves-light btn-info" id="edit2"> Edit </button>
                                         <span> &nbsp;</span>
-                                        <button type="button" name="cancel" id="cancel2" class="btn waves-effect waves-light btn-info" id="save" style="display: none;"> Cancel 
+                                        <button type="button" name="cancel" id="cancel2" class="btn waves-effect waves-light btn-secondary" id="save" style="display: none;"> Cancel 
                                         </button>
                                     </td>
                                 </tr>
@@ -201,7 +207,7 @@
 
                                     </td>
                                     <td>
-                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-info" id="save2"> Save </button>
+                                        <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save2"> Save </button>
                                     </td>
                             </form>
                                     <tr>
@@ -209,9 +215,9 @@
                                         <td class="text-right">
                                             <button type="button" class="btn waves-effect waves-light btn-info" id="edit3"> Edit </button>
                                             <span> &nbsp;</span>
-                                            <button type="button" name="cancel3" id="cancel3" class="btn waves-effect waves-light btn-info" id="save" style="display: none;"> Cancel 
+                                            <button type="button" name="cancel3" id="cancel3" class="btn waves-effect waves-light btn-secondary" id="save" style="display: none;"> Cancel 
                                             </button>
-                                        </td>
+                                        </td> 
                                     </tr>
                             <form action="<?php echo site_url('MemberC/update_member_password')?>" method="POST">
                               <input type="hidden" name="memberID" value="<?php echo $dataDiri['memberID']?>">
@@ -233,7 +239,7 @@
 
                                         </td>
                                         <td>
-                                            <button type="submit" name="submit" class="btn waves-effect waves-light btn-info" id="save3"> Save 
+                                            <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save3"> Save 
                                             </button>
                                         </td>
                                         <tr>
@@ -540,46 +546,101 @@
                             <div class="col-md-12">
                                 <table class="table">
                                     <tbody>
-                                        <tr>
-                                            <td width=><h4>Informasi Toko</h4></td>
-                                            <td class="text-right">
-                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="vertical-align: middle;">Foto Header Toko</td>
-                                            <td > <img src="<?php echo base_url()?>assets/images/hotel.jpg" style="width: 600px;"/> </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Deskripsi Toko</td>
-                                            <td> 
-                                                <input type="text" name=""  class="form-control is-valid" value=" " style="display: none;" >
-                                                <div id=" ">Deskripsi toko belum diatur</div>
-                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Batas Jam Pengiriman Barang</td>
-                                            <td>
-                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;">
-                                                <div id=" ">Sewaktu terakhir pemesanan belum diatur</div>
-                                                <span class="text-danger" style="color: red;"><?php echo form_error('memberName'); ?></span> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width=><h4>Lokasi Toko</h4><p>Kamu dapat menambahkan lokasi fisik toko kamu di sini</p></td>
-                                            <td class="text-right">
-                                                <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nomor Kontak Toko</td>
-                                            <td> 
-                                                <input type="text" name="" class="form-control is-valid" value=" " style="display: none;" >
-                                                <div id=" ">nomor kontak toko belum diatur</div>
-                                                <span class="text-danger" style="color: red;"><?php echo form_error('username'); ?></span> 
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td width=><h4>Informasi Toko</h4></td>
+                                                <td class="text-right">
+                                                    <!-- <input type="button" name="edit" class="btn btn-info" data-toggle="modal" data-target="#"  title="edit toko" value="Edit"> -->
+                                                    <button type="button" class="btn waves-effect waves-light btn-info" id="edit4"> Edit </button>
+                                                    <span> &nbsp;</span>
+                                                    <button type="button" name="cancel4" id="cancel4" class="btn waves-effect waves-light btn-secondary" style="display: none;"> Cancel </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: middle;">Foto Header Toko</td>
+                                                <td >
+                                                    <img id="dropzoneStore2" src="<?php echo base_url()?>assets/images/store/<?php echo $detail_shop->shop_header;?>" style="width: 600px;"/>
+                                                    <div id="dropzoneStore" style="display: none;">
+                                                        <!-- Dropzone -->
+                                                        <form action="<?php echo site_url('/MemberC/upload_store_picture'); ?>" class="dropzone" id="store_picture"></form>
+                                                    </div> 
+                                                </td>
+                                            </tr>
+                                        <form action="<?php echo site_url('MemberC/update_shop')?>" method="POST">
+                                            <tr>
+                                                <td>Deskripsi Toko</td>
+                                                <td> 
+                                                    <textarea name="description" id="description"  class="form-control is-valid" style="display: none;" rows="4"><?php echo $detail_shop->shop_description;?></textarea>
+                                                    <div id="description2"><?php echo (!empty($detail_shop->shop_description))?"<pre style='font-family: Poppins,sans-serif;    font-size: .875rem;font-weight: 300;line-height: 1.5;color: #3e5569;'>".$detail_shop->shop_description."</pre>":'Deskripsi toko belum diatur'; $detail_shop->shop_description;?></div>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('description'); ?></span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Batas Jam Pengiriman Barang</td>
+                                                <td>
+                                                    <input type="text" name="service_time" id="service_time"  class="form-control is-valid" value="<?php echo $detail_shop->shop_service_time;?>" style="display: none;">
+                                                    <div id="service_time2"><?php echo (!empty($detail_shop->shop_service_time))?$detail_shop->shop_service_time:'Sewaktu terakhir pemesanan belum diatur'; $detail_shop->shop_service_time;?></div>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('service_time'); ?></span> 
+                                                </td>
+                                            </tr>
+                                            <tr id="kolom_save4" style="display: none;">
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save4"> Save </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Lokasi Toko</h4>
+                                                    <div id="shop_address" style="display: none;">
+                                                        <span>Alamat Lengkap</span>
+                                                        <textarea name="shop_address" class="form-control is-valid" rows="4"><?php echo $detail_shop->shop_address;?></textarea><br>
+                                                        <span>Provinsi</span>
+                                                        <select class="form-control" id="shop_propinsi" name="shop_propinsi">
+                                                            <option>-----pilih provinsi-----</option>
+                                                            <?php 
+                                                                foreach ($provinsi as $prov) {
+                                                                    if($detail_shop->id_propinsi == $prov['id_propinsi']){
+                                                                        ?>
+                                                                        <option selected value="<?php echo $prov['id_propinsi']?>"><?php echo $prov['nama_propinsi'];?></option>
+                                                                    <?php
+                                                                    }else{
+                                                                    ?>
+                                                                        <option value="<?php echo $prov['id_propinsi']?>"><?php echo $prov['nama_propinsi'];?></option>
+                                                                    <?php
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </select><br>
+                                                        <span>Kabupaten</span>
+                                                        <select class="form-control" id="shop_kota" name="shop_kota" required>
+                                                            <option>-----pilih kota-----</option>
+                                                            <option selected value="<?php echo $detail_shop->id_kabupaten_kota?>"><?php echo $detail_shop->nama_kabupaten_kota?></option>
+                                                        </select>
+                                                    </div>
+                                                    <p id="shop_address2"><?php echo (!empty($detail_shop->shop_address))?$detail_shop->shop_address."<br>".$detail_shop->nama_kabupaten_kota."<br>".$detail_shop->nama_propinsi."<br>".$detail_shop->kode_pos:'Kamu dapat menambahkan lokasi fisik toko kamu di sini'; $detail_shop->shop_address;?></p>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('shop_address'); ?></span> 
+                                                </td>
+                                                <td class="text-right">
+                                                    <input type="button" name="edit5" id="edit5" class="btn btn-info" value="Edit">
+                                                    <span> &nbsp;</span>
+                                                    <button type="button" name="cancel5" id="cancel5" class="btn waves-effect waves-light btn-secondary" style="display: none;"> Cancel </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nomor Kontak Toko</td>
+                                                <td> 
+                                                    <input type="text" name="shop_phone" id="shop_phone" class="form-control is-valid" value="<?php echo $detail_shop->shop_phone;?>" style="display: none;" >
+                                                    <div id="shop_phone2"><?php echo (!empty($detail_shop->shop_phone))?$detail_shop->shop_phone:'nomor kontak toko belum diatur'; $detail_shop->shop_phone;?></div>
+                                                    <span class="text-danger" style="color: red;"><?php echo form_error('shop_phone'); ?></span> 
+                                                </td>
+                                            </tr>
+                                            <tr id="kolom_save5" style="display: none;">
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save5"> Save </button>
+                                                </td>
+                                            </tr>
+                                        </form>
                                         <tr>
                                             <td width=><h4>Catatan Toko</h4><p>(REFERENSI BUKALAPAK) Diperuntukkan bagi pemilik toko yang ingin memberikan catatan tambahan.</p></td>
                                             <td class="text-right">
@@ -743,13 +804,45 @@
 <script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
 
 <script language="JavaScript">
+    var currentFile = null;
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#profile_picture", {
+        addRemoveLinks: true,
+        url: "<?php echo site_url('/MemberC/upload_profile_picture'); ?>",
+        maxFiles:1,
+        init: function() {
+        this.on("addedfile", function(file) {
+            if (currentFile) {
+            this.removeFile(currentFile);
+            }
+            currentFile = file;
+        });
+        }   
+    });
+
+    new Dropzone("#store_picture", {
+        addRemoveLinks: true,
+        url: "<?php echo site_url('/MemberC/upload_store_picture'); ?>",
+        maxFiles:1,
+        init: function() {
+        this.on("addedfile", function(file) {
+            if (currentFile) {
+            this.removeFile(currentFile);
+            }
+            currentFile = file;
+        });
+        }   
+    });
+
     $("#edit").click(function(){
+        $("#dropzonePP2").hide();
         $("#username2").hide();
         $("#memberName2").hide();
         $("#tmp_lahir2").hide();
         $("#tgl_lahir2").hide();
         $("#gender2").hide();
 
+        $("#dropzonePP").show();
         $("#username").show();
         $("#memberName").show();
         $("#tmp_lahir").show();
@@ -773,8 +866,6 @@
         $("#email").focus();
         $("#edit2").hide();
         $("#cancel2").show();
-
-
     });
 
     $("#edit3").click(function(){
@@ -790,17 +881,45 @@
         $("#password").focus();
         $("#edit3").hide();
         $("#cancel3").show();
+    });
 
+    $("#edit4").click(function(){
+        $("#dropzoneStore2").hide();
+        $("#description2").hide();
+        $("#service_time2").hide();
 
+        $("#dropzoneStore").show();
+        $("#description").show();
+        $("#service_time").show();
+        $("#kolom_save4").show();
+
+        $("#description").focus();
+        $("#edit4").hide();
+        $("#cancel4").show();
+    });
+
+    $("#edit5").click(function(){
+        $("#shop_address2").hide();
+        $("#shop_phone2").hide();
+
+        $("#shop_address").show();
+        $("#shop_phone").show();
+        $("#kolom_save5").show();
+
+        $("#shop_address").focus();
+        $("#edit5").hide();
+        $("#cancel5").show();
     });
 
     $("#cancel").click(function(){
+        $("#dropzonePP2").show();
         $("#username2").show();
         $("#memberName2").show();
         $("#tmp_lahir2").show();
         $("#tgl_lahir2").show();
         $("#gender2").show();
 
+        $("#dropzonePP").hide();
         $("#username").hide();
         $("#memberName").hide();
         $("#tmp_lahir").hide();
@@ -837,6 +956,32 @@
 
         $("#edit3").show();
         $("#cancel3").hide();
+    });
+
+    $("#cancel4").click(function(){
+        $("#dropzoneStore2").show();
+        $("#description2").show();
+        $("#service_time2").show();
+
+        $("#dropzoneStore").hide();
+        $("#description").hide();
+        $("#service_time").hide();
+        $("#kolom_save4").hide();
+
+        $("#edit4").show();
+        $("#cancel4").hide();
+    });
+
+    $("#cancel5").click(function(){
+        $("#shop_address2").show();
+        $("#shop_phone2").show();
+
+        $("#shop_address").hide();
+        $("#shop_phone").hide();
+        $("#kolom_save5").hide();
+
+        $("#edit5").show();
+        $("#cancel5").hide();
     });
 
     $(function () {
@@ -904,27 +1049,43 @@
             });
         });
 
-        // $('#kecamatan').change(function(){
-        //     var kecamatan = $(this).val(); //ambil value dr kode_unit
-        //     // window.alert(unit);
+        $('#shop_propinsi').change(function(){
+            var propinsi = $(this).val(); //ambil value dr kode_unit
+            // window.alert(unit);
 
-        //     // AJAX request
-        //     $.ajax({
-        //         url:'<?=base_url()?>MemberC/get_kelurahan',
-        //         method: 'post',
-        //         data: {id_kecamatan : kecamatan}, // data post ke controller 
-        //         dataType: 'json',
-        //         success: function(response){
-        //             // Remove options
-        //             $('#kelurahan').find('option').not(':first').remove();
+            // AJAX request
+            $.ajax({
+                url:'<?=base_url()?>MemberC/get_kabupaten_kota',
+                method: 'post',
+                data: {id_propinsi: propinsi}, // data post ke controller 
+                dataType: 'json',
+                success: function(response){
+                    // Remove options
+                    $('#shop_kota').find('option').not(':first').remove();
 
-        //             // Add options
-        //             $.each(response,function(daftar,data){
-        //                 $('#kelurahan').append('<option value="'+data['id_kelurahan']+'">'+data['nama_kelurahan']+'</option>');
-        //             });
-        //         }
-        //     });
-        // });
+                    // Add options
+                    $.each(response,function(daftar,data){
+                        $('#shop_kota').append('<option value="'+data['id_kabupaten_kota']+'">'+data['nama_kabupaten_kota']+'</option>');
+                    });
+                }
+            });
+        });
+
+        $('#shop_kota').change(function(){
+            var kota = $(this).val(); //ambil value dr kode_unit
+            // window.alert(unit);
+
+            // AJAX request
+            $.ajax({
+                url:'<?=base_url()?>MemberC/get_postcode',
+                method: 'post',
+                data: {id_kabupaten_kota: kota}, // data post ke controller 
+                dataType: 'json',
+                success: function(response){
+                  $('#kodepos').val(response[0].kode_pos);
+                }
+            });
+        });
 
         //buat reoad ke current tab pane 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

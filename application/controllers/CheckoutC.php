@@ -24,6 +24,8 @@ class CheckoutC extends CI_Controller {
 
         //ambil barang di keranjang
         $this->data['keranjang'] = $lele = $this->MemberM->get_keranjang_by_id($this->session->memberID)->result();
+        $sellerID = $this->MemberM->get_keranjang_by_id($this->session->memberID)->row()->sellerID;
+        $this->data['get_shop'] = $this->MemberM->get_shop($sellerID)->row()->id_kabupaten_kota;
         $this->data['kurirs'] = $this->CheckoutM->get_courier()->result();
         $this->data['banks'] = $this->CheckoutM->get_bank()->result();
         if(count($lele) == 0){
