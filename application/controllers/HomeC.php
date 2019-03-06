@@ -4,7 +4,7 @@ date_default_timezone_set('Asia/Jakarta');
 class HomeC extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(['LoginM','HomeM','CheckoutM']);
+		$this->load->model(['LoginM','HomeM','CheckoutM','MemberM']);
 		// time_ago();
 		//in_access(); //helper buat batasi akses login/session
 	}
@@ -16,6 +16,10 @@ class HomeC extends CI_Controller {
 		$this->data['get_produk_diskon'] = $this->HomeM->get_produk_diskon()->result();
 		$this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
 
+        $memberID = $this->session->userdata('memberID');
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
 
 		$this->data['get_produk_terbaru'] = $this->HomeM->get_produk_terbaru()->result();
 		$this->data['get_header2'] = $this->HomeM->get_header2()->result();
@@ -25,6 +29,7 @@ class HomeC extends CI_Controller {
 	}
 
 	public function detail_produk($id_produk){
+        $memberID = $this->session->userdata('memberID');
 		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');
 		$this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
@@ -42,6 +47,9 @@ class HomeC extends CI_Controller {
 
 		$this->data['provinsi'] = $this->HomeM->get_provinsi()->result();
 
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
 		$this->data['favorit'] = $this->HomeM->favorit($id_produk)->num_rows();
 		$this->data['isi'] = $this->load->view('detail_v', $this->data, TRUE);
 		$this->load->view('layout', $this->data);
