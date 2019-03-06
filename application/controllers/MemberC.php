@@ -72,7 +72,10 @@ class MemberC extends CI_Controller {
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
         $memberID = $this->session->userdata('memberID');
         $this->data['detail_member'] = $this->MemberM->get_members($memberID)->result()[0];
-        $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            # code...
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
         $this->data['provinsi'] = $this->MemberM->get_all_provinsi();
         $this->data['shipping_address'] = $this->MemberM->get_address($memberID)->result();
         // $this->data['locationID'] = $this->MemberM->get_shipping_address_by_id(4)->result()[0]->locationID;

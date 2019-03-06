@@ -6,6 +6,7 @@
 
     <?php
         echo $sidebar;
+        error_reporting(0);
     ?>
 
     <!-- Column bagian kanan : mulai -->
