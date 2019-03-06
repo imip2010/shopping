@@ -808,7 +808,7 @@
     var currentFile = null;
     Dropzone.autoDiscover = false;
     var myDropzone = new Dropzone("#profile_picture", {
-        addRemoveLinks: true,
+        addRemoveLinks: false,
         url: "<?php echo site_url('/MemberC/upload_profile_picture'); ?>",
         maxFiles:1,
         init: function() {
@@ -822,7 +822,7 @@
     });
 
     new Dropzone("#store_picture", {
-        addRemoveLinks: true,
+        addRemoveLinks: false,
         url: "<?php echo site_url('/MemberC/upload_store_picture'); ?>",
         maxFiles:1,
         init: function() {
