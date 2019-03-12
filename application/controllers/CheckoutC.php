@@ -13,6 +13,7 @@ class CheckoutC extends CI_Controller {
 
     public function index()
     {
+        $memberID = $this->session->userdata('memberID');
         $this->data['dataDiri'] = $this->session->userdata();
         $this->data['logged_in'] = $this->session->userdata('logged_in');
         $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
@@ -28,6 +29,10 @@ class CheckoutC extends CI_Controller {
         $this->data['get_shop'] = $this->MemberM->get_shop($sellerID)->row()->id_kabupaten_kota;
         $this->data['kurirs'] = $this->CheckoutM->get_courier()->result();
         $this->data['banks'] = $this->CheckoutM->get_bank()->result();
+        
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
         if(count($lele) == 0){
             $this->session->set_flashdata('error_keranjang','Keranjang anda masih kosong !');
             redirect('HomeC');

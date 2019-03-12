@@ -13,11 +13,15 @@ class MemberC extends CI_Controller {
 
     // pindah ke jual barang
     public function jual_barang(){
+        $memberID = $this->session->userdata('memberID');
         $this->data['dataDiri'] = $this->session->userdata();
         $this->data['logged_in'] = $this->session->userdata('logged_in');
         $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
         $this->data['kategori'] = $this->MemberM->get_all_kategori();
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
 
         $this->data['isi'] = 'isi';
         $this->data['isi'] = $this->load->view('member/jual_barang', $this->data, TRUE);
@@ -27,6 +31,7 @@ class MemberC extends CI_Controller {
 
     // beli barang
     public function beli_barang($memberID){
+        $memberID = $this->session->userdata('memberID');
         $this->data['dataDiri'] = $this->session->userdata();
         $this->data['logged_in'] = $this->session->userdata('logged_in');
         $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
@@ -34,6 +39,9 @@ class MemberC extends CI_Controller {
         $this->data['kategori'] = $this->MemberM->get_all_kategori();
         $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
         $this->data['MemberM'] = $this->MemberM;
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
 
         //ambil barang di keranjang
         $this->data['keranjang'] = $lele = $this->MemberM->get_keranjang_by_id($memberID)->result();
@@ -50,12 +58,16 @@ class MemberC extends CI_Controller {
 
     // pindah ke daftar_barang
     public function daftar_barang(){
+        $memberID = $this->session->userdata('memberID');
         $this->data['dataDiri'] = $this->session->userdata();
         $this->data['logged_in'] = $this->session->userdata('logged_in');
         $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
         $this->data['daftar_barang'] = $this->MemberM->get_produk_by_id()->result();
         $this->data['kategori'] = $this->MemberM->get_all_kategori();
-        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
+
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
 
         $this->data['isi'] = 'isi';
         $this->data['isi'] = $this->load->view('member/daftar_barang', $this->data, TRUE);
@@ -394,6 +406,9 @@ class MemberC extends CI_Controller {
         $memberID = $this->session->userdata('memberID');
         $this->data['detail_member'] = $this->MemberM->get_detail_members($memberID)->result()[0];
         $this->data['all_province'] = $this->MemberM->get_provinces();
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
 
         $this->data['isi'] = 'isi';
         $this->data['isi'] = $this->load->view('member/checkout', $this->data, TRUE);
