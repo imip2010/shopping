@@ -445,8 +445,8 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-home m-r-5 m-l-5"></i>Toko Saya
                                     </a>
-                                    <a class="dropdown-item" href="<?php echo site_url('jual_barang')?>">
-                                        <i class="ti-wallet m-r-5 m-l-5"></i> Jual Barang
+                                    <a class="dropdown-item" <?php echo (!empty($detail_shop))?'href="'.site_url("jual_barang").'"':'style="background:#ececec;cursor:default;" href="'.site_url("pengaturan_profile").'"';?>>
+                                        <i class="ti-wallet m-r-5 m-l-5"></i> Jual Barang <?php echo (!empty($detail_shop))?'':'<span style="color:red;" "><small> (Toko belum terdaftar)</small></span>';?>
                                     </a>
                                     <a class="dropdown-item" href="<?php echo site_url('daftar_barang')?>">
                                         <i class="ti-settings m-r-5 m-l-5"></i> Daftar Barang

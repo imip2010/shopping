@@ -13,6 +13,7 @@ class OrderC extends CI_Controller {
 
     public function transaction()
     {
+        $memberID = $this->session->userdata('memberID');
         $this->data['dataDiri'] = $this->session->userdata();
         $this->data['logged_in'] = $this->session->userdata('logged_in');
         $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
@@ -31,6 +32,9 @@ class OrderC extends CI_Controller {
         $this->data['invoices_reject'] = $this->OrderM->get_invoice_pack_reject($this->session->memberID)->result();
         $this->data['transactions'] = $this->OrderM->get_transaction($this->session->memberID)->result();
 
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
         // print_r($this->data['transactions']);
         $this->data['isi'] = 'isi';
         $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
@@ -40,6 +44,7 @@ class OrderC extends CI_Controller {
 
     public function detail_transaction($orderID)
     {
+        $memberID = $this->session->userdata('memberID');
         $this->data['dataDiri'] = $this->session->userdata();
         $this->data['logged_in'] = $this->session->userdata('logged_in');
         $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
@@ -55,6 +60,9 @@ class OrderC extends CI_Controller {
         $this->data['statusOrder'] = $this->OrderM->get_detail_transaction($orderID)->row()->statusOrder;
         $this->data['bankID'] = $this->OrderM->get_detail_transaction($orderID)->row()->bankID;
         $this->data['detail_member'] = $this->MemberM->get_detail_members_log($this->OrderM->get_detail_transaction($orderID)->row()->member_shipping_address_id)->result();
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
+        }
 
         // print_r($this->data['transactions']);
         $this->data['isi'] = 'isi';

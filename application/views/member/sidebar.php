@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="myadmin-dd dd" id="nestable">
                     <div class="text-center">
-                        <button type="button" class="btn waves-effect waves-light btn-outline-info"> Jual Barang </button>
+                        <a <?php echo (!empty($detail_shop))?'href="'.site_url("jual_barang").'"':'style="background:#ececec;cursor:default;color:#4798e8;" title="Toko belum terdaftar" href="'.site_url("pengaturan_profile").'"';?> class="btn waves-effect waves-light btn-outline-info"> Jual Barang </a>
                     </div><br>
                     <ul class="list-style-none el-info" >
                         <li class="el-item"> 

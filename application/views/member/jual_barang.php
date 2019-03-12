@@ -1,3 +1,8 @@
+<?php if(empty($detail_shop)){
+  header('Location:'.site_url("pengaturan_profile"));
+  exit;
+}
+?>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/libs/ckeditor/samples/css/samples.css"><br>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/dist/css/image-multi.css">
