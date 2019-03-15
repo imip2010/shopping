@@ -123,7 +123,6 @@
                             <hr style="margin-top: -1%;">
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
-                                <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
                                 <a href="<?php echo site_url('detail_transaksi/').$order_packing->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
@@ -180,7 +179,6 @@
                             <hr style="margin-top: -1%;">
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
-                                <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
                                 <a href="<?php echo site_url('detail_transaksi/').$order_send->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
@@ -237,7 +235,6 @@
                             <hr style="margin-top: -1%;">
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
-                                <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
                                 <a href="<?php echo site_url('detail_transaksi/').$order_done->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
@@ -294,7 +291,6 @@
                             <hr style="margin-top: -1%;">
                             <div class="text-right" style="margin-right: 20px;">
                                 <h4 class="text-right" style="margin-top: -1%;margin-bottom: -1%;">Total Pesanan&emsp;Rp <?php echo number_format($total[$key], 0,',','.');?> </h4><br>
-                                <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
                                 <a href="<?php echo site_url('detail_transaksi/').$order_reject->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
@@ -308,224 +304,6 @@
                     <?php }}else{echo "Tidak ada transaksi!";}?>
                 </div>
             </div>
-
-<!--             <div class="tab-content br-n pn">
-                <div id="navpills-1" class="tab-pane active">
-                    <?php 
-                    if(!empty($pending_t)){
-                    foreach($pending_t as $order){?>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <form action=" " method="post">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center"><h5>Nama Toko</h5></td>
-                                            <td class="text-left">
-                                                <button type="button" class="btn waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
-                                            </td>
-                                            <td><h4 style="color: #4798e8;" class="text-right">Belum Bayar</h4></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 10%"> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 100%"/></td>
-                                            <td style="width: 75%"><?php echo $order->productID;?> <p><?php echo $order->quantity;?></p> </td>
-                                            <td class="text-right">Rp <?php echo number_format($order->price, 0,',','.');?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="text-right" style="margin-right: 20px;">
-                                    <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
-                                    <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
-                                    </div>
-                                </div>
-                            </form><br><br>
-                        </div>
-                    </div>
-                    <?php }}else{echo "Transaksi Kosong!";}?>
-                </div>
-                <div id="navpills-2" class="tab-pane">
-                    <?php 
-                    if(!empty($packing_t)){
-                    foreach($packing_t as $order){?>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <form action=" " method="post">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center"><h5>Nama Toko</h5></td>
-                                            <td class="text-left">
-                                                <button type="button" class="btn waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
-                                            </td>
-                                            <td><h4 style="color: #4798e8;" class="text-right">Belum Dikirimkan</h4></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 10%"> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 100%"/></td>
-                                            <td style="width: 75%"><?php echo $order->productID;?> <p><?php echo $order->quantity;?></p> </td>
-                                            <td class="text-right">Rp <?php echo number_format($order->price, 0,',','.');?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="text-right" style="margin-right: 20px;">
-                                    <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
-                                    <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
-                                    </div>
-                                </div>
-                            </form><br><br>
-                        </div>
-                    </div>
-                    <?php }}else{echo "Transaksi Kosong!";}?>
-                </div>
-                <div id="navpills-3" class="tab-pane">
-                    <?php
-                    if(!empty($deliver_t)){
-                    foreach($deliver_t as $order){?>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <form action=" " method="post">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center"><h5>Nama Toko</h5></td>
-                                            <td class="text-left">
-                                                <button type="button" class="btn waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
-                                            </td>
-                                            <td><h4 style="color: #4798e8;" class="text-right">Belum Diterima</h4></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 10%"> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 100%"/></td>
-                                            <td style="width: 75%"><?php echo $order->productID;?> <p><?php echo $order->quantity;?></p> </td>
-                                            <td class="text-right">Rp <?php echo number_format($order->price, 0,',','.');?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="text-right" style="margin-right: 20px;">
-                                    <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
-                                    <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
-                                    </div>
-                                </div>
-                            </form><br><br>
-                        </div>
-                    </div>
-                    <?php }}else{echo "Transaksi Kosong!";}?>
-                </div>
-                <div id="navpills-4" class="tab-pane">
-                    <?php 
-                    if(!empty($done_t)){
-                    foreach($done_t as $order){?>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <form action=" " method="post">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center"><h5>Nama Toko</h5></td>
-                                            <td class="text-left">
-                                                <button type="button" class="btn waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
-                                            </td>
-                                            <td><h4 style="color: #4798e8;" class="text-right">Belum Dinilai</h4></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 10%"> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 100%"/></td>
-                                            <td style="width: 75%"><?php echo $order->productID;?> <p><?php echo $order->quantity;?></p> </td>
-                                            <td class="text-right">Rp <?php echo number_format($order->price, 0,',','.');?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="text-right" style="margin-right: 20px;">
-                                    <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
-                                    <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
-                                    </div>
-                                </div>
-                            </form><br><br>
-                        </div>
-                    </div>
-                    <?php }}else{echo "Transaksi Kosong!";}?>
-                </div
-                <div id="navpills-5" class="tab-pane">
-                    <?php 
-                    if(!empty($reject_t)){
-                    foreach($reject_t as $order){?>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <form action=" " method="post">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center"><h5>Nama Toko</h5></td>
-                                            <td class="text-left">
-                                                <button type="button" class="btn waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                <button type="button" class="btn waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
-                                            </td>
-                                            <td><h4 style="color: #4798e8;" class="text-right">Batal</h4></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 10%"> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 100%"/></td>
-                                            <td style="width: 75%"><?php echo $order->productID;?> <p><?php echo $order->quantity;?></p> </td>
-                                            <td class="text-right">Rp <?php echo number_format($order->price, 0,',','.');?></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="text-right" style="margin-right: 20px;">
-                                    <button type="button" class="btn waves-effect waves-light btn-info"> Transfer Sekarang </button>
-                                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Barang </button>
-                                    <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0)">Batalkan Pesanan</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
-                                    </div>
-                                </div>
-                            </form><br><br>
-                        </div>
-                    </div>
-                    <?php }}else{echo "Transaksi Kosong!";}?>
-                </div>
-            </div> -->
         </div>
     </div>
     <!-- Column bagian kanan : selesai -->

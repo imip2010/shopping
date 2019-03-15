@@ -29,6 +29,7 @@ class HomeC extends CI_Controller {
 	}
 
 	public function detail_produk($id_produk){
+		// print_r($this->HomeM->get_detail_product($id_produk)->result());
         $memberID = $this->session->userdata('memberID');
 		$this->data['dataDiri'] = $this->session->userdata();
 		$this->data['logged_in'] = $this->session->userdata('logged_in');

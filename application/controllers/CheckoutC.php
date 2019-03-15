@@ -75,12 +75,12 @@ class CheckoutC extends CI_Controller {
         );
         $orderID = $this->OrderM->add_to_orders($data_order);
         // print_r($orderID);
-
+ 
         foreach ($cek as $key => $data) {
             $shipment_address = array(
                 'sellerID' => $data->sellerID, 
-                'id_kabupaten_kota' => $this->MemberM->get_default_address($data->sellerID)->row()->id_kabupaten_kota, 
-                'shipping_address_name' => $this->MemberM->get_default_address($data->sellerID)->row()->locationName, 
+                'id_kabupaten_kota' => $this->MemberM->get_shop($data->sellerID)->row()->id_kabupaten_kota, 
+                'shipping_address_name' => $this->MemberM->get_shop($data->sellerID)->row()->shop_address, 
                 'seller_name' => $this->MemberM->get_members($data->sellerID)->row()->memberName, 
             );
             $shipment_address_id = $this->MemberM->insertToShipmentAddress($shipment_address);
