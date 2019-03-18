@@ -70,7 +70,7 @@
                                 <a href="<?php echo site_url('detail_transaksi/').$order->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?php echo site_url('batal/').$order->orderID;?>">Batalkan Pesanan</a>
+                                    <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
                                     <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                 <a href="<?php echo site_url('detail_transaksi/').$order_packing->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?php echo site_url('batal/').$order->orderID;?>">Batalkan Pesanan</a>
+                                    <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
                                     <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@
                                 <a href="<?php echo site_url('detail_transaksi/').$order_send->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?php echo site_url('batal/').$order->orderID;?>">Batalkan Pesanan</a>
+                                    <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
                                     <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
                                 </div>
                             </div>
@@ -238,7 +238,7 @@
                                 <a href="<?php echo site_url('detail_transaksi/').$order_done->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?php echo site_url('batal/').$order->orderID;?>">Batalkan Pesanan</a>
+                                    <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
                                     <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
                                 </div>
                             </div>
@@ -294,7 +294,7 @@
                                 <a href="<?php echo site_url('detail_transaksi/').$order_reject->orderID;?>" class="btn waves-effect waves-light btn-outline-info"> Tampilkan Rincian Pesanan </a>
                                 <!-- <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?php echo site_url('batal/').$order->orderID;?>">Batalkan Pesanan</a>
+                                    <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
                                     <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
                                 </div> -->
                             </div>
@@ -310,3 +310,28 @@
 
 
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+function deleteConfrimation(id) {
+    swal({
+          title: "Apa anda yakin?",
+          text: "Setelah anda membatalkan pesanan, pesanan tidak akan dilanjutkan.",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+          buttons: ['Tidak', 'Ya'],
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal({title: "Berhasil!", text: "Pesanan anda berhasil dibatalkan.", icon: "success", type: 
+                "success"}).then(function(){ 
+                   window.location.href="<?php echo site_url('batal/')?>"+id;
+                   }
+                );
+          } else {
+            swal("Pesanan anda tidak dibatalkan!");
+          }
+        });
+}
+
+</script>
