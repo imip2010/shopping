@@ -41,7 +41,7 @@ class MemberC extends CI_Controller {
         $this->data['MemberM'] = $this->MemberM;
         if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
             $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
-        }
+        } 
 
         //ambil barang di keranjang
         $this->data['keranjang'] = $lele = $this->MemberM->get_keranjang_by_id($memberID)->result();
@@ -702,19 +702,38 @@ class MemberC extends CI_Controller {
 
     public function update_shop()
     {
-        $data = array(
-            'id_kabupaten_kota' => $this->input->post('shop_kota'),
-            'shop_description'  => $this->input->post('description'),
-            'shop_service_time' => $this->input->post('service_time'),
-            'shop_address'      => $this->input->post('shop_address'),
-            'shop_phone'        => $this->input->post('shop_phone'),
-        );
-        if($this->MemberM->update_data('shop',$data,$this->session->memberID)){
-            $this->session->set_flashdata('sukses', 'Data toko berhasil disimpan');
-            redirect_back();
+        $memberID = $this->session->memberID;
+        if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
+            $data = array(
+                'id_kabupaten_kota' => $this->input->post('shop_kota'),
+                'shop_description'  => $this->input->post('description'),
+                'shop_service_time' => $this->input->post('service_time'),
+                'shop_address'      => $this->input->post('shop_address'),
+                'shop_phone'        => $this->input->post('shop_phone'),
+            );
+            if($this->MemberM->update_data('shop',$data,$this->session->memberID)){
+                $this->session->set_flashdata('sukses', 'Data toko berhasil disimpan');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+                redirect_back();
+            }
         }else{
-            $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
-            redirect_back();
+            $data = array(
+                'memberID'          => $memberID,
+                'id_kabupaten_kota' => $this->input->post('shop_kota'),
+                'shop_description'  => $this->input->post('description'),
+                'shop_service_time' => $this->input->post('service_time'),
+                'shop_address'      => $this->input->post('shop_address'),
+                'shop_phone'        => $this->input->post('shop_phone'),
+            );
+            if($this->MemberM->insert_data('shop',$data)){
+                $this->session->set_flashdata('sukses', 'Data toko berhasil disimpan');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan');
+                redirect_back();
+            }
         }
     }
 

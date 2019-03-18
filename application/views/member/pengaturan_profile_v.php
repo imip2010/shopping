@@ -583,12 +583,12 @@
                                                     <span class="text-danger" style="color: red;"><?php echo form_error('service_time'); ?></span> 
                                                 </td>
                                             </tr>
-                                            <tr id="kolom_save4" style="display: none;">
+                                            <!-- <tr id="kolom_save4" style="display: none;">
                                                 <td></td>
                                                 <td>
                                                     <button type="submit" name="submit" class="btn waves-effect waves-light btn-success" id="save4"> Save </button>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td>
                                                     <h4>Lokasi Toko</h4>
@@ -621,11 +621,12 @@
                                                     <p id="shop_address2"><?php echo (!empty($detail_shop->shop_address))?$detail_shop->shop_address."<br>".$detail_shop->nama_kabupaten_kota."<br>".$detail_shop->nama_propinsi."<br>".$detail_shop->kode_pos:'Kamu dapat menambahkan lokasi fisik toko kamu di sini'; $detail_shop->shop_address;?></p>
                                                     <span class="text-danger" style="color: red;"><?php echo form_error('shop_address'); ?></span> 
                                                 </td>
-                                                <td class="text-right">
+                                                <td></td>
+                                                <!-- <td class="text-right">
                                                     <input type="button" name="edit5" id="edit5" class="btn btn-info" value="Edit">
                                                     <span> &nbsp;</span>
                                                     <button type="button" name="cancel5" id="cancel5" class="btn waves-effect waves-light btn-secondary" style="display: none;"> Cancel </button>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                             <tr>
                                                 <td>Nomor Kontak Toko</td>
@@ -888,11 +889,15 @@
         $("#dropzoneStore2").hide();
         $("#description2").hide();
         $("#service_time2").hide();
+        $("#shop_address2").hide();
+        $("#shop_phone2").hide();
 
         $("#dropzoneStore").show();
         $("#description").show();
         $("#service_time").show();
-        $("#kolom_save4").show();
+        $("#shop_address").show();
+        $("#shop_phone").show();
+        $("#kolom_save5").show();
 
         $("#description").focus();
         $("#edit4").hide();
@@ -963,11 +968,15 @@
         $("#dropzoneStore2").show();
         $("#description2").show();
         $("#service_time2").show();
+        $("#shop_address2").show();
+        $("#shop_phone2").show();
 
         $("#dropzoneStore").hide();
         $("#description").hide();
         $("#service_time").hide();
-        $("#kolom_save4").hide();
+        $("#shop_address").hide();
+        $("#shop_phone").hide();
+        $("#kolom_save5").hide();
 
         $("#edit4").show();
         $("#cancel4").hide();
