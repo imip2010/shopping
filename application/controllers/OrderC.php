@@ -59,6 +59,9 @@ class OrderC extends CI_Controller {
         $this->data['invoice'] = $this->OrderM->get_detail_transaction($orderID)->row()->invoice;
         $this->data['statusOrder'] = $this->OrderM->get_detail_transaction($orderID)->row()->statusOrder;
         $this->data['bankID'] = $this->OrderM->get_detail_transaction($orderID)->row()->bankID;
+        if ($this->OrderM->get_detail_transaction($orderID)->num_rows() > 0) {
+            $this->data['bank_detail'] = $this->MemberM->get_bank_id($this->data['bankID'])->result();
+        }
         $this->data['detail_member'] = $this->MemberM->get_detail_members_log($this->OrderM->get_detail_transaction($orderID)->row()->member_shipping_address_id)->result();
         if ($this->MemberM->get_shop($memberID)->num_rows() > 0) {
             $this->data['detail_shop'] = $this->MemberM->get_shop($memberID)->result()[0];
@@ -69,5 +72,12 @@ class OrderC extends CI_Controller {
         $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
         $this->data['isi'] = $this->load->view('member/detail_transaksi', $this->data, TRUE);
         $this->load->view('layout', $this->data);
+    }
+
+    public function cancel_order($orderID)
+    {
+        $data = array('statusOrder' => 'Reject', );
+        $this->OrderM->cancel_order($orderID,$data);
+        redirect('/transaksi');
     }
 }
