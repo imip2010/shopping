@@ -303,9 +303,11 @@
                                 <span>METODE PEMBAYARAN</span>
                             </small><br>
                             <h5><?php if(!empty($bankID)){
-                                echo "Transfer";
-                            }else{
-                                echo "---------";
+                                foreach ($bank_detail as $bank) {
+                                    echo "[Transfer] - ".$bank->atasNama."<br>".$bank->bankName." (".$bank->noRek.")";
+                                }
+                            }else{ 
+                                echo "[Virtual]";
                             }?></h5>
                             <hr>
                             <small>

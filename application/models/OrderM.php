@@ -179,5 +179,12 @@ class OrderM extends CI_model
 		return $this->db->get();
 	}
 
+	public function cancel_order($orderID,$data)
+	{
+		$this->db->where('orderID', $orderID);
+		$this->db->update('orders', $data);
+		return TRUE;
+	}
+
 }
 ?>
