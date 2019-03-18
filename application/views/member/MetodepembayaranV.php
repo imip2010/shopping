@@ -294,7 +294,7 @@ foreach ($keranjang as $ker) {
                                         <div>
                                             <!-- <a href="<?php echo site_url('CobaC/metodepembayaran')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a>  -->
                                             <!-- <a href="<?php echo site_url('/bayar')?>" class="btn btn-info" style="width: 250px;">Lanjut Pembayaran</a>  -->
-                                            <button type="submit" class="btn btn-info" style="width: 250px;" id="btn-submit">Lanjut Pembayaran</button>
+                                            <button type="submit" class="btn btn-info" style="width: 250px;" id="btn-submit" <?php echo (empty($get_default_address))?'disabled title="Alamat tujuan tidak ditemukan!"':'';?>>Lanjut Pembayaran</button>
                                             <a href="<?php echo site_url('CobaC/metodepembayaran')?>"><span class="text-right"> Gunakan Kode Voucher ? </span></a>
                                         </div> 
                                     </div>
