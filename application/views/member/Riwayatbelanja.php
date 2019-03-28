@@ -54,7 +54,7 @@
                                                 <p>
                                                     <?php echo $transaction->memberName;?>&emsp;
                                                     <button type="button" class="btn btn-sm waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                    <button type="button" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
+                                                    <a href="<?php echo site_url('toko/'.$transaction->sellerID); ?>" target="_blank" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </a>
                                                 </p>
                                             </div>
                                         </td>
@@ -111,7 +111,7 @@
                                                 <p>
                                                     <?php echo $transaction->memberName;?>&emsp;
                                                     <button type="button" class="btn btn-sm waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                    <button type="button" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
+                                                    <a href="<?php echo site_url('toko/'.$transaction->sellerID); ?>" target="_blank" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </a>
                                                 </p>
                                             </div>
                                         </td>
@@ -127,7 +127,7 @@
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
-                                    <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
+                                    <!-- <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a> -->
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                                                 <p>
                                                     <?php echo $transaction->memberName;?>&emsp;
                                                     <button type="button" class="btn btn-sm waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                    <button type="button" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
+                                                    <a href="<?php echo site_url('toko/'.$transaction->sellerID); ?>" target="_blank" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </a>
                                                 </p>
                                             </div>
                                         </td>
@@ -183,7 +183,7 @@
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
-                                    <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
+                                    <!-- <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a> -->
                                 </div>
                             </div>
                         </div>
@@ -223,7 +223,7 @@
                                                 <p>
                                                     <?php echo $transaction->memberName;?>&emsp;
                                                     <button type="button" class="btn btn-sm waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                    <button type="button" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
+                                                    <a href="<?php echo site_url('toko/'.$transaction->sellerID); ?>" target="_blank" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </a>
                                                 </p>
                                             </div>
                                         </td>
@@ -239,7 +239,7 @@
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
-                                    <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a>
+                                    <!-- <a class="dropdown-item" href="javascript:void(0)">Ubah Metode Pembayaran</a> -->
                                 </div>
                             </div>
                         </div>
@@ -279,7 +279,7 @@
                                                 <p>
                                                     <?php echo $transaction->memberName;?>&emsp;
                                                     <button type="button" class="btn btn-sm waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                                    <button type="button" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
+                                                    <a href="<?php echo site_url('toko/'.$transaction->sellerID); ?>" target="_blank" class="btn btn-sm waves-effect waves-light btn-outline-info"> Kunjungi Toko </a>
                                                 </p>
                                             </div>
                                         </td>

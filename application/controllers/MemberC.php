@@ -770,6 +770,14 @@ class MemberC extends CI_Controller {
             $this->db->update('shop',array('shop_header' => $fileName)); 
         }
     }
+
+    public function get_seller_profile($sellerID)
+    {
+        $this->data['seller_detail'] = $this->MemberM->get_seller_profile($sellerID)->result();
+        $this->data['products'] = $this->MemberM->get_product_by_memberid($sellerID)->result();
+        print_r($this->MemberM->get_seller_profile($sellerID)->result());
+        print_r($this->MemberM->get_product_by_memberid($sellerID)->result());
+    }
 }
 
 
