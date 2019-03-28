@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2019 at 07:48 AM
+-- Generation Time: Mar 18, 2019 at 09:18 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -131,20 +131,13 @@ CREATE TABLE `carts` (
   `memberID` int(5) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` int(20) NOT NULL,
+  `expedition` varchar(150) DEFAULT NULL,
   `service` varchar(255) DEFAULT NULL,
   `estimate` varchar(30) DEFAULT NULL,
   `cost` int(20) DEFAULT NULL,
   `stockCart` int(11) NOT NULL,
   `createDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`cartID`, `productID`, `memberID`, `quantity`, `price`, `service`, `estimate`, `cost`, `stockCart`, `createDate`) VALUES
-(1, 1, 14, 1, 111111, NULL, NULL, NULL, 0, '2018-11-19'),
-(2, 13, 14, 4, 150000, NULL, NULL, NULL, 0, '2018-11-21');
 
 -- --------------------------------------------------------
 
@@ -262,14 +255,6 @@ CREATE TABLE `favorite` (
   `productID` int(5) NOT NULL,
   `favoriteDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `favorite`
---
-
-INSERT INTO `favorite` (`favoriteID`, `memberID`, `productID`, `favoriteDate`) VALUES
-(1, 2, 2, '2017-11-21 07:21:14'),
-(2, 2, 5, '2018-09-18 06:53:34');
 
 -- --------------------------------------------------------
 
@@ -878,16 +863,9 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`locationID`, `memberID`, `memberName`, `phone`, `id_kabupaten_kota`, `locationName`, `status_alamat`, `status`) VALUES
-(9, 2, 'Agus balabala', '081217109583', 3, 'JL. Simpang Lima No. 67 A', '1', 'Y'),
-(10, 3, 'Ahmad Rudiantoro', '087788298912', 4, 'JL. Sukarno No. 1 A Solo', '1', 'Y'),
-(11, 2, 'Agus', '081217109555', 9, 'JL. Diponegoro No. 40 Blok A', '0', 'Y'),
-(12, 4, 'Winda', '08778289823', 14, 'JL. Patimura No. 10 A', '1', 'Y'),
-(13, 6, 'Harri', '086456782812', 10, 'JL. Kemerdekaan Pusat No. 10 ', '1', 'Y'),
-(14, 7, 'Donna', '086456782777', 11, 'JL. Linggar Jati No. 19 ', '1', 'Y'),
-(15, 7, 'Donnas', '086456782551', 1101010001, 'jalan in aja dulu', '0', ''),
-(17, 7, 'Don Dona', '086456782676', 5103050015, 'jalan jalan ke pasar minggu beli ikan asin\r\n', '0', ''),
-(18, 12, 'lelelelele', '086456888990', 3171060001, 'blablabkla', '1', ''),
-(28, 4, 'evotehore', '', 135, 'Jalan Kenari no. 12', '0', '');
+(31, 2, 'Agus', '081231992632', 155, 'JL. TELUK GONG KAVLING BLOK A20, Pejagalan, Kec. Penjaringan', '1', ''),
+(32, 6, 'Satpam Kantor', '081231992632', 419, 'Sleman Kota', '1', ''),
+(33, 4, 'Winda ', '081231992632', 128, 'JL. DANAU BAYAN 4 NO 15, SANUR KAJA, Kec. Denpasar Selatan', '1', '');
 
 -- --------------------------------------------------------
 
@@ -918,15 +896,12 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`memberID`, `memberName`, `tmp_lahir`, `tgl_lahir`, `gender`, `phone`, `rekening`, `username`, `email`, `password`, `codeVerication`, `photo`, `status`, `createdDate`, `lasLogin`) VALUES
-(2, 'Agus balabala', 'bogor', '2018-09-29', '1', '081217109583', '2033121212', 'Agus_s', 'agus@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'pVWFxtYvlF', '12936032_A1_V1.jpg', 'Y', '2017-11-08 05:16:01', '2018-11-27 16:19:02'),
-(3, 'Ahmad Rudiantoro', 'yogyakarta', '1995-01-31', '1', '087788298912', '00902902012', 'rudi', 'rudi@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'kxTaOyjsBa', '1as.jpg', 'Y', '2017-11-21 02:46:18', '2018-12-03 10:59:31'),
-(4, 'Windas', 'Yogyakarta', '1996-06-12', '2', '08778289823', '', 'winda', 'winda@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'XwmpYsJjKK', '', 'Y', '2018-04-28 09:29:46', '2019-01-07 13:21:51'),
-(6, 'Harri', '', '0000-00-00', '', '086456782812', '', 'hari', 'hari@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'MUVbsMVLKw', '', 'N', '2018-04-28 19:32:09', '0000-00-00 00:00:00'),
-(7, 'Donna', '', '0000-00-00', '', '', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', 'YQAytMZTVr', '', 'N', '2018-09-10 09:32:19', '0000-00-00 00:00:00'),
-(8, 'ada', '', '0000-00-00', '', '812171095830', '', 'da', 'kepala_departemen@tedi.com', '202cb962ac59075b964b07152d234b70', 'RnrJpnfDJm', '', 'N', '2018-09-10 10:00:02', '0000-00-00 00:00:00'),
-(12, 'lelelelele', '', '0000-00-00', '', '081217109583', '', 'lelele', 'lele@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ZfCTXMzVpF', '', 'N', '2018-09-18 11:43:55', '0000-00-00 00:00:00'),
-(13, 'febriyan yoga pratama', '', '0000-00-00', '', '081217109583', '', 'febriyanyoga', 'febriyanyoga@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'RRlLUWlXkW', '', 'Y', '2018-09-18 11:50:27', '2018-09-26 15:21:17'),
-(14, 'miftahul jannah', '', '0000-00-00', '', '0895320288615', '', 'imip', 'miftahuljannah483@gmail.com', 'fcea920f7412b5da7be0cf42b8c93759', 'agUcjtHGba', '', 'N', '2018-11-19 15:51:58', '2018-11-27 16:36:34');
+(2, 'Agus balabala', 'bogor', '2018-09-29', '1', '081217109583', '2033121212', 'Agus_s', 'agus@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'pVWFxtYvlF', '2.jpg', 'Y', '2017-11-08 05:16:01', '2019-03-15 12:04:48'),
+(3, 'Ahmad Rudiantoro', 'yogyakarta', '1995-01-31', '1', '087788298912', '00902902012', 'rudi', 'rudi@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'kxTaOyjsBa', '1as.jpg', 'Y', '2017-11-21 02:46:18', '2019-03-15 12:31:41'),
+(4, 'Windas', 'Yogyakarta', '1996-06-12', '2', '08778289823', '', 'winda', 'winda@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'XwmpYsJjKK', 'fe5df232cafa4c4e0f1a0294418e5660.jpg', 'Y', '2018-04-28 09:29:46', '2019-03-18 13:33:09'),
+(6, 'Harri', '', '0000-00-00', '', '086456782812', '', 'hari', 'hari@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'MUVbsMVLKw', '', 'Y', '2018-04-28 19:32:09', '2019-03-15 12:43:41'),
+(13, 'febriyan yoga pratama', '', '0000-00-00', '', '081217109583', '', 'febriyanyoga', 'febriyanyoga@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'RRlLUWlXkW', '', 'Y', '2018-09-18 11:50:27', '2019-03-15 12:34:45'),
+(14, 'miftahul jannah', '', '0000-00-00', '', '0895320288615', '', 'imip', 'miftahuljannah483@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'agUcjtHGba', '', 'N', '2018-11-19 15:51:58', '2018-11-27 16:36:34');
 
 -- --------------------------------------------------------
 
@@ -937,39 +912,25 @@ INSERT INTO `members` (`memberID`, `memberName`, `tmp_lahir`, `tgl_lahir`, `gend
 CREATE TABLE `orders` (
   `orderID` int(5) NOT NULL,
   `memberID` int(5) NOT NULL,
-  `courierID` int(5) NOT NULL,
   `bankID` int(5) NOT NULL,
   `member_shipping_address_id` int(11) NOT NULL,
   `invoice` varchar(30) NOT NULL,
-  `statusOrder` varchar(30) NOT NULL DEFAULT 'Pending',
+  `statusOrder` enum('Unpaid','Paid','Reject') NOT NULL DEFAULT 'Unpaid',
   `dateOrder` datetime NOT NULL,
-  `pendingOrder` char(1) NOT NULL,
-  `paidOrder` char(1) NOT NULL,
-  `sendOrder` char(1) NOT NULL,
-  `acceptOrder` char(1) NOT NULL,
-  `rejectOrder` int(2) NOT NULL,
   `datePaid` datetime NOT NULL,
-  `dateSend` datetime NOT NULL,
   `dateFinish` datetime NOT NULL,
   `photo` varchar(100) NOT NULL,
   `dibaca` char(1) NOT NULL DEFAULT 'N',
-  `rate` int(11) NOT NULL,
-  `catatan` text,
-  `resi` varchar(20) DEFAULT NULL
+  `catatan` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `memberID`, `courierID`, `bankID`, `member_shipping_address_id`, `invoice`, `statusOrder`, `dateOrder`, `pendingOrder`, `paidOrder`, `sendOrder`, `acceptOrder`, `rejectOrder`, `datePaid`, `dateSend`, `dateFinish`, `photo`, `dibaca`, `rate`, `catatan`, `resi`) VALUES
-(1, 0, 0, 0, 0, 'BL320180430075956', 'Diterima', '2018-04-30 07:59:56', '1', '1', '1', '1', 0, '2018-04-30 09:06:40', '0000-00-00 00:00:00', '2018-05-02 07:06:28', 'bukti_transfer_1504016386_068f9e1d.jpg', 'Y', 5, '', 'JD002092312'),
-(2, 0, 0, 0, 0, 'BL320180505063904', 'Pending', '2018-05-05 06:39:04', '1', '', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'Y', 0, '', ''),
-(3, 0, 0, 0, 0, 'BL220180918091413', 'Pending', '2018-09-18 09:14:13', '1', '', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'Y', 0, '', ''),
-(4, 0, 0, 0, 0, 'BL220180918093058', 'Pending', '2018-09-18 09:30:58', '1', '', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'N', 0, '', ''),
-(5, 0, 0, 0, 0, 'BL320180924062621', 'Pending', '2018-09-24 06:26:21', '1', '', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'Y', 0, '', ''),
-(6, 0, 0, 0, 0, 'BL320180924092141', 'Pending', '2018-09-24 09:21:41', '1', '', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'N', 0, '', ''),
-(43, 4, 0, 6, 41, 'AN700425351716893', 'Pending', '2018-12-27 12:24:49', '1', '0', '0', '0', 0, '2018-12-27 12:24:49', '2018-12-27 12:24:49', '2018-12-27 12:24:49', 'xxxxxxxx.jpg', 'N', 0, '', 'JNE12312312312312312');
+INSERT INTO `orders` (`orderID`, `memberID`, `bankID`, `member_shipping_address_id`, `invoice`, `statusOrder`, `dateOrder`, `datePaid`, `dateFinish`, `photo`, `dibaca`, `catatan`) VALUES
+(74, 6, 4, 72, 'AN651409322803976', 'Unpaid', '2019-03-15 13:20:33', '2019-03-15 13:20:33', '2019-03-15 13:20:33', 'xxxxxxxx.jpg', 'N', ''),
+(75, 4, 1, 73, 'AN603844160875599', 'Unpaid', '2019-03-18 14:22:11', '2019-03-18 14:22:11', '2019-03-18 14:22:11', 'xxxxxxxx.jpg', 'N', '');
 
 -- --------------------------------------------------------
 
@@ -984,28 +945,25 @@ CREATE TABLE `orders_detail` (
   `sellerID` int(11) NOT NULL,
   `seller_shipment_address_id` int(11) NOT NULL,
   `memberID` int(11) NOT NULL,
+  `expedition` varchar(150) NOT NULL,
   `service` varchar(255) NOT NULL,
   `estimasi` varchar(20) NOT NULL,
   `biaya_ongkir` int(20) NOT NULL,
   `quantity` int(5) NOT NULL,
   `discount` varchar(12) NOT NULL DEFAULT '0',
-  `price` int(12) NOT NULL
+  `price` int(12) NOT NULL,
+  `dateSend` date DEFAULT NULL,
+  `stat` enum('Packing','Send','Done') DEFAULT NULL,
+  `trackingCode` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders_detail`
 --
 
-INSERT INTO `orders_detail` (`ordersDetailID`, `orderID`, `productID`, `sellerID`, `seller_shipment_address_id`, `memberID`, `service`, `estimasi`, `biaya_ongkir`, `quantity`, `discount`, `price`) VALUES
-(1, 1, 1, 0, 0, 0, '', '0', 0, 1, '0', 0),
-(2, 2, 2, 0, 0, 0, '', '0', 0, 1, '0', 0),
-(3, 3, 4, 0, 0, 0, '', '0', 0, 1, '0', 0),
-(4, 4, 4, 0, 0, 0, '', '0', 0, 1, '0', 0),
-(5, 5, 2, 0, 0, 0, '', '0', 0, 1, '0', 0),
-(6, 6, 2, 0, 0, 0, '', '0', 0, 1, '0', 0),
-(7, 6, 5, 0, 0, 0, '', '0', 0, 1, '0', 0),
-(70, 43, 15, 3, 61, 4, 'REG', '2-3', 265000, 5, '3', 48500),
-(71, 43, 16, 2, 62, 4, 'Paket Kilat Khusus', '2-4 HARI', 141000, 2, '1', 13860000);
+INSERT INTO `orders_detail` (`ordersDetailID`, `orderID`, `productID`, `sellerID`, `seller_shipment_address_id`, `memberID`, `expedition`, `service`, `estimasi`, `biaya_ongkir`, `quantity`, `discount`, `price`, `dateSend`, `stat`, `trackingCode`) VALUES
+(85, 74, 18, 3, 79, 6, 'POS Indonesia (POS)', 'Paket Kilat Khusus', '1-2 HARI', 17000, 1, '1', 5692500, NULL, NULL, NULL),
+(86, 75, 17, 2, 80, 4, 'POS Indonesia (POS)', 'Paket Kilat Khusus', '2-4 HARI', 29500, 1, '5', 142500, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1047,21 +1005,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productID`, `categoryID`, `subCategoryID`, `memberID`, `productCode`, `productName`, `productSeo`, `salePrice`, `conditions`, `qty`, `weight`, `discount`, `sold`, `status`, `photo1`, `photo2`, `photo3`, `photo4`, `photo5`, `photo6`, `photo7`, `description`, `ad_type`, `hits`, `createDate`, `updateDate`) VALUES
-(2, 38, 49, 12, '181121102150', 'blus baby pinky', 'blus-baby-pinky', '150000', '1', '12', '500', '0', 0, 'Y', 'a66c7a11b419b45a91efd53fc77c3130.jpg', '8da554408a51903ee1a4997e2f8057e7.jpg', '0d1b794f670463101d0735615087e618.jpg', 'c0fb280a182efa62a56bcead9ee3bf4d.jpg', 'c992e59e188978209cc9395a35a770ec.jpg', '00cdd1f01da9b08778049ff6d82adc0e.jpg', '3293f89983bcf5bc51b88770d20d7344.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:21:51', '2018-11-21 10:33:20'),
-(3, 29, 50, 4, '181121104338', 'furniture RK', 'furniture-rk', '12500000', '1', '12', '12000', '0', 0, 'Y', '5db4c4a66a333cc89684ff607b0f6ec5.jpg', 'ebef276243473ab0c1a490ab6f4968f2.jpg', '59f66bcb467d25a9066ff08e42b99b21.jpg', '95a8b6d4e471889d8f6c555104cc0ad4.jpg', '53e8df9b53276df2dbbf0f497bdfc055.jpg', 'ba8632207cc2e2f683138786a596dd98.jpg', 'cff867a9e74dd2e1408dc8ac5d28a511.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:43:39', '2018-11-21 10:43:39'),
-(4, 30, 36, 3, '181121104433', 'laptop', 'laptop', '5000000', '1', '12', '5000', '0', 0, 'Y', '7071db532405ce6bc226dc23239d1cb2.jpg', '7b44749eb11dfa243f0e0fc18dab15b5.jpg', '4b373a22f0f60204e81bd218e9bea5bb.jpg', 'eec016e41b25a4e6e7c37a675a015bb5.jpg', '249eb9582b887370d546490f3dd4f5a1.jpg', '342f3817b30e4f5961787fbc80bad6ee.jpg', '366739410a1f0962dc5f0ee660e23abb.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:44:34', '2018-11-21 10:44:34'),
-(5, 31, 38, 3, '181121104610', 'hp  layar sentuh', 'hp--layar-sentuh', '5000000', '1', '12', '500', '0', 0, 'Y', '5f8107bb6dcc209ad8a42c8bdf0d7772.jpg', 'e8430f43bf385204b819fee589ff44ba.jpg', 'd0678cb72429a56062ca749ccfc7e011.jpg', '09080ed82892d1a0c1a1d582391a1af3.jpg', '0949ce9874bb15ea5f17d1654bed156c.jpg', '7ad4c7be7b562873af5941fed7f6e119.jpg', '039d04d84b27aec20276cdef51cdf68c.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:46:11', '2018-11-21 10:46:11'),
-(6, 32, 51, 2, '181121104734', 'tv masa kini', 'tv-masa-kini', '12500000', '1', '12', '12000', '0', 0, 'Y', '2189ce1fc89c024afaafca61de78d4e3.jpg', '5d9d3954ab58facc0ac75c0d342a9fd3.jpg', '443a94db3f82c7e5845063351089da4d.jpg', '1fec02208d1e9b6d3886d2df522baa3b.jpg', 'dae2931ae7cf90a5737efc1de3649f3e.jpg', '62c89fccd60e80e89018251a566f2cfe.jpg', '5cc2fa3a1468c791aa54c0d0c0b05648.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:47:35', '2018-11-21 10:47:35'),
-(7, 33, 45, 2, '181121104914', 'jaket baby blue jeans', 'jaket-baby-blue-jeans', '150000', '1', '12', '500', '0', 0, 'Y', '1d216b2ca5f1616b627d6ee27fe10a77.jpg', 'a2b149cd1cf9714a9ab737319ea53a4f.jpg', '3d99b89d95369763cd1a0a902833a51b.jpg', '039d65e98a1e48c9f0496071650d938b.jpg', '499ced07859c2b99a90312a4034521ed.jpg', 'ed45424deff5978a0b2033ae2e9b04da.jpg', 'a41695606949a73727278bee18724ec5.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:49:14', '2018-11-21 10:49:14'),
-(8, 34, 52, 7, '181121104957', 'kamera', 'kamera', '5000000', '1', '12', '5000', '0', 0, 'Y', '2edba6f19a3d60525976f895aff9d374.jpg', 'ebc2078986aaacd7e8ad26764390ba82.jpg', 'f70f1b207f353885d9230beb0ee9e04d.jpg', 'c4163079764baac20c3d0d71e2b2cf00.jpg', '0f6e687d82dff86e1bab18588e618e46.jpg', '57f653ea37652a5fd4c0b859fbbe434b.jpg', 'e38086fa56d8d969ec8889e72a12879a.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:49:58', '2018-11-21 10:49:58'),
-(9, 35, 43, 14, '181121105058', 'rajut bulu', 'rajut-bulu', '150000', '1', '12', '0.5', '0', 0, 'Y', 'd361ab0e84601890a9e0af2526792e8e.jpeg', '4be91461434cf485aad842a5d7ca3878.jpeg', '2ec3167a5a1d06bdc1fa7f8fa85ed22d.jpeg', 'a5ac3cdf851e4f37a814bab821e942cb.jpeg', '830702f511f531ab7d8b660baad5bafe.jpeg', '5706c85aaf16d966ba5be427a2a99726.jpeg', '903320efcd77fe7ee7aaab0556f4ef3e.jpeg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:50:59', '2018-11-21 10:50:59'),
-(10, 36, 48, 13, '181121105139', 'sepeda gunung', 'sepeda-gunung', '5000000', '1', '12', '5', '0', 0, 'Y', '2031d7c3bf56d9b863bd9a4226d9c0ad.jpg', 'edcecb19774cbcc7007a1ad6d01dba8d.jpg', '2926ae9ba11e4f0a2600a332016befcf.jpg', '82e83936f8c7b009c69125968a486f25.jpg', 'd5a9e729e1b20a9abf1da438e1ad61c4.jpg', 'a28ab2982ee291129c5932ca77e55064.jpg', '86c9220a4f1dd8d231be3104859c27ed.jpg', '<p>bagus</p>\r\n', 1, 0, '2018-11-21 10:51:40', '2018-11-21 10:51:40'),
-(11, 37, 53, 12, '181121105253', 'perlengkapan bayi', 'perlengkapan-bayi', '5000000', '1', '12', '5', '0', 0, 'Y', '8647d7323f87cd795372efa31f4fe806.jpg', '831e3aa06d2f8d6d4ffdfc33c73d2fcc.jpg', 'ee4d665da3b9d6210f6fe2381c627097.jpg', 'e87bbd717df6cff4d54d40520f65dcfe.jpg', '57c69e3e50bcbf4c625e6104c1394dfd.jpg', '1f60f2a29bcc76d75d474c322cc46878.jpg', '12bad98c58fbc04f4892eaa39c1b399e.jpg', '<p>bagus</p>\r\n', 1, 1, '2018-11-21 10:52:55', '2018-11-21 10:52:55'),
-(12, 39, 54, 7, '181121105407', 'perkakas', 'perkakas', '150000', '1', '12', '0.5', '0', 0, 'Y', '711b9c364afe914d42e0b9c0e64ce479.jpg', '212f8f63e5d03dc4346e3865d74bad2d.jpg', 'eb750d1b2e5b2f1f7f1defe24eb80ac5.jpg', '750e6dbe352b6446526f2a0757ab9e10.jpg', 'ab71c7da49e062745d54e3ed819c85ce.jpg', 'd60e5993699d4c3fa4fe0362a6a0d7b6.jpg', '5026f8fbd36f75d5a73d0faf92c9f8be.jpg', '<p>bagus</p>\r\n', 1, 1, '2018-11-21 10:54:07', '2018-11-21 10:54:07'),
-(13, 40, 47, 6, '181121105455', 'jajanan', 'jajanan', '150000', '1', '12', '5', '0', 0, 'Y', 'af5e9f45b85fbd298bc4d8f53bef3248.jpg', '727b791a991db3fea9e66c74b1fadc1e.jpg', '8c596d9c29210e71a1fa399a5ad0c9a6.jpg', 'c0fae22f46d3f033ea007a87cb08ff1c.jpg', '45f76103db2bdbe0b26f5f2bd84bd544.jpg', '73e74a88bdc8469f9021505b23de6866.jpg', '5912ebfe9b28c174f0927e4aad4fe634.jpg', '<p>bagus</p>\r\n', 1, 25, '2018-11-21 10:54:56', '2018-11-26 16:37:41'),
-(14, 38, 49, 4, '181127043304', 'blus baby pinky', 'blus-baby-pinky', '150000', '1', '12', '500', '0', 0, 'Y', '4c21ae332b0bcdedcfc9731e989aceb1.jpg', '7c36cada421298b768bacff692f26cc5.jpg', 'a77abeb70362e43599ee536becc473a3.jpg', '5d103f151ed5ba6e4125fd0dda83911c.jpg', '1138a6ff8a0905f2305b7f1eaf70451a.jpg', 'f1cf48ce264370ca1acc8bffdfd7bb25.jpg', '45ca16aa75ffb871788924ef2bbb7e26.jpg', '<p>bagus</p>\r\n', 1, 55, '2018-11-27 16:33:06', '2018-11-27 16:33:06'),
-(15, 40, 47, 3, '181129114112', 'LELE', 'lele', '10000', '1', '6', '1000', '3', 5, 'Y', 'b83c38df1ea3906fc999b702316fa3ee.png', '1c532a058acc3519caca03f7944671ea.png', '9604db1fdeaee5527ad6d7bb2ec9ebb5.png', '06635f601b7c225ee427e18dd9dcbb80.png', 'eaeb759f2f04fd6d5f5cadd80e567380.png', '55ceacbebd43bca6ca51b975e34b4996.png', '152b5a24be6f3b98b11424d5b4e69bfd.png', '<p>bagus</p>\r\n', 1, 269, '0000-00-00 00:00:00', NULL),
-(16, 31, 38, 2, '181130103828', 'Ipad', 'ipad', '7000000', '1', '23', '1200', '1', 2, 'Y', 'bf1ced49f00e012a283a9b285cfd15cd.png', '572c45595bc0a00711c8e5fcf451ef4d.png', '0276e21e8c38fa9614d30bcbb8d3fc81.png', '9e1ad0bd9cd5c68aa45e121d4dcc0bd1.png', '1322348a3b3d7723c0403bcfff6171f5.png', '1a72c4d774b93892b7fd42d0e73a66b5.png', '442f1a16630958a0784201ac98b1b79d.png', '<p>\r\n	bagus mantab kondisi\r\n</p>\r\n', 1, 24, '0000-00-00 00:00:00', NULL);
+(17, 33, 45, 2, '190315123121', 'Rips Jacket', 'rips-jacket', '150000', '1', '114', '1', '5', 1, 'Y', 'd9882ac89067c3fafa40a0e0de767a54.jpg', '8e49569aa22d27fed41f11dd3176ec91.jpg', '983b3c3e7220012a7ad1b5709709b9f3.jpg', 'a7391f9f551f3912af82a8ace7c3d03e.jpg', '8ffa89f8594b34c532c36654eb14bb67.jpg', '88679a840c65f336bbea41e99ee6fcc3.jpg', '5a5630fa51d0f342f9ee819f27c1c7d7.jpg', '<p>\r\n	Kodisi sangat bagus dengan tampilan menawan\r\n</p>\r\n', 1, 8, '0000-00-00 00:00:00', NULL),
+(18, 30, 36, 3, '190315123417', 'Laptop Asus Terbaru', 'laptop-asus-terbaru', '5750000', '1', '24', '2', '1', 1, 'Y', 'b68301e410c956467c50b7db2712c12e.jpg', 'dabf0a3f09d351241efcfd3012ff8ee0.jpg', '35266a9a796c995e037ce801319f8580.jpg', 'f5ea36249110dac2a51469e234afa931.jpg', '3c8a650495109c7a094cb0430a0a6652.jpg', '295bcace95417f17189cc2583d8fba57.jpg', '481bcab881ade994eb2b7a88c7995b3a.jpg', '<p>\r\n	Laptop Asus terbaru lebih trendi\r\n</p>\r\n', 1, 14, '0000-00-00 00:00:00', NULL),
+(19, 31, 37, 13, '190315123653', 'Google Phone 2019', 'google-phone-2019', '3250000', '1', '14', '1', '0', 1, 'Y', 'fd1e8d9a7efe5398827809b5132c9a4d.jpg', 'fbe94288799a35c67533f85618b320b0.jpg', 'dfcfb348fa672b598ff8fb9d8c4e3490.jpg', 'c6afc2b9eb0f972dbe95f5a7881cab14.jpg', '75abf6bc8351d3a169235bdf33bfe553.jpg', 'ff5a97fcdb0b82069dbbe2049792fa1e.jpg', 'd3c26b21f4cbce82952686eb53518f93.jpg', '<p>\r\n	bagus\r\n</p>\r\n', 1, 2, '0000-00-00 00:00:00', NULL),
+(20, 34, 52, 13, '190315123811', 'Camera Canon Yahut', 'camera-canon-yahut', '4250000', '1', '25', '3', '2', 0, 'Y', '48a5a6c22f5eeb7398ff80847c9888a2.jpg', 'ef2b81e517c489ea6e84823c250882d4.jpg', 'a2760acc76529ff7fdf52482ed92b9ce.jpg', '21cf67f3a134f0292fddce49bfdab628.jpg', 'ccc1f4020f8666fac08fd3192df263be.jpg', '37bd4e31b58f5b1bf735e69c85476114.jpg', 'b156316856549cde58fdf5cb62307499.jpg', '<p>\r\n	Kondisi masih baru dengan lensa wide\r\n</p>\r\n', 1, 1, '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -1154,8 +1101,8 @@ CREATE TABLE `shipment_address` (
 --
 
 INSERT INTO `shipment_address` (`shipment_addressID`, `sellerID`, `id_kabupaten_kota`, `shipping_address_name`, `seller_name`) VALUES
-(61, 3, 4, 'JL. Sukarno No. 1 A Solo', 'Ahmad Rudiantoro'),
-(62, 2, 3, 'JL. Simpang Lima No. 67 A', 'Agus balabala');
+(79, 3, 152, 'Jl. KH Agus Salim 16, Sabang, Menteng', 'Ahmad Rudiantoro'),
+(80, 2, 155, 'JL. TELUK GONG KAVLING BLOK A20, Pejagalan, Kec. Penjaringan', 'Agus balabala');
 
 -- --------------------------------------------------------
 
@@ -1176,10 +1123,34 @@ CREATE TABLE `shipping_address` (
 --
 
 INSERT INTO `shipping_address` (`shipping_addressID`, `memberID`, `id_kabupaten_kota`, `shipping_address_name`, `nama_penerima`) VALUES
-(1, 2, 17, 'alamat rumah', 'agus nugroho wibowo'),
-(3, 3, 17, 'alamat rumah', 'rudi'),
-(4, 14, 18, 'Alamat Kantor', 'imip cantik'),
-(41, 4, 14, 'JL. Patimura No. 10 A', 'Winda');
+(72, 6, 419, 'Sleman Kota', 'Harri'),
+(73, 4, 128, 'JL. DANAU BAYAN 4 NO 15, SANUR KAJA, Kec. Denpasar Selatan', 'Windas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop`
+--
+
+CREATE TABLE `shop` (
+  `shopID` int(11) NOT NULL,
+  `memberID` int(10) NOT NULL,
+  `id_kabupaten_kota` int(10) NOT NULL,
+  `shop_address` varchar(500) NOT NULL,
+  `shop_header` varchar(100) DEFAULT NULL,
+  `shop_description` text,
+  `shop_service_time` varchar(10) DEFAULT NULL,
+  `shop_phone` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shop`
+--
+
+INSERT INTO `shop` (`shopID`, `memberID`, `id_kabupaten_kota`, `shop_address`, `shop_header`, `shop_description`, `shop_service_time`, `shop_phone`) VALUES
+(4, 2, 155, 'JL. TELUK GONG KAVLING BLOK A20, Pejagalan, Kec. Penjaringan', '9d9e521eb9b5afdd24d0ca8614877fdf.jpg', 'Toko Murah Meriah', '17.00', '081231992632'),
+(5, 3, 152, 'Jl. KH Agus Salim 16, Sabang, Menteng', 'a7eba6c817aaaa40e7d5e052a85cb771.jpg', 'Toko Rudi Jos', '18.00', '083869281843'),
+(6, 13, 153, 'Jl. Taman Margasatwa No. 12, Warung Buncit', '80563e3c1736ec19f11f05ffacc3a892.jpg', 'Jauhari TOSERBA', '17.00', '081231992632');
 
 -- --------------------------------------------------------
 
@@ -1283,24 +1254,6 @@ CREATE TABLE `withdraw` (
   `dateFinish` datetime NOT NULL,
   `dateCreate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `withdraw`
---
-
-INSERT INTO `withdraw` (`withdrawID`, `tagihanID`, `orderID`, `customerID`, `incomeDraw`, `tagDraw`, `totalDraw`, `sisaDraw`, `statusDraw`, `dateFinish`, `dateCreate`) VALUES
-(8, 'BL220180405031031', 15, 2, 1060077, '1060077', '0', '', 'Selesai', '2018-04-09 17:06:54', '2018-04-05 15:10:31'),
-(9, 'BL320180405040005', 16, 3, 10040080, '10040080', '0', '', 'Selesai', '2018-04-09 17:07:07', '2018-04-05 16:00:05'),
-(10, 'BL320180419093121', 17, 3, 10000072, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-04-19 09:31:21'),
-(11, 'BL320180419105650', 18, 3, 10000072, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-04-19 10:56:50'),
-(12, 'BL220180420081019', 19, 2, 6000066, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-04-20 08:10:19'),
-(13, 'BL220180420081125', 20, 2, 6020058, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-04-20 08:11:25'),
-(14, 'BL320180430075956', 1, 3, 5000095, '5000095', '0', '', 'Waiting', '2018-05-02 12:39:43', '2018-04-30 07:59:56'),
-(15, 'BL320180505063904', 2, 3, 9030092, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-05-05 06:39:04'),
-(16, 'BL220180918091413', 3, 2, 8000039, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-09-18 09:14:13'),
-(17, 'BL220180918093058', 4, 2, 8000023, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-09-18 09:30:58'),
-(18, 'BL320180924062621', 5, 3, 8130079, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-09-24 06:26:21'),
-(19, 'BL320180924092141', 6, 3, 8190066, '', '', '', 'Pending', '0000-00-00 00:00:00', '2018-09-24 09:21:41');
 
 --
 -- Indexes for dumped tables
@@ -1445,6 +1398,12 @@ ALTER TABLE `shipping_address`
   ADD PRIMARY KEY (`shipping_addressID`);
 
 --
+-- Indexes for table `shop`
+--
+ALTER TABLE `shop`
+  ADD PRIMARY KEY (`shopID`);
+
+--
 -- Indexes for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
@@ -1500,7 +1459,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cartID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cartID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1530,7 +1489,7 @@ ALTER TABLE `courier`
 -- AUTO_INCREMENT for table `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `favoriteID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `favoriteID` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `header1`
@@ -1560,7 +1519,7 @@ ALTER TABLE `kabupaten_kota`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `locationID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `locationID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `members`
@@ -1572,19 +1531,19 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `orderID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  MODIFY `ordersDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `ordersDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `productID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `propinsi`
@@ -1602,13 +1561,19 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `shipment_address`
 --
 ALTER TABLE `shipment_address`
-  MODIFY `shipment_addressID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `shipment_addressID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `shipping_address`
 --
 ALTER TABLE `shipping_address`
-  MODIFY `shipping_addressID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `shipping_addressID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT for table `shop`
+--
+ALTER TABLE `shop`
+  MODIFY `shopID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
@@ -1632,7 +1597,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `withdraw`
 --
 ALTER TABLE `withdraw`
-  MODIFY `withdrawID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `withdrawID` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
