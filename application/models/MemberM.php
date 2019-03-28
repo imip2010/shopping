@@ -469,4 +469,32 @@ class MemberM extends CI_Model{
 		$this->db->insert($table, $data);
 		return TRUE;
 	}
+
+	public function get_seller_profile($sellerID)
+	{
+		$this->db->select('*');
+		$this->db->from('members D');
+		$this->db->join('shop S', 'D.memberID = S.memberID');
+		$this->db->where('D.memberID',$sellerID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_product_by_memberid($sellerID)
+	{
+		$this->db->select('*');
+		$this->db->from('products P');
+		$this->db->join('members D', 'P.memberID = D.memberID');
+		$this->db->where('D.memberID',$sellerID);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
 }

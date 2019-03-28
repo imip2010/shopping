@@ -186,5 +186,20 @@ class OrderM extends CI_model
 		return TRUE;
 	}
 
+	public function change_payment($orderID)
+	{
+		$this->db->select('*');
+		$this->db->from('orders O');
+		$this->db->where('O.orderID',$orderID);
+		return $this->db->get();
+	}
+
+	public function update_payment($orderID,$data)
+	{
+		$this->db->where('orderID', $orderID);
+		$this->db->update('orders', $data);
+		return TRUE;
+	}
+
 }
 ?>
