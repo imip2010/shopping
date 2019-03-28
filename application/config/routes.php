@@ -97,3 +97,6 @@ $route['do_reset']				= 'LoginC/reset';
 $route['transaksi']				= 'OrderC/transaction';
 $route['detail_transaksi/(:num)'] = 'OrderC/detail_transaction/$1';
 $route['batal/(:num)']			= 'OrderC/cancel_order/$1';
+$route['ubah_pembayaran/(:num)']= 'OrderC/change_payment/$1';
+
+$route['toko/(:num)']			= 'MemberC/get_seller_profile/$1';

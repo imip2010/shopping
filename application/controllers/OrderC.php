@@ -6,7 +6,7 @@ class OrderC extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->load->model(['OrderM','HomeM','LoginM','MemberM']);
+        $this->load->model(['OrderM','HomeM','LoginM','MemberM','CheckoutM']);
         $this->load->helper('string');
         //in_access(); //helper buat batasi akses login/session
     }
@@ -78,6 +78,25 @@ class OrderC extends CI_Controller {
     {
         $data = array('statusOrder' => 'Reject', );
         $this->OrderM->cancel_order($orderID,$data);
+        redirect('/transaksi');
+    }
+
+    public function change_payment($orderID)
+    {
+        $this->data['detail_transaksi'] = $this->OrderM->change_payment($orderID)->row()->bankID;
+        $this->data['bank_list'] = $this->CheckoutM->get_bank()->result();
+        print_r($this->CheckoutM->get_bank()->result());
+        print_r($this->OrderM->change_payment($orderID)->row()->bankID);
+        // $this->load->view('');
+
+    }
+
+    public function update_payment($orderID)
+    {
+        $data = array(
+            'bankID' => $this->input->post('bankID'),
+        );
+        $this->OrderM->update_payment($orderID,$data);
         redirect('/transaksi');
     }
 }

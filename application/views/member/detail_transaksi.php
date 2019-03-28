@@ -29,7 +29,7 @@
                                         <a class="btn waves-effect waves-light btn-info text-white">
                                             <i class="mdi mdi-message"></i> Chat 
                                         </a>
-                                        <a class="btn waves-effect waves-light btn-outline-info text-info" style="display: inline-block;"> Kunjungi Toko </a>
+                                        <a href="<?php echo site_url('toko/'.$transaksi->sellerID); ?>" target="_blank" class="btn waves-effect waves-light btn-outline-info text-info" style="display: inline-block;"> Kunjungi Toko </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -63,20 +63,20 @@
                                                     <span><h5>Pesanan Dibuat</h5></span>
                                                 </div>
                                                 <div class="process-step">
-                                                    <button type="button" class="btn btn-info btn-bulat" ><i class="fa fa-money fa-3x"></i></button><br>
-                                                    <span><h5>Belum Bayar</h5></span>
+                                                    <button type="button" class="btn <?php if($transaksi->stat=="Packing"||$transaksi->stat=="Send"||$transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-money fa-3x"></i></button><br>
+                                                    <span><h5>Sudah Bayar</h5></span>
                                                 </div>
                                                 <div class="process-step">
-                                                    <button type="button" class="btn <?php if($transaksi->stat=="Packing"||$transaksi->stat=="Send"||$transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-truck fa-3x"></i></button><br>
-                                                    <span><h5>Belum Dikirimkan</h5></span>
+                                                    <button type="button" class="btn <?php if($transaksi->stat=="Send"||$transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-truck fa-3x"></i></button><br>
+                                                    <span><h5>Sudah Dikirimkan</h5></span>
                                                 </div>
                                                 <div class="process-step">
-                                                    <button type="button" class="btn <?php if($transaksi->stat=="Send"||$transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-download fa-3x"></i></button><br>
-                                                    <span><h5>Belum Diterima</h5></span>
+                                                    <button type="button" class="btn <?php if($transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-download fa-3x"></i></button><br>
+                                                    <span><h5>Sudah Diterima</h5></span>
                                                 </div>
                                                 <div class="process-step">
-                                                    <button type="button" class="btn <?php if($transaksi->stat=="Done"){echo "btn-info";}else{echo "btn-secondary";}?> btn-bulat" ><i class="fa fa-star-o fa-3x"></i></button><br>
-                                                    <span><h5>Belum Dinilai</h5></span>
+                                                    <button type="button" class="btn btn-secondary btn-bulat" ><i class="fa fa-star-o fa-3x"></i></button><br>
+                                                    <span><h5>Sudah Dinilai</h5></span>
                                                 </div>
                                             </div>
                                         </div>
