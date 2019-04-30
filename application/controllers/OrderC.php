@@ -37,7 +37,7 @@ class OrderC extends CI_Controller {
         }
         // print_r($this->data['transactions']);
         $this->data['isi'] = 'isi';
-        $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
+        $this->data['sidebar_transaksi'] = $this->load->view('member/sidebar_transaksi', $this->data, TRUE);
         $this->data['isi'] = $this->load->view('member/Riwayatbelanja', $this->data, TRUE);
         $this->load->view('layout', $this->data);
     }
@@ -69,7 +69,7 @@ class OrderC extends CI_Controller {
 
         // print_r($this->data['transactions']);
         $this->data['isi'] = 'isi';
-        $this->data['sidebar'] = $this->load->view('member/sidebar', $this->data, TRUE);
+        $this->data['sidebar_transaksi'] = $this->load->view('member/sidebar_transaksi', $this->data, TRUE);
         $this->data['isi'] = $this->load->view('member/detail_transaksi', $this->data, TRUE);
         $this->load->view('layout', $this->data);
     }

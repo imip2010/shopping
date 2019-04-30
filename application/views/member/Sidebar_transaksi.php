@@ -1,4 +1,4 @@
-<div class="col-lg-2 col-md-12">
+<div class="col-lg-3 col-md-12">
         <div class="card">
             <div class="card-body">
                 <div class="myadmin-dd dd" id="nestable">

@@ -31,7 +31,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Transfer Bank <input type="radio" name="metode" id="atm" style="margin-left: 70%;"></a>
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Transfer Bank <input type="radio" name="metode" id="atm" style="margin-left: 81%;"></a>
                                             </h4>
                                         </div>
                                         <div id="collapse2" class="panel-collapse collapse">
@@ -54,7 +54,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Indomaaret/Ceriamart <input type="radio" name="metode" id="indomaret" style="margin-left: 70%;"></a>
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Indomaaret/Ceriamart <input type="radio" name="metode" id="indomaret" style="margin-left: 73%;"></a>
                                             </h4>
                                         </div>
                                         <div id="collapse3" class="panel-collapse collapse">
@@ -66,7 +66,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Alfamart <input type="radio" name="metode" id="alfamart" style="margin-left: 70%;"></a>
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Alfamart <input type="radio" name="metode" id="alfamart" style="margin-left: 86.5%;"></a>
                                             </h4>
                                         </div>
                                         <div id="collapse4" class="panel-collapse collapse">
@@ -113,6 +113,6 @@ function check4() {
   document.getElementById("bni").checked = false;
   document.getElementById("bca").checked = false;
   document.getElementById("bri").checked = false;
-  document.getElementById("mandiri").checked = true;
+  document.getElementById("mandiri").checked = false;
 }
 </script>

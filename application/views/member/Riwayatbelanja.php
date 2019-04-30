@@ -6,11 +6,11 @@
 
 <div class="row">
     <?php
-        echo $sidebar;
+        echo $sidebar_transaksi;
     ?>
 
     <!-- Column bagian kanan : mulai -->
-    <div class="col-lg-10 col-md-12">
+    <div class="col-lg-9 col-md-12">
         <h3 class="card-title">Riwayat Belanja </h3>
         <div class="col-lg-12 col-md-12 col-sm-12">
             <ul class="nav nav-pills m-t-30 m-b-30">
