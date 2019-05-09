@@ -402,15 +402,10 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
                         <!-- Search -->
                         <!-- ============================================================== -->
                         <li class="nav-item search-box">
-                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                <i class="ti-search font-16"></i>
-                            </a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter">
-                                <a class="srh-btn">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </form>
+                <form action="">
+                    <input type="text" class="form-control" placeholder="Search.." name="search" style=" display: inline; width: 750px; margin-top: 15px;">
+                    <button type="submit" class="btn btn-light-info"><i class="ti-search font-16"></i></button>
+                </form>
                         </li>
                         <!-- ============================================================== -->
                         <!-- create new -->
@@ -442,7 +437,7 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
                                             <p class=" m-b-0"><?php echo $dataDiri['address']?></p>
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
+                                    <a class="dropdown-item" href="<?php echo site_url('CobaC/Toko')?>">
                                         <i class="ti-home m-r-5 m-l-5"></i>Toko Saya
                                     </a>
                                     <a class="dropdown-item" <?php echo (!empty($detail_shop))?'href="'.site_url("jual_barang").'"':'style="background:#ececec;cursor:default;" href="'.site_url("pengaturan_profile").'"';?>>
