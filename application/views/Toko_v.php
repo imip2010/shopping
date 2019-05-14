@@ -48,32 +48,35 @@ body {font-family: "Lato", sans-serif;}
 </style>
 
 <!-- row -->
+<?php foreach($seller_detail as $toko){?>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <a class="carousel-control-next btn btn-info" href="<?php echo site_url('pengaturan_profile#navpills-3')?>" type="button" style="height: 10%;"><span>Ubah Foto Header</span> </a>
-                        <img class="img-slide" src="<?php echo base_url()?>assets/images/Banner_Ads-02.jpg" alt="First slide"/>
+                        <a class="carousel-control-next btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" type="button" style="height: 10%;"><span>Ubah Foto Header</span> </a>
+                        <img class="img-slide" src="<?php echo base_url()?>assets/images/store/<?php echo $toko->shop_header;?>" alt="First slide"/>
                     </div><br><br>
                     <div class="d-flex no-block">
                         <div class="">
-                            <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="rounded-circle" width="90">
+                            <img src="<?php echo base_url()?>assets/images/users/<?php echo $toko->photo;?>" alt="user" class="rounded-circle" width="90">
                         </div>
                         <div class="m-l-10">
-                            <h4 class="m-b-0"><?php echo $dataDiri['nama'];?></h4>
-                            <p class=" m-b-0"><i class="ti-location-pin font-20"></i>Jakarta Utara</p>
+                            <h4 class="m-b-0"><?php echo $toko->memberName;?></h4>
+                            <p class=" m-b-0"><i class="ti-location-pin font-20"></i><?php echo $toko->shop_address;?></p>
+                            <p class=" m-b-0"><?php echo $kabupaten.", ".$provinsi;?></p>
                         </div>
                     </div>
                     <div class="m-l-10 text-right">
-                        <a class="btn btn-info" href="<?php echo site_url('pengaturan_profile#navpills-3')?>" style="margin-top: -14%;" ><i class="ti-settings m-r-5 m-l-5"></i><span> Edit Toko</span></a>
+                        <a class="btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" style="margin-top: -14%;" ><i class="ti-settings m-r-5 m-l-5"></i><span> Edit Toko</span></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php }?>
 <!-- End row -->
 
 <div class="row">
