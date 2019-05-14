@@ -140,12 +140,63 @@ body {font-family: "Lato", sans-serif;}
           </div>
           <div class="card-body">
               <h4 class="m-b-0 ">Semua Barang</h4><br>
-          <form class="">
-            <div class="text-center">
-                <img src="<?php echo base_url()?>assets/images/no_barang.png" >
-                <p>Tidak Ada Barang</p>
-            </div>
-          </form>
+              <?php if (!empty($products)) { ?>
+                <div>
+                    <div class="row el-element-overlay">
+                    <?php
+                    foreach ($products as $produk) { 
+                      // diskon  
+                      $harga      = number_format($produk->salePrice,0,',','.');
+                      $disc       = ($produk->discount/100)*$produk->salePrice;
+                      $hargadisc  = number_format(($produk->salePrice-$disc),0,",",".");
+
+                      $d=$produk->discount;
+
+                      $hargatetap  = "<span> </span>
+                      <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
+                      $hargadiskon = "<span data-product-rrp-without-tax class='price price--rrp' style='color: red;''> $d% </span><br>
+                      <span data-product-price-without-tax class='price price--withoutTax'><strike><small> Rp. $harga</small></strike></span><br>
+                      <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
+                      if ($d!='0'){
+                        $divharga=$hargadiskon;
+                      }else{
+                        $divharga=$hargatetap;
+                      } 
+                      ?>    
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="el-card-item">
+                                    <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk->photo1?>" alt="user"  style="height: 200px;" />
+                                        <div class="el-overlay">
+                                            <ul class="list-style-none el-info">
+                                                <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                                                <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                                                <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex no-block ">
+                                        <div class="m-l-15">
+                                            <h5><?php echo $produk->productName;?></h5>
+                                            <span class="text-muted"><?php echo $kabupaten?></span>
+                                            <h5><?php  echo $divharga;?></h5>
+                                        </div>
+                                        <div class="ml-auto m-r-15"><br>
+                                            <a href="<?php echo site_url('detail_produk/').$produk->productID?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+              <?php }else{?>
+                <div class="text-center">
+                    <img src="<?php echo base_url()?>assets/images/no_barang.png" >
+                    <p>Tidak Ada Barang</p>
+                </div>
+              <?php }?>
           </div>
       </div>
   </div>
