@@ -109,15 +109,31 @@ body {font-family: "Lato", sans-serif;}
 
     <a href="#">Laporkan Pelanggaran</a>
 </div>
-
+<?php
+$sortBy = "";
+if(isset($_GET["sortBy"]))
+{ $sortBy = $_GET["sortBy"]; }
+?>
   <div class="col-lg-9 col-md-12">
       <div class="card border-info">
           <div class="card-header bg-info">
-            <form action="">
+            <!-- <form action=""> -->
                 <div class="dropdown">
                     <input type="text" class="form-control" placeholder="Search.." name="search" style="width: 40%; display: inline;">
                     <button type="submit" class="btn btn-light-info"><i class="ti-search font-16"></i></button>
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <div style="display: inline-block;">
+                      <form name='sortForm' id='sortForm'>
+                        <ul>
+                            <li style="display: inline-block;padding-top: 2px;padding-bottom: 1px;" class="btn  <?php if ($sortBy == 'ctime') {?> bg-warning text-white <?php }else{?> bg-white <?php }?>">
+                                <input type='radio' value='ctime' name='sortBy' id='ctime' style="opacity: 0;width: 0;" <?php if ($sortBy == 'ctime') { ?> checked='checked' <?php } ?> onChange="autoSubmit();"><label for='ctime' style="cursor: pointer;">Terbaru</label>
+                            </li>
+                            <li style="display: inline-block;padding-top: 2px;padding-bottom: 1px;" class="btn  <?php if ($sortBy == 'sales') {?> bg-warning text-white <?php }else{?> bg-white <?php }?>">
+                                <input type='radio' value='sales' name='sortBy'  id='sales' style="opacity: 0;width: 0;" <?php if ($sortBy == 'sales') { ?> checked='checked' <?php } ?> onChange="autoSubmit();"><label for='sales' style="cursor: pointer;">Terlaris</label>
+                            </li>
+                        </ul>
+                      </form>
+                    </div>
+                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                         <i class="ti-filter font-20"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right user-dd animated ">
@@ -125,8 +141,8 @@ body {font-family: "Lato", sans-serif;}
                         <li class="dropdown-item"><a href="#">Termurah</a></li>
                         <li class="dropdown-item"><a href="#">Termahal</a></li>
                         <li class="dropdown-item"><a href="#">Terlaris</a></li>
-                    </ul>
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="modal" data-target="#myModal"> 
+                    </ul> -->
+                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="modal" data-target="#myModal" disabled=""> 
                         <i class="ti-filter font-20"></i>filter
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right user-dd animated ">
@@ -134,9 +150,9 @@ body {font-family: "Lato", sans-serif;}
                         <li class="dropdown-item"><a href="#">Termurah</a></li>
                         <li class="dropdown-item"><a href="#">Termahal</a></li>
                         <li class="dropdown-item"><a href="#">Terlaris</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
-            </form>
+            <!-- </form> -->
           </div>
           <div class="card-body">
               <h4 class="m-b-0 ">Semua Barang</h4><br>
@@ -321,4 +337,10 @@ function openCity(evt, cityName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+function autoSubmit()
+{
+    var formObject = document.forms['sortForm'];
+    formObject.submit();
+}
 </script>
