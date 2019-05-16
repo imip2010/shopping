@@ -71,7 +71,7 @@
                                 <button class="btn waves-effect waves-light btn-outline-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lainnya</button>
                                 <div class="dropdown-menu">
                                     <button class="dropdown-item" onclick="deleteConfrimation(<?php echo $order->orderID;?>);" style="cursor:pointer;">Batalkan Pesanan</button>
-                                    <a class="dropdown-item" href="<?php echo site_url('CobaC/ubahmetode')?>">Ubah Metode Pembayaran</a>
+                                    <a class="dropdown-item" href="<?php echo site_url('ubah_pembayaran/'.$transaction->orderID)?>">Ubah Metode Pembayaran</a>
                                 </div>
                             </div>
                         </div>

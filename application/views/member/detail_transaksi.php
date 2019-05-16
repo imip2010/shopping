@@ -5,13 +5,20 @@
 
 <div class="col-lg-12">
     <div class="row">
+        <?php if($this->session->flashdata('success')){ ?>
+        <div class="col-md-3" style="position: fixed;top: 20%;right: 0;margin-right: 4%;">
+            <div class="alert alert-success" role="alert">
+                <b>Metode pembayaran berhasil diubah!</b>
+            </div>
+        </div>
+        <?php } ?>
     <?php
-        echo $sidebar;
+        // echo $sidebar;
+        // echo $this->session->flashdata('success');
         $total = 0;
         $ongkir = 0;
-        // print_r($detail_member);
     ?> 
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
                     <h4>Daftar Pembelian</h4>
@@ -99,110 +106,24 @@
                             </tbody>
                         </table>
                         <hr>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p>Mohon melakukan pembayaran sebelum <span style="color: #ea9d00!important;"><?php echo date('d-m-Y H:i',strtotime($transaksi->dateOrder.'+1 days'));?></span>.<br>
+                                (Dicek Manual) Bila tidak, pesanan ini akan dibatalkan secara otomatis.</p>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn waves-effect waves-light btn-info" style="width: 100%;"> Pesan Diterima </button><br>
+                                <button type="button" class="btn waves-effect waves-light btn-outline-info" style="margin-top: 10px; width: 100%;"> Perpanjang Masa Garansi Toko </button><br>
+                                <button type="button" class="btn waves-effect waves-light btn-outline-info" style="margin-top: 10px; margin-bottom: 10px; width: 100%;"> Ajukan Pengembalian </button><br>
+                            </div>
+                        </div>
+                        <hr>
                     <?php }?>
                 </div>
-            </div>
-            <!-- <div class="table-responsive">
-                <form action=" " method="post">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="text-center"><h5>Nama Toko</h5></td>
-                                <td class="text-left">
-                                    <button type="button" class="btn waves-effect waves-light btn-info"><span class="btn-label"><i class="mdi mdi-message"></i></span> Chat </button>
-                                    <button type="button" class="btn waves-effect waves-light btn-outline-info"> Kunjungi Toko </button>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 12%"> <img src="<?php echo base_url()?>assets/images/img3.jpg" style="width: 100%"/></td>
-                                <td style="width: 70%">
-                                    <span>Nama Produk</span>
-                                    <br>
-                                    <span>Jumlah Produk</span> </td>
-                                <td class="text-right">Rp 10.000 </td>
-                            </tr>
-                            <tr>
-                                <td><h5>Keterangan</h5></td>
-                                <td>Isi Keterangan</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td><h5>Pengiriman</h5></td>
-                                <td>JNE &emsp;|&emsp; <span style="font-size: 14px;font-weight: 500;">Resi&emsp;</span>123456789</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="text-right">Total Pesanan</td>
-                                <td class="text-right"><h4>Rp 10.000<h4></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="text-right">Kode Unik</td>
-                                <td class="text-right">- Rp 1.000</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="text-right">Jumlah Harus Dibayar</td>
-                                <td class="text-right"><h4>Rp 9.000<h4></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="text-right">Metode Pembayaran</td>
-                                <td class="text-right">Bank BNI (dicek manual)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form><br><br>
-            </div> -->
+            </div>            
             <!-- ============================================================== -->
             <!-- BAGIAN ATAS -->
             <!-- ============================================================== -->
-            <!-- <div class="card"><br>  
-                <div class="container">
-                    <div class="row">
-                        <div class="process">
-                            <div class="process-row nav nav-tabs">
-                                <div class="process-step">
-                                    <button type="button" class="btn btn-info btn-bulat" ><i class="fa fa-file-text-o fa-3x"></i></button><br>
-                                    <span>Pesanan Dibuat</span>
-                                </div>
-                                <div class="process-step">
-                                    <button type="button" class="btn btn-info btn-bulat" ><i class="fa fa-money fa-3x"></i></button><br>
-                                    <span>Belum Bayar</span>
-                                </div>
-                                <div class="process-step">
-                                    <button type="button" class="btn btn-info btn-bulat"  ><i class="fa fa-truck fa-3x"></i></button><br>
-                                    <span>Belum Dikirimkan</span>
-                                </div>
-                                <div class="process-step">
-                                    <button type="button" class="btn btn-info btn-bulat" ><i class="fa fa-download fa-3x"></i></button><br>
-                                    <span>Belum Diterima</span>
-                                </div>
-                                <div class="process-step">
-                                    <button type="button" class="btn btn-default btn-bulat" style="background-color: #96989a;"  ><i class="fa fa-star-o fa-3x"></i></button><br>
-                                    <span>Belum Dinilai</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><br><hr>
-
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <p style="margin-left: 20px;">Mohon melakukan pembayaran sebelum 10-01-2019 melalui Bank BNI<br>
-                            (Dicek Manual) Bila tidak, pesanan ini akan dibatalkan secara otomatis.</span>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn waves-effect waves-light btn-info" style="width: 100%;"> Pesan Diterima </button><br>
-                            <button type="button" class="btn waves-effect waves-light btn-outline-info" style="margin-top: 10px; width: 100%;"> Perpanjang Masa Garansi Toko </button><br>
-                            <button type="button" class="btn waves-effect waves-light btn-outline-info" style="margin-top: 10px; margin-bottom: 10px; width: 100%;"> Ajukan Pengembalian </button><br>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <!-- ============================================================== -->
             <!-- BAGIAN ATAS -->
             <!-- ============================================================== -->
@@ -336,3 +257,13 @@
     </div>
 </div>
 
+<script src="<?php echo base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove(); 
+            });
+        }, 2000);
+    });
+</script>

@@ -12,11 +12,12 @@
                     <h4>Metode Pembayaran</h4>
                 </div>
                 <div class="card-body">
+                  <form method="POST" action="<?php echo base_url('OrderC/update_payment/'.$orderID)?>">
                     <table class="table-bordered" style="background: rgba(184, 184, 184, 0.03);">
                         <tbody>
                             <div class="col-md-12">
                                 <div class="panel-group"  id="accordion">
-                                    <div class="panel panel-default">
+                                    <div class="panel" style="pointer-events: none; background: #61616161;">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                               <div class="radio">
@@ -34,7 +35,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel panel-default">
+                                    <div class="panel" style="pointer-events: none; background: #61616161;">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                               <div class="radio">
@@ -73,11 +74,16 @@
                                         <div id="collapse3" class="panel-collapse collapse">
                                             <div class="panel-body">
                                               <label >Pilih bank penyedia virtual account :</label>
-                                              <select class="form-control" >
-                                                <option> Virtual Account BNI <img src="<?php echo base_url()?>assets/images/bni.png"></option>
+                                              <select class="form-control" name="vbankid">
+                                                <?php foreach ($bank_list as $bank) { 
+                                                  ?>
+                                                  <option value="<?php echo $bank->bankID;?>">Virtual Account : <?php echo $bank->bankName;?></option>
+                                                  <?php
+                                                }?>
+                                                <!-- <option> Virtual Account BNI <img src="<?php echo base_url()?>assets/images/bni.png"></option>
                                                 <option>Virtual Account BCA</option>
                                                 <option>Virtual Account Mandiri</option>
-                                                <option>Virtual Account CIMB Niaga</option>
+                                                <option>Virtual Account CIMB Niaga</option> -->
                                               </select>
                                               <p>Ketentuan pembayaran : <br>
                                                 <ul>
@@ -91,7 +97,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel panel-default">
+                                    <div class="panel" style="pointer-events: none; background: #61616161;">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                               <div class="radio">
@@ -116,7 +122,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel panel-default">
+                                    <div class="panel" style="pointer-events: none; background: #61616161;">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                               <div class="radio">
@@ -144,11 +150,11 @@
                                 </div> 
                             </div>
 
-                            <a href="#" class="btn btn-primary waves-effect waves-light btn-outline-info" style="width:100%;"> Kirimkan </a>
-
+                            <button type="submit" class="btn btn-primary waves-effect waves-light btn-outline-info" style="width:100%;"> Kirimkan </button>
                         </tbody>
                         <tfoot></tfoot>
                     </table>
+                  </form>
                 </div>
             </div>
         </div>
