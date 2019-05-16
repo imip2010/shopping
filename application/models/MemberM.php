@@ -486,10 +486,22 @@ class MemberM extends CI_Model{
 
 	public function get_product_by_memberid($sellerID)
 	{
-		$this->db->select('*');
+		if(empty($_GET['sortBy'])){
+			$sB=null;
+		}else{
+			$sB=$_GET['sortBy'];	
+		}
+		$this->db->select('P.*,M.memberName,M.photo,M.email,M.lasLogin');
 		$this->db->from('products P');
-		$this->db->join('members D', 'P.memberID = D.memberID');
-		$this->db->where('D.memberID',$sellerID);
+		$this->db->join('members M', 'P.memberID = M.memberID');
+		$this->db->where('M.memberID',$sellerID);
+		if(empty($sB)){
+			$this->db->order_by('createDate','asc');
+		}elseif($sB=='ctime'){
+			$this->db->order_by('createDate','desc');
+		}elseif($sB=='sales'){
+			$this->db->order_by('sold','desc');
+		}
 		$query = $this->db->get();
 		if($query){
 			return $query;

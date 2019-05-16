@@ -48,32 +48,35 @@ body {font-family: "Lato", sans-serif;}
 </style>
 
 <!-- row -->
+<?php foreach($seller_detail as $toko){?>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <a class="carousel-control-next btn btn-info" href="<?php echo site_url('pengaturan_profile#navpills-3')?>" type="button" style="height: 10%;"><span>Ubah Foto Header</span> </a>
-                        <img class="img-slide" src="<?php echo base_url()?>assets/images/Banner_Ads-02.jpg" alt="First slide"/>
+                        <a class="carousel-control-next btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" type="button" style="height: 10%;"><span>Ubah Foto Header</span> </a>
+                        <img class="img-slide" src="<?php echo base_url()?>assets/images/store/<?php echo $toko->shop_header;?>" alt="First slide"/>
                     </div><br><br>
                     <div class="d-flex no-block">
                         <div class="">
-                            <img src="<?php echo base_url()?>assets/images/users/1.jpg" alt="user" class="rounded-circle" width="90">
+                            <img src="<?php echo base_url()?>assets/images/users/<?php echo $toko->photo;?>" alt="user" class="rounded-circle" width="90">
                         </div>
                         <div class="m-l-10">
-                            <h4 class="m-b-0"><?php echo $dataDiri['nama'];?></h4>
-                            <p class=" m-b-0"><i class="ti-location-pin font-20"></i>Jakarta Utara</p>
+                            <h4 class="m-b-0"><?php echo $toko->memberName;?></h4>
+                            <p class=" m-b-0"><i class="ti-location-pin font-20"></i><?php echo $toko->shop_address;?></p>
+                            <p class=" m-b-0"><?php echo $kabupaten.", ".$provinsi;?></p>
                         </div>
                     </div>
                     <div class="m-l-10 text-right">
-                        <a class="btn btn-info" href="<?php echo site_url('pengaturan_profile#navpills-3')?>" style="margin-top: -14%;" ><i class="ti-settings m-r-5 m-l-5"></i><span> Edit Toko</span></a>
+                        <a class="btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" style="margin-top: -14%;" ><i class="ti-settings m-r-5 m-l-5"></i><span> Edit Toko</span></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php }?>
 <!-- End row -->
 
 <div class="row">
@@ -106,15 +109,31 @@ body {font-family: "Lato", sans-serif;}
 
     <a href="#">Laporkan Pelanggaran</a>
 </div>
-
+<?php
+$sortBy = "";
+if(isset($_GET["sortBy"]))
+{ $sortBy = $_GET["sortBy"]; }
+?>
   <div class="col-lg-9 col-md-12">
       <div class="card border-info">
           <div class="card-header bg-info">
-            <form action="">
+            <!-- <form action=""> -->
                 <div class="dropdown">
                     <input type="text" class="form-control" placeholder="Search.." name="search" style="width: 40%; display: inline;">
                     <button type="submit" class="btn btn-light-info"><i class="ti-search font-16"></i></button>
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <div style="display: inline-block;">
+                      <form name='sortForm' id='sortForm'>
+                        <ul>
+                            <li style="display: inline-block;padding-top: 2px;padding-bottom: 1px;" class="btn  <?php if ($sortBy == 'ctime') {?> bg-warning text-white <?php }else{?> bg-white <?php }?>">
+                                <input type='radio' value='ctime' name='sortBy' id='ctime' style="opacity: 0;width: 0;" <?php if ($sortBy == 'ctime') { ?> checked='checked' <?php } ?> onChange="autoSubmit();"><label for='ctime' style="cursor: pointer;">Terbaru</label>
+                            </li>
+                            <li style="display: inline-block;padding-top: 2px;padding-bottom: 1px;" class="btn  <?php if ($sortBy == 'sales') {?> bg-warning text-white <?php }else{?> bg-white <?php }?>">
+                                <input type='radio' value='sales' name='sortBy'  id='sales' style="opacity: 0;width: 0;" <?php if ($sortBy == 'sales') { ?> checked='checked' <?php } ?> onChange="autoSubmit();"><label for='sales' style="cursor: pointer;">Terlaris</label>
+                            </li>
+                        </ul>
+                      </form>
+                    </div>
+                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                         <i class="ti-filter font-20"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right user-dd animated ">
@@ -122,8 +141,8 @@ body {font-family: "Lato", sans-serif;}
                         <li class="dropdown-item"><a href="#">Termurah</a></li>
                         <li class="dropdown-item"><a href="#">Termahal</a></li>
                         <li class="dropdown-item"><a href="#">Terlaris</a></li>
-                    </ul>
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="modal" data-target="#myModal"> 
+                    </ul> -->
+                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="modal" data-target="#myModal" disabled=""> 
                         <i class="ti-filter font-20"></i>filter
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right user-dd animated ">
@@ -131,18 +150,69 @@ body {font-family: "Lato", sans-serif;}
                         <li class="dropdown-item"><a href="#">Termurah</a></li>
                         <li class="dropdown-item"><a href="#">Termahal</a></li>
                         <li class="dropdown-item"><a href="#">Terlaris</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
-            </form>
+            <!-- </form> -->
           </div>
           <div class="card-body">
               <h4 class="m-b-0 ">Semua Barang</h4><br>
-          <form class="">
-            <div class="text-center">
-                <img src="<?php echo base_url()?>assets/images/no_barang.png" >
-                <p>Tidak Ada Barang</p>
-            </div>
-          </form>
+              <?php if (!empty($products)) { ?>
+                <div>
+                    <div class="row el-element-overlay">
+                    <?php
+                    foreach ($products as $produk) { 
+                      // diskon  
+                      $harga      = number_format($produk->salePrice,0,',','.');
+                      $disc       = ($produk->discount/100)*$produk->salePrice;
+                      $hargadisc  = number_format(($produk->salePrice-$disc),0,",",".");
+
+                      $d=$produk->discount;
+
+                      $hargatetap  = "<span> </span>
+                      <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
+                      $hargadiskon = "<span data-product-rrp-without-tax class='price price--rrp' style='color: red;''> $d% </span><br>
+                      <span data-product-price-without-tax class='price price--withoutTax'><strike><small> Rp. $harga</small></strike></span><br>
+                      <span data-product-price-without-tax class='price price--withoutTax'> Rp. $hargadisc</span>";
+                      if ($d!='0'){
+                        $divharga=$hargadiskon;
+                      }else{
+                        $divharga=$hargatetap;
+                      } 
+                      ?>    
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="el-card-item">
+                                    <div class="el-card-avatar el-overlay-1"> <img src="<?php echo base_url()?>assets/images/product/<?php echo $produk->photo1?>" alt="user"  style="height: 200px;" />
+                                        <div class="el-overlay">
+                                            <ul class="list-style-none el-info">
+                                                <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="<?php echo base_url()?>assets/images/gallery/chair.jpg"><i class="sl-icon-magnifier"></i></a></li>
+                                                <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-link"></i></a></li>
+                                                <li class="el-item"><a class="btn default btn-outline el-link" href="<?php echo base_url()?>detail"><i class="sl-icon-basket"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex no-block ">
+                                        <div class="m-l-15">
+                                            <h5><?php echo $produk->productName;?></h5>
+                                            <span class="text-muted"><?php echo $kabupaten?></span>
+                                            <h5><?php  echo $divharga;?></h5>
+                                        </div>
+                                        <div class="ml-auto m-r-15"><br>
+                                            <a href="<?php echo site_url('detail_produk/').$produk->productID?>"><button type="button" class="btn btn-dark " >Detail</button></a>                                  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+              <?php }else{?>
+                <div class="text-center">
+                    <img src="<?php echo base_url()?>assets/images/no_barang.png" >
+                    <p>Tidak Ada Barang</p>
+                </div>
+              <?php }?>
           </div>
       </div>
   </div>
@@ -267,4 +337,10 @@ function openCity(evt, cityName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+function autoSubmit()
+{
+    var formObject = document.forms['sortForm'];
+    formObject.submit();
+}
 </script>

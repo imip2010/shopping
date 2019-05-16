@@ -215,5 +215,45 @@ class HomeM extends CI_model
 			echo "tidak ditemukan";
 		}
 	}
+
+	public function get_kabupaten_by_id($id_kabupaten_kota)
+	{
+		$this->db->select('*');
+		$this->db->from('kabupaten_kota');
+		$this->db->where('id_kabupaten_kota', $id_kabupaten_kota);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_provinsi_by_id($id_propinsi)
+	{
+		$this->db->select('*');
+		$this->db->from('propinsi');
+		$this->db->where('id_propinsi', $id_propinsi);
+		$query = $this->db->get();
+		if($query){
+			return $query;
+		}else{
+			echo "tidak ditemukan";
+		}
+	}
+
+	public function get_info_kabupaten_provinsi($id_kabupaten_kota)
+	{
+		$this->db->select('*');
+		$this->db->from('kabupaten_kota k');
+		$this->db->join('propinsi p','k.id_propinsi = p.id_propinsi');
+		$this->db->where('k.id_kabupaten_kota',$id_kabupaten_kota);
+		$query = $this->db->get();
+		if ($query) {
+			return $query;
+		}else{
+			echo "Empty data!";
+		}
+	}
 }
 ?>

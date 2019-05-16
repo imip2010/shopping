@@ -773,10 +773,29 @@ class MemberC extends CI_Controller {
 
     public function get_seller_profile($sellerID)
     {
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
+        $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+        $this->data['menu_kategori'] = $this->HomeM->get_all_kategori()->result();
+
         $this->data['seller_detail'] = $this->MemberM->get_seller_profile($sellerID)->result();
+        $this->data['kabupaten'] = $this->HomeM->get_kabupaten_by_id($this->MemberM->get_seller_profile($sellerID)->row()->id_kabupaten_kota)->row()->nama_kabupaten_kota;
+        $this->data['provinsi'] = $this->HomeM->get_provinsi_by_id($this->HomeM->get_kabupaten_by_id($this->MemberM->get_seller_profile($sellerID)->row()->id_kabupaten_kota)->row()->id_propinsi)->row()->nama_propinsi;
         $this->data['products'] = $this->MemberM->get_product_by_memberid($sellerID)->result();
-        print_r($this->MemberM->get_seller_profile($sellerID)->result());
-        print_r($this->MemberM->get_product_by_memberid($sellerID)->result());
+
+        $this->data['isi'] = $this->load->view('Toko_v', $this->data, TRUE);
+        $this->load->view('layout', $this->data);
+        // print_r($this->MemberM->get_seller_profile($sellerID)->result());
+        // print_r($this->MemberM->get_product_by_memberid($sellerID)->result());
+    }
+
+    public function toko(){
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
+        $this->data['isi'] = 'isi';
+        $this->data['produk_terpopuler'] = $this->HomeM->get_produk_terpopuler()->result();
+        $this->data['isi'] = $this->load->view('Toko_v', $this->data, TRUE);
+        $this->load->view('layout', $this->data);
     }
 }
 

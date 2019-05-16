@@ -79,24 +79,27 @@ class OrderC extends CI_Controller {
         $data = array('statusOrder' => 'Reject', );
         $this->OrderM->cancel_order($orderID,$data);
         redirect('/transaksi');
-    }
+    } 
 
     public function change_payment($orderID)
     {
+        $this->data['orderID'] = $orderID;
+        $this->data['dataDiri'] = $this->session->userdata();
+        $this->data['logged_in'] = $this->session->userdata('logged_in');
         $this->data['detail_transaksi'] = $this->OrderM->change_payment($orderID)->row()->bankID;
         $this->data['bank_list'] = $this->CheckoutM->get_bank()->result();
-        print_r($this->CheckoutM->get_bank()->result());
-        print_r($this->OrderM->change_payment($orderID)->row()->bankID);
-        // $this->load->view('');
+        $this->data['isi'] = $this->load->view('member/ubahmetode_v',$this->data, TRUE);
+        $this->load->view('layout', $this->data);
 
     }
 
     public function update_payment($orderID)
     {
         $data = array(
-            'bankID' => $this->input->post('bankID'),
+            'bankID' => $this->input->post('vbankid'),
         );
         $this->OrderM->update_payment($orderID,$data);
-        redirect('/transaksi');
+        $this->session->set_flashdata('success', "SUCCESS_MESSAGE_HERE");
+        redirect('/detail_transaksi/'.$orderID);
     }
 }
