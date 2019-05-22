@@ -55,7 +55,7 @@ body {font-family: "Lato", sans-serif;}
             <div class="card-body">
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <a class="carousel-control-next btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" type="button" style="height: 10%;"><span>Ubah Foto Header</span> </a>
+                        <!-- <a class="carousel-control-next btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" type="button" style="height: 10%;"><span>Ubah Foto Header</span> </a> -->
                         <img class="img-slide" src="<?php echo base_url()?>assets/images/store/<?php echo $toko->shop_header;?>" alt="First slide"/>
                     </div><br><br>
                     <div class="d-flex no-block">
@@ -69,7 +69,7 @@ body {font-family: "Lato", sans-serif;}
                         </div>
                     </div>
                     <div class="m-l-10 text-right">
-                        <a class="btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" style="margin-top: -14%;" ><i class="ti-settings m-r-5 m-l-5"></i><span> Edit Toko</span></a>
+                        <!-- <a class="btn btn-info" href="<?php echo site_url('pengaturan_profile')?>" style="margin-top: -14%;" ><i class="ti-settings m-r-5 m-l-5"></i><span> Edit Toko</span></a> -->
                     </div>
                 </div>
             </div>
@@ -119,9 +119,9 @@ if(isset($_GET["sortBy"]))
           <div class="card-header bg-info">
             <!-- <form action=""> -->
                 <div class="dropdown">
-                    <input type="text" class="form-control" placeholder="Search.." name="search" style="width: 40%; display: inline;">
-                    <button type="submit" class="btn btn-light-info"><i class="ti-search font-16"></i></button>
-                    <div style="display: inline-block;">
+                    <!-- <input type="text" class="form-control" placeholder="Search.." name="search" style="width: 40%; display: inline;">
+                    <button type="submit" class="btn btn-light-info"><i class="ti-search font-16"></i></button> -->
+                    <div style="display: inline-block;margin-left: -5%;">
                       <form name='sortForm' id='sortForm'>
                         <ul>
                             <li style="display: inline-block;padding-top: 2px;padding-bottom: 1px;" class="btn  <?php if ($sortBy == 'ctime') {?> bg-warning text-white <?php }else{?> bg-white <?php }?>">
@@ -142,10 +142,10 @@ if(isset($_GET["sortBy"]))
                         <li class="dropdown-item"><a href="#">Termahal</a></li>
                         <li class="dropdown-item"><a href="#">Terlaris</a></li>
                     </ul> -->
-                    <!-- <button class="btn btn-default dropdown-toggle" type="button" data-toggle="modal" data-target="#myModal" disabled=""> 
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="modal" data-target="#myModal"> 
                         <i class="ti-filter font-20"></i>filter
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right user-dd animated ">
+                    <!-- <ul class="dropdown-menu dropdown-menu-right user-dd animated ">
                         <li class="dropdown-item"><a href="#">Terbaru</a></li>
                         <li class="dropdown-item"><a href="#">Termurah</a></li>
                         <li class="dropdown-item"><a href="#">Termahal</a></li>
