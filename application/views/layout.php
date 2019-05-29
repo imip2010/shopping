@@ -32,6 +32,7 @@
 
     
     <link href="<?php echo base_url()?>assets/dist/css/wizard.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>assets/theme/css/stylenew.css" rel="stylesheet">
     <link href="<?php echo base_url()?>assets/dist/js/wizard.js" rel="stylesheet">
 
     <link href='<?php echo base_url()?>assets/libs/dropzone/dist/dropzone.css' type='text/css' rel='stylesheet'>
@@ -193,6 +194,7 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body>
@@ -374,7 +376,7 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
                                             foreach ($menu_kategori as $kategori) {
                                                 ?>
                                                 <li>
-                                                    <a href="<?php echo base_url()?>kategori" >
+                                                    <a href="<?php echo base_url()?>kategori?cat=<?php echo $kategori->categoryID;?>" >
                                                         <div class="message-body  " style=" margin-left: 20px;">
                                                             <h5><img src="<?php echo base_url()?>assets/images/kategori/<?php echo $kategori->icons;?>" /><?php echo " ".$kategori->categoryName;?></h5>
                                                         </div>
@@ -686,7 +688,6 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
                         <!-- End Wrapper -->
                         <!-- ============================================================== -->
 
-
                         <!-- ============================================================== -->
                         <!-- All Jquery -->
                         <!-- ============================================================== -->
@@ -737,7 +738,6 @@ box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1
 
                         <script src="<?php echo base_url()?>assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
                         <script src="<?php echo base_url()?>assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
-                        
                         
                         <script>
                             //==================================================//
