@@ -111,10 +111,12 @@
                                 <p>Mohon melakukan pembayaran sebelum <span style="color: #ea9d00!important;"><?php echo date('d-m-Y H:i',strtotime($transaksi->dateOrder.'+1 days'));?></span>.<br>
                                 (Dicek Manual) Bila tidak, pesanan ini akan dibatalkan secara otomatis.</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 ">
                                 <button type="button" class="btn waves-effect waves-light btn-info" style="width: 100%;"> Pesan Diterima </button><br>
                                 <button type="button" class="btn waves-effect waves-light btn-outline-info" style="margin-top: 10px; width: 100%;"> Perpanjang Masa Garansi Toko </button><br>
-                                <button type="button" class="btn waves-effect waves-light btn-outline-info" style="margin-top: 10px; margin-bottom: 10px; width: 100%;"> Ajukan Pengembalian </button><br>
+                                <button type="button" class="btn waves-effect waves-light btn-outline-info" style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+                                    <a class="waves-effect waves-light btn-outline-info" href="<?php echo site_url('CobaC/pengembalian')?>">Ajukan Pengembalian</a>
+                                </button>
                             </div>
                         </div>
                         <hr>
